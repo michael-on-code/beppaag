@@ -1,0 +1,17 @@
+.btn-primary{
+    background-color: #008c28;
+    border-color: #008c28;
+}
+.btn-primary:hover, .btn-primary:focus{
+    background-color: #00a928;
+    border-color: #00a928;
+}
+.form-control:not([disabled]):hover, .form-control:not([disabled]):focus{
+    border-color: #008c28;
+}
+a{
+    color: #008c28;
+}
+a:hover, a:focus {
+    color: #00a928;
+}
