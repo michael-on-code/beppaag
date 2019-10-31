@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 31 Octobre 2019 à 11:22
+-- Généré le :  Jeu 31 Octobre 2019 à 15:31
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -103,6 +103,20 @@ CREATE TABLE `evaluation_sector_groups` (
   `id` int(10) UNSIGNED NOT NULL,
   `evaluation_id` int(10) UNSIGNED NOT NULL,
   `sector_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `evaluation_stats`
+--
+
+CREATE TABLE `evaluation_stats` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `evaluation_id` int(10) UNSIGNED NOT NULL,
+  `ip_adress` varchar(45) NOT NULL,
+  `time` int(10) UNSIGNED NOT NULL,
+  `type` varchar(10) NOT NULL DEFAULT 'view'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -263,6 +277,19 @@ CREATE TABLE `login_attempts` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `title` text NOT NULL,
+  `params` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `options`
 --
 
@@ -338,6 +365,42 @@ CREATE TABLE `post_tag_groups` (
   `id` int(10) UNSIGNED NOT NULL,
   `tag_id` int(10) UNSIGNED NOT NULL,
   `post_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `recommendations`
+--
+
+CREATE TABLE `recommendations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `evaluation_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `start_date` datetime NOT NULL,
+  `status` tinyint(1) DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `recommendation_activities`
+--
+
+CREATE TABLE `recommendation_activities` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `recommendation_id` int(10) UNSIGNED NOT NULL,
+  `title` text NOT NULL,
+  `amount` int(10) UNSIGNED NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `execution_level` varchar(35) NOT NULL,
+  `explanation` text NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -455,6 +518,13 @@ ALTER TABLE `evaluation_sector_groups`
   ADD KEY `sector_id` (`sector_id`);
 
 --
+-- Index pour la table `evaluation_stats`
+--
+ALTER TABLE `evaluation_stats`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `evaluation_id` (`evaluation_id`);
+
+--
 -- Index pour la table `evaluation_temporalities`
 --
 ALTER TABLE `evaluation_temporalities`
@@ -528,6 +598,13 @@ ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Index pour la table `options`
 --
 ALTER TABLE `options`
@@ -567,6 +644,20 @@ ALTER TABLE `post_tag_groups`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tag_id` (`tag_id`),
   ADD KEY `post_id` (`post_id`);
+
+--
+-- Index pour la table `recommendations`
+--
+ALTER TABLE `recommendations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `evaluation_id` (`evaluation_id`);
+
+--
+-- Index pour la table `recommendation_activities`
+--
+ALTER TABLE `recommendation_activities`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `recommendation_id` (`recommendation_id`);
 
 --
 -- Index pour la table `users`
@@ -625,6 +716,11 @@ ALTER TABLE `evaluation_sectors`
 ALTER TABLE `evaluation_sector_groups`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `evaluation_stats`
+--
+ALTER TABLE `evaluation_stats`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `evaluation_temporalities`
 --
 ALTER TABLE `evaluation_temporalities`
@@ -680,6 +776,11 @@ ALTER TABLE `groups`
 ALTER TABLE `login_attempts`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `options`
 --
 ALTER TABLE `options`
@@ -710,6 +811,16 @@ ALTER TABLE `post_tags`
 ALTER TABLE `post_tag_groups`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `recommendations`
+--
+ALTER TABLE `recommendations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `recommendation_activities`
+--
+ALTER TABLE `recommendation_activities`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
@@ -729,11 +840,93 @@ ALTER TABLE `user_meta`
 --
 
 --
+-- Contraintes pour la table `evaluations`
+--
+ALTER TABLE `evaluations`
+  ADD CONSTRAINT `evaluations_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `evaluation_types` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `evaluations_ibfk_2` FOREIGN KEY (`temporality_id`) REFERENCES `evaluation_temporalities` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `evaluations_ibfk_3` FOREIGN KEY (`leading_authority_id`) REFERENCES `evaluation_leading_authorities` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `evaluations_ibfk_4` FOREIGN KEY (`contracting_authority_id`) REFERENCES `evaluation_contracting_authorities` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `evaluations_ibfk_5` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION;
+
+--
+-- Contraintes pour la table `evaluation_meta`
+--
+ALTER TABLE `evaluation_meta`
+  ADD CONSTRAINT `evaluation_meta_ibfk_1` FOREIGN KEY (`evaluation_id`) REFERENCES `evaluations` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `evaluation_sector_groups`
+--
+ALTER TABLE `evaluation_sector_groups`
+  ADD CONSTRAINT `evaluation_sector_groups_ibfk_1` FOREIGN KEY (`evaluation_id`) REFERENCES `evaluations` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `evaluation_sector_groups_ibfk_2` FOREIGN KEY (`sector_id`) REFERENCES `evaluation_sectors` (`id`) ON DELETE NO ACTION;
+
+--
+-- Contraintes pour la table `evaluation_stats`
+--
+ALTER TABLE `evaluation_stats`
+  ADD CONSTRAINT `evaluation_stats_ibfk_1` FOREIGN KEY (`evaluation_id`) REFERENCES `evaluations` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `evaluation_thematic_groups`
+--
+ALTER TABLE `evaluation_thematic_groups`
+  ADD CONSTRAINT `evaluation_thematic_groups_ibfk_1` FOREIGN KEY (`evaluation_id`) REFERENCES `evaluations` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `evaluation_thematic_groups_ibfk_2` FOREIGN KEY (`thematic_id`) REFERENCES `evaluation_thematics` (`id`) ON DELETE NO ACTION;
+
+--
+-- Contraintes pour la table `events`
+--
+ALTER TABLE `events`
+  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `event_categories` (`id`) ON DELETE NO ACTION;
+
+--
+-- Contraintes pour la table `event_tag_groups`
+--
+ALTER TABLE `event_tag_groups`
+  ADD CONSTRAINT `event_tag_groups_ibfk_1` FOREIGN KEY (`tag_id`) REFERENCES `event_tags` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `event_tag_groups_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `post_categories` (`id`) ON DELETE NO ACTION;
+
+--
+-- Contraintes pour la table `post_tag_groups`
+--
+ALTER TABLE `post_tag_groups`
+  ADD CONSTRAINT `post_tag_groups_ibfk_1` FOREIGN KEY (`tag_id`) REFERENCES `post_tags` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `post_tag_groups_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `recommendations`
+--
+ALTER TABLE `recommendations`
+  ADD CONSTRAINT `recommendations_ibfk_1` FOREIGN KEY (`evaluation_id`) REFERENCES `evaluations` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `recommendation_activities`
+--
+ALTER TABLE `recommendation_activities`
+  ADD CONSTRAINT `recommendation_activities_ibfk_1` FOREIGN KEY (`recommendation_id`) REFERENCES `recommendations` (`id`) ON DELETE CASCADE;
+
+--
 -- Contraintes pour la table `users_groups`
 --
 ALTER TABLE `users_groups`
   ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `user_meta`
+--
+ALTER TABLE `user_meta`
+  ADD CONSTRAINT `user_meta_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
