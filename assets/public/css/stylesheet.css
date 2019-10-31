@@ -1,0 +1,69 @@
+
+
+@media (min-width: 768px) {
+    .logo-nav-row .navbar-nav>li>a{
+        padding: 31px 22px;
+    }
+    div#bs-example-navbar-collapse-1 ul {
+        margin-top: 26px;
+    }
+}
+
+.logo-nav-row ul.nav.navbar-nav.navbar-right .search-btn a{
+    background: none!important;
+}
+.outerTitleDescription{
+    height: 82px;
+    display: table;
+}
+.innerTitleDescription{
+    vertical-align: middle;
+    display: table-cell;
+}
+.mg-t-17{
+    margin-top: 17px;
+}
+body{
+    overflow-x: hidden;
+}
+.fact-box{
+    padding: 24px 0 0 80px;
+}
+.fact-box i{
+    top: 35px;
+}
+.fact-box i img{
+    width: 50px;
+}
+@media (max-width: 767px) and (min-width: 280px){
+    .logo-nav-row .navbar-toggle {
+        margin: 48px 0 0 0;
+    }
+    .slider-caption p{
+        display: block;
+        margin: auto;
+        font-size: 13px;
+        line-height: 17px;
+    }
+    .slider-caption a{
+        display: inline-block;
+        padding: 5px 10px;
+        line-height: 22px;
+    }
+}
+.title-style-2 a.my-a{
+    float: none;
+    padding: 10px 20px;
+}
+.main-footer{
+    margin-bottom: 23px!important;
+}
+.share-post .whats{
+    color: #0ec244;
+}
+.share-post .linken{
+    color: #006087;
+}
+.subheader {
+    background: url(../images/breadcump-bg1.jpg) no-repeat!important;
+}

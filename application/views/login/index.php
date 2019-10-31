@@ -67,7 +67,7 @@
                         <div class="d-flex align-items-center justify-content-between">
                                             <span class="font-size-13 text-muted">
 
-                                                <a class="anticon anticon-arrow-left" href="#"> <i class=""></i> Retourner au site</a>
+                                                <a class="anticon anticon-arrow-left" href="<?= site_url('/') ?>"> <i class=""></i> Retourner au site</a>
                                             </span>
                             <button type="submit" disabled class="btn btn-primary m-l-5"><span>Se connecter</span>
                                 <i class="anticon anticon-loading m-l-5"></i>
