@@ -5,16 +5,10 @@
  * Date: 31/10/2019
  * Time: 11:41
  */
+getBreadcrump([
+    'title'=>$pageTitle
+])
 ?>
-<section class="wf100 subheader">
-    <div class="container">
-        <h2>Nous contacter </h2>
-        <ul>
-            <li> <a href="index.html">Accueil</a> </li>
-            <li> Nous contacter</li>
-        </ul>
-    </div>
-</section>
 <!--Sub Header End-->
 <!--Main Content Start-->
 <div class="main-content">
