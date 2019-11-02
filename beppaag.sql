@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 31 Octobre 2019 à 15:31
+-- Généré le :  Sam 02 Novembre 2019 à 11:33
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `beppaag`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cron_jobs`
+--
+
+CREATE TABLE `cron_jobs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` text NOT NULL,
+  `function_to_call` varchar(100) NOT NULL,
+  `params` longtext NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `starts_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -474,6 +489,12 @@ CREATE TABLE `user_meta` (
 --
 
 --
+-- Index pour la table `cron_jobs`
+--
+ALTER TABLE `cron_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `evaluations`
 --
 ALTER TABLE `evaluations`
@@ -686,6 +707,11 @@ ALTER TABLE `user_meta`
 --
 
 --
+-- AUTO_INCREMENT pour la table `cron_jobs`
+--
+ALTER TABLE `cron_jobs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `evaluations`
 --
 ALTER TABLE `evaluations`
@@ -883,6 +909,12 @@ ALTER TABLE `events`
   ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `event_categories` (`id`) ON DELETE NO ACTION;
 
 --
+-- Contraintes pour la table `event_meta`
+--
+ALTER TABLE `event_meta`
+  ADD CONSTRAINT `event_meta_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE;
+
+--
 -- Contraintes pour la table `event_tag_groups`
 --
 ALTER TABLE `event_tag_groups`
@@ -895,6 +927,12 @@ ALTER TABLE `event_tag_groups`
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION,
   ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `post_categories` (`id`) ON DELETE NO ACTION;
+
+--
+-- Contraintes pour la table `post_meta`
+--
+ALTER TABLE `post_meta`
+  ADD CONSTRAINT `post_meta_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `post_tag_groups`
