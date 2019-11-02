@@ -13,7 +13,7 @@
     <link href="<?= $assetsUrl ?>public/css/all.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.10" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.11" rel="stylesheet">
     <link rel="icon" href="<?= $assetsUrl ?>public/images/favicon.png" type="image/png">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -65,8 +65,8 @@
                                 <ul class="nav navbar-nav">
                                     <li><a href="<?= site_url() ?>">Accueil</a></li>
                                     <li><a href="##">Evaluations</a></li>
-                                    <li><a href="##">Evènements</a></li>
-                                    <li><a href="##">Actualités</a></li>
+                                    <li><a href="<?= site_url('events') ?>">Evènements</a></li>
+                                    <li><a href="<?= site_url('blog') ?>">Actualités</a></li>
                                     <li class="dropdown"><a href="##" class="dropdown-toggle" data-toggle="dropdown"
                                                             role="button" aria-haspopup="true" aria-expanded="false">Rubriques
                                             <span class="caret"></span></a>

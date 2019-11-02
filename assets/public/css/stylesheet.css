@@ -67,3 +67,6 @@ body{
 .subheader {
     background: url(../images/breadcump-bg1.jpg) no-repeat!important;
 }
+.sidebar .widget h4{
+    font-size: 17px;
+}

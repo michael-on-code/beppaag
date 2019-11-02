@@ -85,7 +85,7 @@
                                 <ul class="lb-ser-box">
 
                                     <!--Start-->
-                                    <li><a href=""><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/calendar.png" alt=""></span>
+                                    <li><a href="<?= site_url('events') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/calendar.png" alt=""></span>
                                             <h6>Evènements</h6></a>
                                         <p>Découvrez l'intégralité de nos évènements passés et à venir nous concernant</p>
                                     </li>
@@ -134,7 +134,7 @@
                         <h3>Nos dernières actualités & publications</h3>
                     </div>
                     <div class="col-md-2 col-sm-6 title-style-2">
-                        <a href="#">Voir tout</a>
+                        <a href="<?= site_url('blog') ?>">Voir tout</a>
                     </div>
                 </div>
                 <p>Restez au courant de nos dernières actualiés & publications en rapport avec la gestion des processus évaluatifs</p>
@@ -274,7 +274,7 @@
                     <div class="col-md-6 col-sm-6 outerTitleDescription">
                         <p class="innerTitleDescription">Retrouvez les derniers évènements organisés par la BEPPAAG au suget de la gestion des processus evaluatifs</p>
                     </div>
-                    <div class="col-md-2 "><a class="mg-t-17" href="#">Voir tout</a></div>
+                    <div class="col-md-2 "><a class="mg-t-17" href="<?= site_url('events') ?>">Voir tout</a></div>
                 </div>
             </div>
             <div class="row">

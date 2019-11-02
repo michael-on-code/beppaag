@@ -15,8 +15,8 @@
                     <ul>
                         <li><a href="<?= site_url() ?>"><i class="fas fa-star"></i> Accueil</a></li>
                         <li><a href="##"><i class="fas fa-star"></i> Evaluations</a></li>
-                        <li><a href="##"><i class="fas fa-star"></i> Evènements</a></li>
-                        <li><a href="##"><i class="fas fa-star"></i> Actualités</a></li>
+                        <li><a href="<?= site_url('events') ?>"><i class="fas fa-star"></i> Evènements</a></li>
+                        <li><a href="<?= site_url('blog') ?>"><i class="fas fa-star"></i> Actualités</a></li>
                         <!--<li><a href="##"><i class="fas fa-star"></i> Publications</a></li>
                         <li><a href="##"><i class="fas fa-star"></i> Gestion de connaissances</a></li>
                         <li><a href="##"><i class="fas fa-star"></i> Partenariat</a></li>
