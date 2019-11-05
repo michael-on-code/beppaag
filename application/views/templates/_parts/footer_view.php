@@ -14,7 +14,7 @@
                     <h6>Navigation</h6>
                     <ul>
                         <li><a href="<?= site_url() ?>"><i class="fas fa-star"></i> Accueil</a></li>
-                        <li><a href="##"><i class="fas fa-star"></i> Evaluations</a></li>
+                        <li><a href="<?= site_url('evaluations') ?>"><i class="fas fa-star"></i> Evaluations</a></li>
                         <li><a href="<?= site_url('events') ?>"><i class="fas fa-star"></i> Evènements</a></li>
                         <li><a href="<?= site_url('blog') ?>"><i class="fas fa-star"></i> Actualités</a></li>
                         <!--<li><a href="##"><i class="fas fa-star"></i> Publications</a></li>
@@ -80,27 +80,6 @@
     </div>
 </footer>
 <!--Footer End-->
-
-<nav id="sidebar">
-    <div id="dismiss"><i class="fas fa-arrow-right"></i></div>
-    <div class="sidebar-header"><img src="<?= $assetsUrl ?>public/images/footer-logo2.png" alt=""></div>
-    <ul class="list-unstyled components">
-        <li class="active"><a href="##homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li><a href="#index-2.html">Default Home Page</a></li>
-                <li><a href="#home-two.html">Home Page Two</a></li>
-                <li><a href="#home-three.html">Home Page Three</a></li>
-            </ul>
-        </li>
-        <li><a href="#aboutus.html">About Us</a></li>
-        <li><a href="#departments.html">Departments</a></li>
-        <li><a href="#news-full.html">News</a></li>
-        <li><a href="#event.html">Events</a></li>
-        <li><a href="#explore-city.html">Explore City</a></li>
-        <li><a href="#services.html">Services</a></li>
-        <li><a href="#contact.html">Contact</a></li>
-    </ul>
-</nav>
 <div class="overlay"></div>
 </div>
 <!--Wrapper End-->
