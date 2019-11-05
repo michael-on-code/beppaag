@@ -3,7 +3,7 @@
         <div class="row">
             <!--Footer Widget Start-->
             <div class="col-md-3 col-sm-6">
-                <div class="textwidget"><a href="<?= site_url() ?>"><img src="<?= $assetsUrl ?>public/images/benin-revele-logo.png" style="width: 90%" alt=""></a>
+                <div class="textwidget"><a href="<?= site_url() ?>"><img class="footer-logo" src="<?= $assetsUrl ?>public/images/benin-revele-logo.png" style="width: 90%" alt=""></a>
 
                 </div>
             </div>
@@ -28,7 +28,7 @@
             </div>
             <!--Footer Widget End-->
             <!--Footer Widget Start-->
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 col-sm-6 third-footer-widget">
                 <div class="footer-widget">
                     <h6>Liens utiles</h6>
                     <ul>
@@ -44,6 +44,7 @@
             <!--Footer Widget Start-->
             <div class="col-md-3 col-sm-6">
                 <div class="textwidget">
+                    <h6>Contact</h6>
                     <address>
                         <ul>
                             <li> <i class="fas fa-university"></i> <strong>Address:</strong> Espace DINA, St Michel, Cotonou
@@ -107,6 +108,21 @@
 <script src="<?= $assetsUrl ?>public/js/jquery.min.js"></script>
 <!--<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 <script src="<?= $assetsUrl ?>public/js/bootstrap.min.js"></script>
+<?php if (isset($footerJs) && !empty($footerJs)) {
+    foreach ($footerJs as $js) {
+        ?>
+        <script src="<?= $js ?>" type="text/javascript"></script>
+        <?php
+    }
+}
+if (isset($clientData) && !empty($clientData)) {
+    ?>
+    <script>
+        var clientData = <?= json_encode($clientData) ?>
+    </script>
+    <?php
+}
+?>
 <script src="<?= $assetsUrl ?>public/js/owl.carousel.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/line-cutter.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>

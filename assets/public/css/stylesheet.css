@@ -70,3 +70,180 @@ body{
 .sidebar .widget h4{
     font-size: 17px;
 }
+
+/* Customize the label (the container) */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 7px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    box-shadow: 0px 0px 6px 0px rgba(180,180,180,.75) inset;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.city-updates ul{
+    overflow: unset!important;
+}
+.no-float{
+    float: none!important;
+}
+.eval-list-container .share-post li{
+    padding: 5px 2px!important;
+}
+.eval-list-container .btn-group.share-post .dropdown-menu{
+    left: 33px!important;
+}
+.eval-list-container .see-more{
+    margin: 0 0 0px 35px!important;
+    padding: 5px 20px 5px 10px!important;
+}
+.eval-list-container .see-more i{
+    margin-right: 5px;
+}
+.eval-list-container .eval-list-content{
+    margin-left: 42px;
+}
+.eval-list-container .eval-list-content h5 a{
+    color: black;
+    line-height: 1.4;
+}
+.eval-list-container .eval-list-content .eval-list-btns-container{
+    margin-top: 10px
+}
+.eval-ul{
+    margin-top: 14px!important;
+}
+@media (max-width: 768px) {
+    .eval-list-container .eval-list-content h5 a{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .eval-list-btns{
+        margin-top: 10px!important;
+        /* font-size: 10px!important; */
+        display: flex!important;
+    }
+    .eval-list-container .eval-list-btns > .see-more:first-child{
+        margin: unset!important;
+    }
+    .eval-list-container .see-more i{
+        margin-right: unset!important;
+    }
+    .eval-list-container .see-more {
+        font-size: 11px;
+        margin: 0 0 0px 9px!important;
+        padding: 5px 5px 5px 6px!important;
+    }
+    .eval-list-container .btn-group.share-post .dropdown-menu {
+        left: 10px!important;
+    }
+}
+@media (max-width: 360px) {
+    .eval-list-container .see-more{
+        font-size: 10px;
+    }
+}
+.search-icon{
+    color: #d94148!important;
+}
+.right-links li:last-child {
+    border-right: unset!important;
+}
+
+
+/*FOR IPAD*/
+@media (min-width: 500px) and (max-width: 768px){
+    .logo-nav-row .navbar-nav>li>a{
+        font-size: 11px;
+    }
+    div#bs-example-navbar-collapse-1 ul{
+        margin-left: -47px;
+    }
+    .logo-nav-row .navbar-nav>li>a{
+        padding: 31px 7px;
+    }
+    .topbar .right-links{
+        margin-left: -35px;
+    }
+    .local-brands .lb-ser-box h6{
+        font-size: 15px!important;
+    }
+    .event-post-loc{
+        font-size: 12px;
+    }
+    img.footer-logo{
+        width: 62% !important;
+    }
+    .third-footer-widget{
+        padding-top: 13px!important;
+        padding-left: 46px!important;
+    }
+}
+
+.textwidget h6 {
+    font-size: 22px;
+    color: #fff;
+    margin: 0;
+    font-weight: 600;
+    margin-bottom: 16px;
+}

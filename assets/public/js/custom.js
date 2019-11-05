@@ -354,6 +354,14 @@ jQuery(document).ready(function($) {
 
     $('img').Lazy();
 
+	 if($('select.my-choices').length){
+         const choices = new Choices('select.my-choices',
+             {
+                 searchEnabled: false,
+                 itemSelectText: '',
+             });
+     }
+
 
 }); //End
 

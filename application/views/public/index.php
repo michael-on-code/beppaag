@@ -42,7 +42,7 @@
     <section class="wf100 p80">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 col-sm-8">
                     <div class="local-brands">
                         <div class="title-style-1">
                             <h2>Parcourir & Découvrir la plateforme</h2>
@@ -56,21 +56,21 @@
                                 <ul class="lb-ser-box">
 
                                     <!--Start-->
-                                    <li><a href=""><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/test.png" alt=""></span>
+                                    <li><a href="<?= site_url('evaluations') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/test.png" alt=""></span>
                                             <h6>Evaluations</h6></a>
                                         <p>Explorer l'essence même de la plateforme et retrouvez toutes les évaluations</p>
                                     </li>
                                     <!--End-->
 
                                     <!--Start-->
-                                    <li><a href=""><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/brochure.png" alt=""></span>
+                                    <li><a href="<?= site_url('blog') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/brochure.png" alt=""></span>
                                             <h6>Publications</h6></a>
                                         <p>Découvrez nos publications sur divers sujets concernant les évaluations au Bénin</p>
                                     </li>
                                     <!--End-->
 
                                     <!--Start-->
-                                    <li><a href=""><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/reunion.png" alt=""></span>
+                                    <li><a href="<?= site_url('blog') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/reunion.png" alt=""></span>
                                             <h6>Ressources techniques</h6></a>
                                         <p>Découvrez notre rubrique Ressources Techniques</p>
                                     </li>
@@ -91,12 +91,12 @@
                                     </li>
 
                                     <!--Start-->
-                                    <li><a href=""><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/mind.png" alt=""></span>
+                                    <li><a href="<?= site_url('blog') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/mind.png" alt=""></span>
                                             <h6>Gestion de connaissances</h6></a>
                                         <p>Découvrez notre rubrique Gestion de connaissance</p>
                                     </li>
 
-                                    <li><a href=""><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/business-partnership.png" alt=""></span>
+                                    <li><a href="<?= site_url('blog') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/business-partnership.png" alt=""></span>
                                             <h6>Partenariat</h6></a>
                                         <p>Découvrez notre rubriques partenariat où nous évoquons nos différents partenaires
                                             et leurs rôles dans ce que nous faisons</p>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-4">
                     <!--Mayor Msg Start-->
                     <div class="Mayor-msg" style="background-color: #1d90fd">
                         <div class="Mayor-thumb"><img  src="<?= $assetsUrl ?>public/images/unicef.jpg" alt=""> </div>

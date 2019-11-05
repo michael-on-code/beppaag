@@ -7,13 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BEPPAAG</title>
     <!-- CSS Files -->
+    <?php if(isset($headerCss) && !empty($headerCss)){
+        foreach ($headerCss as $css){
+            ?>
+            <link href="<?= $css ?>" rel="stylesheet" type="text/css" />
+            <?php
+        }
+    } ?>
     <link href="<?= $assetsUrl ?>public/css/custom.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/responsive.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/color.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/all.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.11" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.12" rel="stylesheet">
     <link rel="icon" href="<?= $assetsUrl ?>public/images/favicon.png" type="image/png">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -64,7 +71,7 @@
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
                                     <li><a href="<?= site_url() ?>">Accueil</a></li>
-                                    <li><a href="##">Evaluations</a></li>
+                                    <li><a href="<?= site_url('evaluations') ?>">Evaluations</a></li>
                                     <li><a href="<?= site_url('events') ?>">Evènements</a></li>
                                     <li><a href="<?= site_url('blog') ?>">Actualités</a></li>
                                     <li class="dropdown"><a href="##" class="dropdown-toggle" data-toggle="dropdown"
@@ -85,13 +92,9 @@
                                         </ul>
                                     </li>
                                     <li><a href="<?= site_url('contact') ?>">Contact</a></li>
+                                    <li class="search-btn"><a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a></li>
                                 </ul>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li class="search-btn"><a class="search-icon" href="##search"> <i
-                                                    class="fas fa-search"></i> </a></li>
-                                    <!--<li class="bars-btn"><a href="##" id="sidebarCollapse"><img src="<?= $assetsUrl ?>public/images/bars.png"-->
-                                    <!--alt=""> </a></li>-->
-                                </ul>
+
                                 <div id="search">
                                     <button type="button" class="close">×</button>
                                     <form class="search-overlay-form">
