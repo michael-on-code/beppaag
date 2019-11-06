@@ -20,7 +20,7 @@
     <link href="<?= $assetsUrl ?>public/css/all.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.12" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.15" rel="stylesheet">
     <link rel="icon" href="<?= $assetsUrl ?>public/images/favicon.png" type="image/png">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>

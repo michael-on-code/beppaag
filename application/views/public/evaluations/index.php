@@ -10,67 +10,8 @@ getBreadcrump([
 ])
 ?>
 <style>
-    .events-wrapper {
-        padding: 19px 0!important;
-    }
-    .s002 label{
-        text-align: center;
-        font-size: 13px;
-        color: white;
-        display: block;
-    }
-    .s002 select{
-        height: 70px;
-        background: #fff;
-        border-radius: 0;
-        border: 0;
-        display: block;
-        width: 100%;
-        padding: 10px 20px 10px 45px;
-        font-size: 16px;
-        color: #555;
-        font-weight: 400;
-    }
 
-    .s002 input, .s002 select{
-        border-right: 1px solid #ddd!important;
-        padding: 10px 20px 10px 25px!important;
-        height: 45px!important;
-    }
-    .s002 form .inner-form .input-field{
-        border-right: unset!important;
-        padding: unset!important;
-    }
-    .s002 form .inner-form .input-field .icon-wrap{
-        top: 10px;
-        width: 22px;
 
-    }
-    .s002 form .btn-search{
-        height: 70px;
-        width: 100%;
-        /*background: #b78a62;*/
-        white-space: nowrap;
-        border-radius: .5px;
-        font-size: 20px;
-        color: #fff;
-        transition: all .2s ease-out, color .2s ease-out;
-        border: 0;
-        cursor: pointer;
-        font-weight: 400;
-        font-family: 'Poppins', sans-serif;
-        background-color: #d94148;
-    }
-    .s002 form .inner-form {
-        background: rgba(0, 0, 0, 0.2);
-    }
-    .search-btn-container{
-        margin-top: 26px;
-    }
-    .s002 form .btn-search{
-        height: 45px!important;
-        padding: 8px 10px!important;
-    }
     /*.s002 form .inner-form .input-field{
         min-width: 130px!important;
         max-width: 190px!important;
@@ -83,11 +24,7 @@ getBreadcrump([
     <div class="events-wrapper">
         <div class="container">
             <div class="row">
-
-
-
                 <div class="col-md-12">
-
                     <div class="s002">
                         <form>
                             <div class="inner-form">
@@ -153,7 +90,7 @@ getBreadcrump([
                                         <option>AKASI</option>
                                     </select>
                                 </div>
-                                <div class="input-field col-md-2 col-sm-3 col-xs-6">
+                                <div class="input-field col-md-2 col-sm-8 col-xs-6">
                                     <label for="" style="">Mot clé</label>
 
                                     <input class="" id="" type="text" placeholder="Saisir mot clé" />
@@ -164,11 +101,18 @@ getBreadcrump([
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+
+
+
+                <div class="col-md-9 col-sm-8">
                     <div class="city-updates">
                         <ul class="eval-ul">
                             <li>
                                 <div class="row">
-                                    <div class="container eval-list-container">
+                                    <div class=" eval-list-container">
                                         <div>
                                             <label class="checkbox-container">
                                                 <input type="checkbox">
@@ -180,7 +124,8 @@ getBreadcrump([
                                             <h5 ><a href="#">Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015) Stratégie de Croissance pour la Réducti</a></h5>
                                             <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                             <div class="eval-list-btns-container">
-                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 01 Novembre, 2019</span>
+                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 2016</span>
+                                                <span class="post-date"><i class="far fa-calendar-plus"></i> 05 Novembre 2019</span>
                                                 <span class="eval-list-btns">
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
@@ -206,7 +151,7 @@ getBreadcrump([
                         <ul class="eval-ul">
                             <li>
                                 <div class="row">
-                                    <div class="container eval-list-container">
+                                    <div class=" eval-list-container">
                                         <div>
                                             <label class="checkbox-container">
                                                 <input type="checkbox">
@@ -218,7 +163,8 @@ getBreadcrump([
                                             <h5 ><a href="#">Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015) Stratégie de Croissance pour la Réducti</a></h5>
                                             <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                             <div class="eval-list-btns-container">
-                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 01 Novembre, 2019</span>
+                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 2016</span>
+                                                <span class="post-date"><i class="far fa-calendar-plus"></i> 05 Novembre 2019</span>
                                                 <span class="eval-list-btns">
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
@@ -244,7 +190,7 @@ getBreadcrump([
                         <ul class="eval-ul">
                             <li>
                                 <div class="row">
-                                    <div class="container eval-list-container">
+                                    <div class=" eval-list-container">
                                         <div>
                                             <label class="checkbox-container">
                                                 <input type="checkbox">
@@ -256,7 +202,8 @@ getBreadcrump([
                                             <h5 ><a href="#">Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015) Stratégie de Croissance pour la Réducti</a></h5>
                                             <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                             <div class="eval-list-btns-container">
-                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 01 Novembre, 2019</span>
+                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 2016</span>
+                                                <span class="post-date"><i class="far fa-calendar-plus"></i> 05 Novembre 2019</span>
                                                 <span class="eval-list-btns">
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
@@ -282,7 +229,7 @@ getBreadcrump([
                         <ul class="eval-ul">
                             <li>
                                 <div class="row">
-                                    <div class="container eval-list-container">
+                                    <div class=" eval-list-container">
                                         <div>
                                             <label class="checkbox-container">
                                                 <input type="checkbox">
@@ -294,7 +241,8 @@ getBreadcrump([
                                             <h5 ><a href="#">Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015) Stratégie de Croissance pour la Réducti</a></h5>
                                             <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                             <div class="eval-list-btns-container">
-                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 01 Novembre, 2019</span>
+                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 2016</span>
+                                                <span class="post-date"><i class="far fa-calendar-plus"></i> 05 Novembre 2019</span>
                                                 <span class="eval-list-btns">
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
@@ -320,7 +268,7 @@ getBreadcrump([
                         <ul class="eval-ul">
                             <li>
                                 <div class="row">
-                                    <div class="container eval-list-container">
+                                    <div class=" eval-list-container">
                                         <div>
                                             <label class="checkbox-container">
                                                 <input type="checkbox">
@@ -332,7 +280,8 @@ getBreadcrump([
                                             <h5 ><a href="#">Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015) Stratégie de Croissance pour la Réducti</a></h5>
                                             <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                             <div class="eval-list-btns-container">
-                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 01 Novembre, 2019</span>
+                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 2016</span>
+                                                <span class="post-date"><i class="far fa-calendar-plus"></i> 05 Novembre 2019</span>
                                                 <span class="eval-list-btns">
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
@@ -358,7 +307,7 @@ getBreadcrump([
                         <ul class="eval-ul">
                             <li>
                                 <div class="row">
-                                    <div class="container eval-list-container">
+                                    <div class=" eval-list-container">
                                         <div>
                                             <label class="checkbox-container">
                                                 <input type="checkbox">
@@ -370,7 +319,8 @@ getBreadcrump([
                                             <h5 ><a href="#">Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015) Stratégie de Croissance pour la Réducti</a></h5>
                                             <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                             <div class="eval-list-btns-container">
-                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 01 Novembre, 2019</span>
+                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 2016</span>
+                                                <span class="post-date"><i class="far fa-calendar-plus"></i> 05 Novembre 2019</span>
                                                 <span class="eval-list-btns">
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
@@ -396,7 +346,7 @@ getBreadcrump([
                         <ul class="eval-ul">
                             <li>
                                 <div class="row">
-                                    <div class="container eval-list-container">
+                                    <div class=" eval-list-container">
                                         <div>
                                             <label class="checkbox-container">
                                                 <input type="checkbox">
@@ -408,7 +358,8 @@ getBreadcrump([
                                             <h5 ><a href="#">Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015) Stratégie de Croissance pour la Réducti</a></h5>
                                             <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                             <div class="eval-list-btns-container">
-                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 01 Novembre, 2019</span>
+                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 2016</span>
+                                                <span class="post-date"><i class="far fa-calendar-plus"></i> 05 Novembre 2019</span>
                                                 <span class="eval-list-btns">
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
@@ -424,6 +375,74 @@ getBreadcrump([
                                                 </span>
 
                                             </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="eval-ul">
+                            <li>
+                                <div class="row">
+                                    <div class=" eval-list-container">
+                                        <div>
+                                            <label class="checkbox-container">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="eval-list-content">
+                                            <h5 ><a href="#">Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015) Stratégie de Croissance pour la Réducti</a></h5>
+                                            <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
+                                            <div class="eval-list-btns-container">
+                                                <span class="post-date"><i class="far fa-calendar-alt"></i> 2016</span>
+                                                <span class="post-date"><i class="far fa-calendar-plus"></i> 05 Novembre 2019</span>
+                                                <span class="eval-list-btns">
+                                                   <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
+                                                <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
+                                                <div class="btn-group share-post no-float">
+                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share" style="margin-right: 5px"></i> | Partager</a>
+                                                   <ul class="dropdown-menu">
+                                                      <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
+                                                      <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
+                                                      <li><a href="#" class="tw"><i class="fab fa-twitter"></i></a></li>
+                                                      <li><a href="#" class="linken"><i class="fab fa-linkedin-in"></i></a></li>
+                                                   </ul>
+                                                </div>
+                                                </span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+
+<!--                        LAST LINE -->
+                        <ul class="eval-ul eval-last">
+                            <li>
+                                <div class="row">
+                                    <div class="eval-list-container">
+                                        <div>
+                                            <label class="checkbox-container">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="eval-list-content">
+                                            <a class="see-more"><i class="fa fa-download"></i> | Tout Télécharger</a>
+                                            <div class="pull-right pagination-content">
+                                                <b class="text-bold">1 - 8 / 160</b>
+                                                <a class="btn-search" href="">
+                                                    <i class="fa fa-angle-right"></i>
+                                                </a>
+                                            </div>
+                                            <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                         </div>
 
                                     </div>
@@ -434,20 +453,58 @@ getBreadcrump([
 
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="site-pagination">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li> <a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
-                        </ul>
-                    </nav>
+                <div class="col-md-3 col-sm-4">
+                    <div class="sidebar">
+                        <div class="widget eval-year-grouping">
+                            <h4>Années</h4>
+                            <div class="tags-widget inner"> <a href="#">2009</a><a href="#">2010</a><a href="#">2011</a><a href="#">2012</a><a href="#">2013</a><a href="#">2014</a><a href="#">2015</a></div>
+                        </div>
+                        <div class="widget">
+                            <h4>Thématiques</h4>
+                            <div class="categories inner">
+                                <ul>
+                                    <li><a href="#">Aucune</a></li>
+                                    <li><a href="#">Droits humains</a></li>
+                                    <li><a href="#">Equité</a></li>
+                                    <li><a href="#">Genre</a></li>
+                                    <li><a href="#">Environnement</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <h4>Temporalités</h4>
+                            <div class="categories inner">
+                                <ul>
+                                    <li><a href="#">Ex-ante</a></li>
+                                    <li><a href="#">Mi-parcours</a></li>
+                                    <li><a href="#">Finale</a></li>
+                                    <li><a href="#">Ex-post</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <h4>Secteurs</h4>
+                            <div class="categories inner">
+                                <ul>
+                                    <li><a href="#">Pauvreté</a></li>
+                                    <li><a href="#">Rural</a></li>
+                                    <li><a href="#">Industrie et commerce</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Eau & Electricité</a></li>
+                                    <li><a href="#">Mines</a></li>
+                                    <li><a href="#">Infrastructures</a></li>
+                                    <li><a href="#">Artisanat & Tourisme</a></li>
+                                    <li><a href="#">Santé</a></li>
+                                    <li><a href="#">Education</a></li>
+                                    <li><a href="#">Habitat</a></li>
+                                    <li><a href="#">Environnement</a></li>
+                                    <li><a href="#">Autres secteurs & sociaux</a></li>
+                                    <li><a href="#">Administration</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -146,13 +146,14 @@ body{
     float: none!important;
 }
 .eval-list-container .share-post li{
-    padding: 5px 2px!important;
+    padding: 2px 2px!important;
+    border-bottom: unset!important;
 }
 .eval-list-container .btn-group.share-post .dropdown-menu{
     left: 33px!important;
 }
 .eval-list-container .see-more{
-    margin: 0 0 0px 35px!important;
+    margin: 0 0 0px 29px!important;
     padding: 5px 20px 5px 10px!important;
 }
 .eval-list-container .see-more i{
@@ -169,11 +170,43 @@ body{
     margin-top: 10px
 }
 .eval-ul{
-    margin-top: 14px!important;
+    margin-bottom: 14px!important;
 }
 @media (max-width: 768px) {
     .eval-list-container .eval-list-content h5 a{
         font-size: 16px;
+    }
+    .s002 .search-btn-container{
+        margin: auto!important;
+    }
+    .eval-last .eval-list-content .pagination-content{
+        margin-top: -5px;
+    }
+    .eval-list-container .eval-list-content .eval-list-btns-container .eval-list-btns{
+        display: flex;
+        margin-top: 10px;
+    }
+
+
+}
+@media (max-width: 1024px) {
+    .eval-list-container .see-more {
+        margin: 0 0 0px 8px!important;
+        padding: 5px 12px 5px 6px!important;
+    }
+}
+@media (min-width: 768px) {
+    .eval-list-container{
+        padding-left: 19px;
+        padding-right: 15px;
+    }
+    .eval-year-grouping a{
+        padding: 0 17px;
+    }
+}
+@media (width: 768px){
+    .s002 .search-btn-container .btn-search{
+        margin-top: 7px;
     }
 }
 
@@ -196,6 +229,9 @@ body{
     }
     .eval-list-container .btn-group.share-post .dropdown-menu {
         left: 10px!important;
+    }
+    .checkmark{
+        left: 7px!important;
     }
 }
 @media (max-width: 360px) {
@@ -238,6 +274,9 @@ body{
         padding-top: 13px!important;
         padding-left: 46px!important;
     }
+    .eval-list-container .eval-list-content .eval-list-btns-container .eval-list-btns{
+        margin-left: -10px;
+    }
 }
 
 .textwidget h6 {
@@ -246,4 +285,95 @@ body{
     margin: 0;
     font-weight: 600;
     margin-bottom: 16px;
+}
+.events-wrapper {
+    padding: 19px 0!important;
+}
+.s002 label{
+    text-align: center;
+    font-size: 13px;
+    color: white;
+    display: block;
+}
+.s002 select{
+    height: 70px;
+    background: #fff;
+    border-radius: 0;
+    border: 0;
+    display: block;
+    width: 100%;
+    padding: 10px 20px 10px 45px;
+    font-size: 16px;
+    color: #555;
+    font-weight: 400;
+}
+
+.s002 input, .s002 select{
+    border-right: 1px solid #ddd!important;
+    padding: 10px 20px 10px 25px!important;
+    height: 45px!important;
+}
+.s002 form .inner-form .input-field{
+    border-right: unset!important;
+    padding: unset!important;
+}
+.s002 form .inner-form .input-field .icon-wrap{
+    top: 10px;
+    width: 22px;
+
+}
+.s002 form .btn-search{
+    height: 70px;
+    width: 100%;
+    /*background: #b78a62;*/
+    white-space: nowrap;
+    border-radius: .5px;
+    font-size: 20px;
+    color: #fff;
+    transition: all .2s ease-out, color .2s ease-out;
+    border: 0;
+    cursor: pointer;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    background-color: #d94148;
+}
+.s002 form .inner-form {
+    background: rgba(0, 0, 0, 0.2);
+}
+.s002 .search-btn-container{
+    margin-top: 26px;
+}
+
+.s002 form .btn-search{
+    height: 45px!important;
+    padding: 8px 10px!important;
+}
+.eval-list-btns-container .post-date:first-child{
+    margin-left: unset!important;
+}
+.eval-list-btns-container .post-date{
+    margin-left: 15px;
+}
+.eval-last .eval-list-content a.see-more{
+    margin: 0 0 0px 5px!important;
+}
+.eval-last > li{
+    margin: 0 0 0px 5px!important;
+    padding: 5px 0 11px 0!important;
+}
+.eval-last .checkmark{
+    top: 1px;
+}
+.eval-last .eval-list-content .pagination-content a.btn-search{
+    padding: 1px 8px;
+    white-space: nowrap;
+    border-radius: .5px;
+    font-size: 22px;
+    color: #fff;
+    transition: all .2s ease-out, color .2s ease-out;
+    border: 0;
+    cursor: pointer;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    background-color: #d94148;
 }
