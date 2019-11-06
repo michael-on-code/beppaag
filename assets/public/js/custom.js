@@ -177,10 +177,12 @@ jQuery(document).ready(function($) {
 
     // ------- Events Counter ------- //
     if ($('#defaultCountdown').length) {
+        var dateContainer = $('#defaultCountdown');
         var austDay = new Date();
-        austDay = new Date(2019, 12, 18, 14);
+        austDay = new Date(dateContainer.attr('data-date-year'), dateContainer.attr('data-date-month'), dateContainer.attr('data-date-day'), dateContainer.attr('data-date-hour'), dateContainer.attr('data-date-minute'));
         $('#defaultCountdown').countdown({
-            until: austDay
+            until: austDay,
+
         });
         $('#year').text(austDay.getFullYear());
     }

@@ -130,7 +130,7 @@ getBreadcrump([
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
                                                 <div class="btn-group share-post no-float">
-                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share" style="margin-right: 5px"></i> | Partager</a>
+                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>
                                                    <ul class="dropdown-menu">
                                                       <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                                       <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
@@ -169,7 +169,7 @@ getBreadcrump([
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
                                                 <div class="btn-group share-post no-float">
-                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share" style="margin-right: 5px"></i> | Partager</a>
+                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>
                                                    <ul class="dropdown-menu">
                                                       <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                                       <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
@@ -208,7 +208,7 @@ getBreadcrump([
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
                                                 <div class="btn-group share-post no-float">
-                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share" style="margin-right: 5px"></i> | Partager</a>
+                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>
                                                    <ul class="dropdown-menu">
                                                       <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                                       <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
@@ -247,7 +247,7 @@ getBreadcrump([
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
                                                 <div class="btn-group share-post no-float">
-                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share" style="margin-right: 5px"></i> | Partager</a>
+                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>
                                                    <ul class="dropdown-menu">
                                                       <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                                       <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
@@ -286,7 +286,7 @@ getBreadcrump([
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
                                                 <div class="btn-group share-post no-float">
-                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share" style="margin-right: 5px"></i> | Partager</a>
+                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>
                                                    <ul class="dropdown-menu">
                                                       <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                                       <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
@@ -325,7 +325,7 @@ getBreadcrump([
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
                                                 <div class="btn-group share-post no-float">
-                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share" style="margin-right: 5px"></i> | Partager</a>
+                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>
                                                    <ul class="dropdown-menu">
                                                       <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                                       <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
@@ -364,7 +364,7 @@ getBreadcrump([
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
                                                 <div class="btn-group share-post no-float">
-                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share" style="margin-right: 5px"></i> | Partager</a>
+                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>
                                                    <ul class="dropdown-menu">
                                                       <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                                       <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
@@ -403,7 +403,7 @@ getBreadcrump([
                                                    <a style="" class="see-more" href="#"> <i class="fa fa-eye"></i> | Lire</a>
                                                 <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
                                                 <div class="btn-group share-post no-float">
-                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share" style="margin-right: 5px"></i> | Partager</a>
+                                                   <a class="see-more" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>
                                                    <ul class="dropdown-menu">
                                                       <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                                       <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
@@ -453,59 +453,7 @@ getBreadcrump([
 
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4">
-                    <div class="sidebar">
-                        <div class="widget eval-year-grouping">
-                            <h4>Années</h4>
-                            <div class="tags-widget inner"> <a href="#">2009</a><a href="#">2010</a><a href="#">2011</a><a href="#">2012</a><a href="#">2013</a><a href="#">2014</a><a href="#">2015</a></div>
-                        </div>
-                        <div class="widget">
-                            <h4>Thématiques</h4>
-                            <div class="categories inner">
-                                <ul>
-                                    <li><a href="#">Aucune</a></li>
-                                    <li><a href="#">Droits humains</a></li>
-                                    <li><a href="#">Equité</a></li>
-                                    <li><a href="#">Genre</a></li>
-                                    <li><a href="#">Environnement</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="widget">
-                            <h4>Temporalités</h4>
-                            <div class="categories inner">
-                                <ul>
-                                    <li><a href="#">Ex-ante</a></li>
-                                    <li><a href="#">Mi-parcours</a></li>
-                                    <li><a href="#">Finale</a></li>
-                                    <li><a href="#">Ex-post</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="widget">
-                            <h4>Secteurs</h4>
-                            <div class="categories inner">
-                                <ul>
-                                    <li><a href="#">Pauvreté</a></li>
-                                    <li><a href="#">Rural</a></li>
-                                    <li><a href="#">Industrie et commerce</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Eau & Electricité</a></li>
-                                    <li><a href="#">Mines</a></li>
-                                    <li><a href="#">Infrastructures</a></li>
-                                    <li><a href="#">Artisanat & Tourisme</a></li>
-                                    <li><a href="#">Santé</a></li>
-                                    <li><a href="#">Education</a></li>
-                                    <li><a href="#">Habitat</a></li>
-                                    <li><a href="#">Environnement</a></li>
-                                    <li><a href="#">Autres secteurs & sociaux</a></li>
-                                    <li><a href="#">Administration</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                <?php $this->load->view('public/evaluations/sidebar'); ?>
             </div>
         </div>
     </div>

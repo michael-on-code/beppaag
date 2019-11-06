@@ -163,10 +163,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <h6><a href="#" data-toggle="tooltip" title="Stratégies de croissances pour la réduction de la pauvreté" class="cutter" data-line="2">Stratégies de croissances pour la réduction de la pauvreté</a></h6>
+                            <h6><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Stratégies de croissances pour la réduction de la pauvreté" class="cutter" data-line="2">Stratégies de croissances pour la réduction de la pauvreté</a></h6>
                             <p class="cutter" data-line="4"> La troisième génération de la Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP) a pour objectif d’améliorer les conditions de vie des populations, notamment des pauvres puisqu’elle se veut pro-pauvre. </p>
                         </div>
-                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="#"><i class="fas fa-arrow-right"></i></a> </div>
+                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                     </div>
                 </div>
                 <!--News Box End-->
@@ -193,10 +193,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <h6><a href="#" data-toggle="tooltip" title="Politique Nationale de Développement de l’Artisanat (PNDA)" class="cutter" data-line="2">Politique Nationale de Développement de l’Artisanat (PNDA)</a></h6>
+                            <h6><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Politique Nationale de Développement de l’Artisanat (PNDA)" class="cutter" data-line="2">Politique Nationale de Développement de l’Artisanat (PNDA)</a></h6>
                             <p class="cutter" data-line="4"> La PNDA a pour vision de faire de l’artisanat béninois « un secteur bien organisé à l’horizon 2025 où opèrent des entreprises artisanales compétitives, contribuant notablement à la valorisation du patrimoine national et au bien-être social de l’artisan et du béninois, dans un pays uni et de paix ».</p>
                         </div>
-                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="#"><i class="fas fa-arrow-right"></i></a> </div>
+                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                     </div>
                 </div>
                 <!--News Box End-->
@@ -223,10 +223,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <h6><a href="#" data-toggle="tooltip" title="Politique Nationale du Tourisme" class="cutter" data-line="2">Politique Nationale du Tourisme</a></h6>
+                            <h6><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Politique Nationale du Tourisme" class="cutter" data-line="2">Politique Nationale du Tourisme</a></h6>
                             <p class="cutter" data-line="3">La PNT a pour vision de « Faire du Bénin une destination de référence en Afrique de l’Ouest dans le respect de la préservation du patrimoine culturel et naturel ». Elle a pour objectif général de doubler d’ici 2025 la contribution du Tourisme au Produit Intérieur Brut.</p>
                         </div>
-                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="#"><i class="fas fa-arrow-right"></i></a> </div>
+                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                     </div>
                 </div>
                 <!--News Box End-->
@@ -253,11 +253,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <h6><a href="#" data-toggle="tooltip" title="Insécurité alimentaire : un regard sur les réponses apportées par les diverses parties prenantes" class="cutter" data-line="2">Insécurité alimentaire : un regard sur les réponses apportées par les diverses parties prenantes</a></h6>
+                            <h6><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Insécurité alimentaire : un regard sur les réponses apportées par les diverses parties prenantes" class="cutter" data-line="2">Insécurité alimentaire : un regard sur les réponses apportées par les diverses parties prenantes</a></h6>
                             <p class="cutter" data-line="3">La démarche méthodologique repose sur la recherche documentaire, un Guide d’entretien, un Guide de focus group, un questionnaire individuel.
                                 Echantillonnage à deux degrés retenu.</p>
                         </div>
-                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="#"><i class="fas fa-arrow-right"></i></a> </div>
+                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                     </div>
                 </div>
                 <!--News Box End-->
@@ -281,10 +281,10 @@
                 <div class="col-md-4 col-sm-4">
                     <!--News Post Start-->
                     <div class="event-post">
-                        <div class="thumb"><a href="#"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event3.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event3.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
-                            <h5><a class="cutter" data-line="2" href="#" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
+                            <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
                             <ul class="event-meta">
                                 <li><i class="far fa-calendar-alt"></i> 3-6 Novembre, 2019</li>
                                 <li><i class="far fa-clock"></i> 09H - 13H</li>
@@ -292,17 +292,17 @@
                             <p class="cutter" data-line="2">Séminaire portant sur la bonne gestion des processus évaluatifs concernant les acteurs de l'UNICEF et de la présidence</p>
                         </div>
                         <div class="event-post-loc"><i class="fas fa-map-marker-alt"></i> Espace DINA, St Michel <a
-                                href="#"><i class="fas fa-arrow-right"></i></a></div>
+                                href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a></div>
                     </div>
                     <!--News Post End-->
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <!--News Post Start-->
                     <div class="event-post">
-                        <div class="thumb"><a href="#"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event1.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event1.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
-                            <h5><a class="cutter" data-line="2" href="#" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
+                            <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
                             <ul class="event-meta">
                                 <li><i class="far fa-calendar-alt"></i> 15-17 Décembre, 2019</li>
                                 <li><i class="far fa-clock"></i> 09H - 13H</li>
@@ -310,17 +310,17 @@
                             <p class="cutter" data-line="2">Séminaire portant sur la bonne gestion des processus évaluatifs concernant les acteurs de l'UNICEF et de la présidence</p>
                         </div>
                         <div class="event-post-loc"><i class="fas fa-map-marker-alt"></i> Espace DINA, St Michel <a
-                                href="#"><i class="fas fa-arrow-right"></i></a></div>
+                                href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a></div>
                     </div>
                     <!--News Post End-->
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <!--News Post Start-->
                     <div class="event-post">
-                        <div class="thumb"><a href="#"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event2.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event2.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
-                            <h5><a class="cutter" data-line="2" href="#" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
+                            <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
                             <ul class="event-meta">
                                 <li><i class="far fa-calendar-alt"></i> 10-20 Janvier, 2020</li>
                                 <li><i class="far fa-clock"></i> 09H - 13H</li>
@@ -328,7 +328,7 @@
                             <p class="cutter" data-line="2">Séminaire portant sur la bonne gestion des processus évaluatifs concernant les acteurs de l'UNICEF et de la présidence</p>
                         </div>
                         <div class="event-post-loc"><i class="fas fa-map-marker-alt"></i> Espace DINA, St Michel <a
-                                href="#"><i class="fas fa-arrow-right"></i></a></div>
+                                href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a></div>
                     </div>
                     <!--News Post End-->
                 </div>

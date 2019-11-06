@@ -12,7 +12,7 @@ function getBreadcrump(array $data){
         <div class="container">
             <h2><?= maybe_null_or_empty($data, 'title') ?></h2>
             <ul>
-                <li> <a href="<?= site_url() ?>">Accueil</a> </li>
+                <li> <a href="<?= site_url('/') ?>">Accueil</a> </li>
                 <?php
                 if(isset($data['before']) && !empty($data['before'])){
                     foreach ($data['before'] as $before){

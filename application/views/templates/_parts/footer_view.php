@@ -105,7 +105,7 @@ if (isset($clientData) && !empty($clientData)) {
 <script src="<?= $assetsUrl ?>public/js/owl.carousel.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/line-cutter.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>
-<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.03"></script>
+<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.04"></script>
 </body>
 
 </html>
