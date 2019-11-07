@@ -6,121 +6,80 @@
  * Time: 11:40
  */
 ?>
-<div class="main-slider wf100">
-    <div id="home-slider" class="owl-carousel owl-theme">
-        <!--Item Start-->
-        <div class="item">
-            <div class="slider-caption">
-                <div class="container"><strong>Conférence sur les évaluations<br></strong>
-                    <p> Découvrez les détails de la conférences sur les évaluations du vendredi 15 Octobre 2019 </p>
-                    <a href="#">Découvrir</a></div>
-            </div>
-            <img src="<?= $assetsUrl ?>public/images/slides/team1.jpg" alt=""></div>
-        <!--Item End-->
-        <!--Item Start-->
-        <div class="item">
-            <div class="slider-caption">
-                <div class="container"> <strong>Conférence sur les évaluations</strong>
-                    <p>Découvrez les détails de la conférences sur les évaluations du vendredi 15 Octobre 2019 </p>
-                    <a href="#">Découvrir</a></div>
-            </div>
-            <img src="<?= $assetsUrl ?>public/images/slides/team2.jpg" alt=""></div>
-        <div class="item">
-            <div class="slider-caption">
-                <div class="container"> <strong>Conférence sur les évaluations</strong>
-                    <p>Découvrez les détails de la conférences sur les évaluations du vendredi 15 Octobre 2019  </p>
-                    <a href="#">Découvrir</a></div>
-            </div>
-            <img src="<?= $assetsUrl ?>public/images/slides/team3.jpg" alt=""></div>
-        <!--Item End-->
+<section class="banner banner-small scale-hover">
+    <div class="">
+        <img src="<?= $assetsUrl ?>public/images/presidence.jpg" class="cover transition" />
     </div>
-</div>
+    <div class="infos on-container flex flex-col center text-left anim-title">
+        <div>
+            <h1 class="title"><span>Évaluation des politiques publiques</span></h1>
+        </div>
+    </div>
+</section>
+
 <!--Slider End-->
 <!--Main Content Start-->
 <div class="main-content">
-    <!--Local Boards & Services-->
-    <section class="wf100 p80">
+    <section class="wf100 p80 h2-local-brands depart-info">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-sm-8">
-                    <div class="local-brands">
-                        <div class="title-style-1">
-                            <h2>Parcourir & Découvrir la plateforme</h2>
-                            <p>Découvrez les pages essentielles de notre plateforme de Gestion des Processus Evaluatifs au Bénin à partir desquelles vous retrouverez toutes les informations
-                                relatives aux évaluations au Bénin</p>
-                        </div>
-                        <div class="row">
-
-                            <!--Local Service Box Start-->
-                            <div class="col-md-6 col-sm-6">
-                                <ul class="lb-ser-box">
-
-                                    <!--Start-->
-                                    <li><a href="<?= site_url('evaluations') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/test.png" alt=""></span>
-                                            <h6>Evaluations</h6></a>
-                                        <p>Explorer l'essence même de la plateforme et retrouvez toutes les évaluations</p>
-                                    </li>
-                                    <!--End-->
-
-                                    <!--Start-->
-                                    <li><a href="<?= site_url('blog') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/brochure.png" alt=""></span>
-                                            <h6>Publications</h6></a>
-                                        <p>Découvrez nos publications sur divers sujets concernant les évaluations au Bénin</p>
-                                    </li>
-                                    <!--End-->
-
-                                    <!--Start-->
-                                    <li><a href="<?= site_url('blog') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/reunion.png" alt=""></span>
-                                            <h6>Ressources techniques</h6></a>
-                                        <p>Découvrez notre rubrique Ressources Techniques</p>
-                                    </li>
-                                    <!--End-->
-
-                                </ul>
-                            </div>
-                            <!--Local Service Box End-->
-
-                            <!--Local Service Box Start-->
-                            <div class="col-md-6 col-sm-6">
-                                <ul class="lb-ser-box">
-
-                                    <!--Start-->
-                                    <li><a href="<?= site_url('events') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/calendar.png" alt=""></span>
-                                            <h6>Evènements</h6></a>
-                                        <p>Découvrez l'intégralité de nos évènements passés et à venir nous concernant</p>
-                                    </li>
-
-                                    <!--Start-->
-                                    <li><a href="<?= site_url('blog') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/mind.png" alt=""></span>
-                                            <h6>Gestion de connaissances</h6></a>
-                                        <p>Découvrez notre rubrique Gestion de connaissance</p>
-                                    </li>
-
-                                    <li><a href="<?= site_url('blog') ?>"><span class="lb-icon"><img src="<?= $assetsUrl ?>public/images/business-partnership.png" alt=""></span>
-                                            <h6>Partenariat</h6></a>
-                                        <p>Découvrez notre rubriques partenariat où nous évoquons nos différents partenaires
-                                            et leurs rôles dans ce que nous faisons</p>
-                                    </li>
-                                    <!--End-->
-
-                                </ul>
-                            </div>
-                            <!--Local Service Box End-->
-
-                        </div>
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h2>Parcourir & Découvrir</h2>
+                        <p>Découvrez les pages essentielles de notre plateforme de Gestion des Processus Evaluatifs au Bénin à partir desquelles vous retrouverez toutes les informations
+                            relatives aux évaluations au Bénin
+                        </p>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4">
-                    <!--Mayor Msg Start-->
-                    <div class="Mayor-msg" style="background-color: #1d90fd">
-                        <div class="Mayor-thumb"><img  src="<?= $assetsUrl ?>public/images/unicef.jpg" alt=""> </div>
-                        <div class="Mayor-text"><span>Un mot pour</span>
-                            <h5>UNICEF</h5>
-                            <p> Grâce à l'appui technique & financier de l'UNICEF, la plateforme de gestion des processus évaluatifs du Bénin a été mis sur pieds. Un sincère merci à UNICEF </p>
-                            <a target="_blank" href="https://unicef.fr">Visiter le site </a></div>
+            </div>
+            <div class="row">
+                <!--Local Box Start-->
+                <div class="col-md-3 col-sm-3">
+                    <div class="deprt-icon-box">
+                        <a href="<?= site_url('evaluations') ?>">
+                            <img src="<?= $assetsUrl ?>public/images/evaluation-symbol.png" alt="">
+                        </a>
+
+                        <h6> <a href="<?= site_url('evaluations') ?>">Evaluations</a> </h6>
+                        <a class="rm" href="<?= site_url('evaluations') ?>">Découvrir</a>
                     </div>
-                    <!--Mayor Msg End-->
                 </div>
+                <!--Local Box End-->
+                <!--Local Box Start-->
+                <div class="col-md-3 col-sm-3">
+                    <div class="deprt-icon-box">
+                        <a href="<?= site_url('events') ?>">
+                            <img src="<?= $assetsUrl ?>public/images/calendar-symbol.png" alt="">
+                        </a>
+
+                        <h6> <a href="<?= site_url('events') ?>">Evènements</a> </h6>
+                        <a class="rm" href="<?= site_url('events') ?>">Découvrir</a>
+                    </div>
+                </div>
+                <!--Local Box End-->
+                <!--Local Box Start-->
+                <div class="col-md-3 col-sm-3">
+                    <div class="deprt-icon-box">
+                        <a href="<?= site_url('blog') ?>">
+                            <img src="<?= $assetsUrl ?>public/images/brochure-symbol.png" alt="">
+                        </a>
+                        <h6> <a href="<?= site_url('blog') ?>">Actualités</a> </h6>
+                        <a class="rm" href="<?= site_url('blog') ?>">Découvrir</a>
+                    </div>
+                </div>
+                <!--Local Box End-->
+                <!--Local Box Start-->
+                <div class="col-md-3 col-sm-3">
+                    <div class="deprt-icon-box">
+                        <a href="<?= site_url('/') ?>">
+                            <img src="<?= $assetsUrl ?>public/images/analysis-symbol.png" alt="">
+                        </a>
+                        <h6> <a href="<?= site_url('/') ?>">Statistiques</a>
+                        </h6>
+                        <a class="rm" href="<?= site_url('/') ?>">Découvrir</a>
+                    </div>
+                </div>
+                <!--Local Box End-->
             </div>
         </div>
     </section>

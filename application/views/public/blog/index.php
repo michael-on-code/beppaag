@@ -44,7 +44,7 @@ getBreadcrump([
                                         </div>
                                     </div>
                                     <h6><a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>" data-toggle="tooltip" title="Politique Nationale de Développement de l’Artisanat (PNDA)" class="cutter" data-line="2">Politique Nationale de Développement de l’Artisanat (PNDA)</a></h6>
-                                    <p class="cutter" data-line="4"> La PNDA a pour vision de faire de l’artisanat béninois « un secteur bien organisé à l’horizon 2025 où opèrent des entreprises artisanales compétitives, contribuant notablement à la valorisation du patrimoine national et au bien-être social de l’artisan et du béninois, dans un pays uni et de paix ».</p>
+                                    <p class="cutter" data-line="4"> La PNDA a pour vision de faire de l’artisanat béninois « un secteur bien organisé </p>
                                 </div>
                                 <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>

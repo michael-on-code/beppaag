@@ -14,7 +14,7 @@ class Evaluations extends Public_Controller {
     }
 
     public function index(){
-        $this->data['pageTitle']= 'Evaluations';
+        $this->data['pageTitle']= 'Liste des Evaluations';
         $this->data['footerJs'][]=$this->data['assetsUrl'].'public/lib/colorlib-search/js/extention/choices.js';
         $this->data['footerJs'][]=$this->data['assetsUrl'].'public/lib/colorlib-search/js/extention/flatpickr.js';
         $this->data['headerCss'][]=$this->data['assetsUrl'].'public/lib/colorlib-search/css/main.css';

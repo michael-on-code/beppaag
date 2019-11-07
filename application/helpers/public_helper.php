@@ -7,24 +7,32 @@
  */
 
 function getBreadcrump(array $data){
+    $assetsUrl = base_url('assets/');
     ?>
-    <section class="wf100 subheader">
-        <div class="container">
-            <h2><?= maybe_null_or_empty($data, 'title') ?></h2>
-            <ul>
-                <li> <a href="<?= site_url('/') ?>">Accueil</a> </li>
-                <?php
-                if(isset($data['before']) && !empty($data['before'])){
-                    foreach ($data['before'] as $before){
-                        ?>
-                        <li> <a href="<?= maybe_null_or_empty($before, 'url') ?>"> <?= maybe_null_or_empty($before, 'title') ?> </a> </li>
-                        <?php
-                    }
-                }
-                ?>
-                <li><?= maybe_null_or_empty($data, 'title') ?></li>
-            </ul>
+    <section class="banner banner-small scale-hover">
+        <div class="">
+            <img src="<?= $assetsUrl ?>public/images/presidence.jpg" class="cover transition">
         </div>
+        <div class="infos on-container flex flex-col center text-left anim-title">
+            <div>
+                <h1 class="title small-title"><span><?= maybe_null_or_empty($data, 'title') ?></span></h1>
+            </div>
+        </div>
+    </section>
+    <section class="breadcrumb">
+        <ul class="block-center">
+            <li class="iblock middle"><a href="<?= site_url('/') ?>">Accueil</a></li>
+            <?php
+            if(isset($data['before']) && !empty($data['before'])){
+                foreach ($data['before'] as $before){
+                    ?>
+                    <li class="iblock middle"><a href="<?= maybe_null_or_empty($before, 'url') ?>"><?= maybe_null_or_empty($before, 'title') ?></a></li>
+                    <?php
+                }
+            }
+            ?>
+            <li class="iblock middle"><?= maybe_null_or_empty($data, 'title') ?></li>
+        </ul>
     </section>
     <?php
 
