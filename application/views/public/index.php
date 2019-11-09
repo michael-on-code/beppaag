@@ -8,7 +8,7 @@
 ?>
 <section class="banner banner-small scale-hover">
     <div class="">
-        <img src="<?= $assetsUrl ?>public/images/presidence.jpg" class="cover transition" />
+        <img src="<?= $assetsUrl ?>public/images/banner.jpg" class="cover transition" />
     </div>
     <div class="infos on-container flex flex-col center text-left anim-title">
         <div>

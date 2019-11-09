@@ -1,85 +1,4 @@
 @charset "utf-8";
-/*------------------------------------------------------------------
-Project:		Balad | Govt HTML Template
-Version:		1.0
-AuthorName:		GramoTech
-Primary use:	Govt , Political, Charity, Govt Projects 
-
-
-[Color codes]
-Background:			#fff (White)
-Content:			#333333 (Dark)
-Header:				#40407e (Dark Blue)
-Header 2:			#d94148 (Dark Pink)
-Footer:				#40407e (Dark Blue)
-Primary Color:		#d94148 (Medium Green)
-Scendry Color:		#40407e (Dark Blue)
-
-
-[Typography]
-Body copy:			font:26px/16px 'Lato', sans-serif;
-Headers:			font:40px/40px 'Lato', serif;
-Input, textarea:	font:24px/16px 'Lato', sans-serif;
-Sidebar heading:	font:28px/28px 'Poppins', serif;
-
-
-/------------------------------------------------------------ 
-
-[Table of contents]
-1.    Theme Reset Style												=	00-00
-2.    Home Page														=	00-00
-2.01   Header														=	00-00
-2.02   Sub Header Start												=	00-00
-2.03   Main Slider Start											=	00-00
-2.04   Local Boards & Services										=	00-00
-2.05   Event Festivals & News Articles								=	00-00
-2.06   Cityscapes & Highlights										=	00-00				
-2.07   Govt. Services & Informations								=	00-00
-2.08   Facts About City												=	00-00
-2.09   City Officials Team											=	00-00	
-2.10   Call 2 Action												=	00-00	
-2.11   Footer														=	00-00
-3.     Home Page Two												=	00-00		
-3.02   Mayor MSG													=	00-00
-3.03   Local Boards & Services										=	00-00
-3.04   Emergency Numbers 											=	00-00
-3.05   Event Festivals & News Articles 								=	00-00	
-3.06   Highlights & Cityscapes										=	00-00
-3.07   Citizens & Community Corner									=	00-00
-3.08   Read Some Facts												=	00-00
-3.09   City Official Members										=	00-00
-3.10   Home 2 Footer												=	00-00	
-4.     Home Page Three												=	00-00
-4.01   Mayor Msg with Video											=	00-00	
-4.02   City News													=	00-00
-4.03   Department													=	00-00
-4.04   Recent Events												=	00-00
-4.05   Explore Community											=	00-00
-4.06   Explore Community											=	00-00
-5.     Event Pages													=	00-00	
-6.     Sidebar Widgets												=	00-00
-7.     News															=	00-00
-8.     Team															=	00-00
-9.     City Departments												=	00-00
-10.    Services Page												=	00-00
-11.    Explore City													=	00-00	
-12.    Gallery Pages												=	00-00
-13.    Contact Us													=	00-00
-14.    Event Details												=	00-00
-15.    About Us Pages												=	00-00
-16.    Causes														=	00-00	
-17.    Causes Listing												=	00-00
-18.    Donation Page												=	00-00	
-19.    Testimonials													=	00-00	
-20.    Login / Register												=	00-00
-21.    Coming Soon													=	00-00		
-22.    Page 404														=	00-00
-23.    Search Overlay												=	00-00
-24.    Transition													=	00-00		
-								
-[Updates]
-
--------------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900');
 html body {
@@ -116,7 +35,7 @@ body h6 {
 }
 .wf100 {
 	width: 100%;
-	float: left;
+	/*float: left;*/
 }
 .p80 {
 	padding: 80px 0;
@@ -173,7 +92,7 @@ header {
 	background: #fff;
 }
 .header .topbar {
-	background: #40407e;
+	background: #0a3764;
 }
 .topbar ul {
 	margin: 0px;
@@ -273,7 +192,7 @@ header {
 	clear: both;
 	font-weight: 700;
 	line-height: 40px;
-	color: #40407e;
+	color: #0a3764;
 	white-space: nowrap;
 	text-transform: uppercase;
 	font-size: 12px;
@@ -284,7 +203,7 @@ header {
 	border: 0px;
 }
 .sub-menu a:hover, .logo-nav-row .dropdown-menu>li>a:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 .navbar-nav>li>.dropdown-menu li {
@@ -397,7 +316,7 @@ header {
 	letter-spacing: 1px;
 }
 .slide-content-box a:hover, .slider-caption a:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 .main-slider .owl-dots {
@@ -437,7 +356,7 @@ header {
 	font-weight: 600;
 }
 .banner-tags li:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 /******** + ========== + Main Slider End + ========== + ********/
@@ -589,7 +508,7 @@ header {
 	padding: 0 20px;
 }
 .Mayor-text a:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 .lb-box {
@@ -668,7 +587,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	border-radius: 3px;
 }
 .title-style-2 a:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 .title-style-2 {
@@ -1015,7 +934,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	content: "\f105";
 }
 .city-highlights .owl-carousel .owl-nav button.owl-next:hover, .city-highlights .owl-carousel .owl-nav button.owl-prev:hover {
-	background: #40407e;
+	background: #0a3764;
 }
 .ch-box .ch-txt h5 a:hover {
 	color: #d94148;
@@ -1120,7 +1039,7 @@ a.see-more:hover {
 	margin: 0 0 30px;
 }
 .emergency-info {
-	background: #40407e;
+	background: #0a3764;
 	width: 100%;
 	float: left;
 	border-radius: 5px;
@@ -1322,7 +1241,7 @@ a.see-more:hover {
 .stay-connected input[type="submit"] {
 	width: 100%;
 	border: 0px;
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 	height: 55px;
 	line-height: 55px;
@@ -1611,7 +1530,7 @@ ul.team-social a:hover {
 	color: #fff;
 }
 .h2-Mayor-msg .Mayor-txt a:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 .city-tour {
@@ -1838,7 +1757,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 .e-numbers .info-num h3 {
 	font-weight: 300;
-	color: #40407e;
+	color: #0a3764;
 	font-size: 28px;
 }
 .department-links h5 {
@@ -2093,7 +2012,7 @@ body .btn-group.open .dropdown-toggle {
 	background-color: #f7941d;
 }
 .ecat.c3 {
-	background-color: #40407e;
+	background-color: #0a3764;
 }
 .ecat.c4 {
 	background-color: #72bf44;
@@ -2258,7 +2177,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	border-color: #f63859;
 }
 .community-box h6 {
-	color: #40407e;
+	color: #0a3764;
 	border-bottom: 1px solid #eeeeee;
 	line-height: 53px;
 	font-weight: 700;
@@ -2437,7 +2356,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	text-transform: uppercase;
 }
 .team-heading a:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 /*** + === + City Official Members End + === + ***/
@@ -2563,8 +2482,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	color: rgba(255,255,255,.20);
 }
 .twitter-widget a.reply-tw:hover {
-	color: #40407e;
-	border-color: #40407e;
+	color: #0a3764;
+	border-color: #0a3764;
 }
 /*** + === + Home 2 Footer End + === + ***/
 
@@ -2878,7 +2797,7 @@ li.header-weather {
 	box-shadow: 0 5px 10px rgba(0,0,0,.12);
 }
 .h3-slider-caption a:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 /*********** Mayor Msg with Video Start ***********/
@@ -3109,7 +3028,7 @@ li.header-weather {
 }
 .news-details blockquote {
 	width: 85%;
-	background: #40407e;
+	background: #0a3764;
 	overflow: hidden;
 	margin: 0 auto 20px;
 	border: 0px;
@@ -3142,8 +3061,8 @@ li.header-weather {
 	margin-right: 3px;
 }
 .single-post-tags a:hover {
-	background: #40407e;
-	border-color: #40407e;
+	background: #0a3764;
+	border-color: #0a3764;
 	color: #fff;
 }
 .about-post-author {
@@ -3218,7 +3137,7 @@ ul.post-time a {
 	color: #888888;
 }
 ul.post-time a i {
-	color: #40407e;
+	color: #0a3764;
 	font-size: 12px;
 }
 .user-comments {
@@ -3367,7 +3286,7 @@ ul.rep-comments {
 	font-size: 14px;
 	border-radius: 3px;
 	text-align: center;
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -3443,7 +3362,7 @@ ul.rep-comments {
 	color: #d94148;
 }
 .deprt-icon-box a.rm:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 a.jobs-link {
@@ -3460,7 +3379,7 @@ a.jobs-link {
 	font-weight: 700;
 }
 a.jobs-link:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 ul.reports {
@@ -3772,7 +3691,7 @@ ul.reports a i {
 .community-links-style-two li a img {
 	width: 45px;
 	height: 45px;
-	background: #40407e;
+	background: #0a3764;
 	border-radius: 100%;
 	margin-right: 10px;
 }
@@ -4213,7 +4132,7 @@ a.join-now {
 	display: block;
 }
 .widget .upcoming-events li:hover .edate {
-	background: #40407e;
+	background: #0a3764;
 }
 .fb-like img {
 	max-width: 100%;
@@ -4358,7 +4277,7 @@ a.join-now {
 }
 .contact-team {
 	float: left;
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 	border-radius: 3px;
 	line-height: 50px;
@@ -4524,7 +4443,7 @@ ul.check-list i {
 	list-style: none;
 }
 .newsletter-style2 button {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 	width: 100%;
 	border: 0px;
@@ -4726,9 +4645,9 @@ ul.gallery-2-col img, ul.gallery-3-col img, ul.gallery-4-col img {
 	margin: 0 0 10px;
 }
 .post-comments-form input[type="submit"] {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
-	border: 1px solid #40407e;
+	border: 1px solid #0a3764;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 16px;
 	font-weight: 600;
@@ -4872,7 +4791,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	padding: 42px 30px;
 }
 .service-page-bottom .newsletter-form button {
-	background: #40407e;
+	background: #0a3764;
 }
 .service-page-bottom .newsletter-form button:hover {
 	background: #38a1f3;
@@ -4966,7 +4885,7 @@ body .panel-group .panel+.panel {
 	font-weight: 700;
 }
 .city-updates li.more-news a:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 .community-links-style-two.col3 li {
@@ -5026,7 +4945,7 @@ body .panel-group .panel+.panel {
 	display: block;
 	line-height: 63px;
 	color: #fff;
-	background: #40407e;
+	background: #0a3764;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 18px;
 	font-weight: 600;
@@ -5295,7 +5214,7 @@ div#filters {
 	top: 0;
 	line-height: 26px;
 	font-size: 20px;
-	color: #40407e;
+	color: #0a3764;
 }
 .map-form {
 	width: 100%;
@@ -5339,7 +5258,7 @@ div#filters {
 	min-height: 180px;
 }
 .contact-form input[type="submit"] {
-	background: #40407e;
+	background: #0a3764;
 	border: 0px;
 	border-radius: 3px;
 	height: 50px;
@@ -5456,7 +5375,7 @@ div#filters {
 .event-counter a {
 	background: #ffffff;
 	text-transform: uppercase;
-	color: #40407e;
+	color: #0a3764;
 	font-size: 14px;
 	font-weight: 700;
 	display: inline-block;
@@ -5541,7 +5460,7 @@ div#filters {
 	font-size: 16px;
 }
 .event-content ul.emeta li strong {
-	color: #40407e;
+	color: #0a3764;
 	font-weight: 400;
 }
 .event-content ul.emeta li:after {
@@ -5585,7 +5504,7 @@ div#filters {
 .event-date-share .edate {
 	width: 68px;
 	height: 82px;
-	background: #40407e;
+	background: #0a3764;
 	text-align: center;
 	border-radius: 3px;
 	overflow: hidden;
@@ -5748,7 +5667,7 @@ div#filters {
 	right: 0;
 	margin: auto;
 	background: #fff;
-	color: #40407e;
+	color: #0a3764;
 	text-align: center;
 	line-height: 40px;
 	font-size: 14px;
@@ -5756,7 +5675,7 @@ div#filters {
 	opacity: 0;
 }
 .event-gallery .eg-thumb a:hover {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 }
 .leave-comment {
@@ -5955,7 +5874,7 @@ div#filters {
 	border-radius: 100%;
 	line-height: 45px;
 	text-align: center;
-	color: #40407e;
+	color: #0a3764;
 	opacity: 0;
 }
 .campaign-thumb a:hover {
@@ -5976,7 +5895,7 @@ a.dbutton {
 	text-align: center;
 	line-height: 45px;
 	color: #fff;
-	background: #40407e;
+	background: #0a3764;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
 	font-weight: 600;
@@ -6010,7 +5929,7 @@ ul.participants li span {
 	text-align: center;
 	border-radius: 100%;
 	font-size: 12px;
-	background: #40407e;
+	background: #0a3764;
 }
 ul.funds {
 	margin: 0;
@@ -6045,7 +5964,7 @@ ul.participants li strong {
 }
 ul.participants li strong i {
 	font-style: normal;
-	color: #40407e;
+	color: #0a3764;
 }
 .campaign-txt .progress {
 	width: 100%;
@@ -6054,7 +5973,7 @@ ul.participants li strong i {
 	background: #e6e6e6;
 }
 .campaign-txt .progress .progress-bar {
-	background: #40407e;
+	background: #0a3764;
 	border-radius: 10px;
 }
 .campaign-txt h5 {
@@ -6136,7 +6055,7 @@ ul.participants, .campaign-txt h5 {
 	font-size: 14px;
 }
 .dn-btn {
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 	text-transform: uppercase;
 	font-family: 'Montserrat', sans-serif;
@@ -6183,7 +6102,7 @@ ul.participants, .campaign-txt h5 {
 }
 .single-donation-box .progress .progress-bar {
 	border-radius: 15px;
-	background: #40407e;
+	background: #0a3764;
 }
 .single-donation-box .funds li:first-child {
 	text-align: left;
@@ -6291,7 +6210,7 @@ li.form-submit {
 li.form-submit button {
 	width: 100%;
 	border: 0px;
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 16px;
@@ -6400,7 +6319,7 @@ Donation Page Start
 	color: #fff;
 	font-weight: 600;
 	font-family: 'Montserrat', sans-serif;
-	background: #40407e;
+	background: #0a3764;
 	border-radius: 5px;
 	cursor: pointer;
 }
@@ -6556,7 +6475,7 @@ Testimonials End
 	border: 1px solid #ababab;
 }
 .login-box input[type="submit"] {
-	background: #40407e;
+	background: #0a3764;
 	line-height: 53px;
 	padding: 0 30px;
 	border-radius: 3px;
@@ -6616,7 +6535,7 @@ ul.social-login a.gp {
 	padding-top: 60px;
 }
 .login-account {
-	background: #40407e;
+	background: #0a3764;
 	width: 100%;
 	float: left;
 	border-radius: 3px;
@@ -6674,7 +6593,7 @@ ul.social-login a.gp {
 }
 .register-account input[type="submit"] {
 	width: 100%;
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 	text-align: center;
 	text-transform: uppercase;
@@ -6967,7 +6886,7 @@ Search Overlay End
 	right: -300px;
 	height: 100vh;
 	z-index: 999;
-	background: #40407e;
+	background: #0a3764;
 	color: #fff;
 	transition: all 0.3s;
 	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
@@ -7010,7 +6929,7 @@ Search Overlay End
 }
 #sidebar .sidebar-header {
 	padding: 20px;
-	background: #40407e;
+	background: #0a3764;
 }
 #sidebar ul.components {
 	padding: 20px 0;
@@ -7027,7 +6946,7 @@ Search Overlay End
 	color: #fff;
 }
 #sidebar ul li a:hover {
-	color: #40407e;
+	color: #0a3764;
 	background: #fff;
 }
 #sidebar ul li.active>a {

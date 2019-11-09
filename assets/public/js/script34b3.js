@@ -1,9 +1,3 @@
-/*!
-* Copyright @OlaSoft 2016 - 2018
-* https://www.olasoft.net
-* @OlaSoftBenin
-* contact@olasoft.net
-*/
 $(document).ready(function () {
     $('.btn-search').click(function () {
         $(".search-block").hasClass('show') ? $(".search-block").removeClass('show') : $(".search-block").addClass('show');
