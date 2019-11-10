@@ -8,7 +8,7 @@
 ?>
 <section class="banner banner-small scale-hover">
     <div class="">
-        <img src="<?= $assetsUrl ?>public/images/banner.jpg" class="cover transition" />
+        <img data-src="<?= $assetsUrl ?>public/images/banner.jpg" class="cover transition" />
     </div>
     <div class="infos on-container flex flex-col center text-left anim-title">
         <div>
@@ -37,7 +37,7 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('evaluations') ?>">
-                            <img src="<?= $assetsUrl ?>public/images/evaluation-symbol.png" alt="">
+                            <img data-src="<?= $assetsUrl ?>public/images/evaluation-symbol.png" alt="">
                         </a>
 
                         <h6> <a href="<?= site_url('evaluations') ?>">Evaluations</a> </h6>
@@ -49,7 +49,7 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('events') ?>">
-                            <img src="<?= $assetsUrl ?>public/images/calendar-symbol.png" alt="">
+                            <img data-src="<?= $assetsUrl ?>public/images/calendar-symbol.png" alt="">
                         </a>
 
                         <h6> <a href="<?= site_url('events') ?>">Evènements</a> </h6>
@@ -61,7 +61,7 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('blog') ?>">
-                            <img src="<?= $assetsUrl ?>public/images/brochure-symbol.png" alt="">
+                            <img data-src="<?= $assetsUrl ?>public/images/brochure-symbol.png" alt="">
                         </a>
                         <h6> <a href="<?= site_url('blog') ?>">Actualités</a> </h6>
                         <a class="rm" href="<?= site_url('blog') ?>">Découvrir</a>
@@ -72,7 +72,7 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('/') ?>">
-                            <img src="<?= $assetsUrl ?>public/images/analysis-symbol.png" alt="">
+                            <img data-src="<?= $assetsUrl ?>public/images/analysis-symbol.png" alt="">
                         </a>
                         <h6> <a href="<?= site_url('/') ?>">Statistiques</a>
                         </h6>
@@ -102,7 +102,7 @@
                 <!--News Box Start-->
                 <div class="col-md-3 col-sm-6">
                     <div class="news-box">
-                        <div class="new-thumb"> <span class="cat c1">Publication</span> <img src="<?= $assetsUrl ?>public/images/poverty.jpg" alt=""> </div>
+                        <div class="new-thumb"> <span class="cat c1">Publication</span> <img data-src="<?= $assetsUrl ?>public/images/poverty.jpg" alt=""> </div>
                         <div class="new-txt">
                             <div class="row">
                                 <div class="col-xs-10">
@@ -125,14 +125,14 @@
                             <h6><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Stratégies de croissances pour la réduction de la pauvreté" class="cutter" data-line="2">Stratégies de croissances pour la réduction de la pauvreté</a></h6>
                             <p class="cutter" data-line="4"> La troisième génération de la Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP) a pour objectif d’améliorer les conditions de vie des populations, notamment des pauvres puisqu’elle se veut pro-pauvre. </p>
                         </div>
-                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                        <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                     </div>
                 </div>
                 <!--News Box End-->
                 <!--News Box Start-->
                 <div class="col-md-3  col-sm-6">
                     <div class="news-box">
-                        <div class="new-thumb"> <span class="cat c2">Gestion de connaissances</span> <img src="<?= $assetsUrl ?>public/images/h3citynews-2.jpg" alt=""> </div>
+                        <div class="new-thumb"> <span class="cat c2">Gestion de connaissances</span> <img data-src="<?= $assetsUrl ?>public/images/h3citynews-2.jpg" alt=""> </div>
                         <div class="new-txt">
                             <div class="row">
                                 <div class="col-xs-10">
@@ -155,14 +155,14 @@
                             <h6><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Politique Nationale de Développement de l’Artisanat (PNDA)" class="cutter" data-line="2">Politique Nationale de Développement de l’Artisanat (PNDA)</a></h6>
                             <p class="cutter" data-line="4"> La PNDA a pour vision de faire de l’artisanat béninois « un secteur bien organisé à l’horizon 2025 où opèrent des entreprises artisanales compétitives, contribuant notablement à la valorisation du patrimoine national et au bien-être social de l’artisan et du béninois, dans un pays uni et de paix ».</p>
                         </div>
-                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                        <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                     </div>
                 </div>
                 <!--News Box End-->
                 <!--News Box Start-->
                 <div class="col-md-3  col-sm-6">
                     <div class="news-box">
-                        <div class="new-thumb"> <span class="cat c3">Ressources techniques</span> <img src="<?= $assetsUrl ?>public/images/tourism.jpg" alt=""> </div>
+                        <div class="new-thumb"> <span class="cat c3">Ressources techniques</span> <img data-src="<?= $assetsUrl ?>public/images/tourism.jpg" alt=""> </div>
                         <div class="new-txt">
                             <div class="row">
                                 <div class="col-xs-10">
@@ -185,14 +185,14 @@
                             <h6><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Politique Nationale du Tourisme" class="cutter" data-line="2">Politique Nationale du Tourisme</a></h6>
                             <p class="cutter" data-line="3">La PNT a pour vision de « Faire du Bénin une destination de référence en Afrique de l’Ouest dans le respect de la préservation du patrimoine culturel et naturel ». Elle a pour objectif général de doubler d’ici 2025 la contribution du Tourisme au Produit Intérieur Brut.</p>
                         </div>
-                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                        <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                     </div>
                 </div>
                 <!--News Box End-->
                 <!--News Box Start-->
                 <div class="col-md-3  col-sm-6">
                     <div class="news-box">
-                        <div class="new-thumb"> <span class="cat c4">Partenariat</span> <img src="<?= $assetsUrl ?>public/images/food.jpg" alt=""> </div>
+                        <div class="new-thumb"> <span class="cat c4">Partenariat</span> <img data-src="<?= $assetsUrl ?>public/images/food.jpg" alt=""> </div>
                         <div class="new-txt">
                             <div class="row">
                                 <div class="col-xs-10">
@@ -216,7 +216,7 @@
                             <p class="cutter" data-line="3">La démarche méthodologique repose sur la recherche documentaire, un Guide d’entretien, un Guide de focus group, un questionnaire individuel.
                                 Echantillonnage à deux degrés retenu.</p>
                         </div>
-                        <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                        <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                     </div>
                 </div>
                 <!--News Box End-->
@@ -240,7 +240,7 @@
                 <div class="col-md-4 col-sm-4">
                     <!--News Post Start-->
                     <div class="event-post">
-                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event3.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img data-src="<?= $assetsUrl ?>public/images/event3.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
                             <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
@@ -258,7 +258,7 @@
                 <div class="col-md-4 col-sm-4">
                     <!--News Post Start-->
                     <div class="event-post">
-                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event1.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img data-src="<?= $assetsUrl ?>public/images/event1.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
                             <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
@@ -276,7 +276,7 @@
                 <div class="col-md-4 col-sm-4">
                     <!--News Post Start-->
                     <div class="event-post">
-                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event2.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img data-src="<?= $assetsUrl ?>public/images/event2.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
                             <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
@@ -313,27 +313,27 @@
                     <div class="row">
                         <ul class="counter">
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img src="<?= $assetsUrl ?>public/images/test.png" alt=""></i> <strong>1920</strong> <span>Evaluations publiées</span>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/test.png" alt=""></i> <strong>1920</strong> <span>Evaluations publiées</span>
                                 </div>
                             </li>
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img src="<?= $assetsUrl ?>public/images/progress.png" alt=""></i> <strong>870</strong>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/progress.png" alt=""></i> <strong>870</strong>
                                     <span>Recommandations en cours</span></div>
                             </li>
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img src="<?= $assetsUrl ?>public/images/checked.png" alt=""></i> <strong>900</strong> <span>Recommandations exécutées</span>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/checked.png" alt=""></i> <strong>900</strong> <span>Recommandations exécutées</span>
                                 </div>
                             </li>
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img src="<?= $assetsUrl ?>public/images/warning.png" alt=""></i> <strong>150</strong>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/warning.png" alt=""></i> <strong>150</strong>
                                     <span>Recommandations non exécutées</span></div>
                             </li>
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img src="<?= $assetsUrl ?>public/images/calendar.png" alt=""></i> <strong>28</strong> <span>Evènements organisés</span>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/calendar.png" alt=""></i> <strong>28</strong> <span>Evènements organisés</span>
                                 </div>
                             </li>
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img src="<?= $assetsUrl ?>public/images/brochure.png" alt=""></i> <strong>15</strong> <span>Articles publiés</span>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/brochure.png" alt=""></i> <strong>15</strong> <span>Articles publiés</span>
                                 </div>
                             </li>
 

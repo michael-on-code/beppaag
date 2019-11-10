@@ -23,7 +23,7 @@ getBreadcrump([
                 <!--Content Col Start-->
                 <div class="col-md-9">
                     <div class="event-details">
-                        <div class="event-thumb"> <img src="<?= $assetsUrl ?>public/images/event-medium1.jpg" alt=""> </div>
+                        <div class="event-thumb"> <img data-src="<?= $assetsUrl ?>public/images/event-medium1.jpg" alt=""> </div>
                         <!--Counter-->
                         <div class="event-counter">
                             <ul>
@@ -97,7 +97,7 @@ getBreadcrump([
                                                 <!--                                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>-->
                                             </ul>
                                         </div>
-                                        <img src="<?= $assetsUrl ?>public/images/speaker1.jpg" alt="">
+                                        <img data-src="<?= $assetsUrl ?>public/images/speaker1.jpg" alt="">
                                     </div>
                                 </div>
                                 <!--Speaker Box End-->
@@ -116,7 +116,7 @@ getBreadcrump([
                                                 <!--                                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>-->
                                             </ul>
                                         </div>
-                                        <img src="<?= $assetsUrl ?>public/images/speaker2.jpg" alt="">
+                                        <img data-src="<?= $assetsUrl ?>public/images/speaker2.jpg" alt="">
                                     </div>
                                 </div>
                                 <!--Speaker Box End-->
@@ -135,7 +135,7 @@ getBreadcrump([
 <!--                                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>-->
                                             </ul>
                                         </div>
-                                        <img src="<?= $assetsUrl ?>public/images/speaker3.jpg" alt="">
+                                        <img data-src="<?= $assetsUrl ?>public/images/speaker3.jpg" alt="">
                                     </div>
                                 </div>
                                 <!--Speaker Box End-->

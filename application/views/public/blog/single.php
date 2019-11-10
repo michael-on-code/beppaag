@@ -23,7 +23,7 @@ getBreadcrump([
                 <!--Content Col Start-->
                 <div class="col-md-9">
                     <div class="news-box">
-                        <div class="new-thumb"> <a href="#"><i class="fas fa-link"></i></a> <span class="cat c4">Publication</span> <img src="<?= $assetsUrl ?>public/images/post-single.jpg" alt=""> </div>
+                        <div class="new-thumb"> <a href="#"><i class="fas fa-link"></i></a> <span class="cat c4">Publication</span> <img data-src="<?= $assetsUrl ?>public/images/post-single.jpg" alt=""> </div>
                         <div class="new-txt">
                             <div class="row">
                                 <div class="col-xs-10">
@@ -52,9 +52,9 @@ getBreadcrump([
                             </blockquote>
                             <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo d Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo d</p>
                             <ul class="gallery-3-col">
-                                <li><img src="<?= $assetsUrl ?>public/images/nd3.jpg" alt=""></li>
-                                <li><img src="<?= $assetsUrl ?>public/images/nd4.jpg" alt=""></li>
-                                <li><img src="<?= $assetsUrl ?>public/images/nd5.jpg" alt=""></li>
+                                <li><img data-src="<?= $assetsUrl ?>public/images/nd3.jpg" alt=""></li>
+                                <li><img data-src="<?= $assetsUrl ?>public/images/nd4.jpg" alt=""></li>
+                                <li><img data-src="<?= $assetsUrl ?>public/images/nd5.jpg" alt=""></li>
                             </ul>
                             <h5>Alimentation des populations</h5>
                             <p> Pellentesque egestas vulputate augue, id consectetur dolor blandit nec. Nullam fermentum turpis in lacinia lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam metus neque, posuere eget tempor ut, consectetur vel elit. Aliquam fringilla justo at arcu varius Quisque est nunc, tristique in mollis quis, ullamcorper id diam. Mauris lorem elit, pellentesque quis ultrices vel, bibendum a odio. Nunc dapibus lacus quis urna mattis, a interdum est blandit. </p>
@@ -68,8 +68,8 @@ getBreadcrump([
                                 <li><i class="fas fa-check"></i> Etiam iaculis nunc et iaculis sodales.</li>
                             </ul>
                             <ul class="gallery-2-col">
-                                <li><img src="<?= $assetsUrl ?>public/images/nd1.jpg" alt=""></li>
-                                <li><img src="<?= $assetsUrl ?>public/images/nd2.jpg" alt=""></li>
+                                <li><img data-src="<?= $assetsUrl ?>public/images/nd1.jpg" alt=""></li>
+                                <li><img data-src="<?= $assetsUrl ?>public/images/nd2.jpg" alt=""></li>
                             </ul>
                             <!--Post Tags Start-->
                             <div class="single-post-tags"> <a href="#">Santé</a> <a href="#">Alimentation</a> <a href="#">Population</a> <a href="#">Public</a> </div>

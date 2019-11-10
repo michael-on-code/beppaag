@@ -19,7 +19,7 @@ getBreadcrump([
                 <!--Event Start-->
                 <div class="col-md-4 col-sm-6">
                     <div class="event-post">
-                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event3.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img data-src="<?= $assetsUrl ?>public/images/event3.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
                             <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
@@ -37,7 +37,7 @@ getBreadcrump([
                 <!--Event Start-->
                 <div class="col-md-4 col-sm-6">
                     <div class="event-post">
-                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event1.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img data-src="<?= $assetsUrl ?>public/images/event1.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
                             <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
@@ -55,7 +55,7 @@ getBreadcrump([
                 <!--Event Start-->
                 <div class="col-md-4 col-sm-6">
                     <div class="event-post">
-                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event2.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img data-src="<?= $assetsUrl ?>public/images/event2.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
                             <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
@@ -73,7 +73,7 @@ getBreadcrump([
                 <!--Event Start-->
                 <div class="col-md-4 col-sm-6">
                     <div class="event-post">
-                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event1.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img data-src="<?= $assetsUrl ?>public/images/event1.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
                             <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
@@ -91,7 +91,7 @@ getBreadcrump([
                 <!--Event Start-->
                 <div class="col-md-4 col-sm-6">
                     <div class="event-post">
-                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event3.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img data-src="<?= $assetsUrl ?>public/images/event3.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
                             <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>
@@ -109,7 +109,7 @@ getBreadcrump([
                 <!--Event Start-->
                 <div class="col-md-4 col-sm-6">
                     <div class="event-post">
-                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img src="<?= $assetsUrl ?>public/images/event2.jpg"
+                        <div class="thumb"><a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>"><i class="fas fa-link"></i></a> <img data-src="<?= $assetsUrl ?>public/images/event2.jpg"
                                                                                             alt=""></div>
                         <div class="event-post-txt">
                             <h5><a class="cutter" data-line="2" href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>" data-toggle="tooltip" title="Séminaire sur la bonne gestion des processus d'évaluation">Séminaire sur la bonne gestion des processus d'évaluation </a></h5>

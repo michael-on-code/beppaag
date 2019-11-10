@@ -23,7 +23,7 @@ getBreadcrump([
                         <!--News Box Start-->
                         <div class="col-md-4 col-sm-6">
                             <div class="news-box">
-                                <div class="new-thumb"> <span class="cat c2">Gestion de connaissances</span> <img src="<?= $assetsUrl ?>public/images/h3citynews-2.jpg" alt=""> </div>
+                                <div class="new-thumb"> <span class="cat c2">Gestion de connaissances</span> <img data-src="<?= $assetsUrl ?>public/images/h3citynews-2.jpg" alt=""> </div>
                                 <div class="new-txt">
                                     <div class="row">
                                         <div class="col-xs-10">
@@ -46,14 +46,14 @@ getBreadcrump([
                                     <h6><a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>" data-toggle="tooltip" title="Politique Nationale de Développement de l’Artisanat (PNDA)" class="cutter" data-line="2">Politique Nationale de Développement de l’Artisanat (PNDA)</a></h6>
                                     <p class="cutter" data-line="4"> La PNDA a pour vision de faire de l’artisanat béninois « un secteur bien organisé </p>
                                 </div>
-                                <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                                <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>
                         </div>
                         <!--News Box End-->
                         <!--News Box Start-->
                         <div class="col-md-4 col-sm-6">
                             <div class="news-box">
-                                <div class="new-thumb"> <span class="cat c3">Ressources techniques</span> <img src="<?= $assetsUrl ?>public/images/tourism.jpg" alt=""> </div>
+                                <div class="new-thumb"> <span class="cat c3">Ressources techniques</span> <img data-src="<?= $assetsUrl ?>public/images/tourism.jpg" alt=""> </div>
                                 <div class="new-txt">
                                     <div class="row">
                                         <div class="col-xs-10">
@@ -76,14 +76,14 @@ getBreadcrump([
                                     <h6><a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>" data-toggle="tooltip" title="Politique Nationale du Tourisme" class="cutter" data-line="2">Politique Nationale du Tourisme</a></h6>
                                     <p class="cutter" data-line="3">La PNT a pour vision de « Faire du Bénin une destination de référence en Afrique de l’Ouest dans le respect de la préservation du patrimoine culturel et naturel ». Elle a pour objectif général de doubler d’ici 2025 la contribution du Tourisme au Produit Intérieur Brut.</p>
                                 </div>
-                                <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                                <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>
                         </div>
                         <!--News Box End-->
                         <!--News Box Start-->
                         <div class="col-md-4 col-sm-6">
                             <div class="news-box">
-                                <div class="new-thumb"> <span class="cat c4">Partenariat</span> <img src="<?= $assetsUrl ?>public/images/food.jpg" alt=""> </div>
+                                <div class="new-thumb"> <span class="cat c4">Partenariat</span> <img data-src="<?= $assetsUrl ?>public/images/food.jpg" alt=""> </div>
                                 <div class="new-txt">
                                     <div class="row">
                                         <div class="col-xs-10">
@@ -107,14 +107,14 @@ getBreadcrump([
                                     <p class="cutter" data-line="3">La démarche méthodologique repose sur la recherche documentaire, un Guide d’entretien, un Guide de focus group, un questionnaire individuel.
                                         Echantillonnage à deux degrés retenu.</p>
                                 </div>
-                                <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                                <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>
                         </div>
                         <!--News Box End-->
                         <!--News Box Start-->
                         <div class="col-md-4 col-sm-6">
                             <div class="news-box">
-                                <div class="new-thumb"> <span class="cat c4">Partenariat</span> <img src="<?= $assetsUrl ?>public/images/food.jpg" alt=""> </div>
+                                <div class="new-thumb"> <span class="cat c4">Partenariat</span> <img data-src="<?= $assetsUrl ?>public/images/food.jpg" alt=""> </div>
                                 <div class="new-txt">
                                     <div class="row">
                                         <div class="col-xs-10">
@@ -138,14 +138,14 @@ getBreadcrump([
                                     <p class="cutter" data-line="3">La démarche méthodologique repose sur la recherche documentaire, un Guide d’entretien, un Guide de focus group, un questionnaire individuel.
                                         Echantillonnage à deux degrés retenu.</p>
                                 </div>
-                                <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                                <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>
                         </div>
                         <!--News Box End-->
                         <!--News Box Start-->
                         <div class="col-md-4 col-sm-6">
                             <div class="news-box">
-                                <div class="new-thumb"> <span class="cat c3">Ressources techniques</span> <img src="<?= $assetsUrl ?>public/images/tourism.jpg" alt=""> </div>
+                                <div class="new-thumb"> <span class="cat c3">Ressources techniques</span> <img data-src="<?= $assetsUrl ?>public/images/tourism.jpg" alt=""> </div>
                                 <div class="new-txt">
                                     <div class="row">
                                         <div class="col-xs-10">
@@ -168,14 +168,14 @@ getBreadcrump([
                                     <h6><a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>" data-toggle="tooltip" title="Politique Nationale du Tourisme" class="cutter" data-line="2">Politique Nationale du Tourisme</a></h6>
                                     <p class="cutter" data-line="3">La PNT a pour vision de « Faire du Bénin une destination de référence en Afrique de l’Ouest dans le respect de la préservation du patrimoine culturel et naturel ». Elle a pour objectif général de doubler d’ici 2025 la contribution du Tourisme au Produit Intérieur Brut.</p>
                                 </div>
-                                <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                                <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>
                         </div>
                         <!--News Box End-->
                         <!--News Box Start-->
                         <div class="col-md-4 col-sm-6">
                             <div class="news-box">
-                                <div class="new-thumb"> <span class="cat c2">Gestion de connaissances</span> <img src="<?= $assetsUrl ?>public/images/h3citynews-2.jpg" alt=""> </div>
+                                <div class="new-thumb"> <span class="cat c2">Gestion de connaissances</span> <img data-src="<?= $assetsUrl ?>public/images/h3citynews-2.jpg" alt=""> </div>
                                 <div class="new-txt">
                                     <div class="row">
                                         <div class="col-xs-10">
@@ -198,14 +198,14 @@ getBreadcrump([
                                     <h6><a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>" data-toggle="tooltip" title="Politique Nationale de Développement de l’Artisanat (PNDA)" class="cutter" data-line="2">Politique Nationale de Développement de l’Artisanat (PNDA)</a></h6>
                                     <p class="cutter" data-line="4"> La PNDA a pour vision de faire de l’artisanat béninois « un secteur bien organisé à l’horizon 2025 où opèrent des entreprises artisanales compétitives, contribuant notablement à la valorisation du patrimoine national et au bien-être social de l’artisan et du béninois, dans un pays uni et de paix ».</p>
                                 </div>
-                                <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                                <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>
                         </div>
                         <!--News Box End-->
                         <!--News Box Start-->
                         <div class="col-md-4 col-sm-6">
                             <div class="news-box">
-                                <div class="new-thumb"> <span class="cat c2">Gestion de connaissances</span> <img src="<?= $assetsUrl ?>public/images/h3citynews-2.jpg" alt=""> </div>
+                                <div class="new-thumb"> <span class="cat c2">Gestion de connaissances</span> <img data-src="<?= $assetsUrl ?>public/images/h3citynews-2.jpg" alt=""> </div>
                                 <div class="new-txt">
                                     <div class="row">
                                         <div class="col-xs-10">
@@ -228,14 +228,14 @@ getBreadcrump([
                                     <h6><a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>" data-toggle="tooltip" title="Politique Nationale de Développement de l’Artisanat (PNDA)" class="cutter" data-line="2">Politique Nationale de Développement de l’Artisanat (PNDA)</a></h6>
                                     <p class="cutter" data-line="4"> La PNDA a pour vision de faire de l’artisanat béninois « un secteur bien organisé à l’horizon 2025 où opèrent des entreprises artisanales compétitives, contribuant notablement à la valorisation du patrimoine national et au bien-être social de l’artisan et du béninois, dans un pays uni et de paix ».</p>
                                 </div>
-                                <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                                <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>
                         </div>
                         <!--News Box End-->
                         <!--News Box Start-->
                         <div class="col-md-4 col-sm-6">
                             <div class="news-box">
-                                <div class="new-thumb"> <span class="cat c3">Ressources techniques</span> <img src="<?= $assetsUrl ?>public/images/tourism.jpg" alt=""> </div>
+                                <div class="new-thumb"> <span class="cat c3">Ressources techniques</span> <img data-src="<?= $assetsUrl ?>public/images/tourism.jpg" alt=""> </div>
                                 <div class="new-txt">
                                     <div class="row">
                                         <div class="col-xs-10">
@@ -258,14 +258,14 @@ getBreadcrump([
                                     <h6><a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>" data-toggle="tooltip" title="Politique Nationale du Tourisme" class="cutter" data-line="2">Politique Nationale du Tourisme</a></h6>
                                     <p class="cutter" data-line="3">La PNT a pour vision de « Faire du Bénin une destination de référence en Afrique de l’Ouest dans le respect de la préservation du patrimoine culturel et naturel ». Elle a pour objectif général de doubler d’ici 2025 la contribution du Tourisme au Produit Intérieur Brut.</p>
                                 </div>
-                                <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                                <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>
                         </div>
                         <!--News Box End-->
                         <!--News Box Start-->
                         <div class="col-md-4 col-sm-6">
                             <div class="news-box">
-                                <div class="new-thumb"> <span class="cat c4">Partenariat</span> <img src="<?= $assetsUrl ?>public/images/food.jpg" alt=""> </div>
+                                <div class="new-thumb"> <span class="cat c4">Partenariat</span> <img data-src="<?= $assetsUrl ?>public/images/food.jpg" alt=""> </div>
                                 <div class="new-txt">
                                     <div class="row">
                                         <div class="col-xs-10">
@@ -289,7 +289,7 @@ getBreadcrump([
                                     <p class="cutter" data-line="3">La démarche méthodologique repose sur la recherche documentaire, un Guide d’entretien, un Guide de focus group, un questionnaire individuel.
                                         Echantillonnage à deux degrés retenu.</p>
                                 </div>
-                                <div class="news-box-f"> <img src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
+                                <div class="news-box-f"> <img data-src="<?= $assetsUrl ?>public/images/michael1.jpg" alt=""> A. Michael <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>"><i class="fas fa-arrow-right"></i></a> </div>
                             </div>
                         </div>
                         <!--News Box End-->

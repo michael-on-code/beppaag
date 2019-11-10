@@ -22,7 +22,7 @@
         <!--Widget Start-->
         <!--<div class="widget">
                             <h4>About us</h4>
-                            <div class="about-widget inner"> <img src="<?/*= $assetsUrl */?>public/images/about-widget-img.jpg" alt="">
+                            <div class="about-widget inner"> <img data-src="<?/*= $assetsUrl */?>public/images/about-widget-img.jpg" alt="">
                                 <p> On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment. </p>
                                 <a href="#">More About us</a> </div>
                         </div>-->
@@ -32,16 +32,16 @@
             <h4>Actualités récentes</h4>
             <div class="recent-posts inner">
                 <ul>
-                    <li> <img src="<?= $assetsUrl ?>public/images/food-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
+                    <li> <img data-src="<?= $assetsUrl ?>public/images/food-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
                         <h6> <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>">Insécurité alimentaire : un regard sur les réponses</a> </h6>
                     </li>
-                    <li> <img src="<?= $assetsUrl ?>public/images/tourism-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
+                    <li> <img data-src="<?= $assetsUrl ?>public/images/tourism-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
                         <h6> <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>">Politique Nationale de Développement de l’Artisanat </a> </h6>
                     </li>
-                    <li> <img src="<?= $assetsUrl ?>public/images/poverty-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
+                    <li> <img data-src="<?= $assetsUrl ?>public/images/poverty-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
                         <h6> <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>">Politique Nationale du Tourisme</a> </h6>
                     </li>
-                    <li> <img src="<?= $assetsUrl ?>public/images/stat-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
+                    <li> <img data-src="<?= $assetsUrl ?>public/images/stat-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
                         <h6> <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>">Politique Nationale du Tourisme</a> </h6>
                     </li>
 
