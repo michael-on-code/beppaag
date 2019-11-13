@@ -6,11 +6,12 @@
  * Time: 13:54
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
-function getFormSubmit($label, $additionalClass = '', $class = "btn btn-primary my-submit-button")
+function getFormSubmit($label, $additionalClass = '', $disabled = false, $class = "btn btn-primary m-l-5")
 {
     ?>
-    <button type="submit" class="<?= $class . ' ' . $additionalClass ?>">
-        <?= $label ?>
+    <button type="submit" class="<?= $class . ' ' . $additionalClass ?>" <?= $disabled ? 'disabled' : '' ?>>
+        <span><?= $label ?></span>
+        <i class="anticon anticon-loading m-l-5"></i>
     </button>
     <?php
 }
@@ -36,7 +37,22 @@ function get_form_error($name)
     return form_error($name, '<p class="form-error">', '</p>');
 }
 
-function upload_data($args, $names, $resize = false, $encryptName=true)
+function getSpecificImageSizeDimensions($sizeName)
+{
+    return maybe_null_or_empty(imageSizes(), $sizeName, true);
+}
+
+function getAllImageSizes()
+{
+    return [
+        '85x85' => [
+            'height' => 85,
+            'width' => 85,
+        ]
+    ];
+}
+
+function upload_data($args, $names, $resize = false, $encryptName = true)
 {
     $args['encrypt_name'] = $encryptName;
 //    var_dump($args);exit;
@@ -47,16 +63,23 @@ function upload_data($args, $names, $resize = false, $encryptName=true)
         foreach ($names as $name) {
             if ($ci->upload->do_upload($name)) {
                 $data[$name] = $ci->upload->data();
-                if ($resize) {
+                if ($resize && $data[$name]['is_image']) {
                     $config2 = [];
                     $config2['image_library'] = 'gd2';
                     $config2['source_image'] = $data[$name]['full_path'];
-//                $config2['new_image'] = './image_uploads/thumbs';
-                    $config2['maintain_ratio'] = false;
-                    $config2['width'] = 512;
-                    $config2['height'] = 512;
-                    $ci->load->library('image_lib', $config2);
-                    $ci->image_lib->resize();
+                    $sizes = getAllImageSizes();
+                    if(!empty($sizes)){
+                        foreach ($sizes as $keySize=> $size){
+                            $config2['new_image'] = $data[$name]['file_path'].$data[$name]['raw_name'].'-'.$keySize.$data[$name]['file_ext'];
+                            $config2['maintain_ratio'] = TRUE;
+                            //$config2['master_dim'] = 'auto';
+                            $config2['width'] = $size['width'];
+                            $config2['height'] = $size['height'];
+                            $ci->load->library('image_lib', $config2);
+                            $ci->image_lib->resize();
+                        }
+                    }
+
                 }
             }
         }
@@ -89,10 +112,15 @@ function get_info_message($msg, $delay = '')
     set_flashdata($msg, 'info', $delay);
 }
 
-function pro_url($url=''){
-    return site_url("admin$url");
+function pro_url($url = '')
+{
+    return site_url("admin/$url");
 }
 
+function pro_redirect($uri = '', $method = 'auto', $code = NULL)
+{
+    redirect("admin/$uri", $method, $code);
+}
 
 
 function insertOrUpdateInTable($table, $data, $userID = '')
@@ -127,7 +155,7 @@ function get_success_message($msg, $delay = '')
 
 function convert_date_to_english($date)
 {
-    if ($date && is_string($date) && strpos($date, '/')){
+    if ($date && is_string($date) && strpos($date, '/')) {
         return DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
     }
     return date('Y-m-d');
@@ -180,7 +208,7 @@ function update_meta($id, $key, $value, $table_meta, $table_id_val)
     }
 }
 
-function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $required = true, $additionalClass='')
+function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $required = true, $additionalClass = '')
 {
     ?>
     <?php
@@ -192,9 +220,9 @@ function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $
         'data-allowed-file-extensions' => $extensions,
         'value' => set_value($data['name'], maybe_null_or_empty($data, 'value'))
     );
-    if(isset($data['attributes'])){
-        foreach ($data['attributes'] as $key=>$attribute){
-            $attributes[$key]=$attribute;
+    if (isset($data['attributes'])) {
+        foreach ($data['attributes'] as $key => $attribute) {
+            $attributes[$key] = $attribute;
         }
     }
     if ($required && !maybe_null_or_empty($data, 'value')) {
@@ -421,7 +449,7 @@ function get_meta($id, $key, $table_meta, $table_id_val)
 
 function convert_date_to_french($date)
 {
-    if ($date && $date!='0000-00-00' && is_string($date) && strpos($date, '-') && strtotime($date)){
+    if ($date && $date != '0000-00-00' && is_string($date) && strpos($date, '-') && strtotime($date)) {
         return date('d/m/Y', strtotime($date));
     }
     return null;
@@ -656,7 +684,7 @@ function mailTemplateHtml($args, $options)
                                             <?php echo $args['message'] ?>
                                         </td>
                                     </tr>
-                                    <?php echo (isset($args['tableMessage']) ?  $args['tableMessage'] : '') ?>
+                                    <?php echo(isset($args['tableMessage']) ? $args['tableMessage'] : '') ?>
                                     <?php
                                     if (isset($args['btnLink']) && isset($args['btnLabel'])) {
                                         ?>
@@ -712,14 +740,15 @@ function mailTemplateHtml($args, $options)
     return ob_get_clean();
 }
 
-function sendNotificationMail($message, $title='', $tableMessage=''){
+function sendNotificationMail($message, $title = '', $tableMessage = '')
+{
     $ci = &get_instance();
     $options = $ci->data['options'];
-    $siteName=maybe_null_or_empty($options, 'siteName');
-    $mail['title'] = $title== '' ? ("Notification - ".$siteName) : $title;
+    $siteName = maybe_null_or_empty($options, 'siteName');
+    $mail['title'] = $title == '' ? ("Notification - " . $siteName) : $title;
     $mail['message'] = $message;
     $mail['tableMessage'] = $tableMessage;
-    $mail['btnLabel'] = "Accéder à ".$siteName;
+    $mail['btnLabel'] = "Accéder à " . $siteName;
     $mail['btnLink'] = site_url('/');
     $mail['destination'] = maybe_null_or_empty($options, 'notificationEmails');
     sendMail($siteName . ' <no-reply@akasigroup.com>', $mail);

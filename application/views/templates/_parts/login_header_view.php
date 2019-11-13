@@ -7,13 +7,13 @@
     <title>BEPPAAG</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= $assetsUrl ?>pro/images/logo/favicon.png">
+    <link rel="shortcut icon" href="<?= $assetsUrl ?>public/images/favicon1.jpg">
 
     <!-- page css -->
 
     <!-- Core css -->
     <link href="<?= $assetsUrl ?>pro/css/app.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>pro/css/stylesheet.css" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.001" rel="stylesheet">
     <script type="text/javascript">
         var verifyCallback = function (response) {
             if ($('form input[name=g-recaptcha-response]')) {

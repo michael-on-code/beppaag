@@ -2,19 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: MikOnCode
- * Date: 19/10/2019
- * Time: 09:29
+ * Date: 12/11/2019
+ * Time: 11:34
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
-class Login extends Login_Controller{
-
+class Admin_dashboard extends Pro_Controller{
     public function __construct()
     {
         parent::__construct();
     }
 
     public function index(){
-        $this->data['pageTitle']= 'Login';
+        $this->data['pageTitle']='Tableau de bord';
         $this->render('index');
     }
 }

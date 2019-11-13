@@ -1,18 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<!-- content-footer -->
-<!--TODO if container viewport height is less than screen, fix footer position with classes
-pos-fixed b-0
--->
-<footer class="content-footer">
-    <div>
-        <?= maybe_null_or_empty($options, 'siteFooterDescription') ?>
+<footer class="footer">
+    <div class="footer-content">
+        <p class="m-b-0">Copyright © 2019 Beppaagg. Propulsé par <a target="_blank" href="http://akasigroup.com">AKASI Consulting Group</a></p>
+        <span>
+                            <a href="#" class="text-gray m-r-15">Term &amp; Conditions</a>
+                            <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                        </span>
     </div>
 </footer>
-</div><!-- container -->
-</div><!-- content -->
-<script src="<?= $assetsUrl ?>lib/jquery/jquery.min.js"></script>
+<!-- Footer END -->
+
+</div>
+</div>
+</div>
+<script src="<?= $assetsUrl ?>pro/js/vendors.min.js"></script>
 <?php if (isset($footerJs) && !empty($footerJs)) {
     foreach ($footerJs as $js) {
         ?>
@@ -28,14 +31,8 @@ if (isset($clientData) && !empty($clientData)) {
     <?php
 }
 ?>
-<script src="<?= $assetsUrl ?>lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= $assetsUrl ?>lib/feather-icons/feather.min.js"></script>
-<script src="<?= $assetsUrl ?>lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="<?= $assetsUrl ?>lib/prismjs/prism.js"></script>
-
-<script src="<?= $assetsUrl ?>js/dashforge.js"></script>
-<script src="<?= $assetsUrl ?>js/public.js"></script>
-<script src="<?= $assetsUrl ?>js/pro.js?v=1.21"></script>
+<script src="<?= $assetsUrl ?>pro/js/app.min.js"></script>
+<script src="<?= $assetsUrl ?>pro/js/monjs.js?v=1.002"></script>
 
 <!--end::Page Scripts -->
 </body>

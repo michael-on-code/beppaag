@@ -9,8 +9,9 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         $this->data['assetsUrl']=base_url('assets/');
-        /*$this->data['options']=$this->option_model->get_options();
+        $this->data['options']=$this->option_model->get_options();
         $this->data['uploadPath']=base_url('uploads/');
+        /*
         $this->load->helper('user');*/
 
     }
@@ -48,9 +49,10 @@ class Login_Controller extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        /*$this->load->library(['ion_auth', 'session', 'form_validation']);
+        $this->load->library(['ion_auth', 'session', 'form_validation']);
+        $this->load->helper('user');
         redirect_if_logged_in('dashboard');
-        $this->data['secretCode']='6Lc6F7sUAAAAAN6_3HU4Fz8SWPNaQ0QtBRU01-zE';*/
+        //$this->data['secretCode']='6Lc6F7sUAAAAAN6_3HU4Fz8SWPNaQ0QtBRU01-zE';
     }
 
 
@@ -65,8 +67,8 @@ class Pro_Controller extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        /*$this->load->library(['ion_auth', 'session', 'form_validation']);
-
+        $this->load->library(['ion_auth', 'session', 'form_validation']);
+        $this->load->helper('user');
         redirect_if_not_logged_in('login');
         $this->load->model('user_model');
         $this->data['user']= (object) $this->user_model->get_data_by_id(null);
@@ -74,8 +76,13 @@ class Pro_Controller extends MY_Controller
         $user_groups = $this->ion_auth->get_users_groups()->result();
         if (!empty($user_groups)) {
             $this->data['menus'] = get_user_menu($user_groups);
-            $this->data['userRole']=getUserRolesInString($user_groups);
-        }*/
+            //var_dump($this->data['menus']);exit;
+            //$this->data['userRole']=getUserRolesInString($user_groups);
+        }
+        $this->data['clientData']['uploadUrl'] =site_url('upload/doAjaxUpload');
+        $this->data['clientData']['csrf_token_name'] = $this->security->get_csrf_token_name();
+        $this->data['clientData']['csrf_hash'] = $this->security->get_csrf_hash();
+        $this->data['clientData']['uploadPath'] = $this->data['uploadPath'];
     }
 
 
