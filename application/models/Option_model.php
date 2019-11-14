@@ -35,7 +35,7 @@ class Option_model extends CI_Model{
         return array(
             'siteName',
             'siteDescription',
-            'siteFooterDescription',
+//            'siteFooterDescription',
             'googleRecaptchaPublicKey',
             'googleRecaptchaSecretKey',
             'siteFavicon',

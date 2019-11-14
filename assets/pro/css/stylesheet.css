@@ -89,7 +89,7 @@ img.logo-fold{
     border-right: 2px solid;
     border-color: #3f87f5;
 }
-.side-nav .side-nav-inner .side-nav-menu li.nav-item.active:after {
+.side-nav .side-nav-inner .side-nav-menu li.nav-item.active:after, div.dropdown-menu.pop-profile > a.active:after {
     transform: scaleY(1);
     -webkit-transform: scaleY(1);
     -moz-transform: scaleY(1);
@@ -113,6 +113,36 @@ label.is-invalid {
 .form-text.text-muted {
     font-size: 12px;
 }
+.pos-fixed{
+    position: fixed;
+}
+.r-10{
+    right: 10px;
+}
+.t-10{
+    top: 10px;
+}
+.toast-header h6{
+    margin-left: 10px;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+.toast-header small{
+    position: absolute;
+    right: 24px;
+}
+.toast-header button{
+    position: absolute;
+    right: 6px;
+}
+div.toast-container{
+    z-index: 9999;
+}
+div.dropdown-menu.pop-profile > a.active{
+    background-color: rgba(63,135,245,0.15);
+    color: #3f87f5;
+}
+
 @media (max-width: 768px) {
     .hide-on-big-screen{
         display: block!important;

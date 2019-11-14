@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>BEPPAAG</title>
-
+    <title><?= $options['siteName'] ?> - <?= $pageTitle ?></title>
+    <meta name="description" content="<?= $options['siteDescription'] ?>">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= $assetsUrl ?>public/images/favicon1.jpg">
+    <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'], '150x150')?>">
 
     <!-- page css -->
 
@@ -30,7 +30,7 @@
         };
         var onloadCallback = function () {
             grecaptcha.render(/*HTML ID*/'my_google_recaptcha', {
-                'sitekey': '6LdBbL4UAAAAAN35hhhAHJ6V7PbZAeLG_RvC9weK',
+                'sitekey': '<?= maybe_null_or_empty($options, 'googleRecaptchaPublicKey') ?>',
                 'data-expired-callback': verifyExpireCallback,
                 'data-error-callback': verifyErrorCallback,
                 'callback': verifyCallback,

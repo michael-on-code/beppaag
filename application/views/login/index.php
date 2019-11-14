@@ -1,7 +1,7 @@
 <div class="d-flex h-100 p-h-40 p-v-15 flex-column justify-content-between">
     <div class="login-logo-triangle-container"></div>
     <div class="login-logo-container">
-        <img src="<?= $assetsUrl ?>public/images/presidence-logo1.png" alt="">
+        <img src="<?= getUploadedImageBySize($options['siteLogo'], '345x119')?>" alt="">
     </div>
     <div class="banner-text-container">
         <h1 class="text-white m-b-20 font-weight-normal">Portail Web des Evaluations</h1>

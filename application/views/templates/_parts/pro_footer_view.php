@@ -3,11 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <footer class="footer">
     <div class="footer-content">
-        <p class="m-b-0">Copyright © 2019 Beppaagg. Propulsé par <a target="_blank" href="http://akasigroup.com">AKASI Consulting Group</a></p>
-        <span>
+        <p class="m-b-0">Copyright © 2019 <?= $options['siteName'] ?>. Propulsé par <a target="_blank" href="http://akasigroup.com">AKASI Consulting Group</a></p>
+        <!--<span>
                             <a href="#" class="text-gray m-r-15">Term &amp; Conditions</a>
                             <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                        </span>
+                        </span>-->
     </div>
 </footer>
 <!-- Footer END -->
@@ -32,7 +32,7 @@ if (isset($clientData) && !empty($clientData)) {
 }
 ?>
 <script src="<?= $assetsUrl ?>pro/js/app.min.js"></script>
-<script src="<?= $assetsUrl ?>pro/js/monjs.js?v=1.002"></script>
+<script src="<?= $assetsUrl ?>pro/js/monjs.js?v=1.004"></script>
 
 <!--end::Page Scripts -->
 </body>

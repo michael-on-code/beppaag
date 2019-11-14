@@ -42,13 +42,61 @@ function getSpecificImageSizeDimensions($sizeName)
     return maybe_null_or_empty(imageSizes(), $sizeName, true);
 }
 
+function getUploadedImageBySize($imageFullName, $imageSize='', $withFullUrl=true){
+    $allSizes = getAllImageSizes();
+    if(!($imageSize=='' || !isset($allSizes[$imageSize]))){
+        $info = pathinfo($imageFullName);
+        if(!empty($info)){
+            $imageFullName = $info['filename'].'-'.$imageSize.'.'.$info['extension'];
+        }
+    }
+    return ($withFullUrl ? get_upload_path() : '').$imageFullName;
+}
+
 function getAllImageSizes()
 {
     return [
-        '85x85' => [
-            'height' => 85,
-            'width' => 85,
-        ]
+        '82x75' => [//post-preview-smallest
+            'width' => 82,
+            'height' => 75,
+        ],
+        '150x150' => [//flat-icon
+            'width' => 150,
+            'height' => 150,
+        ],
+        '263x200' => [//post-preview-small
+            'width' => 263,
+            'height' => 200,
+        ],
+        '360x260' => [//event-preview-small
+            'width' => 360,
+            'height' => 260,
+        ],
+        '360x420' => [//special-guest-preview
+            'width' => 360,
+            'height' => 420,
+        ],
+        '345x119' => [//logo
+            'width' => 345,
+            'height' => 119,
+        ],
+        '640x940' => [//login-image-banner
+            'width' => 640,
+            'height' => 940,
+        ],
+        '848x420' => [//event-preview-large
+            'width' => 848,
+            'height' => 420,
+        ],
+        '900x420' => [//post-preview-large
+            'width' => 900,
+            'height' => 420,
+        ],
+        '1350x400' => [//public-banner
+            'width' => 1350,
+            'height' => 400,
+        ],
+
     ];
 }
 
@@ -77,6 +125,7 @@ function upload_data($args, $names, $resize = false, $encryptName = true)
                             $config2['height'] = $size['height'];
                             $ci->load->library('image_lib', $config2);
                             $ci->image_lib->resize();
+                            unset($ci->image_lib);
                         }
                     }
 
@@ -311,12 +360,6 @@ function get_flashdata()
                     <?php echo $CI->session->flashdata('message') ?>
                 </div>
             </div>
-        </div>
-        <div class="flashdata" data-heading="Notification" onload="click()" style="display: none"
-             data-text="<?php echo $CI->session->flashdata('message') ?>" data-position="top-right"
-             data-icon="<?php echo $CI->session->flashdata('alert') ?>"
-             data-delay="<?php echo $CI->session->flashdata('delay') ?>"
-        >
         </div>
         <?php
         $CI->session->set_flashdata('message', null);

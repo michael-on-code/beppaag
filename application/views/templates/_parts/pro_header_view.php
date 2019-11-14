@@ -4,11 +4,11 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 <head>
     <meta charset="utf-8"/>
-
-    <title>BEPPAAG</title>
+    <title><?= $options['siteName'] ?> - <?= $pageTitle ?></title>
+    <meta name="description" content="<?= $options['siteDescription'] ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="noindex, nofollow">
-
+    <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'], '150x150')?>">
     <link href="<?= $assetsUrl ?>pro/css/app.min.css" rel="stylesheet">
     <?php if (isset($headerCss) && !empty($headerCss)) {
         foreach ($headerCss as $css) {
@@ -17,21 +17,22 @@
             <?php
         }
     } ?>
-    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.004">
+    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.007">
 </head>
 <!-- end::Head -->
 
 <!-- begin::Body -->
 <body>
-<?php get_flashdata() ?>
+
 <div class="app">
     <div class="layout">
+        <?php get_flashdata() ?>
         <!-- Header START -->
         <div class="header">
             <div class="logo logo-dark">
-                <a href="index.html">
-                    <img class="real-logo" src="<?= $assetsUrl ?>public/images/presidence-logo1.png" alt="Logo">
-                    <img class="logo-fold" src="<?= $assetsUrl ?>pro/images/logo/benin-favicon.jpg" alt="Logo">
+                <a href="<?= pro_url() ?>">
+                    <img class="real-logo" src="<?= getUploadedImageBySize($options['siteLogo'], '345x119')?>" alt="Logo">
+                    <img class="logo-fold" src="<?= getUploadedImageBySize($options['siteFavicon'], '150x150')?>" alt="Logo">
                 </a>
             </div>
 
@@ -49,11 +50,11 @@
                     </li>
                 </ul>
                 <ul class="nav-right">
-                    <li class="dropdown dropdown-animated scale-left">
+<!--                    TODO Notification Area-->
+                    <!--<li class="dropdown dropdown-animated scale-left">
                         <a href="javascript:void(0);" data-toggle="dropdown">
                             <i class="anticon anticon-bell notification-badge"></i>
                         </a>
-                        <!--                        Notifications-->
                         <div class="dropdown-menu pop-notification">
                             <div class="p-v-15 p-h-25 border-bottom d-flex justify-content-between align-items-center">
                                 <p class="text-dark font-weight-semibold m-b-0">
@@ -121,62 +122,56 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li>-->
                     <li class="dropdown dropdown-animated scale-left">
                         <!--                        User Avatar and Dropdown Menus-->
                         <div class="pointer" data-toggle="dropdown">
                             <div class="avatar avatar-image  m-h-10 m-r-15">
-                                <img src="<?= $assetsUrl ?>pro/images/avatars/thumb-3.jpg" alt="">
+                                <?php
+                                if($userPhoto = maybe_null_or_empty($user, 'user_photo', true)){
+                                    $userPhoto = getUploadedImageBySize($userPhoto, '150x150');
+                                }else{
+                                    $userPhoto = getUploadedImageBySize($options['siteDefaultAvatar'], '150x150');
+                                }
+                                ?>
+                                <img src="<?= $userPhoto ?>" alt="">
                             </div>
                         </div>
                         <div class="p-b-15 p-t-20 dropdown-menu pop-profile">
                             <div class="p-h-20 p-b-15 m-b-10 border-bottom">
                                 <div class="d-flex m-r-50">
                                     <div class="avatar avatar-lg avatar-image">
-                                        <img src="<?= $assetsUrl ?>pro/images/avatars/thumb-3.jpg" alt="">
+                                        <img src="<?= $userPhoto ?>" alt="">
                                     </div>
                                     <div class="m-l-10">
-                                        <p class="m-b-0 text-dark font-weight-semibold">Marshall Nichols</p>
-                                        <p class="m-b-0 opacity-07">UI/UX Desinger</p>
+                                        <p class="m-b-0 text-dark font-weight-semibold"><?= maybe_null_or_empty($user, 'last_name').' '.maybe_null_or_empty($user, 'first_name') ?></p>
+                                        <p class="m-b-0 opacity-07">
+<!--                                            TODO get individual unique role-->
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <i class="anticon opacity-04 font-size-16 anticon-user"></i>
-                                        <span class="m-l-10">Edit Profile</span>
-                                    </div>
-                                    <i class="anticon font-size-10 anticon-right"></i>
-                                </div>
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <i class="anticon opacity-04 font-size-16 anticon-lock"></i>
-                                        <span class="m-l-10">Account Setting</span>
-                                    </div>
-                                    <i class="anticon font-size-10 anticon-right"></i>
-                                </div>
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <i class="anticon opacity-04 font-size-16 anticon-project"></i>
-                                        <span class="m-l-10">Projects</span>
-                                    </div>
-                                    <i class="anticon font-size-10 anticon-right"></i>
-                                </div>
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <i class="anticon opacity-04 font-size-16 anticon-logout"></i>
-                                        <span class="m-l-10">Logout</span>
-                                    </div>
-                                    <i class="anticon font-size-10 anticon-right"></i>
-                                </div>
-                            </a>
+                            <?php
+                            if(isset($menus) && !empty($menus)){
+                                foreach ($menus as $key=>$menu){
+                                    if(!isset($menu['url'])){
+                                        continue;
+                                    }
+                                    ?>
+                                    <a href="<?= $menu['url'] ?>" class="dropdown-item d-block p-h-15 p-v-10">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <i class="<?= $menu['icon'] ?> opacity-04 font-size-16 "></i>
+                                                <span class="m-l-10"><?= $menu['title'] ?></span>
+                                            </div>
+<!--                                            <i class="anticon font-size-10 anticon-right"></i>-->
+                                        </div>
+                                    </a>
+                                    <?php
+                                }
+                            }
+                            ?>
+
                         </div>
                     </li>
                 </ul>

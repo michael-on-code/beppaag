@@ -35,6 +35,14 @@ $(function () {
         });
     }
 
+    if($('div.dropdown-menu.pop-profile')){
+        $('div.dropdown-menu.pop-profile > a').each(function () {
+            if($(this).attr('href')==pageUrl){
+                $(this).addClass('active');
+            }
+        });
+    }
+
     if ($('input[required]').length) {
         $('input[required], select[required], textarea[required]').each(function () {
             $(this).parents('.form-group').find('label:not(.empty)').append(" <span style='color: red'>*</span>");
@@ -43,18 +51,20 @@ $(function () {
 
     //var validationRules = {};
     //FORM Validation
-    $( "form" ).validate({
-        ignore: ':hidden:not(:checkbox), .ignore',
-        errorElement: 'div',
-        errorClass: 'is-invalid',
-        validClass: 'is-valid',
-        rules: validationRules,
-        submitHandler: function(form) {
-            // do other things for a valid form
-            $(form).find('button[type=submit]').addClass('is-loading');
-            form.submit();
-        }
-    });
+    if($('form').length){
+        $( "form" ).validate({
+            ignore: ':hidden:not(:checkbox), .ignore',
+            errorElement: 'div',
+            errorClass: 'is-invalid',
+            validClass: 'is-valid',
+            rules: validationRules,
+            submitHandler: function(form) {
+                // do other things for a valid form
+                $(form).find('button[type=submit]').addClass('is-loading');
+                form.submit();
+            }
+        });
+    }
 
     //Dropify
     if ($('.dropify').length) {
@@ -132,5 +142,8 @@ $(function () {
             $this.parents('.form-group').find('input[type=hidden]').val('');
             $this.parents('.form-group').find('.my-file-preview-btn').fadeOut();
         });
+        if($('.toast').length){
+            $('.toast').toast('show')
+        }
     }
 });

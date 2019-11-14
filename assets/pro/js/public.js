@@ -12,6 +12,9 @@ $(function(){
             return false;
         });
     }
+    if($('.toast').length){
+        $('.toast').toast('show')
+    }
 
 
 });

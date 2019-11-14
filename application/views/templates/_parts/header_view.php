@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BEPPAAG</title>
+    <title><?= $options['siteName'] ?> - <?= $pageTitle ?></title>
+    <meta name="description" content="<?= $options['siteDescription'] ?>">
     <!-- CSS Files -->
     <?php if(isset($headerCss) && !empty($headerCss)){
         foreach ($headerCss as $css){
@@ -25,7 +26,7 @@
     <link href="<?= $assetsUrl ?>public/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.26" rel="stylesheet">
-    <link rel="icon" href="<?= $assetsUrl ?>public/images/favicon1.jpg" type="image/png">
+    <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'], '150x150')?>">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -67,8 +68,8 @@
                                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span
                                         class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
                                         class="icon-bar"></span> <span class="icon-bar"></span></button>
-                            <a class="navbar-brand" href="<?= site_url() ?>"><img data-src="<?= $assetsUrl ?>public/images/presidence-logo1.png"
-                                                                                  alt=""></a></div>
+                            <a class="navbar-brand" href="<?= site_url() ?>"><img data-src="<?= getUploadedImageBySize($options['siteLogo'], '345x119')?>"
+                                                                                  alt="Logo"></a></div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
