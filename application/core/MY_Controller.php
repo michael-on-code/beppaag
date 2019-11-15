@@ -69,7 +69,7 @@ class Pro_Controller extends MY_Controller
     {
         parent::__construct();
         $this->load->library(['ion_auth', 'session', 'form_validation']);
-        $this->load->helper('user');
+        $this->load->helper(['user', 'pro']);
         redirect_if_not_logged_in('login');
         $this->load->model('user_model');
         $this->data['user']= (object) $this->user_model->get_data_by_id(null);

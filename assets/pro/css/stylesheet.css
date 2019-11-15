@@ -142,7 +142,17 @@ div.dropdown-menu.pop-profile > a.active{
     background-color: rgba(63,135,245,0.15);
     color: #3f87f5;
 }
-
+.my-additional-add-btn{
+    padding: 8px 12px;
+    color: #ffffff;
+}
+.input-group.with-add-btn .select2-container.select2{
+    width: 100%;
+}
+.input-group .input-group-container{
+    display: inline-flex;
+    width: 100%;
+}
 @media (max-width: 768px) {
     .hide-on-big-screen{
         display: block!important;

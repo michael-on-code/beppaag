@@ -43,9 +43,33 @@ $(function () {
         });
     }
 
-    if ($('input[required]').length) {
+
+    if ($('.select2').length) {
+        $('.select2').select2({
+            placeholder: 'Sélectionner',
+            //searchInputPlaceholder: 'Rechercher'
+        });
+    }
+
+    if ($('[required]').length) {
         $('input[required], select[required], textarea[required]').each(function () {
             $(this).parents('.form-group').find('label:not(.empty)').append(" <span style='color: red'>*</span>");
+        });
+    }
+
+    if ($('.my-summernote').length) {
+        $('.my-summernote').summernote({
+            lang: 'fr-FR',
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph', 'style']],
+                ['height', ['height']],
+                ['insert', ['link']],
+            ],
+            height: 130
         });
     }
 

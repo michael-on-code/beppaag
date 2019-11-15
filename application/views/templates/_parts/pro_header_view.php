@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="noindex, nofollow">
     <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'], '150x150')?>">
-    <link href="<?= $assetsUrl ?>pro/css/app.min.css" rel="stylesheet">
     <?php if (isset($headerCss) && !empty($headerCss)) {
         foreach ($headerCss as $css) {
             ?>
@@ -17,7 +16,8 @@
             <?php
         }
     } ?>
-    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.007">
+    <link href="<?= $assetsUrl ?>pro/css/app.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.011">
 </head>
 <!-- end::Head -->
 
