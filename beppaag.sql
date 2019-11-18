@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 02 Novembre 2019 à 11:33
+-- Généré le :  Lun 18 Novembre 2019 à 07:33
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -45,6 +45,7 @@ CREATE TABLE `evaluations` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(50) NOT NULL,
   `title` text NOT NULL,
+  `object` text NOT NULL,
   `year` int(4) UNSIGNED NOT NULL,
   `active` tinyint(1) NOT NULL,
   `type_id` int(10) UNSIGNED NOT NULL,
@@ -69,6 +70,14 @@ CREATE TABLE `evaluation_contracting_authorities` (
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `evaluation_contracting_authorities`
+--
+
+INSERT INTO `evaluation_contracting_authorities` (`id`, `slug`, `name`, `description`) VALUES
+(9, 'direction-des-infrastructures-et-du-tran5dd0b07f8d', 'Direction des Infrastructures et du Transport', 'La Direction générale des infrastructures est chargée de : piloter tous les volets de l\'installation, aménagement et maintenance de tous travaux publics'),
+(10, 'direction-de-linformatique-et-du-pre-arc5dd0b09ba5', 'Direction de l\'Informatique et du Pré-archivage', 'La Direction de l\'informatique et du pré-archivage assure, en relation avec toutes les structures du ministère, la conception');
+
 -- --------------------------------------------------------
 
 --
@@ -81,6 +90,13 @@ CREATE TABLE `evaluation_leading_authorities` (
   `name` text NOT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `evaluation_leading_authorities`
+--
+
+INSERT INTO `evaluation_leading_authorities` (`id`, `slug`, `name`, `description`) VALUES
+(1, 'societe-adeoti5dd0b55cde196', 'Société ADEOTI', 'Enreprise privée spécialisée dans la conception et la réalisation des travaux publics');
 
 -- --------------------------------------------------------
 
@@ -107,6 +123,15 @@ CREATE TABLE `evaluation_sectors` (
   `name` varchar(50) NOT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `evaluation_sectors`
+--
+
+INSERT INTO `evaluation_sectors` (`id`, `slug`, `name`, `description`) VALUES
+(14, 'industrie-et-commerce5dd0b1778b161', 'Industrie et commerce', 'Secteur d\'évaluations portant sur les Industries et le Commerce au Bénin'),
+(15, 'rural5dd0b1842520e', 'Rural', 'Secteur d\'évaluations portant sur les zones Rurales au Bénin'),
+(16, 'pauvrete5dd0b1929009c', 'Pauvreté', 'Secteur d\'évaluations portant sur la Pauvreté au Bénin');
 
 -- --------------------------------------------------------
 
@@ -147,6 +172,13 @@ CREATE TABLE `evaluation_temporalities` (
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `evaluation_temporalities`
+--
+
+INSERT INTO `evaluation_temporalities` (`id`, `slug`, `name`, `description`) VALUES
+(1, 'ex-ante5dd05acc33c85', 'Ex-ante', 'Evaluations ayant pour temporalité Ex-ante');
+
 -- --------------------------------------------------------
 
 --
@@ -159,6 +191,14 @@ CREATE TABLE `evaluation_thematics` (
   `name` varchar(50) NOT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `evaluation_thematics`
+--
+
+INSERT INTO `evaluation_thematics` (`id`, `slug`, `name`, `description`) VALUES
+(3, 'droits-humains5dd0b20a0c9d8', 'Droits Humains', 'Evaluations ayant rapport avec la thématiques des Droits Humains'),
+(4, 'aucune5dd0b2187d444', 'Aucune', 'Thématique d\'évaluation non classée');
 
 -- --------------------------------------------------------
 
@@ -184,6 +224,13 @@ CREATE TABLE `evaluation_types` (
   `name` varchar(50) NOT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `evaluation_types`
+--
+
+INSERT INTO `evaluation_types` (`id`, `slug`, `name`, `description`) VALUES
+(3, 'evaluation-finale5dd0b1ded7a2b', 'Evaluation finale', 'Catégorie d\'évaluations en phase de finalisation');
 
 -- --------------------------------------------------------
 
@@ -264,7 +311,7 @@ CREATE TABLE `event_tag_groups` (
 
 CREATE TABLE `groups` (
   `id` mediumint(8) UNSIGNED NOT NULL,
-  `name` varchar(20) NOT NULL,
+  `name` varchar(30) NOT NULL,
   `description` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -274,7 +321,10 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
-(2, 'members', 'General User');
+(2, 'members', 'General User'),
+(6, 'editor', 'Editeur'),
+(7, 'evaluation_moderator', 'Modérateur d\'évaluation'),
+(8, 'recommendation_moderator', 'Modérateur de récommendation');
 
 -- --------------------------------------------------------
 
@@ -313,6 +363,19 @@ CREATE TABLE `options` (
   `key` varchar(35) NOT NULL,
   `value` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `options`
+--
+
+INSERT INTO `options` (`id`, `key`, `value`) VALUES
+(1, 'siteName', 'BEPPAAG'),
+(2, 'siteDescription', 'Plateforme de Gestion des Processus Evaluatifs'),
+(3, 'googleRecaptchaPublicKey', '6LdBbL4UAAAAAN35hhhAHJ6V7PbZAeLG_RvC9weK'),
+(4, 'googleRecaptchaSecretKey', '6LdBbL4UAAAAAJEod1c6up-2iWfi2aXyAMQK1CH5'),
+(5, 'siteLogo', 'presidence-logo4.png'),
+(6, 'siteFavicon', 'favicon12.jpg'),
+(7, 'siteDefaultAvatar', 'defaukt.png');
 
 -- --------------------------------------------------------
 
@@ -449,7 +512,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1268889823, 1, 'Admin', 'istrator', 'ADMIN', '0');
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, 'XTEbRBQ4lt.SjN2k73oijO', 1268889823, 1574054580, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
@@ -469,7 +532,10 @@ CREATE TABLE `users_groups` (
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (1, 1, 1),
-(2, 1, 2);
+(2, 1, 2),
+(3, 1, 6),
+(4, 1, 7),
+(5, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -720,12 +786,12 @@ ALTER TABLE `evaluations`
 -- AUTO_INCREMENT pour la table `evaluation_contracting_authorities`
 --
 ALTER TABLE `evaluation_contracting_authorities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `evaluation_leading_authorities`
 --
 ALTER TABLE `evaluation_leading_authorities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `evaluation_meta`
 --
@@ -735,7 +801,7 @@ ALTER TABLE `evaluation_meta`
 -- AUTO_INCREMENT pour la table `evaluation_sectors`
 --
 ALTER TABLE `evaluation_sectors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT pour la table `evaluation_sector_groups`
 --
@@ -750,12 +816,12 @@ ALTER TABLE `evaluation_stats`
 -- AUTO_INCREMENT pour la table `evaluation_temporalities`
 --
 ALTER TABLE `evaluation_temporalities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `evaluation_thematics`
 --
 ALTER TABLE `evaluation_thematics`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `evaluation_thematic_groups`
 --
@@ -765,7 +831,7 @@ ALTER TABLE `evaluation_thematic_groups`
 -- AUTO_INCREMENT pour la table `evaluation_types`
 --
 ALTER TABLE `evaluation_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `events`
 --
@@ -795,12 +861,12 @@ ALTER TABLE `event_tag_groups`
 -- AUTO_INCREMENT pour la table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `logs`
 --
@@ -810,7 +876,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT pour la table `options`
 --
 ALTER TABLE `options`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `posts`
 --
@@ -855,7 +921,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `user_meta`
 --
