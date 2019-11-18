@@ -226,11 +226,62 @@ function redirect_if_id_is_not_valid($id, $table_name = '', $redirect)
     redirect($redirect);
 }
 
-function getSlugifyString($string)
+function getSlugifyString($string, $toLower=true, $removeBlankSpace=true, $replaceSpaceWithDash=true, $limitToNWords=40)
 {
     $ci = &get_instance();
     $ci->load->helper('text');
-    return strtolower(preg_replace('/[^a-zA-Z0-9-_\.]/', '', convert_accented_characters($string)));
+    $nonAccentedString = convert_accented_characters($string);
+    if($replaceSpaceWithDash){
+        $nonAccentedString=trim($nonAccentedString);
+        $nonAccentedString = str_replace(" ", "-", $nonAccentedString);
+    }
+    if($removeBlankSpace){
+        $nonAccentedString = preg_replace('/[^a-zA-Z0-9-_\.]/', '', $nonAccentedString);
+    }
+    if($toLower){
+        $nonAccentedString = strtolower($nonAccentedString);
+    }
+    if($limitToNWords){
+        $nonAccentedString = substr($nonAccentedString, 0, $limitToNWords);
+    }
+    return $nonAccentedString;
+}
+
+function getIDBySlug($tableName, $slug){
+    $ci=&get_instance();
+    $ci->db->select('id');
+    $result = $ci->db->get_where($tableName, ['slug'=>$slug])->row();
+    return maybe_null_or_empty($result, 'id', true);
+}
+
+function getTableByID($tableName, $id, $isArray=true){
+    $ci=&get_instance();
+    $result = $ci->db->get_where($tableName, ['id'=>$id]);
+    if($isArray){
+        return $result->row_array();
+    }
+    return $result->row();
+}
+
+function getAllInTable($tableName, $isArray=true, $order=true, $orderByField='id', $orderBy='desc', $forSelect2=false, $keyFieldForSelect2='id', $valueFieldForSelect2='name', $initialBlankValueForSelect2=true){
+    $ci=&get_instance();
+    if($order){
+        $ci->db->order_by($orderByField, $orderBy);
+    }
+    $results = $ci->db->get($tableName);
+    if($isArray){
+        $results = $results->result_array();
+    }else{
+        $results = $results->result();   
+    }
+    if($forSelect2){
+        $temp=$initialBlankValueForSelect2 ? [''=>''] : [];
+        foreach ($results as $key => $result){
+            $temp[maybe_null_or_empty($result, $keyFieldForSelect2)]=maybe_null_or_empty($result, $valueFieldForSelect2);
+        }
+        return $temp;
+    }
+    return $results;
 }
 
 function update_meta($id, $key, $value, $table_meta, $table_id_val)
@@ -264,7 +315,7 @@ function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $
     $attributes = array(
         'data-default-file' => maybe_null_or_empty($data, 'value'),
         'class' => "dropify $additionalClass",
-        'id' => 'input-file-now-custom-1',
+        'id' => $data['name'],
         'data-max-file-size' => $maxSize,
         'data-allowed-file-extensions' => $extensions,
         'value' => set_value($data['name'], maybe_null_or_empty($data, 'value'))
@@ -490,6 +541,39 @@ function get_meta($id, $key, $table_meta, $table_id_val)
     }
 }
 
+function get_metas($id, $table_meta, $table_id_val)
+{
+    $ci =& get_instance();
+    if (!empty($id) && !empty($table_meta) && !empty($table_id_val)) {
+        $query = $ci->db->get_where($table_meta, array(
+            $table_id_val => $id,
+        ))->result_array();
+        $temp=[];
+        if(!empty($query)){
+            foreach ($query as $quer){
+                $temp[$quer['key']] = maybe_unserialize(maybe_null_or_empty($quer, 'value'));
+            }
+        }
+        return $temp;
+    }
+}
+
+function megaMetasInsert(array $metaDatas, $id, $table_id_val){
+        if(!empty($metaDatas)){
+            $insertionArray=[];
+            $counter = 0;
+            foreach ($metaDatas as $key => $metaData){
+                $insertionArray[$counter]['key']=$key;
+                $insertionArray[$counter]['value']=maybe_serialize($metaData);
+                $insertionArray[$counter][$table_id_val]=$id;
+                $counter++;
+            }
+            $this->db->insert_batch($this->_tables->meta, $insertionArray);
+        }
+    }
+
+
+
 function convert_date_to_french($date)
 {
     if ($date && $date != '0000-00-00' && is_string($date) && strpos($date, '-') && strtotime($date)) {
@@ -514,7 +598,9 @@ function control_unique_on_update($value, $db_field)
     $table = $db_field[0];
     $target_field = $db_field[1];
     $id_value = $db_field[2];
-    $query = $ci->db->query("SELECT id FROM $table where $target_field='$value'")->row();
+    //$value = mysqli_real_escape_string($value);
+    $ci->db->select('id');
+    $query= $ci->db->get_where($table, [$target_field=>$value])->row();
     if ($queryId = maybe_null_or_empty($query, 'id')) {
         if ($id_value != $queryId) {
             $ci->form_validation->set_message('is_unique_on_update', "La valeur {field} existe dejà");

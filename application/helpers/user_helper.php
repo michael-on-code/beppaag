@@ -89,20 +89,28 @@ function get_menu_by_group($group)
                             'submenus' => [
                                 [
                                     'title' => 'Secteurs',
-                                    'url' => pro_url('evaluations/sector')
+                                    'url' => pro_url('sectors')
+                                ],[
+                                    'title' => 'Types',
+                                    'url' => pro_url('types')
                                 ],
                                 [
                                     'title' => 'Thématiques',
-                                    'url' => pro_url('evaluations/thematic')
+                                    'url' => pro_url('thematics')
                                 ],
                                 [
                                     'title' => 'Temporalités',
-                                    'url' => pro_url('evaluations/temporality')
+                                    'url' => pro_url('temporalities')
                                 ],
                                 [
                                     'title' => 'Authorités contractantes',
-                                    'url' => pro_url('evaluations/contracting-authorities')
+                                    'url' => pro_url('contracting-authorities')
                                 ],
+                                [
+                                    'title' => "Structures/Personnes ayant conduit d'évaluation",
+                                    'url' => pro_url('leading-authorities')
+                                ],
+
 
                             ]
                         ],
@@ -306,7 +314,7 @@ function redirect_if_not_logged_in($to = 'login')
 
 }
 
-function redirect_if_is_banned($to = '/')
+function redirect_if_is_banned($to = '')
 {
     $CI = &get_instance();
     //var_dump($CI->data['user']);exit;

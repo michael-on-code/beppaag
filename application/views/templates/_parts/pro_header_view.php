@@ -17,7 +17,7 @@
         }
     } ?>
     <link href="<?= $assetsUrl ?>pro/css/app.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.011">
+    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.026">
 </head>
 <!-- end::Head -->
 
@@ -25,8 +25,9 @@
 <body>
 
 <div class="app">
+    <?php get_flashdata() ?>
     <div class="layout">
-        <?php get_flashdata() ?>
+
         <!-- Header START -->
         <div class="header">
             <div class="logo logo-dark">

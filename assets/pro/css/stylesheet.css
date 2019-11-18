@@ -100,7 +100,7 @@ img.logo-fold{
 .logo img.real-logo{
     width: 190px;
 }
-label.is-invalid {
+label.is-invalid, span.is-invalid{
     color: #de4436;
 }
 .my-file-preview-btn{
@@ -123,17 +123,38 @@ label.is-invalid {
     top: 10px;
 }
 .toast-header h6{
-    margin-left: 10px;
+    margin-left: 4px;
     margin-bottom: auto;
     margin-top: auto;
 }
 .toast-header small{
     position: absolute;
-    right: 24px;
+    right: 20px;
 }
 .toast-header button{
     position: absolute;
     right: 6px;
+}
+.actions-btn-container .btn{
+    margin-bottom: 5px;
+    padding: 1px 4px!important;
+    line-height: 1.5;
+    width: unset;
+    height: unset;
+    font-size: 17px;
+}
+.actions-btn-container .btn-primary, .real-btn-primary{
+    background-color: #3f87f5;
+    border-color: #3f87f5;
+    color: #fff!important;
+}
+.actions-btn-container .btn-primary:hover, .real-btn-primary:hover{
+    color: #fff!important;
+    background-color: #2778f4!important;
+    border-color: #2778f4!important;
+}
+.inline{
+    display: inline;
 }
 div.toast-container{
     z-index: 9999;
@@ -153,6 +174,27 @@ div.dropdown-menu.pop-profile > a.active{
     display: inline-flex;
     width: 100%;
 }
+.form-group .form-error {
+    color: #FFF;
+    background-color: #f33155;
+    padding: 5px 5px 5px 13px;
+}
+.pull-right{
+    float: right;
+}
+
+
+.input-group-container span.is-invalid{
+    top: 71px;
+    position: absolute;
+}
+.select2-container.is-invalid .select2-choices,.select2-container.is-invalid .select2-choice {
+    border-color: #dc3545;
+}
+.nav-link.tab-with-error{
+    border-bottom: 2px solid #dc3545!important;
+    color: #dc3545!important;
+}
 @media (max-width: 768px) {
     .hide-on-big-screen{
         display: block!important;
@@ -164,4 +206,14 @@ div.dropdown-menu.pop-profile > a.active{
         margin-top: 10px;
         margin-bottom: 10px;
     }
+}
+@media (min-width: 998px) {
+    .card-body > h4{
+        font-size: 30px;
+    }
+    .card-body > .btn{
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
+
 }

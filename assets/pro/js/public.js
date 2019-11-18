@@ -16,5 +16,11 @@ $(function(){
         $('.toast').toast('show')
     }
 
+    if($('.form-error').length){
+        $('.form-error').prev('input, textarea, select').focus(function(){
+            $(this).next('.form-error').fadeOut('slow');
+            return false;
+        });
+    }
 
 });

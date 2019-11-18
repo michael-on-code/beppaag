@@ -13,7 +13,7 @@
 
     <!-- Core css -->
     <link href="<?= $assetsUrl ?>pro/css/app.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.001" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.002" rel="stylesheet">
     <script type="text/javascript">
         var verifyCallback = function (response) {
             if ($('form input[name=g-recaptcha-response]')) {
@@ -42,6 +42,7 @@
 
 <body>
 <div class="app">
+    <?php get_flashdata() ?>
     <div class="container-fluid p-0 h-100">
         <div class="row no-gutters h-100 full-height">
             <div class="col-lg-4 d-none d-lg-flex bg" style="background-image:url('<?= $assetsUrl ?>pro/images/others/login-1.jpg')">
