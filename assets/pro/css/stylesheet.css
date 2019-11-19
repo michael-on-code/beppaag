@@ -182,6 +182,18 @@ div.dropdown-menu.pop-profile > a.active{
 .pull-right{
     float: right;
 }
+.wd-15p-f {
+    width: 15% !important;
+}
+.wd-100p-f{
+    width: 100%!important;
+}
+.wd-150-f{
+    width:150px!important;
+}
+.wd-70-f{
+    width:70px!important;
+}
 
 
 .input-group-container span.is-invalid{

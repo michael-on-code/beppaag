@@ -129,7 +129,7 @@ class User_model extends CI_Model
         return $this->db->query($sql)->row()->num;
     }
 
-    public function getUsers($exceptCurrentUser = true, $onlyActiveUsers = false, $order = 'asc')
+    public function getUsers($exceptCurrentUser = true, $onlyActiveUsers = false, $order = 'asc', $specificFields='')
     {
         $additionalCond = "";
         $conditionsStarted = false;
@@ -142,8 +142,10 @@ class User_model extends CI_Model
             $additionalCond = $additionalCond . ($conditionsStarted ? ' and ' : ' where ') . "active <> 0";
             $conditionsStarted = true;
         }
-
-        $users = $this->db->query("SELECT users.* from users$additionalCond order by users.id $order")->result_array();
+        if($specificFields==''){
+            $specificFields = 'users.*';
+        }
+        $users = $this->db->query("SELECT $specificFields from users$additionalCond order by users.id $order")->result_array();
         //var_dump($this->db->last_query());exit;
         if (!empty($users)) {
             foreach ($users as $key => $user) {

@@ -6,21 +6,116 @@
  * Time: 13:21
  */
 
-function getEvaluationTablesNames()
+
+function setEvaluationFormValidation($edit = false, $evaluationID = '')
 {
-    $tables = new stdClass();
-    $tables->evaluations = 'evaluations';
-    $tables->sectors = 'evaluation_sectors';
-    $tables->temporalities = 'evaluation_temporalities';
-    $tables->thematics = 'evaluation_thematics';
-    $tables->sector_group = 'evaluation_sector_groups';
-    $tables->thematic_group = 'evaluation_thematic_groups';
-    $tables->types = 'evaluation_types';
-    $tables->stats = 'evaluation_stats';
-    $tables->meta = 'evaluation_meta';
-    $tables->leading_authorities = 'evaluation_leading_authorities';
-    $tables->contracting_authorities = 'evaluation_contracting_authorities';
-    return $tables;
+    $ci =& get_instance();
+    if ($evaluation = $ci->input->post('evaluation')) {
+        //var_dump($evaluation);exit;
+        setFormValidationRules([
+            [
+                'name' => 'evaluation[title]',
+                'label' => "Titre de l'évaluation",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[object]',
+                'label' => "Objet de l'évaluation",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[year]',
+                'label' => "Année d'évaluation",
+                'rules' => 'trim|required|is_natural_no_zero'
+            ],
+            [
+                'name' => 'evaluation[type_id]',
+                'label' => "Type d'évaluation",
+                'rules' => 'trim|required|is_natural_no_zero'
+            ],
+            [
+                'name' => 'evaluation[sector_id][]',
+                'label' => "Type d'évaluation",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[temporality_id]',
+                'label' => "Temporalité de l'évaluation",
+                'rules' => 'trim|required|is_natural_no_zero'
+            ],
+            [
+                'name' => 'evaluation[leading_authority_id]',
+                'label' => "Structure ayant conduit l'évaluation",
+                'rules' => 'trim|required|is_natural_no_zero'
+            ],
+            [
+                'name' => 'evaluation[sector_id][]',
+                'label' => "Thématique de l'évaluation",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[contracting_authority_id]',
+                'label' => "Authorité contractante de l'évaluation",
+                'rules' => 'trim|required|is_natural_no_zero'
+            ],
+            [
+                'name' => 'evaluation[objective]',
+                'label' => "Objectifs et résultats attendus",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[description]',
+                'label' => "Description sommaire",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[methodological_approach]',
+                'label' => "Approche méthodologique",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[results_resume]',
+                'label' => "Résumé des résultats attendus",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[cover_photo]',
+                'label' => "Photo de page de couverture",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[cover_photo]',
+                'label' => "Fichier PDF d'évaluation",
+                'rules' => 'trim|required'
+            ],
+            [
+                'name' => 'evaluation[recommendation_user_id]',
+                'label' => "Acteur de recommandation",
+                'rules' => 'trim|required|is_natural_no_zero'
+            ],
+            [
+                'name' => 'evaluation[recommendation_start_date]',
+                'label' => "Date de début de recommandation",
+                'rules' => 'trim|required'
+            ],
+
+            [
+                'name' => 'evaluation[recommendation_comment]',
+                'label' => "Commentaires à l'endroit de l'acteur",
+                'rules' => 'trim'
+            ],
+        ]);
+        if ($ci->form_validation->run()) {
+            if ($ci->evaluation_model->insertOrUpdateEvaluation($edit, $evaluation, $evaluationID)) {
+                get_success_message('Evaluation ' . ($edit ? 'modifiée' : 'ajoutée') . ' avec succès');
+                pro_redirect('evaluations');
+            } else {
+                get_warning_message("Une erreur s'est produite <br> Veuillez recommencer");
+            }
+        } else {
+            get_form_error();
+        }
+    }
 }
 
 function setSectorFormValidation($edit = false, $sectorID = '')
@@ -30,24 +125,24 @@ function setSectorFormValidation($edit = false, $sectorID = '')
     if ($sector = $ci->input->post('sector')) {
         setFormValidationRules([
             [
-                'name'=>'sector[name]',
-                'label'=>"Titre du secteur d'évaluation",
-                'rules'=>'trim|required|'.$edit ? "callback_is_unique_on_update[$tables->sectors.name.$sectorID]" : "is_unique[$tables->sectors.name]"
+                'name' => 'sector[name]',
+                'label' => "Titre du secteur d'évaluation",
+                'rules' => 'trim|required|' . $edit ? "callback_is_unique_on_update[$tables->sectors.name.$sectorID]" : "is_unique[$tables->sectors.name]"
             ],
             [
-                'name'=>'sector[description]',
-                'label'=>"Description du secteur d'évaluation",
-                'rules'=>'trim|required'
+                'name' => 'sector[description]',
+                'label' => "Description du secteur d'évaluation",
+                'rules' => 'trim|required'
             ],
         ]);
-        if($ci->form_validation->run()){
-            if(!$edit){
-                $sector['slug']=getSlugifyString($sector['name'], true, true).uniqid();
+        if ($ci->form_validation->run()) {
+            if (!$edit) {
+                $sector['slug'] = getSlugifyString($sector['name'], true, true) . uniqid();
             }
             $ci->evaluation_model->insertorUpdateSector($sector, $sectorID);
-            get_success_message("Secteur d'évaluation ".($edit ? 'modifié' : 'ajouté'). ' avec succès');
+            get_success_message("Secteur d'évaluation " . ($edit ? 'modifié' : 'ajouté') . ' avec succès');
             pro_redirect("sectors");
-        }else{
+        } else {
             get_error_message();
         }
     }
@@ -60,24 +155,24 @@ function setThematicFormValidation($edit = false, $thematicID = '')
     if ($thematic = $ci->input->post('thematic')) {
         setFormValidationRules([
             [
-                'name'=>'thematic[name]',
-                'label'=>"Titre de la thématique d'évaluation",
-                'rules'=>'trim|required|'.$edit ? "callback_is_unique_on_update[$tables->thematics.name.$thematicID]" : "is_unique[$tables->thematics.name]"
+                'name' => 'thematic[name]',
+                'label' => "Titre de la thématique d'évaluation",
+                'rules' => 'trim|required|' . $edit ? "callback_is_unique_on_update[$tables->thematics.name.$thematicID]" : "is_unique[$tables->thematics.name]"
             ],
             [
-                'name'=>'thematic[description]',
-                'label'=>"Description de la thématique d'évaluation",
-                'rules'=>'trim|required'
+                'name' => 'thematic[description]',
+                'label' => "Description de la thématique d'évaluation",
+                'rules' => 'trim|required'
             ],
         ]);
-        if($ci->form_validation->run()){
-            if(!$edit){
-                $thematic['slug']=getSlugifyString($thematic['name'], true, true).uniqid();
+        if ($ci->form_validation->run()) {
+            if (!$edit) {
+                $thematic['slug'] = getSlugifyString($thematic['name'], true, true) . uniqid();
             }
             $ci->evaluation_model->insertorUpdateThematic($thematic, $thematicID);
-            get_success_message("Thématique d'évaluation ".($edit ? 'modifiée' : 'ajoutée'). ' avec succès');
+            get_success_message("Thématique d'évaluation " . ($edit ? 'modifiée' : 'ajoutée') . ' avec succès');
             pro_redirect("thematics");
-        }else{
+        } else {
             get_error_message();
         }
     }
@@ -90,24 +185,24 @@ function setTypeFormValidation($edit = false, $typeID = '')
     if ($type = $ci->input->post('type')) {
         setFormValidationRules([
             [
-                'name'=>'type[name]',
-                'label'=>"Titre du type d'évaluation",
-                'rules'=>'trim|required|'.$edit ? "callback_is_unique_on_update[$tables->types.name.$typeID]" : "is_unique[$tables->types.name]"
+                'name' => 'type[name]',
+                'label' => "Titre du type d'évaluation",
+                'rules' => 'trim|required|' . $edit ? "callback_is_unique_on_update[$tables->types.name.$typeID]" : "is_unique[$tables->types.name]"
             ],
             [
-                'name'=>'type[description]',
-                'label'=>"Description du type d'évaluation",
-                'rules'=>'trim|required'
+                'name' => 'type[description]',
+                'label' => "Description du type d'évaluation",
+                'rules' => 'trim|required'
             ],
         ]);
-        if($ci->form_validation->run()){
-            if(!$edit){
-                $type['slug']=getSlugifyString($type['name'], true, true).uniqid();
+        if ($ci->form_validation->run()) {
+            if (!$edit) {
+                $type['slug'] = getSlugifyString($type['name'], true, true) . uniqid();
             }
             $ci->evaluation_model->insertorUpdateTypes($type, $typeID);
-            get_success_message("Type d'évaluation ".($edit ? 'modifié' : 'ajouté'). ' avec succès');
+            get_success_message("Type d'évaluation " . ($edit ? 'modifié' : 'ajouté') . ' avec succès');
             pro_redirect("types");
-        }else{
+        } else {
             get_error_message();
         }
     }
@@ -120,24 +215,24 @@ function setTemporalityFormValidation($edit = false, $temporalityID = '')
     if ($temporality = $ci->input->post('temporality')) {
         setFormValidationRules([
             [
-                'name'=>'temporality[name]',
-                'label'=>"Titre de la temporalité d'évaluation",
-                'rules'=>'trim|required|'.$edit ? "callback_is_unique_on_update[$tables->temporalities.name.$temporalityID]" : "is_unique[$tables->temporalities.name]"
+                'name' => 'temporality[name]',
+                'label' => "Titre de la temporalité d'évaluation",
+                'rules' => 'trim|required|' . $edit ? "callback_is_unique_on_update[$tables->temporalities.name.$temporalityID]" : "is_unique[$tables->temporalities.name]"
             ],
             [
-                'name'=>'temporality[description]',
-                'label'=>"Description de la temporalité d'évaluation",
-                'rules'=>'trim|required'
+                'name' => 'temporality[description]',
+                'label' => "Description de la temporalité d'évaluation",
+                'rules' => 'trim|required'
             ],
         ]);
-        if($ci->form_validation->run()){
-            if(!$edit){
-                $temporality['slug']=getSlugifyString($temporality['name'], true, true).uniqid();
+        if ($ci->form_validation->run()) {
+            if (!$edit) {
+                $temporality['slug'] = getSlugifyString($temporality['name'], true, true) . uniqid();
             }
             $ci->evaluation_model->insertorUpdateTemporalities($temporality, $temporalityID);
-            get_success_message("Temporalité d'évaluation ".($edit ? 'modifiée' : 'ajoutée'). ' avec succès');
+            get_success_message("Temporalité d'évaluation " . ($edit ? 'modifiée' : 'ajoutée') . ' avec succès');
             pro_redirect("temporalities");
-        }else{
+        } else {
             get_error_message();
         }
     }
@@ -150,24 +245,24 @@ function setcontractingAuthorityFormValidation($edit = false, $contractingAuthor
     if ($contractingAuthority = $ci->input->post('contractingAuthority')) {
         setFormValidationRules([
             [
-                'name'=>'contractingAuthority[name]',
-                'label'=>"Titre de l'authorité contractante d'évaluation",
-                'rules'=>'trim|required|'.$edit ? "callback_is_unique_on_update[$tables->contracting_authorities.name.$contractingAuthorityID]" : "is_unique[$tables->contracting_authorities.name]"
+                'name' => 'contractingAuthority[name]',
+                'label' => "Titre de l'authorité contractante d'évaluation",
+                'rules' => 'trim|required|' . $edit ? "callback_is_unique_on_update[$tables->contracting_authorities.name.$contractingAuthorityID]" : "is_unique[$tables->contracting_authorities.name]"
             ],
             [
-                'name'=>'contractingAuthority[description]',
-                'label'=>"Description de l'authorité contractante d'évaluation",
-                'rules'=>'trim|required'
+                'name' => 'contractingAuthority[description]',
+                'label' => "Description de l'authorité contractante d'évaluation",
+                'rules' => 'trim|required'
             ],
         ]);
-        if($ci->form_validation->run()){
-            if(!$edit){
-                $contractingAuthority['slug']=getSlugifyString($contractingAuthority['name'], true, true).uniqid();
+        if ($ci->form_validation->run()) {
+            if (!$edit) {
+                $contractingAuthority['slug'] = getSlugifyString($contractingAuthority['name'], true, true) . uniqid();
             }
             $ci->evaluation_model->insertorUpdateContractingAuthority($contractingAuthority, $contractingAuthorityID);
-            get_success_message("Authorité contractante d'évaluation ".($edit ? 'modifiée' : 'ajoutée'). ' avec succès');
+            get_success_message("Authorité contractante d'évaluation " . ($edit ? 'modifiée' : 'ajoutée') . ' avec succès');
             pro_redirect("contracting-authorities");
-        }else{
+        } else {
             get_error_message();
         }
     }
@@ -180,24 +275,24 @@ function setLeadingAuthorityFormValidation($edit = false, $leadingAuthorityID = 
     if ($leadingAuthority = $ci->input->post('leadingAuthority')) {
         setFormValidationRules([
             [
-                'name'=>'leadingAuthority[name]',
-                'label'=>"Titre de la Structure/personne ayant conduit d'évaluation",
-                'rules'=>'trim|required|'.$edit ? "callback_is_unique_on_update[$tables->leading_authorities.name.$leadingAuthorityID]" : "is_unique[$tables->leading_authorities.name]"
+                'name' => 'leadingAuthority[name]',
+                'label' => "Titre de la Structure/personne ayant conduit d'évaluation",
+                'rules' => 'trim|required|' . $edit ? "callback_is_unique_on_update[$tables->leading_authorities.name.$leadingAuthorityID]" : "is_unique[$tables->leading_authorities.name]"
             ],
             [
-                'name'=>'leadingAuthority[description]',
-                'label'=>"Description de la Structure/personne ayant conduit d'évaluation",
-                'rules'=>'trim|required'
+                'name' => 'leadingAuthority[description]',
+                'label' => "Description de la Structure/personne ayant conduit d'évaluation",
+                'rules' => 'trim|required'
             ],
         ]);
-        if($ci->form_validation->run()){
-            if(!$edit){
-                $leadingAuthority['slug']=getSlugifyString($leadingAuthority['name'], true, true).uniqid();
+        if ($ci->form_validation->run()) {
+            if (!$edit) {
+                $leadingAuthority['slug'] = getSlugifyString($leadingAuthority['name'], true, true) . uniqid();
             }
             $ci->evaluation_model->insertorUpdateLeadingAuthority($leadingAuthority, $leadingAuthorityID);
-            get_success_message("Structure/personne ayant conduit d'évaluation ".($edit ? 'modifiée' : 'ajoutée'). ' avec succès');
+            get_success_message("Structure/personne ayant conduit d'évaluation " . ($edit ? 'modifiée' : 'ajoutée') . ' avec succès');
             pro_redirect("leading-authorities");
-        }else{
+        } else {
             get_error_message();
         }
     }
@@ -216,7 +311,9 @@ function getEvaluationYears($backToNYear = 20, $forSelect2 = true)
     return $returnArray;
 }
 
-function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle, $evaluationSectors, $evaluationThematics,  $evaluationTypes, $evaluationTemporalities, $evaluationLeadingAuthorities, $evaluationContractingAuthorities, $uploadPath)
+function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle, $evaluationSectors, $evaluationThematics, $evaluationTypes, $evaluationTemporalities,
+                                    $evaluationLeadingAuthorities, $evaluationContractingAuthorities, $usersForRecommendation, $uploadPath,
+                                    $sectorModalForm, $thematicModalForm, $typeModalForm, $temporalityModalForm, $contractingAuthorityModalForm, $leadingAuthorityModalForm)
 {
     $years = getEvaluationYears();
     ?>
@@ -226,7 +323,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
             <!--            <p>Les paramètres globaux de la plateforme</p>-->
             <div class="m-t-25">
                 <?= form_open_multipart('', [
-                    'id' => 'form-validation'
+                    'id' => 'form-validation',
+                    'class' => 'evaluationForm',
                 ]) ?>
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -250,7 +348,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                 </ul>
                 <div class="tab-content m-t-15" id="myTabContent">
                     <!--                    general information tab-->
-                    <div class="tab-pane show active" id="general_information" aria-labelledby="general_information_tab" role="tabpanel"
+                    <div class="tab-pane show active" id="general_information" aria-labelledby="general_information_tab"
+                         role="tabpanel"
                          aria-labelledby="general_information_tab">
                         <div class="form-group">
                             <?php
@@ -295,11 +394,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 echo form_dropdown($name = 'evaluation[sector_id][]', $evaluationSectors, set_value($name, maybe_null_or_empty($evaluation, $id)), [
                                                     'class' => 'select2',
                                                     'required' => '',
+                                                    'id' => $id,
                                                     'multiple' => 'multiple',
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button data-modal-target="evaluation-sector"
+                                                    <button type="button" data-toggle="modal" data-target="#evaluation-sector"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -320,11 +420,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 echo form_dropdown($name = 'evaluation[thematic_id][]', $evaluationThematics, set_value($name, maybe_null_or_empty($evaluation, $id)), [
                                                     'class' => 'select2',
                                                     'required' => '',
+                                                    'id' => $id,
                                                     'multiple' => 'multiple',
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button data-modal-target="evaluation-thematic"
+                                                    <button type="button" data-toggle="modal" data-target="#evaluation-thematic"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -360,11 +461,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 <?php
                                                 echo form_dropdown($name = 'evaluation[type_id]', $evaluationTypes, set_value($name, maybe_null_or_empty($evaluation, $id)), [
                                                     'class' => 'select2',
+                                                    'id' => $id,
                                                     'required' => ''
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button data-modal-target="evaluation-type"
+                                                    <button type="button" data-toggle="modal" data-target="#evaluation-type"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -384,11 +486,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 <?php
                                                 echo form_dropdown($name = 'evaluation[temporality_id]', $evaluationTemporalities, set_value($name, maybe_null_or_empty($evaluation, $id)), [
                                                     'class' => 'select2',
+                                                    'id' => $id,
                                                     'required' => ''
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button data-modal-target="evaluation-temporality"
+                                                    <button type="button" data-toggle="modal" data-target="#evaluation-temporality"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -411,11 +514,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 <?php
                                                 echo form_dropdown($name = 'evaluation[leading_authority_id]', $evaluationLeadingAuthorities, set_value($name, maybe_null_or_empty($evaluation, $id)), [
                                                     'class' => 'select2',
+                                                    'id' => $id,
                                                     'required' => '',
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button data-modal-target="evaluation-leading-authority"
+                                                    <button type="button" data-toggle="modal" data-target="#evaluation-leading-authority"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -435,11 +539,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 <?php
                                                 echo form_dropdown($name = 'evaluation[contracting_authority_id]', $evaluationContractingAuthorities, set_value($name, maybe_null_or_empty($evaluation, $id)), [
                                                     'class' => 'select2',
+                                                    'id' => $id,
                                                     'required' => '',
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button data-modal-target="evaluation-contracting-authority"
+                                                    <button type="button" data-toggle="modal" data-target="#evaluation-contracting-authority"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -585,22 +690,30 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                             ?>
                                             <div class="input-group-container">
                                                 <?php
-                                                echo form_dropdown($name = 'evaluation[recommendation_user_id]', $evaluationTypes, set_value($name, maybe_null_or_empty($evaluation, $id)), [
+                                                echo form_dropdown($name = 'evaluation[recommendation_user_id]', $usersForRecommendation, set_value($name, maybe_null_or_empty($evaluation, $id)), [
                                                     'class' => 'select2',
                                                     'required' => ''
                                                 ]);
                                                 ?>
-                                                <div class="input-group-append">
-                                                    <button data-modal-target="evaluation-recommendation-user"
-                                                            class="input-group-text btn btn-primary my-additional-add-btn">
-                                                        <i
-                                                                class="anticon anticon-plus"></i></button>
-                                                </div>
                                                 <?php
                                                 echo get_form_error($name)
                                                 ?>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <?php
+                                        echo form_label($title = "Date de début de recommandation", $id = 'recommendation_start_date');
+                                        echo form_input([
+                                            'name' => $name = 'evaluation[recommendation_start_date]',
+                                            'class' => 'form-control datepicker-input',
+                                            'placeholder' => $title,
+                                            'id' => $id,
+                                            'required' => '',
+                                            'value' => set_value($name, maybe_null_or_empty($evaluation, $id))
+                                        ]);
+                                        echo get_form_error($name)
+                                        ?>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <?php
@@ -627,13 +740,22 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                 <?php getAllFormButtons($edit, pro_url('evaluations')) ?>
                 <?= form_close() ?>
                 <script>
-                    var validationRules={
-                        'evaluation[title]':'required'
+                    var validationRules = {
+                        'evaluation[title]': 'required'
                     }
                 </script>
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <?php 
+    echo $sectorModalForm;
+    echo $thematicModalForm;
+    echo $typeModalForm;
+    echo $temporalityModalForm;
+    echo $leadingAuthorityModalForm;
+    echo $contractingAuthorityModalForm;
+    ?>
     <?php
 
 }
@@ -949,7 +1071,8 @@ function getAddOrEditLeadingAuthorityHTML($edit = false, $leadingAuthority = [],
     <div class="card">
         <div class="card-body">
             <h4><?= $pageTitle ?></h4>
-            <p>Trouvez ici le formulaire de remplissage des structures/personne ayant conduit d'évaluation de la plateforme</p>
+            <p>Trouvez ici le formulaire de remplissage des structures/personne ayant conduit d'évaluation de la
+                plateforme</p>
             <div class="m-t-25">
                 <?= form_open('', [
                     'id' => 'form-validation'
@@ -1003,4 +1126,386 @@ function getAddOrEditLeadingAuthorityHTML($edit = false, $leadingAuthority = [],
     </div>
     <?php
 }
+
+function getAjaxifySectorForm(){
+    ob_start();
+    ?>
+    <div class="modal fade" id="evaluation-sector">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <?= form_open('', [
+                    'class' => 'myAjaxifyModalForm',
+                    'data-caller' => 'addSector',
+                    'return-select-caller-id'=>'sector_id'
+                ]) ?>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter secteur d'évaluation</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row modal-body-container">
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Titre du secteur d'évaluation", $id = 'name');
+                            echo form_input([
+                                'name' => $name = "sector[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Description du secteur d'évaluation", $id = 'description');
+                            echo form_textarea([
+                                'name' => $name = "sector[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                                'rows' => 2,
+                            ]);
+                            echo get_form_error($name)
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Ajouter</span>
+                        <i class="anticon anticon-loading m-l-5"></i>
+                    </button>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+function getAjaxifyThematicForm(){
+    ob_start();
+    ?>
+    <div class="modal fade" id="evaluation-thematic">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <?= form_open('', [
+                    'class' => 'myAjaxifyModalForm',
+                    'data-caller' => 'addThematic',
+                    'return-select-caller-id'=>'thematic_id'
+                ]) ?>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter thématique d'évaluation</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row modal-body-container">
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Titre de la thématique d'évaluation", $id = 'name');
+                            echo form_input([
+                                'name' => $name = "thematic[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Description de la thématique d'évaluation", $id = 'description');
+                            echo form_textarea([
+                                'name' => $name = "thematic[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                                'rows' => 2,
+                            ]);
+                            echo get_form_error($name)
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Ajouter</span>
+                        <i class="anticon anticon-loading m-l-5"></i>
+                    </button>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+function getAjaxifyTypeForm(){
+    ob_start();
+    ?>
+    <div class="modal fade" id="evaluation-type">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <?= form_open('', [
+                    'class' => 'myAjaxifyModalForm',
+                    'data-caller' => 'addType',
+                    'return-select-caller-id'=>'type_id'
+                ]) ?>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter type d'évaluation</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row modal-body-container">
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Titre du type d'évaluation", $id = 'name');
+                            echo form_input([
+                                'name' => $name = "type[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Description du type d'évaluation", $id = 'description');
+                            echo form_textarea([
+                                'name' => $name = "type[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                                'rows' => 2,
+                            ]);
+                            echo get_form_error($name)
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Ajouter</span>
+                        <i class="anticon anticon-loading m-l-5"></i>
+                    </button>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+function getAjaxifyTemporalityForm(){
+    ob_start();
+    ?>
+    <div class="modal fade" id="evaluation-temporality">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <?= form_open('', [
+                    'class' => 'myAjaxifyModalForm',
+                    'data-caller' => 'addTemporality',
+                    'return-select-caller-id'=>'temporality_id'
+                ]) ?>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter temporalité d'évaluation</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row modal-body-container">
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Titre de la temporalité d'évaluation", $id = 'name');
+                            echo form_input([
+                                'name' => $name = "temporality[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Description de la temporalité d'évaluation", $id = 'description');
+                            echo form_textarea([
+                                'name' => $name = "temporality[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                                'rows' => 2,
+                            ]);
+                            echo get_form_error($name)
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Ajouter</span>
+                        <i class="anticon anticon-loading m-l-5"></i>
+                    </button>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+function getAjaxifyContractingAuthorityForm(){
+    ob_start();
+    ?>
+    <div class="modal fade" id="evaluation-contracting-authority">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <?= form_open('', [
+                    'class' => 'myAjaxifyModalForm',
+                    'data-caller' => 'addContractingAuthority',
+                    'return-select-caller-id'=>'contracting_authority_id'
+                ]) ?>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter authorité contractante d'évaluation</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row modal-body-container">
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Titre de l'authorité contractante d'évaluation", $id = 'name');
+                            echo form_input([
+                                'name' => $name = "contractingAuthority[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Description de l'authorité contractante d'évaluation", $id = 'description');
+                            echo form_textarea([
+                                'name' => $name = "contractingAuthority[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                                'rows' => 2,
+                            ]);
+                            echo get_form_error($name)
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Ajouter</span>
+                        <i class="anticon anticon-loading m-l-5"></i>
+                    </button>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+function getAjaxifyLeadingAuthorityForm(){
+    ob_start();
+    ?>
+    <div class="modal fade" id="evaluation-leading-authority">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <?= form_open('', [
+                    'class' => 'myAjaxifyModalForm',
+                    'data-caller' => 'addLeadingAuthority',
+                    'return-select-caller-id'=>'leading_authority_id'
+                ]) ?>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter structure/personne ayant conduit d'évaluation</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row modal-body-container">
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Titre de la structures/personne ayant conduit d'évaluation", $id = 'name');
+                            echo form_input([
+                                'name' => $name = "leadingAuthority[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label($title = "Description de la structures/personne ayant conduit d'évaluation", $id = 'description');
+                            echo form_textarea([
+                                'name' => $name = "leadingAuthority[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                                'rows' => 2,
+                            ]);
+                            echo get_form_error($name)
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Ajouter</span>
+                        <i class="anticon anticon-loading m-l-5"></i>
+                    </button>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+
+
+
 

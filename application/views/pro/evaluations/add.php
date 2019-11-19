@@ -14,7 +14,7 @@
             'url'=>pro_url('evaluations')
         ]
     ]);
-    getAddOrEditEvaluationHTML(false, [], $pageTitle, $sectors, $thematics, $types, $temporalities, $leading_authorities, $contracting_authorities, $uploadPath)
+    getAddOrEditEvaluationHTML(false, [], $pageTitle, $sectors, $thematics, $types, $temporalities, $leading_authorities, $contracting_authorities, $users, $uploadPath, $sectorAjaxForm, $thematicAjaxForm, $typeAjaxForm, $temporalityAjaxForm, $contractingAuthorityAjaxForm, $leadingAuthorityAjaxForm)
     ?>
 
 </div>

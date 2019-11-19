@@ -202,12 +202,12 @@ function get_success_message($msg, $delay = '')
     set_flashdata($msg, 'success', $delay);
 }
 
-function convert_date_to_english($date)
+function convert_date_to_english($date, $characterToCheck='/' ,$inputFormat='d/m/Y', $outputFormat='Y-m-d')
 {
-    if ($date && is_string($date) && strpos($date, '/')) {
-        return DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+    if ($date && is_string($date) && strpos($date, $characterToCheck)) {
+        return DateTime::createFromFormat($inputFormat, $date)->format($outputFormat);
     }
-    return date('Y-m-d');
+    return date($outputFormat);
 }
 
 function redirect_if_id_is_not_valid($id, $table_name = '', $redirect)
@@ -308,6 +308,10 @@ function update_meta($id, $key, $value, $table_meta, $table_id_val)
     }
 }
 
+function getRegularDateTimeFormat(){
+    return 'Y-m-d G:i:s';
+}
+
 function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $required = true, $additionalClass = '')
 {
     ?>
@@ -315,7 +319,7 @@ function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $
     $attributes = array(
         'data-default-file' => maybe_null_or_empty($data, 'value'),
         'class' => "dropify $additionalClass",
-        'id' => $data['name'],
+        'id' => 'my_dropify_'.(isset($data['attributes']) ? $data['attributes']['data-target'] : rand(1, 10000)),
         'data-max-file-size' => $maxSize,
         'data-allowed-file-extensions' => $extensions,
         'value' => set_value($data['name'], maybe_null_or_empty($data, 'value'))
