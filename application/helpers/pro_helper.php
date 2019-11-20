@@ -45,6 +45,17 @@ function includeDatatablesAssets(){
     $ci->data['headerCss'][]=$ci->data['assetsUrl']."pro/vendors/datatables/dataTables.bootstrap.min.css";
 }
 
+function includeJQueryRepeaterAssets(){
+    $ci=&get_instance();
+    $ci->data['footerJs'][]=$ci->data['assetsUrl']."pro/vendors/jquery-repeater/jquery.repeater.min.js";
+}
+
+function includeCleaveNumberFormatterAssets(){
+    $ci=&get_instance();
+    $ci->data['footerJs'][] = $ci->data['assetsUrl']."pro/vendors/cleave.js/cleave.min.js";
+    //$ci->data['footerJs'][] = $ci->data['assetsUrl'].'lib/cleave.js/addons/cleave-phone.us.js';
+}
+
 function includeSweetAlertAssets(){
     $ci=&get_instance();
     $ci->data['headerCss'][] = $ci->data['assetsUrl'] . 'pro/vendors/sweetalert/sweetalert.css';

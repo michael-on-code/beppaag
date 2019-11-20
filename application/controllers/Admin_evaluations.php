@@ -62,6 +62,8 @@ class Admin_evaluations extends Pro_Controller{
         includeSummernoteAssets();
         //select2
         includeSelect2Assets();
+        includeJQueryRepeaterAssets();
+        includeCleaveNumberFormatterAssets();
         $tables = getEvaluationTablesNames();
         $this->data['sectors']=getAllInTable($tables->sectors, true, true, 'id', 'DESC', true, 'id', 'name',false);
         $users=$this->user_model->getUsers(false, true, 'desc', 'users.id, users.email, users.first_name, users.last_name');
@@ -96,6 +98,8 @@ class Admin_evaluations extends Pro_Controller{
         includeDatePickerAssets();
         //SummerNote Text Editor
         includeSummernoteAssets();
+        includeJQueryRepeaterAssets();
+        includeCleaveNumberFormatterAssets();
         //select2
         includeSelect2Assets();
         $this->data['sectors']=getAllInTable($tables->sectors, true, true, 'id', 'DESC', true, 'id', 'name',false);

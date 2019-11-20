@@ -148,7 +148,7 @@ label.is-invalid, span.is-invalid{
     border-color: #3f87f5;
     color: #fff!important;
 }
-.actions-btn-container .btn-primary:hover, .real-btn-primary:hover{
+.actions-btn-container .btn-primary:hover, .real-btn-primary:hover, .real-btn-primary:focus {
     color: #fff!important;
     background-color: #2778f4!important;
     border-color: #2778f4!important;
@@ -194,8 +194,28 @@ div.dropdown-menu.pop-profile > a.active{
 .wd-70-f{
     width:70px!important;
 }
-
-
+button[data-repeater-delete]{
+    position: absolute;
+    right: 8px;
+    top: 14px;
+    height: 26px;
+    width: 26px;
+    padding: 1px 3px 0px 4px;
+    line-height: unset;
+    border-radius: 20px;
+    font-size: inherit;
+}
+.repeater-item{
+    padding-top: 20px;
+    border-right: 1px solid #edf2f9;
+    border-bottom: 1px solid #edf2f9;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    padding-right: 18px;
+}
+input.select2-input{
+    width: 100% !important;
+}
 .input-group-container span.is-invalid{
     top: 71px;
     position: absolute;

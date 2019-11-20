@@ -84,6 +84,7 @@ class Evaluation_model extends CI_Model
             'description',
             'methodological_approach',
             'results_resume',
+            'recommendation_actor_associated',
         );
     }
 
@@ -161,7 +162,7 @@ class Evaluation_model extends CI_Model
         return $evaluation;
     }
 
-    public function insertOrUpdateEvaluation($update=false, $evaluation, $evaluationID = '')
+    public function insertOrUpdateEvaluation($update=false, $evaluation, $evaluationID = '', $isActorAssociated=true, $activityData=[])
     {
         $this->load->model('recommendation_model');
         //TODO $evaluation for logs
@@ -170,11 +171,13 @@ class Evaluation_model extends CI_Model
         $thematics = $data['thematic_id'];
         unset($data['sector_id'], $data['thematic_id']);
 
-        //recommendations
-        $recommendationData['user_id'] = $data['recommendation_user_id'];
-        $recommendationData['attribution_comment'] = $data['recommendation_comment'];
-        $recommendationData['start_date'] = convert_date_to_english($data['recommendation_start_date']);
-        unset($data['recommendation_user_id'], $data['recommendation_comment'], $data['recommendation_start_date']);
+        if($isActorAssociated){
+            //recommendations
+            $recommendationData['user_id'] = $data['recommendation_user_id'];
+            $recommendationData['attribution_comment'] = $data['recommendation_comment'];
+            $recommendationData['start_date'] = convert_date_to_english($data['recommendation_start_date']);
+            unset($data['recommendation_user_id'], $data['recommendation_comment'], $data['recommendation_start_date']);
+        }
 
         //metas
         $metas = $this->get_metas_group();
@@ -215,10 +218,11 @@ class Evaluation_model extends CI_Model
         }
         $this->insertOrUpdateEvaluationSectorGroup($sectorToInsert, 'evaluation_id', $evaluationID);
         $this->insertOrUpdateEvaluationThematicGroup($thematicToInsert, 'evaluation_id', $evaluationID);
-        if(!$update){
+        if(!$update && $isActorAssociated){
             $recommendationData['evaluation_id'] = $evaluationID;
             $this->recommendation_model->insertOrUpdateRecommendation($recommendationData);
         }
+        if(!$isActorAssociated)
         return $evaluationID;
     }
 

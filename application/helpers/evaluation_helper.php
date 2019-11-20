@@ -6,13 +6,23 @@
  * Time: 13:21
  */
 
+function getExecutionLevels($forSelect = true, $defaultFirstElementValue='')
+{
+    $temp = [];
+    if ($forSelect) {
+        $temp = ['' => $defaultFirstElementValue];
+    }
+    $temp['executed'] = "Exécuté";
+    $temp['in_progress'] = "En cours";
+    $temp['unexecuted'] = "Non exécuté";
+    return $temp;
+}
 
 function setEvaluationFormValidation($edit = false, $evaluationID = '')
 {
     $ci =& get_instance();
     if ($evaluation = $ci->input->post('evaluation')) {
-        //var_dump($evaluation);exit;
-        setFormValidationRules([
+        $validations = [
             [
                 'name' => 'evaluation[title]',
                 'label' => "Titre de l'évaluation",
@@ -88,25 +98,27 @@ function setEvaluationFormValidation($edit = false, $evaluationID = '')
                 'label' => "Fichier PDF d'évaluation",
                 'rules' => 'trim|required'
             ],
-            [
+        ];
+        if($isActorAssociated = maybe_null_or_empty($evaluation, 'recommendation_actor_associated', true)){
+            $validations[]=[
                 'name' => 'evaluation[recommendation_user_id]',
                 'label' => "Acteur de recommandation",
                 'rules' => 'trim|required|is_natural_no_zero'
-            ],
-            [
+            ];
+            $validations[]=[
                 'name' => 'evaluation[recommendation_start_date]',
                 'label' => "Date de début de recommandation",
                 'rules' => 'trim|required'
-            ],
-
-            [
+            ];
+            $validations[]=[
                 'name' => 'evaluation[recommendation_comment]',
                 'label' => "Commentaires à l'endroit de l'acteur",
                 'rules' => 'trim'
-            ],
-        ]);
+            ];
+        }
+        setFormValidationRules($validations);
         if ($ci->form_validation->run()) {
-            if ($ci->evaluation_model->insertOrUpdateEvaluation($edit, $evaluation, $evaluationID)) {
+            if ($ci->evaluation_model->insertOrUpdateEvaluation($edit, $evaluation, $evaluationID, $isActorAssociated, $this->input->post('activity'))) {
                 get_success_message('Evaluation ' . ($edit ? 'modifiée' : 'ajoutée') . ' avec succès');
                 pro_redirect('evaluations');
             } else {
@@ -322,6 +334,9 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
             <h4><?= $pageTitle ?></h4>
             <!--            <p>Les paramètres globaux de la plateforme</p>-->
             <div class="m-t-25">
+                <script>
+                    var validationRules = {}
+                </script>
                 <?= form_open_multipart('', [
                     'id' => 'form-validation',
                     'class' => 'evaluationForm',
@@ -399,7 +414,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button type="button" data-toggle="modal" data-target="#evaluation-sector"
+                                                    <button type="button" data-toggle="modal"
+                                                            data-target="#evaluation-sector"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -425,7 +441,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button type="button" data-toggle="modal" data-target="#evaluation-thematic"
+                                                    <button type="button" data-toggle="modal"
+                                                            data-target="#evaluation-thematic"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -466,7 +483,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button type="button" data-toggle="modal" data-target="#evaluation-type"
+                                                    <button type="button" data-toggle="modal"
+                                                            data-target="#evaluation-type"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -491,7 +509,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button type="button" data-toggle="modal" data-target="#evaluation-temporality"
+                                                    <button type="button" data-toggle="modal"
+                                                            data-target="#evaluation-temporality"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -519,7 +538,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button type="button" data-toggle="modal" data-target="#evaluation-leading-authority"
+                                                    <button type="button" data-toggle="modal"
+                                                            data-target="#evaluation-leading-authority"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -544,7 +564,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                 ]);
                                                 ?>
                                                 <div class="input-group-append">
-                                                    <button type="button" data-toggle="modal" data-target="#evaluation-contracting-authority"
+                                                    <button type="button" data-toggle="modal"
+                                                            data-target="#evaluation-contracting-authority"
                                                             class="input-group-text btn btn-primary my-additional-add-btn">
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
@@ -681,7 +702,19 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                     </div>
                     <div class="tab-pane" id="recommendation" role="tabpanel" aria-labelledby="recommendation_tab">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="form-group col-md-12 d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <?= form_checkbox('evaluation[recommendation_actor_associated]', 1, true, [
+                                        'class' => 'recommendation-actor-switcher',
+                                        'id' => 'switcher'
+                                    ]) ?>
+                                    <label for="switcher"></label>
+                                </div>
+                                <label>Associer un acteur de recommandation</label>
+
+                            </div>
+                            <!--                            Actor Recommendation Insert-->
+                            <div class="col-md-8" id="actor_recommendation_formgroups">
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <div class="input-group with-add-btn ">
@@ -691,7 +724,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                             <div class="input-group-container">
                                                 <?php
                                                 echo form_dropdown($name = 'evaluation[recommendation_user_id]', $usersForRecommendation, set_value($name, maybe_null_or_empty($evaluation, $id)), [
-                                                    'class' => 'select2',
+                                                    'class' => 'select2 ignore',
                                                     'required' => ''
                                                 ]);
                                                 ?>
@@ -706,7 +739,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                         echo form_label($title = "Date de début de recommandation", $id = 'recommendation_start_date');
                                         echo form_input([
                                             'name' => $name = 'evaluation[recommendation_start_date]',
-                                            'class' => 'form-control datepicker-input',
+                                            'class' => 'form-control ignore datepicker-input',
                                             'placeholder' => $title,
                                             'id' => $id,
                                             'required' => '',
@@ -720,7 +753,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                         echo form_label($title = "Commentaires à l'endroit de l'acteur", $id = 'recommendation_comment');
                                         echo form_textarea([
                                             'name' => $name = 'evaluation[recommendation_comment]',
-                                            'class' => 'form-control',
+                                            'class' => 'form-control ignore',
                                             'placeholder' => $title,
                                             'id' => $id,
                                             //'required' => '',
@@ -730,7 +763,106 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                         echo get_form_error($name)
                                         ?>
                                     </div>
+
                                 </div>
+                            </div>
+                            <!--                            Personal Recommendation Insert-->
+                            <div class="col-md-12" id="personal_insert_recommendation_formgroups">
+
+                                <div class="my-repeater"
+                                     delete-message="Etes-vous sûr de vouloir supprimer cette activité de recommendation">
+                                    <div class="row" data-repeater-list="activity">
+                                        <div class="form-group col-md-12">
+                                            <button title="Ajouter nouvelle activité" type="button" data-repeater-create
+                                                    class="btn btn-primary mail-open-compose real-btn-primary">
+                                                <i class="anticon anticon-plus"></i>
+                                                <span class="m-l-5">Ajouter nouvelle activité</span>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6 repeater-item" data-repeater-item>
+                                            <button title="Supprimer activité" type="button" data-repeater-delete
+                                                    class="btn btn-danger btn-rounded">
+                                                <i class="anticon anticon-delete"></i>
+                                            </button>
+
+                                            <div class="form-group">
+                                                <?php
+                                                echo form_label($title = "Titre de l'activité de recommendation", $id = 'activity_title');
+                                                echo form_input([
+                                                    'name' => $name = 'title',
+                                                    'class' => 'ignore form-control',
+                                                    'placeholder' => $title,
+                                                    //'id' => $id,
+                                                    'required' => '',
+                                                    //'value' => set_value($name, maybe_null_or_empty($evaluation, $id))
+                                                ]);
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <?php
+                                                echo form_label($title = "Destinataire de l'activité de recommendation", $id = 'activity_recipient');
+                                                echo form_input([
+                                                    'name' => $name = 'recipient',
+                                                    'class' => ' ignore form-control',
+                                                    'placeholder' => $title,
+                                                    //'id' => $id,
+                                                    'required' => '',
+                                                    //'value' => set_value($name, maybe_null_or_empty($evaluation, $id))
+                                                ]);
+                                                ?>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+
+                                                    <?php
+                                                    echo form_label($title = "Montant prévu pour l'activité de recommendation", $id = 'activity_amount');
+                                                    ?>
+                                                    <div class="input-group">
+                                                        <?php
+                                                        echo form_input([
+                                                            'name' => $name = 'amount',
+                                                            'class' => 'ignore form-control ',//currencyInput
+                                                            'placeholder' => $title,
+                                                            //'id' => $id,
+                                                            //'required' => '',
+                                                            //'value' => set_value($name, maybe_null_or_empty($evaluation, $id))
+                                                        ]);
+                                                        ?>
+
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">FCFA</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <?php
+                                                    echo form_label($title = "Niveau d'execution de l'activité de recommendation", $id = 'activity_execution_level');
+                                                    echo form_dropdown('execution_level', getExecutionLevels(false), '', [
+                                                        'class' => 'ignore form-control',
+                                                        'required' => ''
+                                                    ]);
+                                                    ?>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <?php
+                                                echo form_label($title = "Commentaire de l'activité de recommendation", $id = 'activity_explanation');
+                                                echo form_textarea([
+                                                    'name' => $name = 'explanation',
+                                                    'class' => 'ignore form-control',
+                                                    'placeholder' => $title,
+                                                    //'id' => $id,
+                                                    'rows' => 3,
+                                                    //'required' => '',
+                                                    //'value' => set_value($name, maybe_null_or_empty($evaluation, $id))
+                                                ]);
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -739,16 +871,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
 
                 <?php getAllFormButtons($edit, pro_url('evaluations')) ?>
                 <?= form_close() ?>
-                <script>
-                    var validationRules = {
-                        'evaluation[title]': 'required'
-                    }
-                </script>
+
             </div>
         </div>
     </div>
     <!-- Modal -->
-    <?php 
+    <?php
     echo $sectorModalForm;
     echo $thematicModalForm;
     echo $typeModalForm;
@@ -1127,7 +1255,8 @@ function getAddOrEditLeadingAuthorityHTML($edit = false, $leadingAuthority = [],
     <?php
 }
 
-function getAjaxifySectorForm(){
+function getAjaxifySectorForm()
+{
     ob_start();
     ?>
     <div class="modal fade" id="evaluation-sector">
@@ -1136,7 +1265,7 @@ function getAjaxifySectorForm(){
                 <?= form_open('', [
                     'class' => 'myAjaxifyModalForm',
                     'data-caller' => 'addSector',
-                    'return-select-caller-id'=>'sector_id'
+                    'return-select-caller-id' => 'sector_id'
                 ]) ?>
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter secteur d'évaluation</h5>
@@ -1190,7 +1319,8 @@ function getAjaxifySectorForm(){
     return ob_get_clean();
 }
 
-function getAjaxifyThematicForm(){
+function getAjaxifyThematicForm()
+{
     ob_start();
     ?>
     <div class="modal fade" id="evaluation-thematic">
@@ -1199,7 +1329,7 @@ function getAjaxifyThematicForm(){
                 <?= form_open('', [
                     'class' => 'myAjaxifyModalForm',
                     'data-caller' => 'addThematic',
-                    'return-select-caller-id'=>'thematic_id'
+                    'return-select-caller-id' => 'thematic_id'
                 ]) ?>
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter thématique d'évaluation</h5>
@@ -1253,7 +1383,8 @@ function getAjaxifyThematicForm(){
     return ob_get_clean();
 }
 
-function getAjaxifyTypeForm(){
+function getAjaxifyTypeForm()
+{
     ob_start();
     ?>
     <div class="modal fade" id="evaluation-type">
@@ -1262,7 +1393,7 @@ function getAjaxifyTypeForm(){
                 <?= form_open('', [
                     'class' => 'myAjaxifyModalForm',
                     'data-caller' => 'addType',
-                    'return-select-caller-id'=>'type_id'
+                    'return-select-caller-id' => 'type_id'
                 ]) ?>
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter type d'évaluation</h5>
@@ -1316,7 +1447,8 @@ function getAjaxifyTypeForm(){
     return ob_get_clean();
 }
 
-function getAjaxifyTemporalityForm(){
+function getAjaxifyTemporalityForm()
+{
     ob_start();
     ?>
     <div class="modal fade" id="evaluation-temporality">
@@ -1325,7 +1457,7 @@ function getAjaxifyTemporalityForm(){
                 <?= form_open('', [
                     'class' => 'myAjaxifyModalForm',
                     'data-caller' => 'addTemporality',
-                    'return-select-caller-id'=>'temporality_id'
+                    'return-select-caller-id' => 'temporality_id'
                 ]) ?>
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter temporalité d'évaluation</h5>
@@ -1379,7 +1511,8 @@ function getAjaxifyTemporalityForm(){
     return ob_get_clean();
 }
 
-function getAjaxifyContractingAuthorityForm(){
+function getAjaxifyContractingAuthorityForm()
+{
     ob_start();
     ?>
     <div class="modal fade" id="evaluation-contracting-authority">
@@ -1388,10 +1521,11 @@ function getAjaxifyContractingAuthorityForm(){
                 <?= form_open('', [
                     'class' => 'myAjaxifyModalForm',
                     'data-caller' => 'addContractingAuthority',
-                    'return-select-caller-id'=>'contracting_authority_id'
+                    'return-select-caller-id' => 'contracting_authority_id'
                 ]) ?>
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter authorité contractante d'évaluation</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter authorité contractante
+                        d'évaluation</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <i class="anticon anticon-close"></i>
                     </button>
@@ -1442,7 +1576,8 @@ function getAjaxifyContractingAuthorityForm(){
     return ob_get_clean();
 }
 
-function getAjaxifyLeadingAuthorityForm(){
+function getAjaxifyLeadingAuthorityForm()
+{
     ob_start();
     ?>
     <div class="modal fade" id="evaluation-leading-authority">
@@ -1451,10 +1586,11 @@ function getAjaxifyLeadingAuthorityForm(){
                 <?= form_open('', [
                     'class' => 'myAjaxifyModalForm',
                     'data-caller' => 'addLeadingAuthority',
-                    'return-select-caller-id'=>'leading_authority_id'
+                    'return-select-caller-id' => 'leading_authority_id'
                 ]) ?>
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter structure/personne ayant conduit d'évaluation</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter structure/personne ayant conduit
+                        d'évaluation</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <i class="anticon anticon-close"></i>
                     </button>

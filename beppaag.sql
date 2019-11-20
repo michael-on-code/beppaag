@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 19 Novembre 2019 à 15:24
+-- Généré le :  Mer 20 Novembre 2019 à 16:39
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -63,7 +63,7 @@ CREATE TABLE `evaluations` (
 
 INSERT INTO `evaluations` (`id`, `slug`, `title`, `object`, `year`, `active`, `type_id`, `temporality_id`, `leading_authority_id`, `contracting_authority_id`, `created_by`, `created_at`, `updated_at`) VALUES
 (2, 'strategie-de-croissance-pour-la-reductio5dd28c1a17', 'Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015)', 'Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015)', 2016, 0, 3, 1, 2, 10, 1, '2019-11-18 12:18:34', '2019-11-19 14:56:47'),
-(3, 'politique-nationale-de-developpement-de-5dd3fbbe95', 'Politique Nationale de Développement de l’Artisanat (PNDA)', 'Politique Nationale de Développement de l’Artisanat (PNDA)', 2014, 0, 4, 4, 3, 12, 1, '2019-11-19 14:27:10', '2019-11-19 14:56:52');
+(3, 'politique-nationale-de-developpement-de-5dd3fbbe95', 'Politique Nationale de Développement de l’Artisanat du Bénin (PNDA)', 'Politique Nationale de Développement de l’Artisanat (PNDA)', 2014, 0, 4, 4, 3, 12, 1, '2019-11-19 14:27:10', '2019-11-20 09:41:35');
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,8 @@ INSERT INTO `evaluation_meta` (`id`, `evaluation_id`, `key`, `value`) VALUES
 (15, 3, 'objective', '<p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">L’objectif global de la mission d’évaluation est de faire un point exhaustif de la mise en œuvre de la PNDA dans le cadre des Orientations Stratégiques de Développement du Bénin en général et de la stratégie de dynamisation du secteur privé et de la promotion de l’emploi des jeunes et des femmes en particulier. L’évaluation vise aussi à tirer tous les enseignements du passé afin d’améliorer les effets et impacts attendus de ladite politique.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">De façon spécifique il s’agit de :</p><ul style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px 0px 0px 20px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; font-size: 12px;"><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">analyser le degré de pertinence de la PNDA par rapport aux Orientations Stratégiques de Développement (2011-2020) ;</li><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">analyser les principes directeurs de la mise en cohérence de la PNDA avec la vision globale définie pour le pôle prioritaire de développement « tourisme, culture et artisanat » ;</li><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">formuler des recommandations pratiques pour une meilleure mise en œuvre de la PNDA 2005-2025.</li></ul>'),
 (16, 3, 'description', '<p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">La PNDA a pour vision de faire de l’artisanat béninois « un secteur bien organisé à l’horizon 2025 où opèrent des entreprises artisanales compétitives, contribuant notablement à la valorisation du patrimoine national et au bien-être social de l’artisan et du béninois, dans un pays uni et de paix ».</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Elle comporte cinq (05) orientations stratégiques à savoir : (i) l’amélioration des conditions-cadres ; (ii) la promotion de l’organisation des acteurs ; (iii) le renforcement du savoir-faire et du savoir-être ; (iv) la promotion et le développement des microentreprises artisanales ; (v) la protection sociale des artisans.</p>'),
 (17, 3, 'methodological_approach', '<ul style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px 0px 0px 20px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; font-size: 12px;"><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Revue documentaire;</li><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Collecte d\'information auprès des acteurs au moyen d\'un guide d\'entretien;</li><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">51 acteurs représentant toutes les parties prenantes ont été interviewés;</li><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Recours à une grille d\'évaluation pour apprécier la pertinence, la cohérence, l’efficacité, l’efficience et la durabilité des orientations contenues dans la PNDA.</li></ul>'),
-(18, 3, 'results_resume', '<p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">La PNDA est-elle cohérente avec les Orientations Stratégiques de Développement ?</p><p><label style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px; margin: 0px; font-size: 12px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Les choix stratégiques opérés dans la PNDA sont de nature à opérationnaliser les orientations des politiques nationale et internationale.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Quel bilan peut-on faire de la mise en œuvre de la PNDA? Cette stratégie a-t-elle été efficace ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Au regard des faiblesses relevées et de la durée de validité et de mise en œuvre de la PNDA, il est difficile de dire que la mise en œuvre est efficace ou pas.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Toutefois, des efforts louables ont été accomplis en terme de réalisation de certaines actions, même si ces dernières ne sont pas les plus importantes.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">A moins de 11 ans de l’échéance fixée, l’espoir est permis, sur la base des niveaux de réalisation, que les objectifs seront atteints.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Les cadres institutionnel, législatif et réglementaire de mise en œuvre de la PNDA sont-ils adéquats pour prendre en charge efficacement les nouveaux défis du secteur de l’artisanat ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Le cadre institutionnel, législatif et réglementaire a connu des mutations favorables à la mise en œuvre de la PNDA mais demeure peu attractif du point de vue des acteurs de champ.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Le financement des secteurs de l’artisanat et du tourisme sont-ils en adéquation avec les objectifs de la PNDA ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Pas de réponse claire de l\'évaluation.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Quels sont les effets de la mise en œuvre de la PNDA sur la croissance économique? Dans quelles mesures a-t-elle impacté la réduction de la pauvreté ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">La contribution moyenne du secteur de l’artisanat est environ 10,8% du PIB du Bénin. Elle est relativement faible par rapport à la contribution des autres sous-secteurs de l’économie nationale.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">L’impact de la PNDA sur l’emploi est apprécié par le nombre d’emplois permanents et occasionnels générés par les entreprises artisanales. Entre 2006 et 2007, l’effectif global des employés permanents a progressé de 10%. Le nombre d’emplois occasionnels a évolué dans la même proportion que celui des emplois permanents.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Sur la base des résultats issus des enquêtes réalisées, 36% des agents enquêtés ont reconnu que la mise en œuvre de la PNDA a entrainé une augmentation de leur revenu sans pouvoir toutefois indiquer dans quelle proportion.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><br></p></div></div></div></div></div>');
+(18, 3, 'results_resume', '<p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">La PNDA est-elle cohérente avec les Orientations Stratégiques de Développement ?</p><p><label style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px; margin: 0px; font-size: 12px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Les choix stratégiques opérés dans la PNDA sont de nature à opérationnaliser les orientations des politiques nationale et internationale.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Quel bilan peut-on faire de la mise en œuvre de la PNDA? Cette stratégie a-t-elle été efficace ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Au regard des faiblesses relevées et de la durée de validité et de mise en œuvre de la PNDA, il est difficile de dire que la mise en œuvre est efficace ou pas.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Toutefois, des efforts louables ont été accomplis en terme de réalisation de certaines actions, même si ces dernières ne sont pas les plus importantes.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">A moins de 11 ans de l’échéance fixée, l’espoir est permis, sur la base des niveaux de réalisation, que les objectifs seront atteints.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Les cadres institutionnel, législatif et réglementaire de mise en œuvre de la PNDA sont-ils adéquats pour prendre en charge efficacement les nouveaux défis du secteur de l’artisanat ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Le cadre institutionnel, législatif et réglementaire a connu des mutations favorables à la mise en œuvre de la PNDA mais demeure peu attractif du point de vue des acteurs de champ.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Le financement des secteurs de l’artisanat et du tourisme sont-ils en adéquation avec les objectifs de la PNDA ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Pas de réponse claire de l\'évaluation.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Quels sont les effets de la mise en œuvre de la PNDA sur la croissance économique? Dans quelles mesures a-t-elle impacté la réduction de la pauvreté ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">La contribution moyenne du secteur de l’artisanat est environ 10,8% du PIB du Bénin. Elle est relativement faible par rapport à la contribution des autres sous-secteurs de l’économie nationale.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">L’impact de la PNDA sur l’emploi est apprécié par le nombre d’emplois permanents et occasionnels générés par les entreprises artisanales. Entre 2006 et 2007, l’effectif global des employés permanents a progressé de 10%. Le nombre d’emplois occasionnels a évolué dans la même proportion que celui des emplois permanents.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Sur la base des résultats issus des enquêtes réalisées, 36% des agents enquêtés ont reconnu que la mise en œuvre de la PNDA a entrainé une augmentation de leur revenu sans pouvoir toutefois indiquer dans quelle proportion.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><br></p></div></div></div></div></div>'),
+(19, 3, 'recommendation_actor_associated', '1');
 
 -- --------------------------------------------------------
 
@@ -190,7 +191,7 @@ INSERT INTO `evaluation_sector_groups` (`id`, `evaluation_id`, `sector_id`) VALU
 (21, 2, 17),
 (22, 2, 16),
 (23, 2, 15),
-(24, 3, 24);
+(26, 3, 24);
 
 -- --------------------------------------------------------
 
@@ -274,7 +275,7 @@ INSERT INTO `evaluation_thematic_groups` (`id`, `evaluation_id`, `thematic_id`) 
 (28, 2, 5),
 (29, 2, 4),
 (30, 2, 3),
-(31, 3, 6);
+(33, 3, 6);
 
 -- --------------------------------------------------------
 
@@ -420,6 +421,19 @@ CREATE TABLE `logs` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `newsletter`
+--
+
+CREATE TABLE `newsletter` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` text,
+  `email` varchar(45) NOT NULL,
+  `phone` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `options`
 --
 
@@ -520,7 +534,7 @@ CREATE TABLE `recommendations` (
   `id` int(10) UNSIGNED NOT NULL,
   `evaluation_id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
-  `start_date` datetime NOT NULL,
+  `start_date` datetime DEFAULT NULL,
   `status` tinyint(1) DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -545,7 +559,7 @@ CREATE TABLE `recommendation_activities` (
   `id` int(10) UNSIGNED NOT NULL,
   `recommendation_id` int(10) UNSIGNED NOT NULL,
   `title` text NOT NULL,
-  `amount` int(10) UNSIGNED DEFAULT NULL,
+  `amount` bigint(10) UNSIGNED DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
   `execution_level` varchar(35) NOT NULL,
@@ -607,7 +621,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, 'IR/Hhs/YqO5/Mo8Yte6R8e', 1268889823, 1574171655, 1, 'Admin', 'istrator', 'ADMIN', '0');
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, '1k1p00dbXkZkslMLPksngO', 1268889823, 1574233552, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
@@ -787,6 +801,12 @@ ALTER TABLE `logs`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Index pour la table `newsletter`
+--
+ALTER TABLE `newsletter`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `options`
 --
 ALTER TABLE `options`
@@ -899,7 +919,7 @@ ALTER TABLE `evaluation_leading_authorities`
 -- AUTO_INCREMENT pour la table `evaluation_meta`
 --
 ALTER TABLE `evaluation_meta`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT pour la table `evaluation_sectors`
 --
@@ -909,7 +929,7 @@ ALTER TABLE `evaluation_sectors`
 -- AUTO_INCREMENT pour la table `evaluation_sector_groups`
 --
 ALTER TABLE `evaluation_sector_groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT pour la table `evaluation_stats`
 --
@@ -929,7 +949,7 @@ ALTER TABLE `evaluation_thematics`
 -- AUTO_INCREMENT pour la table `evaluation_thematic_groups`
 --
 ALTER TABLE `evaluation_thematic_groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT pour la table `evaluation_types`
 --
@@ -975,6 +995,11 @@ ALTER TABLE `login_attempts`
 --
 ALTER TABLE `logs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `newsletter`
+--
+ALTER TABLE `newsletter`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `options`
 --
