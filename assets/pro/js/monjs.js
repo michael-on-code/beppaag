@@ -174,7 +174,11 @@ $(function () {
     if ($('.datepicker-input').length) {
         $.fn.datepicker.defaults.format = "dd/mm/yyyy";
         $.fn.datepicker.defaults.language = "fr";
-        $('.datepicker-input').datepicker();
+        var options={};
+        if($('.datepicker-input').hasClass('starts-from-today')){
+            options.startDate= new Date();
+        }
+        $('.datepicker-input').datepicker(options);
     }
 
     if ($('.form-error').length) {
@@ -320,7 +324,7 @@ $(function () {
             $('#actor_recommendation_formgroups').fadeIn();
         } else {
             $('#actor_recommendation_formgroups').fadeOut();
-            $('#personal_insert_recommendation_formgroups .ignore').each(function () {
+            $('#personal_insert_recommendation_formgroups .ignore:not(.first-one)').each(function () {
                 $(this).removeClass('ignore');
             });
             $('#personal_insert_recommendation_formgroups').fadeIn();
@@ -329,15 +333,25 @@ $(function () {
 
     if ($('.my-repeater').length) {
         //console.log("in");
+        var repeaterElements = parseInt($('.my-repeater-badge').text());
         $('.my-repeater').repeater({
             hide: function (e) {
-                confirm($('.my-repeater').attr('delete-message')) && $(this).slideUp(e)
+                confirm($('.my-repeater').attr('delete-message')) && $(this).slideUp(e);
+                repeaterElements--;
+                $('.my-repeater-badge').text(repeaterElements);
             },
             show: function () {
-                $(this).fadeIn();
-                $('.my-repeater .ignore').each(function () {
+                repeaterElements++;
+                $('.my-repeater-badge').text(repeaterElements);
+                $(this).removeClass('first-one');
+                $(this).find('.ignore').each(function () {
                     $(this).removeClass('ignore');
                 });
+                $(this).find('.ignore-completely').each(function () {
+                    $(this).removeClass('ignore-completely');
+                });
+                $(this).fadeIn();
+
                 /*$('.select2-container').remove();
                 $('.select2').select2({
                     placeholder: 'Sélectionner',
@@ -358,7 +372,7 @@ $(function () {
     //FORM Validation
     if ($('form#form-validation').length) {
         var validateObj = $("form#form-validation").validate({
-            ignore: '.ignore',
+            ignore: '.ignore, .ignore-completely',
             errorElement: 'span',
             errorClass: 'is-invalid',
             validClass: 'is-valid',

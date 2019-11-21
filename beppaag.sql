@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 20 Novembre 2019 à 16:39
+-- Généré le :  Jeu 21 Novembre 2019 à 14:59
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -62,8 +62,8 @@ CREATE TABLE `evaluations` (
 --
 
 INSERT INTO `evaluations` (`id`, `slug`, `title`, `object`, `year`, `active`, `type_id`, `temporality_id`, `leading_authority_id`, `contracting_authority_id`, `created_by`, `created_at`, `updated_at`) VALUES
-(2, 'strategie-de-croissance-pour-la-reductio5dd28c1a17', 'Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015)', 'Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015)', 2016, 0, 3, 1, 2, 10, 1, '2019-11-18 12:18:34', '2019-11-19 14:56:47'),
-(3, 'politique-nationale-de-developpement-de-5dd3fbbe95', 'Politique Nationale de Développement de l’Artisanat du Bénin (PNDA)', 'Politique Nationale de Développement de l’Artisanat (PNDA)', 2014, 0, 4, 4, 3, 12, 1, '2019-11-19 14:27:10', '2019-11-20 09:41:35');
+(2, 'strategie-de-croissance-pour-la-reductio5dd28c1a17', 'Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015)', 'Stratégie de Croissance pour la Réduction de la Pauvreté (SCRP 2011-2015)', 2016, 1, 3, 1, 2, 10, 1, '2019-11-18 12:18:34', '2019-11-21 06:00:53'),
+(3, 'politique-nationale-de-developpement-de-5dd3fbbe95', 'Politique Nationale de Développement de l’Artisanat du Bénin (PNDA)', 'Politique Nationale de Développement de l’Artisanat (PNDA)', 2014, 1, 4, 4, 3, 12, 1, '2019-11-19 14:27:10', '2019-11-21 11:15:09');
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,8 @@ CREATE TABLE `evaluation_contracting_authorities` (
 INSERT INTO `evaluation_contracting_authorities` (`id`, `slug`, `name`, `description`) VALUES
 (9, 'direction-des-infrastructures-et-du-tran5dd0b07f8d', 'Direction des Infrastructures et du Transport', 'La Direction générale des infrastructures est chargée de : piloter tous les volets de l\'installation, aménagement et maintenance de tous travaux publics'),
 (10, 'direction-de-linformatique-et-du-pre-arc5dd0b09ba5', 'Direction de l\'Informatique et du Pré-archivage', 'La Direction de l\'informatique et du pré-archivage assure, en relation avec toutes les structures du ministère, la conception'),
-(12, 'beppaag5dd2709c87dea', 'BEPPAAG', 'Bureau de l’Evaluation des Politiques Publiques et de l’Analyse de l’Action Gouvernementale');
+(12, 'beppaag5dd2709c87dea', 'BEPPAAG', 'Bureau de l’Evaluation des Politiques Publiques et de l’Analyse de l’Action Gouvernementale'),
+(13, 'maep5dd64fa196553', 'MAEP', 'Ministère de l\'Agriculture, de l\'Elevage et de la Pêche');
 
 -- --------------------------------------------------------
 
@@ -107,7 +108,8 @@ CREATE TABLE `evaluation_leading_authorities` (
 INSERT INTO `evaluation_leading_authorities` (`id`, `slug`, `name`, `description`) VALUES
 (1, 'societe-adeoti5dd0b55cde196', 'Société ADEOTI', 'Enreprise privée spécialisée dans la conception et la réalisation des travaux publics'),
 (2, 'laboratoire-amen5dd270810e62b', 'Laboratoire AMEN', 'Laboratoire d’Appui au Management et des Etudes Novatrices'),
-(3, 'cimes-benin5dd3fadb4aa5a', 'CIMES BENIN', 'Comptoir d’Ingénierie en Management, 01 BP 1959 Cotonou – BENIN, Téléphone : (229) 21.14.47.82 /95.69.47.89 ; cimesingenierie(at)yahoo.fr; boflorent(at)yahoo.fr');
+(3, 'cimes-benin5dd3fadb4aa5a', 'CIMES BENIN', 'Comptoir d’Ingénierie en Management, 01 BP 1959 Cotonou – BENIN, Téléphone : (229) 21.14.47.82 /95.69.47.89 ; cimesingenierie(at)yahoo.fr; boflorent(at)yahoo.fr'),
+(4, 'agetip5dd64f512313e', 'AGETIP', 'Agence d\'Exécution des Travaux d\'Intérêt Public');
 
 -- --------------------------------------------------------
 
@@ -139,7 +141,8 @@ INSERT INTO `evaluation_meta` (`id`, `evaluation_id`, `key`, `value`) VALUES
 (16, 3, 'description', '<p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">La PNDA a pour vision de faire de l’artisanat béninois « un secteur bien organisé à l’horizon 2025 où opèrent des entreprises artisanales compétitives, contribuant notablement à la valorisation du patrimoine national et au bien-être social de l’artisan et du béninois, dans un pays uni et de paix ».</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Elle comporte cinq (05) orientations stratégiques à savoir : (i) l’amélioration des conditions-cadres ; (ii) la promotion de l’organisation des acteurs ; (iii) le renforcement du savoir-faire et du savoir-être ; (iv) la promotion et le développement des microentreprises artisanales ; (v) la protection sociale des artisans.</p>'),
 (17, 3, 'methodological_approach', '<ul style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px 0px 0px 20px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; font-size: 12px;"><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Revue documentaire;</li><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Collecte d\'information auprès des acteurs au moyen d\'un guide d\'entretien;</li><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">51 acteurs représentant toutes les parties prenantes ont été interviewés;</li><li style="padding: 0px; margin: 0px 0px 5px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Recours à une grille d\'évaluation pour apprécier la pertinence, la cohérence, l’efficacité, l’efficience et la durabilité des orientations contenues dans la PNDA.</li></ul>'),
 (18, 3, 'results_resume', '<p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">La PNDA est-elle cohérente avec les Orientations Stratégiques de Développement ?</p><p><label style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; padding: 0px; margin: 0px; font-size: 12px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Les choix stratégiques opérés dans la PNDA sont de nature à opérationnaliser les orientations des politiques nationale et internationale.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Quel bilan peut-on faire de la mise en œuvre de la PNDA? Cette stratégie a-t-elle été efficace ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Au regard des faiblesses relevées et de la durée de validité et de mise en œuvre de la PNDA, il est difficile de dire que la mise en œuvre est efficace ou pas.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Toutefois, des efforts louables ont été accomplis en terme de réalisation de certaines actions, même si ces dernières ne sont pas les plus importantes.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">A moins de 11 ans de l’échéance fixée, l’espoir est permis, sur la base des niveaux de réalisation, que les objectifs seront atteints.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Les cadres institutionnel, législatif et réglementaire de mise en œuvre de la PNDA sont-ils adéquats pour prendre en charge efficacement les nouveaux défis du secteur de l’artisanat ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Le cadre institutionnel, législatif et réglementaire a connu des mutations favorables à la mise en œuvre de la PNDA mais demeure peu attractif du point de vue des acteurs de champ.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Le financement des secteurs de l’artisanat et du tourisme sont-ils en adéquation avec les objectifs de la PNDA ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Pas de réponse claire de l\'évaluation.</p><p style="font-family: montserrat, sans-serif, calibri, tahoma, verdana; box-sizing: border-box; padding: 0px; margin: 0px 0px 10px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Quels sont les effets de la mise en œuvre de la PNDA sur la croissance économique? Dans quelles mesures a-t-elle impacté la réduction de la pauvreté ?</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><label style="padding: 0px 0px 7px; margin: 0px 0px 10px; font-size: 17px; color: rgb(0, 0, 0); line-height: 22px; font-weight: 600; display: block; border-bottom: 1px solid rgb(230, 230, 230);"></label></p><div style="padding: 0px; margin: 0px;"><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">La contribution moyenne du secteur de l’artisanat est environ 10,8% du PIB du Bénin. Elle est relativement faible par rapport à la contribution des autres sous-secteurs de l’économie nationale.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">L’impact de la PNDA sur l’emploi est apprécié par le nombre d’emplois permanents et occasionnels générés par les entreprises artisanales. Entre 2006 et 2007, l’effectif global des employés permanents a progressé de 10%. Le nombre d’emplois occasionnels a évolué dans la même proportion que celui des emplois permanents.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;">Sur la base des résultats issus des enquêtes réalisées, 36% des agents enquêtés ont reconnu que la mise en œuvre de la PNDA a entrainé une augmentation de leur revenu sans pouvoir toutefois indiquer dans quelle proportion.</p><p style="padding: 0px; margin-right: 0px; margin-left: 0px; font-size: 15px; color: rgb(53, 53, 53); line-height: 22px;"><br></p></div></div></div></div></div>'),
-(19, 3, 'recommendation_actor_associated', '1');
+(19, 3, 'recommendation_actor_associated', '0'),
+(20, 2, 'recommendation_actor_associated', '1');
 
 -- --------------------------------------------------------
 
@@ -169,7 +172,9 @@ INSERT INTO `evaluation_sectors` (`id`, `slug`, `name`, `description`) VALUES
 (21, 'education5dd3f893abd1b', 'Education', 'Secteur d\'évaluations portant sur l\'Education au Bénin'),
 (22, 'infrastructures5dd3f8c883ab9', 'Infrastructures', 'Secteur d\'évaluations portant sur les Infrastructures au Bénin'),
 (23, 'administration5dd3f8e9b4c1f', 'Administration', 'Secteur d\'évaluations portant sur l\'Administration au Bénin'),
-(24, 'artisanat-et-tourisme5dd3fab54438d', 'Artisanat et Tourisme', 'Artisanat et Tourisme');
+(24, 'artisanat-et-tourisme5dd3fab54438d', 'Artisanat et Tourisme', 'Artisanat et Tourisme'),
+(25, 'services5dd62631820ff', 'Services', 'Secteur d\'évaluations portant sur les services au Bénin'),
+(26, 'eau-et-electricite5dd64f2218e3e', 'Eau et Electricité', 'Secteur d\'evaluation portant sur l\'Eau et Electricité');
 
 -- --------------------------------------------------------
 
@@ -188,10 +193,10 @@ CREATE TABLE `evaluation_sector_groups` (
 --
 
 INSERT INTO `evaluation_sector_groups` (`id`, `evaluation_id`, `sector_id`) VALUES
-(21, 2, 17),
-(22, 2, 16),
-(23, 2, 15),
-(26, 3, 24);
+(39, 2, 17),
+(40, 2, 16),
+(41, 2, 15),
+(42, 3, 24);
 
 -- --------------------------------------------------------
 
@@ -271,11 +276,11 @@ CREATE TABLE `evaluation_thematic_groups` (
 --
 
 INSERT INTO `evaluation_thematic_groups` (`id`, `evaluation_id`, `thematic_id`) VALUES
-(27, 2, 6),
-(28, 2, 5),
-(29, 2, 4),
-(30, 2, 3),
-(33, 3, 6);
+(46, 2, 6),
+(47, 2, 5),
+(48, 2, 4),
+(49, 2, 3),
+(50, 3, 6);
 
 -- --------------------------------------------------------
 
@@ -448,7 +453,7 @@ CREATE TABLE `options` (
 --
 
 INSERT INTO `options` (`id`, `key`, `value`) VALUES
-(1, 'siteName', 'BEPPAAG'),
+(1, 'siteName', 'PGEPE'),
 (2, 'siteDescription', 'Plateforme de Gestion des Processus Evaluatifs'),
 (3, 'googleRecaptchaPublicKey', '6LdBbL4UAAAAAN35hhhAHJ6V7PbZAeLG_RvC9weK'),
 (4, 'googleRecaptchaSecretKey', '6LdBbL4UAAAAAJEod1c6up-2iWfi2aXyAMQK1CH5'),
@@ -563,12 +568,21 @@ CREATE TABLE `recommendation_activities` (
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
   `execution_level` varchar(35) NOT NULL,
-  `explanation` text NOT NULL,
+  `explanation` text,
   `recipient` text,
   `active` int(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `recommendation_activities`
+--
+
+INSERT INTO `recommendation_activities` (`id`, `recommendation_id`, `title`, `amount`, `start_date`, `end_date`, `execution_level`, `explanation`, `recipient`, `active`, `created_at`, `updated_at`) VALUES
+(23, 3, 'Insécurité alimentaire : un regard sur les réponses apportées par les diverses parties prenantes', 0, NULL, NULL, 'executed', 'gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 'MED', 0, '2019-11-21 11:15:09', NULL),
+(24, 3, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt', 0, NULL, NULL, 'unexecuted', 'n, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 'MPA et MDA', 0, '2019-11-21 11:15:09', NULL),
+(25, 3, 'sddsdsd', 0, NULL, NULL, 'in_progress', '', 'sddsd', 0, '2019-11-21 11:15:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -621,7 +635,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, '1k1p00dbXkZkslMLPksngO', 1268889823, 1574233552, 1, 'Admin', 'istrator', 'ADMIN', '0');
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, 'Cm5e4YNkB54k31EQeIOdn.', 1268889823, 1574346020, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
@@ -909,27 +923,27 @@ ALTER TABLE `evaluations`
 -- AUTO_INCREMENT pour la table `evaluation_contracting_authorities`
 --
 ALTER TABLE `evaluation_contracting_authorities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `evaluation_leading_authorities`
 --
 ALTER TABLE `evaluation_leading_authorities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `evaluation_meta`
 --
 ALTER TABLE `evaluation_meta`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT pour la table `evaluation_sectors`
 --
 ALTER TABLE `evaluation_sectors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT pour la table `evaluation_sector_groups`
 --
 ALTER TABLE `evaluation_sector_groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT pour la table `evaluation_stats`
 --
@@ -949,7 +963,7 @@ ALTER TABLE `evaluation_thematics`
 -- AUTO_INCREMENT pour la table `evaluation_thematic_groups`
 --
 ALTER TABLE `evaluation_thematic_groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT pour la table `evaluation_types`
 --
@@ -1034,12 +1048,12 @@ ALTER TABLE `post_tag_groups`
 -- AUTO_INCREMENT pour la table `recommendations`
 --
 ALTER TABLE `recommendations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `recommendation_activities`
 --
 ALTER TABLE `recommendation_activities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT pour la table `recommendation_meta`
 --

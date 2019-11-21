@@ -17,7 +17,7 @@
         }
     } ?>
     <link href="<?= $assetsUrl ?>pro/css/app.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.032">
+    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.035">
 </head>
 <!-- end::Head -->
 
@@ -174,6 +174,12 @@
                             ?>
 
                         </div>
+                    </li>
+                    <li>
+                        <a target="_blank" data-toggle="tooltip" href="<?= site_url() ?>"
+                           data-placement="top" title="Accéder au site">
+                            <i class="anticon anticon-export"></i>
+                        </a>
                     </li>
                 </ul>
             </div>

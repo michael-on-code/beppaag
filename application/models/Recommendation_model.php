@@ -26,6 +26,36 @@ class Recommendation_model extends CI_Model{
         return $this->getRecommendationMeta($recommendation);
     }
 
+    public function setRecommendationActivities($recommendationID, $activities){
+        $date = date(getRegularDateTimeFormat());
+        if(!empty($activities)){
+            foreach ($activities as $key=>$activity){
+                if(trim(maybe_null_or_empty($activity, 'title'))==''){
+                    unset($activities[$key]);
+                    continue;
+                }
+                $activities[$key]['recommendation_id']=$recommendationID;
+                $activities[$key]['created_at']=$date;
+            }
+        }
+        $this->db->delete($this->_tables->activities, ['recommendation_id'=>$recommendationID]);
+        $this->db->insert_batch($this->_tables->activities, $activities);
+    }
+
+    public function getFieldByEvaluationID($evaluationID, $field='id'){
+        $this->db->select($field);
+        $result = $this->db->get_where($this->_tables->recommendations, ['evaluation_id'=>$evaluationID])->row();
+        return maybe_null_or_empty($result, $field, true);
+    }
+
+    public function getRecommendationActivities($recommendationID/*, $reOrderForRepeater=false*/){
+        $results = $this->db->get_where($this->_tables->activities, ['recommendation_id'=>$recommendationID])->result_array();
+        /*if(!empty($results) && $reOrderForRepeater){
+
+        }*/
+        return $results;
+    }
+
     public function insertOrUpdateRecommendation($data, $recommendationID=''){
         $metas = $this->get_metas_group();
         $meta_datas = [];
@@ -50,6 +80,7 @@ class Recommendation_model extends CI_Model{
                 $this->update_meta($recommendationID, $key, $meta_data);
             }
         }
+        return $recommendationID;
     }
 
 

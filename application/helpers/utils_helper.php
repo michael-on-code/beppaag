@@ -287,7 +287,7 @@ function getAllInTable($tableName, $isArray=true, $order=true, $orderByField='id
 function update_meta($id, $key, $value, $table_meta, $table_id_val)
 {
     $ci =& get_instance();
-    if (!empty($id) && !empty($key) && !empty($value)) {
+    if (!empty($id) && !empty($key)) {
         $query = $ci->db->get_where($table_meta, array(
             $table_id_val => $id,
             'key' => $key,
@@ -335,7 +335,7 @@ function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $
     echo form_upload($data['name'], '', $attributes);
 }
 
-function maybe_null_or_empty($element, $property, $returnNull = false)
+function maybe_null_or_empty($element, $property, $returnNull = false, $defaultValue="")
 {
     if (!isset($element)) {
         return null;
@@ -349,7 +349,7 @@ function maybe_null_or_empty($element, $property, $returnNull = false)
         if ($returnNull) {
             return null;
         }
-        return "";
+        return $defaultValue;
     }
 }
 

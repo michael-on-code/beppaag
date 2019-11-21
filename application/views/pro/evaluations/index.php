@@ -88,6 +88,12 @@
                                 <td data-sort="<?= strtotime($evaluation->created_at) ?>"><?= convert_date_to_french($evaluation->created_at) ?></td>
                                 <td ><?= $evaluation->first_name.' '.$evaluation->last_name ?></td>
                                 <td class="text-center actions-btn-container">
+
+                                    <a target="_blank" href="<?= site_url("evaluations/$evaluation->slug") ?>" data-toggle="tooltip"
+                                       data-placement="top" title="Voir Evaluation"
+                                       class="btn btn-dark btn-icon">
+                                        <i class="anticon anticon-eye"></i>
+                                    </a>
                                     <a href="<?= pro_url("evaluations/edit/$evaluation->slug") ?>" data-toggle="tooltip"
                                        data-placement="top" title="Modifier evaluation"
                                        class="btn btn-primary btn-icon">
@@ -96,10 +102,10 @@
                                     <?php
                                     if ($isEditor && !$evaluation->active) {
                                         ?>
-                                        <a data-confirm-message="Voulez-vous vraiment activer cette évaluation ?"
+                                        <a data-confirm-message="Voulez-vous vraiment activer et publier cette évaluation ?"
                                            href="#"
                                            data-href="<?= pro_url("evaluations/activate/$evaluation->slug") ?>" data-toggle="tooltip"
-                                           data-placement="top" title="Activer évaluation"
+                                           data-placement="top" title="Activer & Publier évaluation"
                                            class="btn btn-success btn-icon prompt">
                                             <i class="anticon anticon-check"></i>
                                         </a>

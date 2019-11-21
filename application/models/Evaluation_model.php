@@ -158,6 +158,8 @@ class Evaluation_model extends CI_Model
             $evaluation['recommendation_user_id'] = $recommendationData['user_id'];
             $evaluation['recommendation_start_date'] = convert_date_to_english($recommendationData['start_date'], '-', getRegularDateTimeFormat(), 'd/m/Y');
             $evaluation['recommendation_comment'] = $recommendationData['attribution_comment'];
+            $evaluation['activities'] = $this->recommendation_model->getRecommendationActivities($recommendationData['id']);
+
         }
         return $evaluation;
     }
@@ -170,14 +172,14 @@ class Evaluation_model extends CI_Model
         $sectors = $data['sector_id'];
         $thematics = $data['thematic_id'];
         unset($data['sector_id'], $data['thematic_id']);
-
+        $data['recommendation_actor_associated']=(int) maybe_null_or_empty($data, 'recommendation_actor_associated');
         if($isActorAssociated){
             //recommendations
             $recommendationData['user_id'] = $data['recommendation_user_id'];
             $recommendationData['attribution_comment'] = $data['recommendation_comment'];
             $recommendationData['start_date'] = convert_date_to_english($data['recommendation_start_date']);
-            unset($data['recommendation_user_id'], $data['recommendation_comment'], $data['recommendation_start_date']);
         }
+        unset($data['recommendation_user_id'], $data['recommendation_comment'], $data['recommendation_start_date']);
 
         //metas
         $metas = $this->get_metas_group();
@@ -191,6 +193,9 @@ class Evaluation_model extends CI_Model
             }
         }
         if ($evaluationID == '' && !$update) {
+            if(user_can('editor')){
+                $data['active']=1;
+            }
             $data['slug'] = getSlugifyString($data['title'], true, true, true, 40) . uniqid();
             $data['created_by'] = get_current_user_id();
             $data['created_at'] = date(getRegularDateTimeFormat());
@@ -218,11 +223,20 @@ class Evaluation_model extends CI_Model
         }
         $this->insertOrUpdateEvaluationSectorGroup($sectorToInsert, 'evaluation_id', $evaluationID);
         $this->insertOrUpdateEvaluationThematicGroup($thematicToInsert, 'evaluation_id', $evaluationID);
+        $recommendationData['evaluation_id'] = $evaluationID;
+        $recommendationID = $this->recommendation_model->getFieldByEvaluationID($evaluationID);
         if(!$update && $isActorAssociated){
-            $recommendationData['evaluation_id'] = $evaluationID;
-            $this->recommendation_model->insertOrUpdateRecommendation($recommendationData);
+            $recommendationID = $this->recommendation_model->insertOrUpdateRecommendation($recommendationData);
         }
-        if(!$isActorAssociated)
+        if(!(isset($recommendationID) && $recommendationID)){
+            $recommendationData['user_id']=get_current_user_id();
+            $recommendationID = $this->recommendation_model->insertOrUpdateRecommendation($recommendationData);
+        }
+        if(!$isActorAssociated){
+            if(!empty($activityData)){
+                $this->recommendation_model->setRecommendationActivities($recommendationID, $activityData);
+            }
+        }
         return $evaluationID;
     }
 

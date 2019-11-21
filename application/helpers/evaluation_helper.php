@@ -118,7 +118,7 @@ function setEvaluationFormValidation($edit = false, $evaluationID = '')
         }
         setFormValidationRules($validations);
         if ($ci->form_validation->run()) {
-            if ($ci->evaluation_model->insertOrUpdateEvaluation($edit, $evaluation, $evaluationID, $isActorAssociated, $this->input->post('activity'))) {
+            if ($ci->evaluation_model->insertOrUpdateEvaluation($edit, $evaluation, $evaluationID, $isActorAssociated, $ci->input->post('activity'))) {
                 get_success_message('Evaluation ' . ($edit ? 'modifiée' : 'ajoutée') . ' avec succès');
                 pro_redirect('evaluations');
             } else {
@@ -704,7 +704,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                         <div class="row">
                             <div class="form-group col-md-12 d-flex align-items-center">
                                 <div class="switch m-r-10">
-                                    <?= form_checkbox('evaluation[recommendation_actor_associated]', 1, true, [
+                                    <?= form_checkbox('evaluation[recommendation_actor_associated]', 1, maybe_null_or_empty($evaluation, 'recommendation_actor_associated', false, true), [
                                         'class' => 'recommendation-actor-switcher',
                                         'id' => 'switcher'
                                     ]) ?>
@@ -739,7 +739,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                         echo form_label($title = "Date de début de recommandation", $id = 'recommendation_start_date');
                                         echo form_input([
                                             'name' => $name = 'evaluation[recommendation_start_date]',
-                                            'class' => 'form-control ignore datepicker-input',
+                                            'class' => 'form-control ignore datepicker-input starts-from-today',
                                             'placeholder' => $title,
                                             'id' => $id,
                                             'required' => '',
@@ -768,98 +768,30 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                             </div>
                             <!--                            Personal Recommendation Insert-->
                             <div class="col-md-12" id="personal_insert_recommendation_formgroups">
-
-                                <div class="my-repeater"
+                                <?php
+                                $activities = maybe_null_or_empty($evaluation, 'activities', true);
+                                $activitiesNotEmpty = !empty($activities);
+                                ?>
+                                <div class="my-repeater "
                                      delete-message="Etes-vous sûr de vouloir supprimer cette activité de recommendation">
-                                    <div class="row" data-repeater-list="activity">
+                                    <div class="row <?= $activitiesNotEmpty ? 'not-empty': '' ?>" data-repeater-list="activity" >
                                         <div class="form-group col-md-12">
                                             <button title="Ajouter nouvelle activité" type="button" data-repeater-create
                                                     class="btn btn-primary mail-open-compose real-btn-primary">
                                                 <i class="anticon anticon-plus"></i>
                                                 <span class="m-l-5">Ajouter nouvelle activité</span>
+                                                <span class="badge badge-indicator badge-danger my-repeater-badge"><?= $activitiesNotEmpty ? count($activities) : 1 ?></span>
                                             </button>
                                         </div>
-                                        <div class="col-md-6 repeater-item" data-repeater-item>
-                                            <button title="Supprimer activité" type="button" data-repeater-delete
-                                                    class="btn btn-danger btn-rounded">
-                                                <i class="anticon anticon-delete"></i>
-                                            </button>
-
-                                            <div class="form-group">
-                                                <?php
-                                                echo form_label($title = "Titre de l'activité de recommendation", $id = 'activity_title');
-                                                echo form_input([
-                                                    'name' => $name = 'title',
-                                                    'class' => 'ignore form-control',
-                                                    'placeholder' => $title,
-                                                    //'id' => $id,
-                                                    'required' => '',
-                                                    //'value' => set_value($name, maybe_null_or_empty($evaluation, $id))
-                                                ]);
-                                                ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <?php
-                                                echo form_label($title = "Destinataire de l'activité de recommendation", $id = 'activity_recipient');
-                                                echo form_input([
-                                                    'name' => $name = 'recipient',
-                                                    'class' => ' ignore form-control',
-                                                    'placeholder' => $title,
-                                                    //'id' => $id,
-                                                    'required' => '',
-                                                    //'value' => set_value($name, maybe_null_or_empty($evaluation, $id))
-                                                ]);
-                                                ?>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-
-                                                    <?php
-                                                    echo form_label($title = "Montant prévu pour l'activité de recommendation", $id = 'activity_amount');
-                                                    ?>
-                                                    <div class="input-group">
-                                                        <?php
-                                                        echo form_input([
-                                                            'name' => $name = 'amount',
-                                                            'class' => 'ignore form-control ',//currencyInput
-                                                            'placeholder' => $title,
-                                                            //'id' => $id,
-                                                            //'required' => '',
-                                                            //'value' => set_value($name, maybe_null_or_empty($evaluation, $id))
-                                                        ]);
-                                                        ?>
-
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text" id="basic-addon2">FCFA</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <?php
-                                                    echo form_label($title = "Niveau d'execution de l'activité de recommendation", $id = 'activity_execution_level');
-                                                    echo form_dropdown('execution_level', getExecutionLevels(false), '', [
-                                                        'class' => 'ignore form-control',
-                                                        'required' => ''
-                                                    ]);
-                                                    ?>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <?php
-                                                echo form_label($title = "Commentaire de l'activité de recommendation", $id = 'activity_explanation');
-                                                echo form_textarea([
-                                                    'name' => $name = 'explanation',
-                                                    'class' => 'ignore form-control',
-                                                    'placeholder' => $title,
-                                                    //'id' => $id,
-                                                    'rows' => 3,
-                                                    //'required' => '',
-                                                    //'value' => set_value($name, maybe_null_or_empty($evaluation, $id))
-                                                ]);
-                                                ?>
-                                            </div>
-                                        </div>
+                                        <?php
+                                        //Default first one
+                                        getRecommendationActivityRepeaterItem([], 'first-one', ($activitiesNotEmpty ? 'ignore-completely': ''));
+                                        if($activitiesNotEmpty){
+                                            foreach ($activities as $activity){
+                                                getRecommendationActivityRepeaterItem($activity);
+                                            }
+                                        }
+                                        ?>
                                     </div>
                                 </div>
 
@@ -886,6 +818,92 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
     ?>
     <?php
 
+}
+
+function getRecommendationActivityRepeaterItem($values=[], $additionalClassToParent='', $additionalClassToFields=''){
+    ?>
+    <div class="col-md-6 repeater-item <?= $additionalClassToParent ?>" data-repeater-item>
+        <button title="Supprimer activité" type="button" data-repeater-delete
+                class="btn btn-danger btn-rounded">
+            <i class="anticon anticon-delete"></i>
+        </button>
+
+        <div class="form-group">
+            <?php
+            echo form_label($title = "Titre de l'activité de recommendation", $id = 'activity_title');
+            echo form_input([
+                'name' => $name = 'title',
+                'class' => "ignore form-control $additionalClassToFields",
+                'placeholder' => $title,
+                //'id' => $id,
+                'required' => '',
+                'value' => maybe_null_or_empty($values, 'title')
+            ]);
+            ?>
+        </div>
+        <div class="form-group">
+            <?php
+            echo form_label($title = "Destinataire de l'activité de recommendation", $id = 'activity_recipient');
+            echo form_input([
+                'name' => $name = 'recipient',
+                'class' => "ignore form-control $additionalClassToFields",
+                'placeholder' => $title,
+                //'id' => $id,
+                'required' => '',
+                'value' => maybe_null_or_empty($values, 'recipient')
+            ]);
+            ?>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+
+                <?php
+                echo form_label($title = "Montant prévu pour l'activité de recommendation", $id = 'activity_amount');
+                ?>
+                <div class="input-group">
+                    <?php
+                    echo form_input([
+                        'name' => $name = 'amount',
+                        'class' => "ignore form-control $additionalClassToFields",//currencyInput
+                        'placeholder' => $title,
+                        //'id' => $id,
+                        //'required' => '',
+                        'value' => maybe_null_or_empty($values, 'amount')
+                    ]);
+                    ?>
+
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">FCFA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <?php
+                echo form_label($title = "Niveau d'execution de l'activité de recommendation", $id = 'activity_execution_level');
+                echo form_dropdown('execution_level', getExecutionLevels(false), maybe_null_or_empty($values, 'execution_level'), [
+                    'class' => "ignore form-control $additionalClassToFields",
+                    'required' => ''
+                ]);
+                ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?php
+            echo form_label($title = "Commentaire de l'activité de recommendation", $id = 'activity_explanation');
+            echo form_textarea([
+                'name' => $name = 'explanation',
+                'class' => "ignore form-control $additionalClassToFields",
+                'placeholder' => $title,
+                //'id' => $id,
+                'rows' => 3,
+                //'required' => '',
+                'value' => maybe_null_or_empty($values, 'explanation')
+            ]);
+            ?>
+        </div>
+    </div>
+    <?php
 }
 
 function getAddOrEditSectorHTML($edit = false, $sector = [], $pageTitle)
