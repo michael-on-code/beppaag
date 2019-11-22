@@ -49,9 +49,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+//TODO use :any instead of (.+). View DOc URI Routing
 $route['default_controller'] = 'home';
 $route['404_override'] = 'p_404';
 $route['events/(.+)'] = 'events/index/(.+)';
+$route['evaluations/page/:num'] = 'evaluations/index/$1';
+//$route['evaluation/year/(.+)'] = 'evaluation/year/(.+)';
+//$route['evaluation/sector/(.+)'] = 'evaluation/sector/(.+)';
+//$route['evaluation/(.+)'] = 'evaluation/(.+)';
 $route['blog/(.+)'] = 'blog/index/(.+)';
 $route['admin'] = 'admin-login';
 $route['admin/(.+)'] = 'admin-'.'$1';

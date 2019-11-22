@@ -15,6 +15,48 @@ class Evaluation_model extends CI_Model
         $this->_tables = getEvaluationTablesNames();
     }
 
+    public function getDistinctYears($forSelect2=false, $defaultSelect2FirstOptionValue=''){
+        $this->db->distinct();
+        $this->db->select('year');
+        $years = $this->db->get($this->_tables->evaluations)->result_array();
+        if($forSelect2){
+            $temp=[''=>$defaultSelect2FirstOptionValue];
+            if(!empty($years)){
+                foreach ($years as $value){
+                    $temp[$value['year']]=$value['year'];
+                }
+            }
+            return $temp;
+        }
+        return $years;
+    }
+
+    public function getMinifiedAll($select = '*', $onlyActiveOnes=true, $page=0, $limit=8){
+        $this->db->select($select);
+        $this->db->limit($limit, $page);
+        if ($onlyActiveOnes) {
+            $this->db->where(['active' => 1]);
+        }
+        $evaluations = $this->db->get($this->_tables->evaluations)->result();
+        $countResult = count($evaluations);
+        $this->db->reset_query();
+        $this->db->select('id');
+        if ($onlyActiveOnes) {
+            $this->db->where(['active' => 1]);
+        }
+        $data = [
+            'evaluations'=>$evaluations,
+            'total'=>$this->db->count_all_results($this->_tables->evaluations, TRUE),
+            'start'=>($start=$page*$limit)+1,
+            'currentOffset'=>$page+1,
+            'end'=>$start+$countResult,
+            'countResult'=>$countResult
+        ];
+        $this->db->reset_query();
+        return $data;
+
+    }
+
     public function getAll($onlyActiveOnes = true, $sectorsInString = true, $thematicsInString = true, $resultInArray = true, $order=true, $orderByField='id', $orderBy='desc')
     {
         $tables = $this->_tables;

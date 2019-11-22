@@ -42,15 +42,16 @@ function getSpecificImageSizeDimensions($sizeName)
     return maybe_null_or_empty(imageSizes(), $sizeName, true);
 }
 
-function getUploadedImageBySize($imageFullName, $imageSize='', $withFullUrl=true){
+function getUploadedImageBySize($imageFullName, $imageSize = '', $withFullUrl = true)
+{
     $allSizes = getAllImageSizes();
-    if(!($imageSize=='' || !isset($allSizes[$imageSize]))){
+    if (!($imageSize == '' || !isset($allSizes[$imageSize]))) {
         $info = pathinfo($imageFullName);
-        if(!empty($info)){
-            $imageFullName = $info['filename'].'-'.$imageSize.'.'.$info['extension'];
+        if (!empty($info)) {
+            $imageFullName = $info['filename'] . '-' . $imageSize . '.' . $info['extension'];
         }
     }
-    return ($withFullUrl ? get_upload_path() : '').$imageFullName;
+    return ($withFullUrl ? get_upload_path() : '') . $imageFullName;
 }
 
 function getAllImageSizes()
@@ -116,9 +117,9 @@ function upload_data($args, $names, $resize = false, $encryptName = true)
                     $config2['image_library'] = 'gd2';
                     $config2['source_image'] = $data[$name]['full_path'];
                     $sizes = getAllImageSizes();
-                    if(!empty($sizes)){
-                        foreach ($sizes as $keySize=> $size){
-                            $config2['new_image'] = $data[$name]['file_path'].$data[$name]['raw_name'].'-'.$keySize.$data[$name]['file_ext'];
+                    if (!empty($sizes)) {
+                        foreach ($sizes as $keySize => $size) {
+                            $config2['new_image'] = $data[$name]['file_path'] . $data[$name]['raw_name'] . '-' . $keySize . $data[$name]['file_ext'];
                             $config2['maintain_ratio'] = TRUE;
                             //$config2['master_dim'] = 'auto';
                             $config2['width'] = $size['width'];
@@ -202,7 +203,7 @@ function get_success_message($msg, $delay = '')
     set_flashdata($msg, 'success', $delay);
 }
 
-function convert_date_to_english($date, $characterToCheck='/' ,$inputFormat='d/m/Y', $outputFormat='Y-m-d')
+function convert_date_to_english($date, $characterToCheck = '/', $inputFormat = 'd/m/Y', $outputFormat = 'Y-m-d')
 {
     if ($date && is_string($date) && strpos($date, $characterToCheck)) {
         return DateTime::createFromFormat($inputFormat, $date)->format($outputFormat);
@@ -226,58 +227,105 @@ function redirect_if_id_is_not_valid($id, $table_name = '', $redirect)
     redirect($redirect);
 }
 
-function getSlugifyString($string, $toLower=true, $removeBlankSpace=true, $replaceSpaceWithDash=true, $limitToNWords=40)
+function getSlugifyString($string, $toLower = true, $removeBlankSpace = true, $replaceSpaceWithDash = true, $limitToNWords = 40)
 {
     $ci = &get_instance();
     $ci->load->helper('text');
     $nonAccentedString = convert_accented_characters($string);
-    if($replaceSpaceWithDash){
-        $nonAccentedString=trim($nonAccentedString);
+    if ($replaceSpaceWithDash) {
+        $nonAccentedString = trim($nonAccentedString);
         $nonAccentedString = str_replace(" ", "-", $nonAccentedString);
     }
-    if($removeBlankSpace){
+    if ($removeBlankSpace) {
         $nonAccentedString = preg_replace('/[^a-zA-Z0-9-_\.]/', '', $nonAccentedString);
     }
-    if($toLower){
+    if ($toLower) {
         $nonAccentedString = strtolower($nonAccentedString);
     }
-    if($limitToNWords){
+    if ($limitToNWords) {
         $nonAccentedString = substr($nonAccentedString, 0, $limitToNWords);
     }
     return $nonAccentedString;
 }
 
-function getIDBySlug($tableName, $slug){
-    $ci=&get_instance();
+function getIDBySlug($tableName, $slug)
+{
+    $ci =& get_instance();
     $ci->db->select('id');
-    $result = $ci->db->get_where($tableName, ['slug'=>$slug])->row();
+    $result = $ci->db->get_where($tableName, ['slug' => $slug])->row();
     return maybe_null_or_empty($result, 'id', true);
 }
 
-function getTableByID($tableName, $id, $isArray=true){
-    $ci=&get_instance();
-    $result = $ci->db->get_where($tableName, ['id'=>$id]);
-    if($isArray){
+function getTableByID($tableName, $id, $isArray = true)
+{
+    $ci =& get_instance();
+    $result = $ci->db->get_where($tableName, ['id' => $id]);
+    if ($isArray) {
         return $result->row_array();
     }
     return $result->row();
 }
 
-function getAllInTable($tableName, $isArray=true, $order=true, $orderByField='id', $orderBy='desc', $forSelect2=false, $keyFieldForSelect2='id', $valueFieldForSelect2='name', $initialBlankValueForSelect2=true){
-    $ci=&get_instance();
-    if($order){
+function getEvaluationTablesNames()
+{
+    $tables = new stdClass();
+    $tables->evaluations = 'evaluations';
+    $tables->sectors = 'evaluation_sectors';
+    $tables->temporalities = 'evaluation_temporalities';
+    $tables->thematics = 'evaluation_thematics';
+    $tables->sector_group = 'evaluation_sector_groups';
+    $tables->thematic_group = 'evaluation_thematic_groups';
+    $tables->types = 'evaluation_types';
+    $tables->stats = 'evaluation_stats';
+    $tables->meta = 'evaluation_meta';
+    $tables->leading_authorities = 'evaluation_leading_authorities';
+    $tables->contracting_authorities = 'evaluation_contracting_authorities';
+    return $tables;
+}
+
+function getFullDateInFrench($date, $inputFormat = 'Y-m-d')
+{
+    $day = DateTime::createFromFormat($inputFormat, $date)->format('d');
+    $month = DateTime::createFromFormat($inputFormat, $date)->format('m');
+    $year = DateTime::createFromFormat($inputFormat, $date)->format('Y');
+    return "$day ".getFrenchMonths()[$month]." $year";
+}
+
+function getFrenchMonths()
+{
+    return [
+        '1' => 'Janvier',
+        '2' => 'Février',
+        '3' => 'Mars',
+        '4' => 'Avril',
+        '5' => 'Mai',
+        '6' => 'Juin',
+        '7' => 'Juillet',
+        '8' => 'Août',
+        '9' => 'Septembre',
+        '10' => 'Octobre',
+        '11' => 'Novembre',
+        '12' => 'Décembre',
+    ];
+}
+
+function getAllInTable($tableName, $isArray = true, $order = true, $orderByField = 'id', $orderBy = 'desc', $forSelect2 = false, $keyFieldForSelect2 = 'id', $valueFieldForSelect2 = 'name', $initialBlankValueForSelect2 = true, $specificDBSelect = "*", $defaultSelect2FirstOptionValue = '')
+{
+    $ci =& get_instance();
+    $ci->db->select($specificDBSelect);
+    if ($order) {
         $ci->db->order_by($orderByField, $orderBy);
     }
     $results = $ci->db->get($tableName);
-    if($isArray){
+    if ($isArray) {
         $results = $results->result_array();
-    }else{
-        $results = $results->result();   
+    } else {
+        $results = $results->result();
     }
-    if($forSelect2){
-        $temp=$initialBlankValueForSelect2 ? [''=>''] : [];
-        foreach ($results as $key => $result){
-            $temp[maybe_null_or_empty($result, $keyFieldForSelect2)]=maybe_null_or_empty($result, $valueFieldForSelect2);
+    if ($forSelect2) {
+        $temp = $initialBlankValueForSelect2 ? ['' => $defaultSelect2FirstOptionValue] : [];
+        foreach ($results as $key => $result) {
+            $temp[maybe_null_or_empty($result, $keyFieldForSelect2)] = maybe_null_or_empty($result, $valueFieldForSelect2);
         }
         return $temp;
     }
@@ -308,7 +356,8 @@ function update_meta($id, $key, $value, $table_meta, $table_id_val)
     }
 }
 
-function getRegularDateTimeFormat(){
+function getRegularDateTimeFormat()
+{
     return 'Y-m-d G:i:s';
 }
 
@@ -319,7 +368,7 @@ function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $
     $attributes = array(
         'data-default-file' => maybe_null_or_empty($data, 'value'),
         'class' => "dropify $additionalClass",
-        'id' => 'my_dropify_'.(isset($data['attributes']) ? $data['attributes']['data-target'] : rand(1, 10000)),
+        'id' => 'my_dropify_' . (isset($data['attributes']) ? $data['attributes']['data-target'] : rand(1, 10000)),
         'data-max-file-size' => $maxSize,
         'data-allowed-file-extensions' => $extensions,
         'value' => set_value($data['name'], maybe_null_or_empty($data, 'value'))
@@ -335,7 +384,7 @@ function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $
     echo form_upload($data['name'], '', $attributes);
 }
 
-function maybe_null_or_empty($element, $property, $returnNull = false, $defaultValue="")
+function maybe_null_or_empty($element, $property, $returnNull = false, $defaultValue = "")
 {
     if (!isset($element)) {
         return null;
@@ -552,9 +601,9 @@ function get_metas($id, $table_meta, $table_id_val)
         $query = $ci->db->get_where($table_meta, array(
             $table_id_val => $id,
         ))->result_array();
-        $temp=[];
-        if(!empty($query)){
-            foreach ($query as $quer){
+        $temp = [];
+        if (!empty($query)) {
+            foreach ($query as $quer) {
                 $temp[$quer['key']] = maybe_unserialize(maybe_null_or_empty($quer, 'value'));
             }
         }
@@ -562,20 +611,20 @@ function get_metas($id, $table_meta, $table_id_val)
     }
 }
 
-function megaMetasInsert(array $metaDatas, $id, $table_id_val){
-        if(!empty($metaDatas)){
-            $insertionArray=[];
-            $counter = 0;
-            foreach ($metaDatas as $key => $metaData){
-                $insertionArray[$counter]['key']=$key;
-                $insertionArray[$counter]['value']=maybe_serialize($metaData);
-                $insertionArray[$counter][$table_id_val]=$id;
-                $counter++;
-            }
-            $this->db->insert_batch($this->_tables->meta, $insertionArray);
+function megaMetasInsert(array $metaDatas, $id, $table_id_val)
+{
+    if (!empty($metaDatas)) {
+        $insertionArray = [];
+        $counter = 0;
+        foreach ($metaDatas as $key => $metaData) {
+            $insertionArray[$counter]['key'] = $key;
+            $insertionArray[$counter]['value'] = maybe_serialize($metaData);
+            $insertionArray[$counter][$table_id_val] = $id;
+            $counter++;
         }
+        $this->db->insert_batch($this->_tables->meta, $insertionArray);
     }
-
+}
 
 
 function convert_date_to_french($date)
@@ -604,7 +653,7 @@ function control_unique_on_update($value, $db_field)
     $id_value = $db_field[2];
     //$value = mysqli_real_escape_string($value);
     $ci->db->select('id');
-    $query= $ci->db->get_where($table, [$target_field=>$value])->row();
+    $query = $ci->db->get_where($table, [$target_field => $value])->row();
     if ($queryId = maybe_null_or_empty($query, 'id')) {
         if ($id_value != $queryId) {
             $ci->form_validation->set_message('is_unique_on_update', "La valeur {field} existe dejà");

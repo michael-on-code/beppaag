@@ -1,5 +1,5 @@
 <div class="main-content">
-    <div class="row">
+    <!--<div class="row">
         <div class="col-md-6 col-lg-3">
             <div class="card">
                 <div class="card-body">
@@ -60,6 +60,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
 </div>

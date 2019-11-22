@@ -6,23 +6,6 @@
  * Time: 08:29
  */
 
-function getEvaluationTablesNames()
-{
-    $tables = new stdClass();
-    $tables->evaluations = 'evaluations';
-    $tables->sectors = 'evaluation_sectors';
-    $tables->temporalities = 'evaluation_temporalities';
-    $tables->thematics = 'evaluation_thematics';
-    $tables->sector_group = 'evaluation_sector_groups';
-    $tables->thematic_group = 'evaluation_thematic_groups';
-    $tables->types = 'evaluation_types';
-    $tables->stats = 'evaluation_stats';
-    $tables->meta = 'evaluation_meta';
-    $tables->leading_authorities = 'evaluation_leading_authorities';
-    $tables->contracting_authorities = 'evaluation_contracting_authorities';
-    return $tables;
-}
-
 function myWordLimiter($string, $limit=6){
     $ci=&get_instance();
     $ci->load->helper('text');

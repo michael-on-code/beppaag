@@ -1,6 +1,16 @@
 jQuery(document).ready(function($) {
     "use strict"
-
+    var pageUrl = window.location.href.split(/[?#]/)[0];
+    if($('ul.nav.navbar-nav').length){
+        $('ul.nav.navbar-nav li').each(function () {
+            //TODO dropdown
+            $(this).find('a').each(function () {
+                if($(this).attr('href') == pageUrl){
+                    $(this).addClass('active');
+                }
+            });
+        })
+    }
     if($('.cutter').length){
         $('.cutter').each(function () {
             $(this).line($(this).attr('data-line') ? $(this).attr('data-line') : 2, "...")
