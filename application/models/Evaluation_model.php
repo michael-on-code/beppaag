@@ -31,11 +31,14 @@ class Evaluation_model extends CI_Model
         return $years;
     }
 
-    public function getMinifiedAll($select = '*', $onlyActiveOnes=true, $page=0, $limit=8){
+    public function getMinifiedAll($select = '*', $onlyActiveOnes=true, $page=0, $limit=8, $order=true, $orderByField='id', $orderBy='desc'){
         $this->db->select($select);
         $this->db->limit($limit, $page);
         if ($onlyActiveOnes) {
             $this->db->where(['active' => 1]);
+        }
+        if($order){
+            $this->db->order_by($orderByField, $orderBy);
         }
         $evaluations = $this->db->get($this->_tables->evaluations)->result();
         $countResult = count($evaluations);

@@ -28,7 +28,7 @@ class Evaluations extends Public_Controller {
         $this->load->helper('form');
         $choose= 'Choisir ...';
         $this->data['pageTitle']= 'Liste des Evaluations';
-        $evaluationData = $this->evaluation_model->getMinifiedAll('title, year, created_at, slug', true, $page);
+        $evaluationData = $this->evaluation_model->getMinifiedAll('id, title, year, created_at, slug', true, $page);
         $this->data['evaluations']=$evaluationData['evaluations'];
         $this->data['totalCount']=$evaluationData['total'];
         $this->data['countStart']=$evaluationData['start'];
