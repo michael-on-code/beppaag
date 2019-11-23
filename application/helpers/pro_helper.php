@@ -20,6 +20,12 @@ function getRecommendationTablesNames(){
     return $tables;
 }
 
+function includeFancyBoxAssets(){
+    $ci=&get_instance();
+    $ci->data['footerJs'][]=$ci->data['assetsUrl']."pro/vendors/fancybox/jquery.fancybox.js";
+    $ci->data['headerCss'][]=$ci->data['assetsUrl']."pro/vendors/fancybox/jquery.fancybox.min.css";
+}
+
 function includeDatatablesAssets(){
     $ci=&get_instance();
     $ci->data['footerJs'][]=$ci->data['assetsUrl']."pro/vendors/datatables/jquery.dataTables.min.js";

@@ -831,12 +831,13 @@ function getRecommendationActivityRepeaterItem($values=[], $additionalClassToPar
         <div class="form-group">
             <?php
             echo form_label($title = "Titre de l'activité de recommendation", $id = 'activity_title');
-            echo form_input([
+            echo form_textarea([
                 'name' => $name = 'title',
                 'class' => "ignore form-control $additionalClassToFields",
                 'placeholder' => $title,
                 //'id' => $id,
                 'required' => '',
+                'rows' => 3,
                 'value' => maybe_null_or_empty($values, 'title')
             ]);
             ?>

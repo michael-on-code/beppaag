@@ -127,7 +127,8 @@
 <script src="<?= $assetsUrl ?>public/js/jquery.min.js"></script>
 <!--<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 <script src="<?= $assetsUrl ?>public/js/bootstrap.min.js"></script>
-<?php if (isset($footerJs) && !empty($footerJs)) {
+<?php
+if (isset($footerJs) && !empty($footerJs)) {
     foreach ($footerJs as $js) {
         ?>
         <script src="<?= $js ?>" type="text/javascript"></script>
@@ -146,7 +147,8 @@ if (isset($clientData) && !empty($clientData)) {
 <script src="<?= $assetsUrl ?>public/js/owl.carousel.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/line-cutter.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>
-<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.05"></script>
+<script src="<?= $assetsUrl ?>public/js/scrollIt.min.js"></script>
+<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.08"></script>
 </body>
 
 </html>

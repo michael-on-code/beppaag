@@ -71,12 +71,12 @@
                 <!--Local Box Start-->
                 <div class="col-md-3 col-sm-3">
                     <div class="deprt-icon-box">
-                        <a href="<?= site_url('/') ?>">
+                        <a data-scroll-nav="1" href="<?= site_url('/') ?>">
                             <img data-src="<?= $assetsUrl ?>public/images/analysis-symbol.png" alt="">
                         </a>
-                        <h6> <a href="<?= site_url('/') ?>">Statistiques</a>
+                        <h6> <a data-scroll-nav="1" href="<?= site_url('/') ?>">Statistiques</a>
                         </h6>
-                        <a class="rm" href="<?= site_url('/') ?>">Découvrir</a>
+                        <a class="rm" data-scroll-nav="1" href="<?= site_url('/') ?>">Découvrir</a>
                     </div>
                 </div>
                 <!--Local Box End-->
@@ -302,13 +302,12 @@
             background-size: cover;
         }
     </style>
-    <section class="wf100 p80 fact-newsletter">
+    <section class="wf100 p80 fact-newsletter" data-scroll-index="1">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="title-style-1 white">
-                        <h2>Nos stats &  chiffres</h2>
-                        <!--<p>Découvrez nos </p>-->
+                        <h2>Nos chiffres</h2>
                     </div>
                     <div class="row">
                         <ul class="counter">
@@ -338,11 +337,6 @@
                             </li>
 
                         </ul>
-                    </div>
-                    <div class="row ">
-                        <div class="col-md-12 title-style-2 text-center">
-                            <a class="mg-t-17 my-a " href="#">Voir toutes les stats</a>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
