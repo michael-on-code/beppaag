@@ -53,7 +53,7 @@
                                                 <img class="wd-70-f" src="<?= getUploadedImageBySize($evaluation->cover_photo, '150x150')?>" alt="">
                                             </div>
                                             <div class="overlay-box">
-                                                <a data-fancybox="1" href="<?= getUploadedImageBySize($evaluation->cover_photo)?>" class="img-popup"><figure><img src="<?= $assetsUrl ?>pro/images/others/gallery-icon.png" alt=""></figure></a>
+                                                <a data-fancybox="1" href="<?= getUploadedImageBySize($evaluation->cover_photo)?>" class="img-popup"><figure><img src="<?= $assetsUrl ?>pro/images/others/zoom-in-icon.png" alt=""></figure></a>
                                             </div>
                                         </div>
                                     </div>
