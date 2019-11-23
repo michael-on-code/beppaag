@@ -63,21 +63,29 @@ class Evaluation_model extends CI_Model
     public function getAll($onlyActiveOnes = true, $sectorsInString = true, $thematicsInString = true, $resultInArray = true, $order=true, $orderByField='id', $orderBy='desc')
     {
         $tables = $this->_tables;
-        $this->db->select("$tables->evaluations.*, $tables->types.name as type, $tables->temporalities.name as temporality, 
+        $recommendationTables = getRecommendationTablesNames();
+        $this->db->select("$tables->evaluations.*, $tables->types.name as type, $recommendationTables->recommendations.id as U_recommendation_id, $tables->temporalities.name as temporality, 
         $tables->leading_authorities.name as leading_authority, $tables->contracting_authorities.name as contracting_authority, 
-       users.first_name, users.last_name");
+       users.first_name, users.last_name, (SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
+       where $recommendationTables->activities.execution_level = 'executed' AND $recommendationTables->activities.recommendation_id = U_recommendation_id) as executed_count,(SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
+       where $recommendationTables->activities.recommendation_id = U_recommendation_id) as total_recommendation_activities_count");
         if ($onlyActiveOnes) {
             $this->db->where(['active' => 1]);
         }
+        //$this->db->having(array('executed_count =' => 'My Title', 'id <' => $id));
         $this->db->join($tables->types, "$tables->types.id = $tables->evaluations.type_id");
         $this->db->join($tables->temporalities, "$tables->temporalities.id = $tables->evaluations.temporality_id");
         $this->db->join($tables->leading_authorities, "$tables->leading_authorities.id = $tables->evaluations.leading_authority_id");
         $this->db->join($tables->contracting_authorities, "$tables->contracting_authorities.id = $tables->evaluations.contracting_authority_id");
         $this->db->join('users', "users.id = $tables->evaluations.created_by");
+        $this->db->join($recommendationTables->recommendations, "$recommendationTables->recommendations.evaluation_id = $tables->evaluations.id");
+        //$this->db->join($recommendationTables->activities, "$recommendationTables->activities.recommendation_id = $recommendationTables->recommendations.id");
+        //$this->db->group_by(["U_recommendation_id"]);
         if($order){
             $this->db->order_by($orderByField, $orderBy);
         }
         $evaluations = $this->db->get($this->_tables->evaluations)->result_array();
+        //var_dump($evaluations);exit;
         if (!empty($evaluations)) {
             foreach ($evaluations as $key => $evaluation) {
                 $evaluations[$key] = $this->getEvaluationMeta($evaluation);

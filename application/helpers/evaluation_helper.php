@@ -6,7 +6,7 @@
  * Time: 13:21
  */
 
-function getExecutionLevels($forSelect = true, $defaultFirstElementValue='')
+function getExecutionLevels($forSelect = true, $defaultFirstElementValue = '')
 {
     $temp = [];
     if ($forSelect) {
@@ -16,6 +16,33 @@ function getExecutionLevels($forSelect = true, $defaultFirstElementValue='')
     $temp['in_progress'] = "En cours";
     $temp['unexecuted'] = "Non exécuté";
     return $temp;
+}
+
+function getRecommandationStatus($percentage)
+{
+    if($percentage===''){
+        return 'no_data';
+    }
+    $percentage = (float)$percentage;
+    if($percentage<50){
+        return 'bad';
+    }elseif($percentage >= 50 && $percentage < 75){
+        return 'fair';
+    }else{
+        return 'excellent';
+    }
+    /*switch ($percentage) {
+        case $percentage < 50 :
+            return 'bad';
+            break;
+        case ($percentage >= 50 && $percentage < 75) :
+            return 'fair';
+            break;
+        default:
+            return 'excellent';
+            break;
+
+    }*/
 }
 
 function setEvaluationFormValidation($edit = false, $evaluationID = '')
@@ -99,18 +126,18 @@ function setEvaluationFormValidation($edit = false, $evaluationID = '')
                 'rules' => 'trim|required'
             ],
         ];
-        if($isActorAssociated = maybe_null_or_empty($evaluation, 'recommendation_actor_associated', true)){
-            $validations[]=[
+        if ($isActorAssociated = maybe_null_or_empty($evaluation, 'recommendation_actor_associated', true)) {
+            $validations[] = [
                 'name' => 'evaluation[recommendation_user_id]',
                 'label' => "Acteur de recommandation",
                 'rules' => 'trim|required|is_natural_no_zero'
             ];
-            $validations[]=[
+            $validations[] = [
                 'name' => 'evaluation[recommendation_start_date]',
                 'label' => "Date de début de recommandation",
                 'rules' => 'trim|required'
             ];
-            $validations[]=[
+            $validations[] = [
                 'name' => 'evaluation[recommendation_comment]',
                 'label' => "Commentaires à l'endroit de l'acteur",
                 'rules' => 'trim'
@@ -774,7 +801,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                 ?>
                                 <div class="my-repeater "
                                      delete-message="Etes-vous sûr de vouloir supprimer cette activité de recommendation">
-                                    <div class="row <?= $activitiesNotEmpty ? 'not-empty': '' ?>" data-repeater-list="activity" >
+                                    <div class="row <?= $activitiesNotEmpty ? 'not-empty' : '' ?>"
+                                         data-repeater-list="activity">
                                         <div class="form-group col-md-12">
                                             <button title="Ajouter nouvelle activité" type="button" data-repeater-create
                                                     class="btn btn-primary mail-open-compose real-btn-primary">
@@ -785,9 +813,9 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                         </div>
                                         <?php
                                         //Default first one
-                                        getRecommendationActivityRepeaterItem([], 'first-one', ($activitiesNotEmpty ? 'ignore-completely': ''));
-                                        if($activitiesNotEmpty){
-                                            foreach ($activities as $activity){
+                                        getRecommendationActivityRepeaterItem([], 'first-one', ($activitiesNotEmpty ? 'ignore-completely' : ''));
+                                        if ($activitiesNotEmpty) {
+                                            foreach ($activities as $activity) {
                                                 getRecommendationActivityRepeaterItem($activity);
                                             }
                                         }
@@ -820,7 +848,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
 
 }
 
-function getRecommendationActivityRepeaterItem($values=[], $additionalClassToParent='', $additionalClassToFields=''){
+function getRecommendationActivityRepeaterItem($values = [], $additionalClassToParent = '', $additionalClassToFields = '')
+{
     ?>
     <div class="col-md-6 repeater-item <?= $additionalClassToParent ?>" data-repeater-item>
         <button title="Supprimer activité" type="button" data-repeater-delete

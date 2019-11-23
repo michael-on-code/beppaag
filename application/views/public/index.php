@@ -37,7 +37,7 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('evaluations') ?>">
-                            <img data-src="<?= $assetsUrl ?>public/images/evaluation-symbol.png" alt="">
+                            <img data-src="<?= $assetsUrl ?>public/images/report-symbol.png" alt="">
                         </a>
 
                         <h6> <a href="<?= site_url('evaluations') ?>">Evaluations</a> </h6>
@@ -312,7 +312,7 @@
                     <div class="row">
                         <ul class="counter">
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/test.png" alt=""></i> <strong>1920</strong> <span>Evaluations publiées</span>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/report-symbol.png" alt=""></i> <strong>1920</strong> <span>Evaluations publiées</span>
                                 </div>
                             </li>
                             <li class="col-md-4 col-sm-4">

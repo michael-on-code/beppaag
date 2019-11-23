@@ -22,20 +22,21 @@ class Admin_evaluations extends Pro_Controller{
         $this->data['evaluations']=$this->evaluation_model->getAll(false, true, true, false);
         //var_dump($this->data['evaluations']);exit;
         $this->data['tableHeaders']=[
-            'Cover'/*Picture*/,'Année', "Titre de l'évaluation", "Objet de l'évaluation", "Secteur de l'évaluation", "Thématique de l'évaluation","Statut",
+            'Cover'/*Picture*/,'Année', "Titre de l'évaluation", "Objet de l'évaluation",
+            "Secteur de l'évaluation", "Thématique de l'évaluation", "Appréciation", "Statut",
             "Type de l'évaluation", "Temporalité", "Structure ayant conduit l'évaluation",
             "Authorité contractante de l'évaluation" ,"Ajoutée le", "Ajoutée par",
         ];
         $numberColumns = count($this->data['tableHeaders']);
-        for($i=7; $i<$numberColumns; $i++){
+        for($i=8; $i<$numberColumns; $i++){
             $this->data['invisiblesColumns'][]=$i;
         }
         $this->data['visiblesColumns']=[
-            0,1,2,3,4,5,6
+            0,1,2,3,4,5,6,7
         ];
         $unOrderableColumns=[];
         for($i=0; $i<=$numberColumns; $i++){//<= because of action column
-            if($i==1 || $i==9 || $i==5){
+            if($i==1 || $i==12 || $i==7|| $i==6){
                 continue;
             }
             $unOrderableColumns[]=$i;
