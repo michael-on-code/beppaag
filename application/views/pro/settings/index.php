@@ -5,7 +5,9 @@
     <div class="card">
         <div class="card-body">
             <h4><?= $pageTitle ?></h4>
-            <!--            <p>Les paramètres globaux de la plateforme</p>-->
+                        <p>Le formulaire ci-dessous est constitué des champs des plus critiques de la plateforme <br>
+                        Veuillez bien à tous les remplir correctement
+                        </p>
             <div class="m-t-25">
                 <div class="row">
                     <div class="col-md-8">

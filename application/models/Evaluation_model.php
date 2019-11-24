@@ -136,7 +136,6 @@ class Evaluation_model extends CI_Model
             'objective',
             'description',
             'methodological_approach',
-            'results_resume',
             'recommendation_actor_associated',
         );
     }

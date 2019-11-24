@@ -107,8 +107,18 @@ getBreadcrump([
                                                         <span class="post-date"><i class="far fa-calendar-plus"></i> <?= getFullDateInFrench($evaluation->created_at, getRegularDateTimeFormat()) ?></span>
                                                         <span class="eval-list-btns">
                                                    <a style="" class="see-more" href="<?= $permalink ?>"> <i class="fa fa-eye"></i> | Lire</a>
-                                                <a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>
+                                                <!--<a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>-->
                                                 <div class="btn-group share-post no-float">
+                                                   <a class="see-more" href="#" class="dropdown-toggle"
+                                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
+                                                               class="fa fa-download" style="margin-right: 5px"></i> | Télécharger</a>
+                                                   <ul class="dropdown-menu downloading">
+                                                      <li><a href="#">Rapport de l'évaluation</a></li>
+                                                      <li><a href="#">Résumé des recommandations</a></li>
+                                                      <li class="all"><a href="#">Télécharger tout</a></li>
+                                                   </ul>
+                                                </div>
+                                                            <div class="btn-group share-post no-float">
                                                    <a class="see-more" href="#" class="dropdown-toggle"
                                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
                                                                class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>

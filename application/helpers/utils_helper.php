@@ -274,6 +274,7 @@ function getEvaluationTablesNames()
     $tables->temporalities = 'evaluation_temporalities';
     $tables->thematics = 'evaluation_thematics';
     $tables->sector_group = 'evaluation_sector_groups';
+    $tables->questions = 'evaluation_questions';
     $tables->thematic_group = 'evaluation_thematic_groups';
     $tables->types = 'evaluation_types';
     $tables->stats = 'evaluation_stats';

@@ -339,6 +339,23 @@ function redirect_if_logged_in($to = 'dashboard')
     }
 }
 
+function getAppropriateUsersRoles(){
+    return [
+        'admin'=>[
+            'admin', 'editor', 'evaluation_moderator', 'recommendation_moderator', 'members'
+        ],
+        'editor'=>[
+            'editor', 'evaluation_moderator', 'recommendation_moderator', 'members'
+        ],
+        'evaluation_moderator'=>[
+            'evaluation_moderator', 'members'
+        ],
+        'recommendation_moderator'=>[
+            'recommendation_moderator', 'members'
+        ],
+    ];
+}
+
 function redirect_if_user_cannot($group_name, $redirect = 'dashboard')
 {
     if (!user_can($group_name)) {

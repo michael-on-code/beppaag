@@ -205,6 +205,12 @@ button[data-repeater-delete]{
     border-radius: 20px;
     font-size: inherit;
 }
+.card-header button[data-repeater-delete]{
+    padding: 0px 5px 0px 4px;
+}
+.my-recommendation-repeater{
+    margin-bottom: 20px;
+}
 .repeater-item{
     padding-top: 20px;
     border-right: 1px solid #edf2f9;
@@ -252,7 +258,9 @@ input.select2-input{
 .cover-section .overlay-box figure img{
     width: 12px;
 }
-
+.was-validated .form-control:valid, .form-control.is-valid{
+    background-position: center right calc(0.575em + 0.1975rem);
+}
 .cover-section .image-box img{
     width: 100%;
     transform: scale(1.01);

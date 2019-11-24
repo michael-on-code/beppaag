@@ -44,37 +44,33 @@ $(function () {
     }
 
 
-    if ($('.select2').length) {
-        $('.select2').select2({
-            placeholder: 'Sélectionner',
-            //searchInputPlaceholder: 'Rechercher'
-        });
-    }
+    mySelect2();
 
     if ($('[required], [fake-required]').length) {
         $('[required], [fake-required]').each(function () {
-            $(this).parents('.form-group').find('label:not(.empty)').append(" <span style='color: red'>*</span>");
+            var myLabel = $(this).parents('.form-group').find('label:not(.empty,[already-labelled-required])');
+            myLabel.append(" <span style='color: red'>*</span>");
+            myLabel.attr('already-labelled-required', "1")
         });
     }
 
     if ($('.my-summernote').length) {
-        $('.my-summernote').summernote({
-            lang: 'fr-FR',
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph', 'style']],
-                ['height', ['height']],
-                ['insert', ['link']],
-            ],
-            height: 130
+        $('.my-summernote').each(function () {
+            $(this).summernote({
+                lang: 'fr-FR',
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph', 'style']],
+                    ['height', ['height']],
+                    ['insert', ['link']],
+                ],
+                height: $(this).attr('data-summernote-height') ? $(this).attr('data-summernote-height') : 130
+            });
         });
     }
-
-
-
 
     //Dropify
     if ($('.dropify').length) {
@@ -167,19 +163,8 @@ $(function () {
         });
     }
 
-    if ($('.toast').length) {
-        $('.toast').toast('show')
-    }
-
-    if ($('.datepicker-input').length) {
-        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
-        $.fn.datepicker.defaults.language = "fr";
-        var options={};
-        if($('.datepicker-input').hasClass('starts-from-today')){
-            options.startDate= new Date();
-        }
-        $('.datepicker-input').datepicker(options);
-    }
+    toast();
+    myDatepicker();
 
     if ($('.form-error').length) {
         $('.form-error').prev('input, textarea, select').focus(function () {
@@ -331,42 +316,75 @@ $(function () {
         }
     }
 
-    if ($('.my-repeater').length) {
-        //console.log("in");
-        var repeaterElements = parseInt($('.my-repeater-badge').text());
-        $('.my-repeater').repeater({
+    if ($('.my-recommendation-repeater').length) {
+        var recommendationCounterElement = $('.my-recommendation-repeater .accordion > .button-container .my-repeater-badge');
+        var recommendationRepeaterElements = parseInt(recommendationCounterElement.text());
+        var myDetector = 0;
+        $('.my-recommendation-repeater').repeater({
             hide: function (e) {
-                confirm($('.my-repeater').attr('delete-message')) && $(this).slideUp(e);
-                repeaterElements--;
-                $('.my-repeater-badge').text(repeaterElements);
+                if(myDetector==1){
+                    myDetector=0;
+                    return;
+                }
+                confirm($('.my-recommendation-repeater').attr('delete-message')) && $(this).slideUp(e);
+                recommendationRepeaterElements--;
+                recommendationCounterElement.text(recommendationRepeaterElements);
             },
             show: function () {
-                repeaterElements++;
-                $('.my-repeater-badge').text(repeaterElements);
-                $(this).removeClass('first-one');
-                $(this).find('.ignore').each(function () {
-                    $(this).removeClass('ignore');
-                });
-                $(this).find('.ignore-completely').each(function () {
-                    $(this).removeClass('ignore-completely');
-                });
+                recommendationRepeaterElements++;
+                recommendationCounterElement.text(recommendationRepeaterElements);
+                var newCollapse = $(this).find('.collapse');
+                if(recommendationRepeaterElements>1){
+                    newCollapse.removeClass('show');
+                }
+                var elementIDExplode = newCollapse.attr('id').split('-');
+                var realElementID = elementIDExplode[0]+'-'+recommendationRepeaterElements;
+                newCollapse.attr('id', realElementID);
+                $(this).find('[data-toggle=collapse]').attr('href', "#"+realElementID);
+                $(this).find('.collapse-identifier').text("#"+recommendationRepeaterElements);
                 $(this).fadeIn();
-
-                /*$('.select2-container').remove();
-                $('.select2').select2({
-                    placeholder: 'Sélectionner',
-                });
-                $('.select2-container').css('display','block');*/
-                /*new Cleave('.currencyInput', {
-                    numeral: true,
-                    delimiter: ' ',
-                    numeralThousandsGroupStyle: 'thousand'
-                });*/
-
             },
+            repeaters: [{
+                // (Required)
+                // Specify the jQuery selector for this nested repeater
+                selector: '.inner-repeater',
+                initEmpty: true,
+                hide: function (f) {
+                    confirm($('.inner-repeater').attr('delete-message')) && $(this).slideUp(f);
+                    var innerRepeaterButton = $(this).parent().find('.button-container button .my-repeater-badge');
+                    var repeaterCount = parseInt(innerRepeaterButton.text());
+                    innerRepeaterButton.text(repeaterCount - 1);
+                    myDetector =1;
+                    //repeaterElements--;
+                    //$('.my-repeater-badge').text(repeaterElements);
+                },
+                show: function () {
+
+                    //repeaterElements++;
+                    //$('.my-repeater-badge').text(repeaterElements);
+                    //$(this).removeClass('first-one');
+                    $(this).fadeIn();
+                    var innerRepeaterButton = $(this).parent().find('.button-container button .my-repeater-badge');
+                    console.log(innerRepeaterButton);
+                    var repeaterCount = parseInt(innerRepeaterButton.text());
+                    innerRepeaterButton.text(repeaterCount + 1);
+                    myDatepicker();
+                    myCurrency();
+                    mySelect2(true);
+                },
+            }],
+            initEmpty: true,
             isFirstItemUndeletable: true,
         });
     }
+
+    $(document).on('keyup', '.my-recommendation-title', function () {
+        var value = $(this).val();
+        if(value.length > 50){
+            value = value.substring(0, 50)+ '...';
+        }
+        $(this).parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
+    });
 
     //var validationRules = {};
     //FORM Validation
@@ -415,15 +433,7 @@ $(function () {
         });
     }
 
-    if ($('.currencyInput').length) {
-        $('.currencyInput').each(function () {
-            new Cleave(this, {
-                numeral: true,
-                delimiter: ' ',
-                numeralThousandsGroupStyle: 'thousand'
-            });
-        })
-    }
+    myCurrency();
 
     $(document).on('change', '.recommendation-actor-switcher', function () {
         if ($(this).is(':checked')) {
@@ -524,3 +534,51 @@ $(function () {
         });
     })
 });
+
+function toast() {
+    if ($('.toast').length) {
+        $('.toast').toast('show')
+    }
+}
+
+function myDatepicker() {
+    if ($('.datepicker-input').length) {
+        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        $.fn.datepicker.defaults.language = "fr";
+        var options = {};
+        /*$('.datepicker-input').each(function () {
+
+        })
+        if ($('.datepicker-input').hasClass('starts-from-today')) {
+            options.startDate = new Date();
+        }*/
+        $('.datepicker-input').datepicker(options);
+    }
+}
+
+function myCurrency() {
+    if ($('.currencyInput').length) {
+        $('.currencyInput').each(function () {
+            new Cleave(this, {
+                numeral: true,
+                delimiter: ' ',
+                numeralThousandsGroupStyle: 'thousand'
+            });
+        })
+    }
+}
+
+function mySelect2(removeContainer=false) {
+    if ($('.select2').length) {
+        if(removeContainer){
+            $('.select2-container').remove();
+        }
+        $('.select2').select2({
+            placeholder: 'Sélectionner',
+            //searchInputPlaceholder: 'Rechercher'
+        });
+        if(removeContainer){
+            $('.select2-container').show();
+        }
+    }
+}

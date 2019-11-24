@@ -456,3 +456,24 @@ body > .footer > ul{
 .navbar-brand>img{
     width: 225px;
 }
+.eval-list-container .btn-group.share-post .dropdown-menu.downloading{
+    left: -22px!important;
+}
+.eval-list-container .btn-group.share-post .dropdown-menu.downloading li.all{
+    border-top: 1px solid #ececec;
+}
+.btn-group.share-post .dropdown-menu.downloading>li>a{
+    padding: 5px 13px;
+}
+
+.btn-group.share-post .dropdown-menu.downloading{
+    border: 0px;
+    width: unset;
+    text-align: center;
+    margin: 0px;
+    padding: 3px 0px;
+    /* min-width: inherit; */
+    left: 0;
+    right: unset;
+    margin: 5px auto;
+}

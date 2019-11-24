@@ -36,7 +36,8 @@ function includeDatatablesAssets(){
 
 function includeJQueryRepeaterAssets(){
     $ci=&get_instance();
-    $ci->data['footerJs'][]=$ci->data['assetsUrl']."pro/vendors/jquery-repeater/jquery.repeater.min.js";
+    //$ci->data['footerJs'][]=$ci->data['assetsUrl']."pro/vendors/jquery-repeater/jquery.repeater.min.js";
+    $ci->data['footerJs'][]=$ci->data['assetsUrl']."pro/vendors/jquery-repeater/jquery.repeater.1.2.1.min.js";
 }
 
 function includeCleaveNumberFormatterAssets(){
