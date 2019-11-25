@@ -117,14 +117,18 @@ class Admin_evaluations extends Pro_Controller{
         $this->data['thematics']=getAllInTable($tables->thematics, true, true, 'id', 'DESC', true, 'id', 'name', false);
         $this->data['leading_authorities']=getAllInTable($tables->leading_authorities, true, true, 'id', 'DESC', true, 'id', 'name');
         $this->data['contracting_authorities']=getAllInTable($tables->contracting_authorities, true, true, 'id', 'DESC', true, 'id', 'name');
+//        $this->data['recommendations']= maybe_null_or_empty($evaluation, 'recommendations');
+//        $this->data['questions']= maybe_null_or_empty($evaluation, 'questions');
+//        unset($evaluation['questions'], $evaluation['recommendations']);
         $this->data['evaluation']=$this->evaluation_model->getByID($evaluationID);
+        //var_dump($this->data['evaluation']);exit;
         $this->data['sectorAjaxForm']=getAjaxifySectorForm();
         $this->data['thematicAjaxForm']=getAjaxifyThematicForm();
         $this->data['typeAjaxForm']=getAjaxifyTypeForm();
         $this->data['temporalityAjaxForm']=getAjaxifyTemporalityForm();
         $this->data['contractingAuthorityAjaxForm']=getAjaxifyContractingAuthorityForm();
         $this->data['leadingAuthorityAjaxForm']=getAjaxifyLeadingAuthorityForm();
-        //var_dump($this->data['evaluation']);exit;
+
         $this->render('evaluations/edit');
     }
 

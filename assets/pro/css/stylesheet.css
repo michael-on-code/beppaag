@@ -222,7 +222,7 @@ button[data-repeater-delete]{
 input.select2-input{
     /*width: 100% !important;*/
 }
-.my-repeater .not-empty .first-one {
+.not-empty .first-one {
     display: none!important;
 }
 .my-repeater-badge{

@@ -48,10 +48,7 @@ function getRecommandationStatus($percentage)
 function setEvaluationFormValidation($edit = false, $evaluationID = '')
 {
     $ci =& get_instance();
-    if ($evaluation = $ci->input->post('evaluation')) {
-        var_dump($ci->input->post('recommendations'));
-        //var_dump($ci->input->post('activities'));
-        exit;
+    if (($evaluation = $ci->input->post('evaluation')) && ($questions = $ci->input->post('questions'))) {
         $validations = [
             [
                 'name' => 'evaluation[title]',
@@ -114,24 +111,19 @@ function setEvaluationFormValidation($edit = false, $evaluationID = '')
                 'rules' => 'trim|required'
             ],
             [
-                'name' => 'evaluation[results_resume]',
-                'label' => "Résumé des résultats attendus",
-                'rules' => 'trim|required'
-            ],
-            [
                 'name' => 'evaluation[cover_photo]',
                 'label' => "Photo de page de couverture",
                 'rules' => 'trim|required'
             ],
             [
-                'name' => 'evaluation[cover_photo]',
+                'name' => 'evaluation[evaluation_file]',
                 'label' => "Fichier PDF d'évaluation",
                 'rules' => 'trim|required'
             ],
         ];
         if ($isActorAssociated = maybe_null_or_empty($evaluation, 'recommendation_actor_associated', true)) {
             $validations[] = [
-                'name' => 'evaluation[recommendation_user_id]',
+                'name' => 'evaluation[recommendation_actor_id]',
                 'label' => "Acteur de recommandation",
                 'rules' => 'trim|required|is_natural_no_zero'
             ];
@@ -148,14 +140,15 @@ function setEvaluationFormValidation($edit = false, $evaluationID = '')
         }
         setFormValidationRules($validations);
         if ($ci->form_validation->run()) {
-            if ($ci->evaluation_model->insertOrUpdateEvaluation($edit, $evaluation, $evaluationID, $isActorAssociated, $ci->input->post('activity'))) {
+            if ($ci->evaluation_model->insertOrUpdateEvaluation($edit, $evaluation, $evaluationID,
+                $isActorAssociated, $questions, $ci->input->post('recommendations'))) {
                 get_success_message('Evaluation ' . ($edit ? 'modifiée' : 'ajoutée') . ' avec succès');
                 pro_redirect('evaluations');
             } else {
                 get_warning_message("Une erreur s'est produite <br> Veuillez recommencer");
             }
         } else {
-            get_form_error();
+            get_error_message();
         }
     }
 }
@@ -375,12 +368,17 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                     <li class="nav-item">
                         <a class="nav-link active" id="general_information_tab" data-toggle="tab"
                            href="#general_information" role="tab" aria-controls="general_information"
-                           aria-selected="true">Informations générales</a>
+                           aria-selected="true">Informations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="content_tab" data-toggle="tab" href="#content" role="tab"
                            aria-controls="content" aria-selected="false">Contenu</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="questions_tab" data-toggle="tab" href="#questions" role="tab"
+                           aria-controls="questions" aria-selected="false">Questions Evaluatives</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" id="files_tab" data-toggle="tab" href="#files" role="tab"
                            aria-controls="files" aria-selected="false">Téléversement</a>
@@ -628,18 +626,6 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                 <?= get_form_error($name) ?>
                             </div>
                             <div class="form-group col-md-12 text-area">
-                                <?= form_label("Approche méthodologique", $id = 'methodological_approach') ?>
-                                <?= form_textarea([
-                                    'name' => $name = 'evaluation[methodological_approach]',
-                                    'class' => 'my-summernote',
-                                    'required' => '',
-                                    'id' => $id,
-                                    'data-summernote-height' => 250,
-                                    'value' => set_value($name, maybe_null_or_empty($evaluation, $id), false)
-                                ]) ?>
-                                <?= get_form_error($name) ?>
-                            </div>
-                            <div class="form-group col-md-12 text-area">
                                 <?= form_label("Description sommaire", $id = 'description') ?>
                                 <?= form_textarea([
                                     'name' => $name = 'evaluation[description]',
@@ -651,8 +637,55 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                 ]) ?>
                                 <?= get_form_error($name) ?>
                             </div>
+                            <div class="form-group col-md-12 text-area">
+                                <?= form_label("Approche méthodologique", $id = 'methodological_approach') ?>
+                                <?= form_textarea([
+                                    'name' => $name = 'evaluation[methodological_approach]',
+                                    'class' => 'my-summernote',
+                                    'required' => '',
+                                    'id' => $id,
+                                    'data-summernote-height' => 250,
+                                    'value' => set_value($name, maybe_null_or_empty($evaluation, $id), false)
+                                ]) ?>
+                                <?= get_form_error($name) ?>
+                            </div>
+
                         </div>
                     </div>
+                    <div class="tab-pane" id="questions" role="tabpanel" aria-labelledby="questions_tab">
+                        <div class="row ">
+                            <div class="col-md-12 ">
+                                <?php
+                                $questions = set_value('questions', maybe_null_or_empty($evaluation, 'questions', true), false);
+                                $questionsNotEmpty = !empty($questions);
+                                ?>
+                                <div class="my-evaluation-questions-repeater <?= $questionsNotEmpty ? 'not-empty' : '' ?>"
+                                     delete-message="Etes-vous sûr de vouloir supprimer cette question évaluative">
+                                    <div class="row" data-repeater-list="questions">
+                                        <div class="form-group col-md-12 button-container">
+                                            <button title="Ajouter Ajouter nouvelle question évaluative" type="button"
+                                                    data-repeater-create
+                                                    class="btn btn-primary mail-open-compose real-btn-primary">
+                                                <i class="anticon anticon-plus"></i>
+                                                <span class="m-l-5">Ajouter nouvelle question évaluative</span>
+                                                <span class="badge badge-indicator badge-danger my-repeater-badge"><?= $questionsNotEmpty ? count($questions) : 1 ?></span>
+                                            </button>
+                                        </div>
+                                        <?php
+                                        //Default first one
+                                        getQuestionRepeater([], 'first-one', ($questionsNotEmpty ? 'ignore-completely': ''));
+                                        if ($questionsNotEmpty) {
+                                            foreach ($questions as $key=> $question) {
+                                                getQuestionRepeater($question, '');
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="tab-pane" id="files" role="tabpanel" aria-labelledby="files_tab">
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -739,7 +772,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                             ?>
                                             <div class="input-group-container">
                                                 <?php
-                                                echo form_dropdown($name = 'evaluation[recommendation_user_id]', $usersForRecommendation, set_value($name, maybe_null_or_empty($evaluation, $id)), [
+                                                echo form_dropdown($name = 'evaluation[recommendation_actor_id]', $usersForRecommendation, set_value($name, maybe_null_or_empty($evaluation, $id)), [
                                                     'class' => 'select2 ignore',
                                                     'required' => ''
                                                 ]);
@@ -784,93 +817,32 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                             </div>
                             <!--                            Personal Recommendation Insert-->
                             <div class="col-md-12" id="personal_insert_recommendation_formgroups">
-                                <div class="my-recommendation-repeater" delete-message="Etes-vous sûr de vouloir supprimer cette recommandation avec ses déclinaisons">
+                                <?php
+                                $recommendations = set_value('recommendations', maybe_null_or_empty($evaluation, 'recommendations', true), false);
+                                $recommendationsNotEmpty = !empty($recommendations);
+                                ?>
+                                <div class="my-recommendation-repeater <?= $recommendationsNotEmpty ? 'not-empty' : '' ?>"
+                                     delete-message="Etes-vous sûr de vouloir supprimer cette recommandation avec ses déclinaisons">
                                     <!--                                    TODO first recommendation empty-->
                                     <div class="accordion" data-repeater-list="recommendations" id="accordion-default">
                                         <div class="form-group col-md-12 button-container">
-                                            <button title="Ajouter nouvelle recommandation" type="button" data-repeater-create
+                                            <button title="Ajouter nouvelle recommandation" type="button"
+                                                    data-repeater-create
                                                     class="btn btn-primary mail-open-compose real-btn-primary">
                                                 <i class="anticon anticon-plus"></i>
                                                 <span class="m-l-5">Ajouter nouvelle recommendation</span>
-                                                <span class="badge badge-indicator badge-danger my-repeater-badge">0</span>
+                                                <span class="badge badge-indicator badge-danger my-repeater-badge"><?= $recommendationsNotEmpty ? count($recommendations) : 1 ?></span>
                                             </button>
                                         </div>
-                                        <div class="card" data-repeater-item>
-                                            <div class="card-header">
-                                                <h5 class="card-title">
-                                                    <a data-toggle="collapse" href="#collapseDefault-0">
-                                                        <span class="collapse-identifier">#1</span>
-                                                        <span class="collapse-header-seperator"> - </span>
-                                                        <span class="collapse-header-text"></span>
-                                                    </a>
-                                                </h5>
-                                                <button title="Supprimer activité" type="button" data-repeater-delete
-                                                        class="btn btn-danger btn-rounded">
-                                                    <i class="anticon anticon-delete"></i>
-                                                </button>
-                                            </div>
-                                            <div id="collapseDefault-0" class="collapse show"
-                                                 data-parent="#accordion-default">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="form-group col-md-8">
-                                                            <?php
-                                                            echo form_label($title='Titre de la recommandation');
-                                                            echo form_textarea([
-                                                                'name' => 'title',
-                                                                'class'=>'form-control my-recommendation-title',
-                                                                'placeholder'=>$title,
-                                                                'required' => '',
-                                                                'rows' => 2,
-                                                            ])
-                                                            ?>
-                                                        </div>
-                                                        <div class="form-group col-md-4">
-                                                            <?php
-                                                            echo form_label($title='Destinataire');
-                                                            echo form_input([
-                                                                'name' => 'recipient',
-                                                                'class'=>'form-control',
-                                                                'placeholder'=>$title,
-                                                                'required' => '',
-                                                            ])
-                                                            ?>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <?php
-                                                    $activities = maybe_null_or_empty($evaluation, 'activities', true);
-                                                    $activitiesNotEmpty = !empty($activities);
-                                                    ?>
-                                                    <div class="inner-repeater"
-                                                         delete-message="Etes-vous sûr de vouloir supprimer cette activité de recommendation">
-                                                        <div class="row <?= $activitiesNotEmpty ? 'not-empty' : '' ?>"
-                                                             data-repeater-list="activities">
-                                                            <div class="form-group col-md-12 button-container">
-                                                                <button title="Ajouter nouvelle activité" type="button"
-                                                                        data-repeater-create
-                                                                        class="btn btn-primary mail-open-compose real-btn-primary">
-                                                                    <i class="anticon anticon-plus"></i>
-                                                                    <span class="m-l-5">Ajouter nouvelle activité</span>
-                                                                    <span class="badge badge-indicator badge-danger my-repeater-badge"><?= $activitiesNotEmpty ? count($activities) : 0 ?></span>
-                                                                </button>
-                                                            </div>
-                                                            <?php
-                                                            //Default first one
-                                                            getRecommendationActivityRepeaterItem([], '', ($activitiesNotEmpty ? 'ignore-completely' : ''));
-                                                            if ($activitiesNotEmpty) {
-                                                                foreach ($activities as $activity) {
-                                                                    getRecommendationActivityRepeaterItem($activity);
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php
+                                        //Default first one
+                                        getRecommendationRepeater([], 'first-one', ($recommendationsNotEmpty ? 'ignore-completely':''));
+                                        if ($recommendationsNotEmpty) {
+                                            foreach ($recommendations as $key=> $recommendation) {
+                                                getRecommendationRepeater($recommendation, '','',$key+1);
+                                            }
+                                        }
+                                        ?>
                                     </div>
                                 </div>
 
@@ -898,6 +870,124 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
     ?>
     <?php
 
+}
+
+function getQuestionRepeater($question=[], $additionalClassToParent='', $additionalClassToFields=''){
+    ?>
+    <div class="col-md-6 repeater-item <?= $additionalClassToParent ?>" data-repeater-item>
+        <button title="Supprimer activité" type="button" data-repeater-delete
+                class="btn btn-danger btn-rounded">
+            <i class="anticon anticon-delete"></i>
+        </button>
+        <div class="form-group">
+            <?php
+            echo form_label($title = 'Libellé de la question évaluative');
+            echo form_textarea([
+                'name' => 'title',
+                'class'=>"form-control $additionalClassToFields",
+                'placeholder'=>$title,
+                'required'=>'',
+                'rows'=>2,
+                'value'=>maybe_null_or_empty($question, 'title')
+            ]);
+            ?>
+        </div>
+        <div class="form-group text-area">
+            <?= form_label("Reponses apportées") ?>
+            <?= form_textarea([
+                'name' =>  'explanation',
+                'class' => "my-summernote $additionalClassToFields",
+                'required' => '',
+                'data-summernote-height' => 250,
+                'value'=>maybe_null_or_empty($question, 'explanation')
+            ]) ?>
+        </div>
+    </div>
+    <?php
+}
+
+function getRecommendationRepeater($recommendations=[], $additionalClassToParent='', $additionalClassToFields='', $key=0){
+    ?>
+    <div class="card <?= $additionalClassToParent ?>" data-repeater-item>
+        <div class="card-header">
+            <h5 class="card-title">
+                <a data-toggle="collapse" href="#collapseDefault-<?= $key ?>">
+                    <span class="collapse-identifier">#</span>
+                    <span class="collapse-header-seperator"> - </span>
+                    <span class="collapse-header-text"><?= myWordLimiter(maybe_null_or_empty($recommendations, 'title'), 50) ?></span>
+                </a>
+            </h5>
+            <button title="Supprimer activité" type="button" data-repeater-delete
+                    class="btn btn-danger btn-rounded">
+                <i class="anticon anticon-delete"></i>
+            </button>
+        </div>
+        <div id="collapseDefault-<?= $key ?>" class="collapse"
+             data-parent="#accordion-default">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <?php
+                        echo form_label($title = 'Titre de la recommandation');
+                        echo form_textarea([
+                            'name' => 'title',
+                            'class' => "form-control my-recommendation-title $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'rows' => 2,
+                            'value'=>maybe_null_or_empty($recommendations, 'title')
+                        ])
+                        ?>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <?php
+                        echo form_label($title = 'Destinataire');
+                        echo form_input([
+                            'name' => 'recipient',
+                            'class' => "form-control $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'value'=>maybe_null_or_empty($recommendations, 'recipient')
+                        ])
+                        ?>
+                    </div>
+
+                </div>
+
+                <?php
+                $activities = maybe_null_or_empty($recommendations, 'activities', true);
+                //var_dump($activities);
+                $activitiesNotEmpty = !empty($activities);
+                ?>
+                <div class="inner-repeater"
+                     delete-message="Etes-vous sûr de vouloir supprimer cette activité de recommendation">
+                    <div class="row <?= $activitiesNotEmpty ? 'not-empty' : '' ?>"
+                         data-repeater-list="activities">
+                        <div class="form-group col-md-12 button-container">
+                            <button title="Ajouter nouvelle activité" type="button"
+                                    data-repeater-create
+                                    class="btn btn-primary mail-open-compose real-btn-primary">
+                                <i class="anticon anticon-plus"></i>
+                                <span class="m-l-5">Ajouter nouvelle activité</span>
+                                <span class="badge badge-indicator badge-danger my-repeater-badge"><?= $activitiesNotEmpty ? count($activities) : 1 ?></span>
+                            </button>
+                        </div>
+                        <?php
+                        //Default first one
+                        getRecommendationActivityRepeaterItem([], 'first-one', ($activitiesNotEmpty ? 'ignore-completely' : 'inner-repeater-ignore-completely'));
+                        if ($activitiesNotEmpty) {
+                            foreach ($activities as $activity) {
+                                getRecommendationActivityRepeaterItem($activity);
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <?php
 }
 
 function getRecommendationActivityRepeaterItem($values = [], $additionalClassToParent = '', $additionalClassToFields = '')
@@ -933,7 +1023,7 @@ function getRecommendationActivityRepeaterItem($values = [], $additionalClassToP
                     'placeholder' => 'Début',
                     //'id' => $id,
                     //'required' => '',
-                    'value' => maybe_null_or_empty($values, 'start_date')
+                    'value' => convert_date_to_french(maybe_null_or_empty($values, 'start_date'))
                 ]);
                 ?>
                 <span class="p-h-10">à</span>
@@ -944,7 +1034,7 @@ function getRecommendationActivityRepeaterItem($values = [], $additionalClassToP
                     'placeholder' => 'Fin',
                     //'id' => $id,
                     //'required' => '',
-                    'value' => maybe_null_or_empty($values, 'end_date')
+                    'value' => convert_date_to_french(maybe_null_or_empty($values, 'end_date'))
                 ]);
                 ?>
             </div>
@@ -961,6 +1051,7 @@ function getRecommendationActivityRepeaterItem($values = [], $additionalClassToP
                         'name' => $name = 'amount',
                         'class' => "form-control currencyInput $additionalClassToFields",//currencyInput
                         'placeholder' => $title,
+                        'type' => 'number',
                         //'id' => $id,
                         //'required' => '',
                         'value' => maybe_null_or_empty($values, 'amount')

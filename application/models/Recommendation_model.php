@@ -21,25 +21,18 @@ class Recommendation_model extends CI_Model{
         );
     }
 
-    public function getByEvaluationID($evaluationID){
-        $recommendation = $this->db->get_where($this->_tables->recommendations, ['evaluation_id'=>$evaluationID])->row_array();
-        return $this->getRecommendationMeta($recommendation);
-    }
-
-    public function setRecommendationActivities($recommendationID, $activities){
-        $date = date(getRegularDateTimeFormat());
-        if(!empty($activities)){
-            foreach ($activities as $key=>$activity){
-                if(trim(maybe_null_or_empty($activity, 'title'))==''){
-                    unset($activities[$key]);
-                    continue;
+    public function getByEvaluationID($evaluationID, $select="*", $withMetas=true){
+        $this->db->select($select);
+        $recommendations = $this->db->get_where($this->_tables->recommendations, ['evaluation_id'=>$evaluationID])->result_array();
+        if($withMetas){
+            if(!empty($recommendations)){
+                foreach ($recommendations as $key=>$recommendation){
+                    $recommendations[$key]=$this->getRecommendationMeta($recommendation);
+                    $recommendations[$key]['activities']=$this->getRecommendationActivities($recommendation['id']);
                 }
-                $activities[$key]['recommendation_id']=$recommendationID;
-                $activities[$key]['created_at']=$date;
             }
         }
-        $this->db->delete($this->_tables->activities, ['recommendation_id'=>$recommendationID]);
-        $this->db->insert_batch($this->_tables->activities, $activities);
+        return $recommendations;
     }
 
     public function getFieldByEvaluationID($evaluationID, $field='id'){
@@ -56,32 +49,41 @@ class Recommendation_model extends CI_Model{
         return $results;
     }
 
-    public function insertOrUpdateRecommendation($data, $recommendationID=''){
-        $metas = $this->get_metas_group();
-        $meta_datas = [];
-        if (!empty($metas)) {
-            foreach ($metas as $meta) {
-                if (isset($data[$meta])) {
-                    $meta_datas[$meta] = $data[$meta];
-                    unset($data[$meta]);
+    public function updateRecommendationWithActivitiesForEvaluation($evaluationID, $recommendationData){
+        if(!empty($recommendationData)){
+            $activitiesTable = $this->_tables->activities;
+            $recommendationTable = $this->_tables->recommendations;
+            $globalActivities = [];
+            $this->db->query("DELETE from $activitiesTable where recommendation_id IN (SELECT id from $recommendationTable where evaluation_id = $evaluationID)");
+            $this->db->delete($this->_tables->recommendations, ['evaluation_id'=>$evaluationID]);
+            foreach ($recommendationData as $key=>$recommendation){
+                if(maybe_null_or_empty($recommendation, 'title')==''){
+                    continue;
+                }
+                $activities = maybe_null_or_empty($recommendation, 'activities', true);
+                unset($recommendation['activities']);
+                $data = $recommendation;
+                $data['evaluation_id']=$evaluationID;
+                $this->db->insert($this->_tables->recommendations, $data);
+                $recommendationID =$this->db->insert_id();
+                if(!empty($activities)){
+                    foreach ($activities as $key=> $activity){
+                        if(maybe_null_or_empty($activity, 'title')==''){
+                            continue;
+                        }
+                        $activities[$key]['recommendation_id']=$recommendationID;
+                        $activities[$key]['start_date']=convert_date_to_english($activities[$key]['start_date']);
+                        $activities[$key]['end_date']=convert_date_to_english($activities[$key]['end_date']);
+                        $globalActivities[] = $activities[$key];
+                    }
                 }
             }
-        }
-        if($recommendationID==''){
-            $data['created_at']=date(getRegularDateTimeFormat());
-            $this->db->insert($this->_tables->recommendations, $data);
-            $recommendationID = $this->db->insert_id();
-        }else{
-            $data['updated_at']=date(getRegularDateTimeFormat());
-            $this->db->insert($this->_tables->recommendations, $data, ['id'=>$recommendationID]);
-        }
-        if (!empty($meta_datas)) {
-            foreach ($meta_datas as $key => $meta_data) {
-                $this->update_meta($recommendationID, $key, $meta_data);
+            if(!empty($globalActivities)){
+                $this->db->insert_batch($this->_tables->activities, $globalActivities);
             }
         }
-        return $recommendationID;
     }
+
 
 
     public function getRecommendationMeta(array $recommendationArrayData)

@@ -54,23 +54,7 @@ $(function () {
         });
     }
 
-    if ($('.my-summernote').length) {
-        $('.my-summernote').each(function () {
-            $(this).summernote({
-                lang: 'fr-FR',
-                toolbar: [
-                    // [groupName, [list of button]]
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph', 'style']],
-                    ['height', ['height']],
-                    ['insert', ['link']],
-                ],
-                height: $(this).attr('data-summernote-height') ? $(this).attr('data-summernote-height') : 130
-            });
-        });
-    }
+    mySummerNote();
 
     //Dropify
     if ($('.dropify').length) {
@@ -192,6 +176,53 @@ $(function () {
         })
     });
 
+    //var validationRules = {};
+    //FORM Validation
+    if ($('form#form-validation').length) {
+        var validateObj = $("form#form-validation").validate({
+            ignore: '.ignore, .ignore-completely, .inner-repeater-ignore-completely',
+            errorElement: 'span',
+            errorClass: 'is-invalid',
+            validClass: 'is-valid',
+            rules: validationRules,
+            invalidHandler: function (event, validator) {
+                // 'this' refers to the form
+                if ($(this).hasClass('evaluationForm')) {
+                    var closestInvalid = validator.errorList[0].element;
+                    var tabePane = $(closestInvalid).parents('.tab-pane');
+                    var closestTabePaneID = tabePane.attr('id');
+                    var openedNavLink = $(this).find('.nav-link.active');
+                    var navlink = $(this).find('.nav-link#' + closestTabePaneID + '_tab');
+                    if (openedNavLink != navlink) {
+                        navlink.addClass('tab-with-error');
+                        setTimeout(function () {
+                            navlink.removeClass('tab-with-error');
+                        }, 2000)
+                        /*var targetID = openedNavLink.attr('aria-controls');
+                        var openedTabePane = $(this).find('.tab-pane#'+targetID);
+                        openedNavLink.removeClass('active');
+                        navlink.addClass('active');
+                        openedTabePane.addClass('fade');
+                        openedTabePane.removeClass('show open active');
+                        tabePane.addClass('show open active');*/
+                    }
+                }
+            },
+            submitHandler: function (form) {
+                // do other things for a valid form
+                $(form).find('button[type=submit]').addClass('is-loading');
+                form.submit();
+            }
+        });
+        $('.select2').on('change', function (e) {
+            validateObj.form();
+        });
+
+        $(".my-summernote").on("summernote.change", function (e) {   // callback as jquery custom event
+            validateObj.form();
+        });
+    }
+
     if ($('.my-complicated-datatable').length) {
         var complicatedTable = $('.my-complicated-datatable').DataTable({
 
@@ -302,6 +333,11 @@ $(function () {
 
     if ($('.recommendation-actor-switcher').length) {
         if ($('.recommendation-actor-switcher').is(':checked')) {
+            $('#personal_insert_recommendation_formgroups input, ' +
+                '#personal_insert_recommendation_formgroups select, ' +
+                '#personal_insert_recommendation_formgroups textarea').each(function () {
+                $(this).addClass('ignore');
+            });
             $('#personal_insert_recommendation_formgroups').fadeOut();
             $('#actor_recommendation_formgroups .ignore').each(function () {
                 $(this).removeClass('ignore');
@@ -312,8 +348,47 @@ $(function () {
             $('#personal_insert_recommendation_formgroups .ignore:not(.first-one)').each(function () {
                 $(this).removeClass('ignore');
             });
+            $('#actor_recommendation_formgroups input, ' +
+                '#actor_recommendation_formgroups select, ' +
+                '#actor_recommendation_formgroups textarea').each(function () {
+                $(this).addClass('ignore');
+            });
             $('#personal_insert_recommendation_formgroups').fadeIn();
         }
+    }
+
+    if ($('.my-evaluation-questions-repeater').length) {
+        //console.log("in");
+        var repeaterBadgeElement = $('.my-evaluation-questions-repeater .my-repeater-badge');
+        var repeaterElements = parseInt(repeaterBadgeElement.text());
+        $('.my-evaluation-questions-repeater').repeater({
+            hide: function (e) {
+                confirm($('.my-evaluation-questions-repeater').attr('delete-message')) && $(this).slideUp(e);
+                repeaterElements--;
+                repeaterBadgeElement.text(repeaterElements);
+            },
+            show: function () {
+                repeaterElements++;
+                repeaterBadgeElement.text(repeaterElements);
+                $(this).removeClass('first-one');
+                $(this).find('.ignore').each(function () {
+                    $(this).removeClass('ignore');
+                });
+                $(this).find('.ignore-completely').each(function () {
+                    $(this).removeClass('ignore-completely');
+                });
+                var subSummernote = $(this).find('.my-summernote');
+                mySummerNote(subSummernote, true);
+                $(this).find('.note-editor.note-frame.card')[1].remove();
+                subSummernote.on("summernote.change", function (e) {   // callback as jquery custom event
+                    validateObj.form();
+                });
+
+                $(this).fadeIn();
+            },
+            //initEmpty: true,
+            isFirstItemUndeletable: true,
+        });
     }
 
     if ($('.my-recommendation-repeater').length) {
@@ -341,14 +416,24 @@ $(function () {
                 var realElementID = elementIDExplode[0]+'-'+recommendationRepeaterElements;
                 newCollapse.attr('id', realElementID);
                 $(this).find('[data-toggle=collapse]').attr('href', "#"+realElementID);
-                $(this).find('.collapse-identifier').text("#"+recommendationRepeaterElements);
+                //$(this).find('.collapse-identifier').text("#"+recommendationRepeaterElements);
+                $(this).removeClass('first-one');
+                $(this).find('.ignore:not(.inner-repeater .ignore)').each(function () {
+                    $(this).removeClass('ignore');
+                });
+                $(this).find('.ignore-completely:not(.inner-repeater .ignore-completely)').each(function () {
+                    $(this).removeClass('ignore-completely');
+                });
                 $(this).fadeIn();
+                myDatepicker();
+                myCurrency();
+                mySelect2(true);
             },
             repeaters: [{
                 // (Required)
                 // Specify the jQuery selector for this nested repeater
                 selector: '.inner-repeater',
-                initEmpty: true,
+                //initEmpty: true,
                 hide: function (f) {
                     confirm($('.inner-repeater').attr('delete-message')) && $(this).slideUp(f);
                     var innerRepeaterButton = $(this).parent().find('.button-container button .my-repeater-badge');
@@ -363,17 +448,30 @@ $(function () {
                     //repeaterElements++;
                     //$('.my-repeater-badge').text(repeaterElements);
                     //$(this).removeClass('first-one');
+                    $(this).removeClass('first-one');
+                    $(this).find('.ignore').each(function () {
+                        $(this).removeClass('ignore');
+                    });
+                    $(this).find('.ignore-completely').each(function () {
+                        $(this).removeClass('ignore-completely');
+                    });
+                    $(this).find('.inner-repeater-ignore-completely').each(function () {
+                        $(this).removeClass('inner-repeater-ignore-completely');
+                    });
+
                     $(this).fadeIn();
                     var innerRepeaterButton = $(this).parent().find('.button-container button .my-repeater-badge');
-                    console.log(innerRepeaterButton);
                     var repeaterCount = parseInt(innerRepeaterButton.text());
                     innerRepeaterButton.text(repeaterCount + 1);
                     myDatepicker();
                     myCurrency();
                     mySelect2(true);
+                    $('.select2').on('change', function (e) {
+                        validateObj.form();
+                    });
                 },
             }],
-            initEmpty: true,
+            //initEmpty: true,
             isFirstItemUndeletable: true,
         });
     }
@@ -386,52 +484,7 @@ $(function () {
         $(this).parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
     });
 
-    //var validationRules = {};
-    //FORM Validation
-    if ($('form#form-validation').length) {
-        var validateObj = $("form#form-validation").validate({
-            ignore: '.ignore, .ignore-completely',
-            errorElement: 'span',
-            errorClass: 'is-invalid',
-            validClass: 'is-valid',
-            rules: validationRules,
-            invalidHandler: function (event, validator) {
-                // 'this' refers to the form
-                if ($(this).hasClass('evaluationForm')) {
-                    var closestInvalid = validator.errorList[0].element;
-                    var tabePane = $(closestInvalid).parents('.tab-pane');
-                    var closestTabePaneID = tabePane.attr('id');
-                    var openedNavLink = $(this).find('.nav-link.active');
-                    var navlink = $(this).find('.nav-link#' + closestTabePaneID + '_tab');
-                    if (openedNavLink != navlink) {
-                        navlink.addClass('tab-with-error');
-                        setTimeout(function () {
-                            navlink.removeClass('tab-with-error');
-                        }, 2000)
-                        /*var targetID = openedNavLink.attr('aria-controls');
-                        var openedTabePane = $(this).find('.tab-pane#'+targetID);
-                        openedNavLink.removeClass('active');
-                        navlink.addClass('active');
-                        openedTabePane.addClass('fade');
-                        openedTabePane.removeClass('show open active');
-                        tabePane.addClass('show open active');*/
-                    }
-                }
-            },
-            submitHandler: function (form) {
-                // do other things for a valid form
-                $(form).find('button[type=submit]').addClass('is-loading');
-                form.submit();
-            }
-        });
-        $('.select2').on('change', function (e) {
-            validateObj.form();
-        });
 
-        $(".my-summernote").on("summernote.change", function (e) {   // callback as jquery custom event
-            validateObj.form();
-        });
-    }
 
     myCurrency();
 
@@ -557,7 +610,7 @@ function myDatepicker() {
 }
 
 function myCurrency() {
-    if ($('.currencyInput').length) {
+    /*if ($('.currencyInput').length) {
         $('.currencyInput').each(function () {
             new Cleave(this, {
                 numeral: true,
@@ -565,7 +618,7 @@ function myCurrency() {
                 numeralThousandsGroupStyle: 'thousand'
             });
         })
-    }
+    }*/
 }
 
 function mySelect2(removeContainer=false) {
@@ -580,5 +633,55 @@ function mySelect2(removeContainer=false) {
         if(removeContainer){
             $('.select2-container').show();
         }
+    }
+}
+
+function mySummerNote(element='', destroyBefore=false) {
+    if(element==''){
+        element = $('.my-summernote');
+    }
+    if (element.length) {
+        if(element.length>1){
+            element.each(function () {
+                if(destroyBefore){
+                    $(this).summernote('destroy');
+                }
+                $(this).summernote({
+                    lang: 'fr-FR',
+                    toolbar: [
+                        // [groupName, [list of button]]
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph', 'style']],
+                        ['height', ['height']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture']],
+                        ['view', ['fullscreen', 'codeview']],
+                    ],
+                    height: $(this).attr('data-summernote-height') ? $(this).attr('data-summernote-height') : 130
+                });
+            });
+        }else{
+            if(destroyBefore){
+                element.summernote('destroy');
+            }
+            element.summernote({
+                lang: 'fr-FR',
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph', 'style']],
+                    ['height', ['height']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']],
+                    ['view', ['fullscreen', 'codeview']],
+                ],
+                height: element.attr('data-summernote-height') ? element.attr('data-summernote-height') : 130
+            });
+        }
+
     }
 }

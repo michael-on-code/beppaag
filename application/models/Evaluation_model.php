@@ -64,11 +64,18 @@ class Evaluation_model extends CI_Model
     {
         $tables = $this->_tables;
         $recommendationTables = getRecommendationTablesNames();
-        $this->db->select("$tables->evaluations.*, $tables->types.name as type, $recommendationTables->recommendations.id as U_recommendation_id, $tables->temporalities.name as temporality, 
+        //$this->load->model('recommendation_model');
+
+        //$recommendationsIDs = $this->recommendation_model->getByEvaluationID()
+        //$recommendationIDs = implode()
+        $this->db->select("$tables->evaluations.*, $tables->types.name as type, $tables->temporalities.name as temporality, 
         $tables->leading_authorities.name as leading_authority, $tables->contracting_authorities.name as contracting_authority, 
        users.first_name, users.last_name, (SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
-       where $recommendationTables->activities.execution_level = 'executed' AND $recommendationTables->activities.recommendation_id = U_recommendation_id) as executed_count,(SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
-       where $recommendationTables->activities.recommendation_id = U_recommendation_id) as total_recommendation_activities_count");
+       where $recommendationTables->activities.execution_level = 'executed' AND $recommendationTables->activities.recommendation_id IN 
+       (SELECT $recommendationTables->recommendations.id FROM $recommendationTables->recommendations where evaluation_id = $tables->evaluations.id)) as executed_count, 
+       (SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
+       where $recommendationTables->activities.recommendation_id IN 
+       (SELECT $recommendationTables->recommendations.id FROM $recommendationTables->recommendations where evaluation_id = $tables->evaluations.id)) as total_recommendation_activities_count");
         if ($onlyActiveOnes) {
             $this->db->where(['active' => 1]);
         }
@@ -78,7 +85,7 @@ class Evaluation_model extends CI_Model
         $this->db->join($tables->leading_authorities, "$tables->leading_authorities.id = $tables->evaluations.leading_authority_id");
         $this->db->join($tables->contracting_authorities, "$tables->contracting_authorities.id = $tables->evaluations.contracting_authority_id");
         $this->db->join('users', "users.id = $tables->evaluations.created_by");
-        $this->db->join($recommendationTables->recommendations, "$recommendationTables->recommendations.evaluation_id = $tables->evaluations.id");
+        //$this->db->join($recommendationTables->recommendations, "$recommendationTables->recommendations.evaluation_id = $tables->evaluations.id");
         //$this->db->join($recommendationTables->activities, "$recommendationTables->activities.recommendation_id = $recommendationTables->recommendations.id");
         //$this->db->group_by(["U_recommendation_id"]);
         if($order){
@@ -137,6 +144,7 @@ class Evaluation_model extends CI_Model
             'description',
             'methodological_approach',
             'recommendation_actor_associated',
+            'recommendation_comment',
         );
     }
 
@@ -205,18 +213,34 @@ class Evaluation_model extends CI_Model
             $evaluation = $this->getEvaluationMeta($evaluation);
             $evaluation['sector_id'] = $this->getSectorsByEvaluationID($evaluation['id'], true);
             $evaluation['thematic_id'] = $this->getThematicsByEvaluationID($evaluation['id'], true);
+            $evaluation['questions'] = $this->getEvaluationQuestions($evaluation['id']);
             $this->load->model('recommendation_model');
-            $recommendationData = $this->recommendation_model->getByEvaluationID($evaluation['id']);
-            $evaluation['recommendation_user_id'] = $recommendationData['user_id'];
-            $evaluation['recommendation_start_date'] = convert_date_to_english($recommendationData['start_date'], '-', getRegularDateTimeFormat(), 'd/m/Y');
-            $evaluation['recommendation_comment'] = $recommendationData['attribution_comment'];
-            $evaluation['activities'] = $this->recommendation_model->getRecommendationActivities($recommendationData['id']);
+            $evaluation['recommendations'] = $this->recommendation_model->getByEvaluationID($evaluation['id']);
 
         }
         return $evaluation;
     }
 
-    public function insertOrUpdateEvaluation($update=false, $evaluation, $evaluationID = '', $isActorAssociated=true, $activityData=[])
+    public function updateEvaluationQuestions($evaluationID, $questionsData){
+        if(!empty($questionsData)){
+            $this->db->delete($this->_tables->questions, ['evaluation_id'=>$evaluationID]);
+            foreach ($questionsData as $key=>$question){
+                if(maybe_null_or_empty($question, 'title')==''){
+                    unset($questionsData[$key]);
+                    continue;
+                }
+                $questionsData[$key]['evaluation_id']=$evaluationID;
+            }
+            $this->db->insert_batch($this->_tables->questions, $questionsData);
+        }
+
+    }
+
+    public function getEvaluationQuestions($evaluationID){
+        return $this->db->get_where($this->_tables->questions, ['evaluation_id'=>$evaluationID])->result_array();
+    }
+
+    public function insertOrUpdateEvaluation($update=false, $evaluation, $evaluationID = '', $isActorAssociated=true, $questionsData=[], $recommendationsData)
     {
         $this->load->model('recommendation_model');
         //TODO $evaluation for logs
@@ -227,12 +251,10 @@ class Evaluation_model extends CI_Model
         $data['recommendation_actor_associated']=(int) maybe_null_or_empty($data, 'recommendation_actor_associated');
         if($isActorAssociated){
             //recommendations
-            $recommendationData['user_id'] = $data['recommendation_user_id'];
-            $recommendationData['attribution_comment'] = $data['recommendation_comment'];
-            $recommendationData['start_date'] = convert_date_to_english($data['recommendation_start_date']);
+            $data['recommendation_start_date'] = convert_date_to_english($data['recommendation_start_date']);
+        }else{
+            unset($data['recommendation_actor_id'], $data['recommendation_comment'], $data['recommendation_start_date']);
         }
-        unset($data['recommendation_user_id'], $data['recommendation_comment'], $data['recommendation_start_date']);
-
         //metas
         $metas = $this->get_metas_group();
         $meta_datas = [];
@@ -275,19 +297,9 @@ class Evaluation_model extends CI_Model
         }
         $this->insertOrUpdateEvaluationSectorGroup($sectorToInsert, 'evaluation_id', $evaluationID);
         $this->insertOrUpdateEvaluationThematicGroup($thematicToInsert, 'evaluation_id', $evaluationID);
-        $recommendationData['evaluation_id'] = $evaluationID;
-        $recommendationID = $this->recommendation_model->getFieldByEvaluationID($evaluationID);
-        if(!$update && $isActorAssociated){
-            $recommendationID = $this->recommendation_model->insertOrUpdateRecommendation($recommendationData);
-        }
-        if(!(isset($recommendationID) && $recommendationID)){
-            $recommendationData['user_id']=get_current_user_id();
-            $recommendationID = $this->recommendation_model->insertOrUpdateRecommendation($recommendationData);
-        }
+        $this->updateEvaluationQuestions($evaluationID, $questionsData);
         if(!$isActorAssociated){
-            if(!empty($activityData)){
-                $this->recommendation_model->setRecommendationActivities($recommendationID, $activityData);
-            }
+            $this->recommendation_model->updateRecommendationWithActivitiesForEvaluation($evaluationID, $recommendationsData);
         }
         return $evaluationID;
     }

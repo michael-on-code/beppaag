@@ -208,7 +208,7 @@ function convert_date_to_english($date, $characterToCheck = '/', $inputFormat = 
     if ($date && is_string($date) && strpos($date, $characterToCheck)) {
         return DateTime::createFromFormat($inputFormat, $date)->format($outputFormat);
     }
-    return date($outputFormat);
+    return null;
 }
 
 function redirect_if_id_is_not_valid($id, $table_name = '', $redirect)
