@@ -16,8 +16,8 @@
             <?php
         }
     } ?>
-    <link href="<?= $assetsUrl ?>pro/css/app.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.040">
+    <link href="<?= $assetsUrl ?>pro/css/app.min.css?v=1.002" rel="stylesheet">
+    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.045">
 </head>
 <!-- end::Head -->
 

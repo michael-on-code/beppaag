@@ -311,14 +311,18 @@ class Evaluation_model extends CI_Model
 
     public function insertOrUpdateEvaluationSectorGroup($data, $checkField, $checkFieldValue)
     {
-        $this->db->delete($this->_tables->sector_group, array($checkField => $checkFieldValue));
-        $this->db->insert_batch($this->_tables->sector_group, $data);
+        if(!empty($data)){
+            $this->db->delete($this->_tables->sector_group, array($checkField => $checkFieldValue));
+            $this->db->insert_batch($this->_tables->sector_group, $data);
+        }
     }
 
     public function insertOrUpdateEvaluationThematicGroup($data, $checkField, $checkFieldValue)
     {
-        $this->db->delete($this->_tables->thematic_group, array($checkField => $checkFieldValue));
-        $this->db->insert_batch($this->_tables->thematic_group, $data);
+        if(!empty($data)){
+            $this->db->delete($this->_tables->thematic_group, array($checkField => $checkFieldValue));
+            $this->db->insert_batch($this->_tables->thematic_group, $data);
+        }
     }
 
     public function insertorUpdateSector($data, $id = '')

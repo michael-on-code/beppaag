@@ -44,7 +44,7 @@ class Admin_evaluations extends Pro_Controller{
         //var_dump($unOrderableColumns);exit;
         $this->data['clientData']['invisiblesColumns']=$this->data['invisiblesColumns'];
         $this->data['clientData']['allColumns']=array_keys($this->data['tableHeaders']);
-        $this->data['clientData']['evaluations']=$this->data['evaluations'];
+        //$this->data['clientData']['evaluations']=$this->data['evaluations'];
         $this->data['clientData']['unOrderableColumns']=$unOrderableColumns;
         includeDatatablesAssets();
         includeSelect2Assets();

@@ -451,7 +451,7 @@ $config['global_xss_filtering'] = FALSE;
 $config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'beppaagg_csrf_token_nonce';
 $config['csrf_cookie_name'] = 'beppaagg_csrf_cookie_nonce';
-$config['csrf_expire'] = 300;
+$config['csrf_expire'] = 1800;
 $config['csrf_regenerate'] = FALSE;
 $config['csrf_exclude_uris'] = array();
 

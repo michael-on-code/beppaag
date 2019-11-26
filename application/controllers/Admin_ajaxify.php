@@ -12,6 +12,188 @@ class Admin_ajaxify extends Pro_Controller{
         parent::__construct();
     }
 
+    public function addPostCategory(){
+        if($this->input->is_ajax_request()){
+            if($category = $this->input->post('category')){
+                $tables = getPostTablesNames();
+                setFormValidationRules([
+                    [
+                        'name'=>'category[name]',
+                        'label'=>"Titre de la catégorie",
+                        'rules' => "trim|required|is_unique[$tables->categories.name]"
+                    ],
+                    [
+                        'name' => 'category[description]',
+                        'label' => "Description de la catégorie d'article",
+                        'rules' => 'trim|required'
+                    ],
+                ]);
+                if($this->form_validation->run()){
+                    $this->load->model('post_model');
+                    $category['slug'] = getSlugifyString($category['name'], true, true) . uniqid();
+                    $categoryID = $this->post_model->insertorUpdateCategory($category);
+                    echo json_encode([
+                        'status'=>true,
+                        'message'=>"<p>Catégorie d'article ajoutée avec succès</p>",
+                        'select2Data'=>[
+                            'id'=>$categoryID,
+                            'text'=>$category['name']
+                        ]
+                    ]);
+                }else{
+                    echo json_encode([
+                        'status'=>false,
+                        'message'=>validation_errors()
+                    ]);
+                }
+            }else{
+                echo json_encode([
+                    'status'=>false,
+                    'message'=>"<p>Action non authorisée</p>"
+                ]);
+            }
+            die();
+        }
+        pro_redirect();
+    }
+
+    public function addPostTag(){
+        if($this->input->is_ajax_request()){
+            if($tag = $this->input->post('tag')){
+                $tables = getPostTablesNames();
+                setFormValidationRules([
+                    [
+                        'name'=>'tag[name]',
+                        'label'=>"Titre de l'étiquette",
+                        'rules' => "trim|required|is_unique[$tables->tags.name]"
+                    ],
+                    [
+                        'name' => 'tag[description]',
+                        'label' => "Description de l'étiquette d'article",
+                        'rules' => 'trim|required'
+                    ],
+                ]);
+                if($this->form_validation->run()){
+                    $this->load->model('post_model');
+                    $tag['slug'] = getSlugifyString($tag['name'], true, true) . uniqid();
+                    $tagID = $this->post_model->insertorUpdateTag($tag);
+                    echo json_encode([
+                        'status'=>true,
+                        'message'=>"<p>Etiquette d'article ajouté avec succès</p>",
+                        'select2Data'=>[
+                            'id'=>$tagID,
+                            'text'=>$tag['name']
+                        ]
+                    ]);
+                }else{
+                    echo json_encode([
+                        'status'=>false,
+                        'message'=>validation_errors()
+                    ]);
+                }
+            }else{
+                echo json_encode([
+                    'status'=>false,
+                    'message'=>"<p>Action non authorisée</p>"
+                ]);
+            }
+            die();
+        }
+        pro_redirect();
+    }
+    
+    public function addEventCategory(){
+        if($this->input->is_ajax_request()){
+            if($category = $this->input->post('category')){
+                $tables = getEventTablesNames();
+                setFormValidationRules([
+                    [
+                        'name'=>'category[name]',
+                        'label'=>"Titre de la catégorie",
+                        'rules' => "trim|required|is_unique[$tables->categories.name]"
+                    ],
+                    [
+                        'name' => 'category[description]',
+                        'label' => "Description de la catégorie d'evenement",
+                        'rules' => 'trim|required'
+                    ],
+                ]);
+                if($this->form_validation->run()){
+                    $this->load->model('event_model');
+                    $category['slug'] = getSlugifyString($category['name'], true, true) . uniqid();
+                    $categoryID = $this->event_model->insertorUpdateCategory($category);
+                    echo json_encode([
+                        'status'=>true,
+                        'message'=>"<p>Catégorie d'evenement ajoutée avec succès</p>",
+                        'select2Data'=>[
+                            'id'=>$categoryID,
+                            'text'=>$category['name']
+                        ]
+                    ]);
+                }else{
+                    echo json_encode([
+                        'status'=>false,
+                        'message'=>validation_errors()
+                    ]);
+                }
+            }else{
+                echo json_encode([
+                    'status'=>false,
+                    'message'=>"<p>Action non authorisée</p>"
+                ]);
+            }
+            die();
+        }
+        pro_redirect();
+    }
+
+    public function addEventTag(){
+        if($this->input->is_ajax_request()){
+            if($tag = $this->input->post('tag')){
+                $tables = getEventTablesNames();
+                setFormValidationRules([
+                    [
+                        'name'=>'tag[name]',
+                        'label'=>"Titre de l'étiquette",
+                        'rules' => "trim|required|is_unique[$tables->tags.name]"
+                    ],
+                    [
+                        'name' => 'tag[description]',
+                        'label' => "Description de l'étiquette d'evenement",
+                        'rules' => 'trim|required'
+                    ],
+                ]);
+                if($this->form_validation->run()){
+                    $this->load->model('event_model');
+                    $tag['slug'] = getSlugifyString($tag['name'], true, true) . uniqid();
+                    $tagID = $this->event_model->insertorUpdateTag($tag);
+                    echo json_encode([
+                        'status'=>true,
+                        'message'=>"<p>Etiquette d'evenement ajouté avec succès</p>",
+                        'select2Data'=>[
+                            'id'=>$tagID,
+                            'text'=>$tag['name']
+                        ]
+                    ]);
+                }else{
+                    echo json_encode([
+                        'status'=>false,
+                        'message'=>validation_errors()
+                    ]);
+                }
+            }else{
+                echo json_encode([
+                    'status'=>false,
+                    'message'=>"<p>Action non authorisée</p>"
+                ]);
+            }
+            die();
+        }
+        pro_redirect();
+    }
+    
+    
+
     public function addSector(){
         if($this->input->is_ajax_request()){
             if($sector = $this->input->post('sector')){

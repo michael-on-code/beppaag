@@ -211,7 +211,7 @@ function convert_date_to_english($date, $characterToCheck = '/', $inputFormat = 
     return null;
 }
 
-function redirect_if_id_is_not_valid($id, $table_name = '', $redirect)
+function redirect_if_id_is_not_valid($id, $table_name = '', $pro_redirect)
 {
     if (is_numeric($id) && (int)$id > 0) {
         if ($table_name == '') {
@@ -224,7 +224,7 @@ function redirect_if_id_is_not_valid($id, $table_name = '', $redirect)
         }
     }
     get_warning_message('Action non authorisée');
-    redirect($redirect);
+    pro_redirect($pro_redirect);
 }
 
 function getSlugifyString($string, $toLower = true, $removeBlankSpace = true, $replaceSpaceWithDash = true, $limitToNWords = 40)
@@ -264,6 +264,25 @@ function getTableByID($tableName, $id, $isArray = true)
         return $result->row_array();
     }
     return $result->row();
+}
+
+function getPostTablesNames(){
+    $tables = new stdClass();
+    $tables->posts = 'posts';
+    $tables->categories = 'post_categories';
+    $tables->meta = 'post_meta';
+    $tables->tags = 'post_tags';
+    $tables->tag_group = 'post_tag_groups';
+    return $tables;
+}
+function getEventTablesNames(){
+    $tables = new stdClass();
+    $tables->events = 'events';
+    $tables->categories = 'event_categories';
+    $tables->meta = 'event_meta';
+    $tables->tags = 'event_tags';
+    $tables->tag_group = 'event_tag_groups';
+    return $tables;
 }
 
 function getEvaluationTablesNames()

@@ -836,10 +836,10 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                         </div>
                                         <?php
                                         //Default first one
-                                        getRecommendationRepeater([], 'first-one', ($recommendationsNotEmpty ? 'ignore-completely':''));
+                                        getRecommendationRepeater([], 'first-one', ($recommendationsNotEmpty ? 'ignore-completely':''), $recommendationsNotEmpty);
                                         if ($recommendationsNotEmpty) {
                                             foreach ($recommendations as $key=> $recommendation) {
-                                                getRecommendationRepeater($recommendation, '','',$key+1);
+                                                getRecommendationRepeater($recommendation, '','',false,$key+1);
                                             }
                                         }
                                         ?>
@@ -906,7 +906,7 @@ function getQuestionRepeater($question=[], $additionalClassToParent='', $additio
     <?php
 }
 
-function getRecommendationRepeater($recommendations=[], $additionalClassToParent='', $additionalClassToFields='', $key=0){
+function getRecommendationRepeater($recommendations=[], $additionalClassToParent='', $additionalClassToFields='', $previousRecommendationExist = false,$key=0){
     ?>
     <div class="card <?= $additionalClassToParent ?>" data-repeater-item>
         <div class="card-header">
@@ -914,7 +914,7 @@ function getRecommendationRepeater($recommendations=[], $additionalClassToParent
                 <a data-toggle="collapse" href="#collapseDefault-<?= $key ?>">
                     <span class="collapse-identifier">#</span>
                     <span class="collapse-header-seperator"> - </span>
-                    <span class="collapse-header-text"><?= myWordLimiter(maybe_null_or_empty($recommendations, 'title'), 50) ?></span>
+                    <span class="collapse-header-text"><?= myWordLimiter(maybe_null_or_empty($recommendations, 'title'), 15) ?></span>
                 </a>
             </h5>
             <button title="Supprimer activité" type="button" data-repeater-delete
@@ -957,6 +957,7 @@ function getRecommendationRepeater($recommendations=[], $additionalClassToParent
                 <?php
                 $activities = maybe_null_or_empty($recommendations, 'activities', true);
                 //var_dump($activities);
+                $recommendationsNotEmpty = !empty($recommendations);
                 $activitiesNotEmpty = !empty($activities);
                 ?>
                 <div class="inner-repeater"
@@ -969,7 +970,7 @@ function getRecommendationRepeater($recommendations=[], $additionalClassToParent
                                     class="btn btn-primary mail-open-compose real-btn-primary">
                                 <i class="anticon anticon-plus"></i>
                                 <span class="m-l-5">Ajouter nouvelle activité</span>
-                                <span class="badge badge-indicator badge-danger my-repeater-badge"><?= $activitiesNotEmpty ? count($activities) : 1 ?></span>
+                                <span class="badge badge-indicator badge-danger my-repeater-badge"><?= $activitiesNotEmpty ? count($activities) : ($recommendationsNotEmpty ? 0 : ($previousRecommendationExist ? 0 : 1)) ?></span>
                             </button>
                         </div>
                         <?php

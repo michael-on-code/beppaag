@@ -9,6 +9,9 @@ $(function () {
                 submenus.each(function () {
                     if ($(this).hasClass('dropdown')) {
                         var parent = $(this);
+                        if(!parent.next('a').hasClass('dropdown-toggle')){
+                            parent.addClass('is-inner-submenu');
+                        }
                         var childSubmenus = $(this).find('ul.dropdown-menu li');
                         childSubmenus.each(function () {
                             var myHref = $(this).find('a').attr('href');
@@ -17,7 +20,8 @@ $(function () {
                                 parent.addClass('open');
                                 grandParent.addClass('open');
                             }
-                        })
+                        });
+
                     } else {
                         var myHref = $(this).find('a').attr('href');
                         if (myHref == pageUrl) {
@@ -25,7 +29,18 @@ $(function () {
                             grandParent.addClass('open');
                         }
                     }
-                })
+                });
+                //More than one submenus are active solved
+                //Only Last Submenu is active
+                var submenusActive = $(this).find('.is-inner-submenu .active');
+                var submenusActiveLength = submenusActive.length;
+                if(submenusActiveLength > 1){
+                    submenusActive.each(function (index) {
+                        if(index < submenusActiveLength-1){
+                            $(this).removeClass('active');
+                        }
+                    })
+                }
             } else {
                 var myHref = $(this).find('a').attr('href');
                 if (myHref == pageUrl) {
