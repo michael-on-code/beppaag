@@ -13,6 +13,171 @@ function get_current_user_id()
     return $ci->ion_auth->user()->row()->id;
 }
 
+function getAddOrEditUserHTML($edit=false, $user=[], $roles,$uploadPath,$pageTitle){
+    ?>
+    <div class="card">
+        <div class="card-body">
+            <h4><?= $pageTitle ?></h4>
+            <p>Trouvez ici le formulaire de création d'un nouvel utilisateur</p>
+            <div class="m-t-25">
+                <?= form_open('', [
+                    'id' => 'form-validation'
+                ]) ?>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <?php
+                            echo form_label($title = "Nom de l'utilisateur", $id = 'last_name');
+                            echo form_input([
+                                'name' => $name = "user[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                                'value' => set_value($name, maybe_null_or_empty($user, $id), false)
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <?php
+                            echo form_label($title = "Prénom(s) de l'utilisateur", $id = 'first_name');
+                            echo form_input([
+                                'name' => $name = "user[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'required' => '',
+                                'value' => set_value($name, maybe_null_or_empty($user, $id), false)
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <?php
+                            echo form_label($title = "Email de l'utilisateur", $id = 'email');
+                            echo form_input([
+                                'name' => $name = "user[$id]",
+                                'class' => 'form-control',
+                                'placeholder' => $title,
+                                'id' => $id,
+                                'type' => 'email',
+                                'required' => '',
+                                'value' => set_value($name, maybe_null_or_empty($user, $id), false)
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <?php
+                            echo form_label($title = "Rôle de l'utilisateur", $id = 'role');
+                            echo form_dropdown($name = "user[$id]", $roles, set_value($name, maybe_null_or_empty($user, 'role')), [
+                                'class'=>"select2",
+                                'required'=>"",
+                            ]);
+                            echo get_form_error($name);
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <?php echo form_label($title = "Attacher photo de l'utilisateur");
+                            $file = set_value($name = 'user[user_photo]', maybe_null_or_empty($user, 'user_photo', true));
+                            ?>
+                            <a class="my-file-preview-btn"
+                               data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
+                               data-placement="top" title="Visualiser la photo" target="_blank"
+                               href="<?= $file ? $uploadPath . $file : '#' ?>"> <span
+                                    class="anticon anticon-cloud-upload"></span></a>
+                            <?php
+                            $data = [
+                                'name' => '',
+                                'attributes' => [
+                                    'data-target' => 'user_photo',
+                                    'data-target-name' => $name,
+                                ],
+                                'title' => $title,
+                            ];
+                            if ($file) {
+                                $data['value'] = $uploadPath . $file;
+                            } else {
+                                $data['value'] = '';
+                            }
+                            echo form_hidden($name, set_value($name, $file));
+                            get_form_upload($data, $extensions = 'jpg jpeg png', '1M', false, 'auto-upload');
+                            echo get_form_error($name);
+                            getFieldInfo('Format : JPG | JPEG | PNG Taille Max : 1M');
+                            ?>
+                        </div>
+                        <?php getAllFormButtons($edit, pro_url('users')) ?>
+                    </div>
+                </div>
+
+
+                <?= form_close() ?>
+                <script>
+                    var validationRules = {
+
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+function setUserValidation($edit, $userID = ''){
+    $ci =& get_instance();
+    if($user = $ci->input->post('user')){
+        setFormValidationRules([
+            [
+                'name' => 'user[last_name]',
+                'label' => 'Nom',
+                'rules' => 'trim|required|max_length[50]'
+            ],
+            [
+                'name' => 'user[first_name]',
+                'label' => 'Prénom(s)',
+                'rules' => 'trim|required|max_length[50]'
+            ],
+            [
+                'name' => 'user[email]',
+                'label' => 'Email',
+                'rules' => 'trim|required|max_length[100]' . $edit ? "callback_is_unique_on_update[users.email.$userID]" : 'is_unique[users.email]'
+            ],
+            [
+                'name' => 'user[role]',
+                'label' => "Role du nouvel utilisateur",
+                'rules' => 'required',
+                [
+                    'checking_roles', [$ci->user_model, 'checkpoint_do_role_exist']
+                ]
+            ],
+            [
+                'name' => 'user[user_photo]',
+                'label' => 'Photo de profil',
+                'rules' => 'trim'
+            ],
+        ]);
+        if($ci->form_validation->run()){
+            $roles = getAppropriateUsersRoles(false);
+            $user['role']=maybe_null_or_empty($roles, $user['role']);
+            $userGroupsIDs = $ci->user_model->getUserGroupIDsByGroupNames($user['role']);
+            unset($user['role']);
+            if(!$edit){
+                //insert
+                $user['added_by'] = get_current_user_id();
+                $ci->user_model->insert($user, $userGroupsIDs);
+            }else{
+                $user['updated_by'] = get_current_user_id();
+                $ci->user_model->update($userID, $user, $userGroupsIDs);
+            }
+            get_success_message("Utilisateur ".($edit ? 'modifié' : 'ajouté'). ' avec succès');
+            pro_redirect('users');
+        }else{
+            get_error_message();
+        }
+    }
+}
+
 function getUserPhotoUrl($picFileName = '')
 {
     if ($picFileName == '') {
@@ -339,8 +504,9 @@ function redirect_if_logged_in($to = 'dashboard')
     }
 }
 
-function getAppropriateUsersRoles(){
-    return [
+function getAppropriateUsersRoles($onlyKeys = true,$forSelect2=false){
+
+    $roles = [
         'admin'=>[
             'admin', 'editor', 'evaluation_moderator', 'recommendation_moderator', 'members'
         ],
@@ -354,6 +520,14 @@ function getAppropriateUsersRoles(){
             'recommendation_moderator', 'members'
         ],
     ];
+    if($onlyKeys){
+        $temp=[];
+        if($forSelect2){
+            $temp['']='';
+        }
+        return array_merge($temp, array_keys($roles));
+    }
+    return $roles;
 }
 
 function redirect_if_user_cannot($group_name, $redirect = 'dashboard')

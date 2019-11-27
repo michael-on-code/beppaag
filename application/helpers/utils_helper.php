@@ -376,9 +376,12 @@ function update_meta($id, $key, $value, $table_meta, $table_id_val)
     }
 }
 
-function getRegularDateTimeFormat()
+function getRegularDateTimeFormat($inEnglish=true)
 {
-    return 'Y-m-d G:i:s';
+    if($inEnglish){
+        return 'Y-m-d G:i:s';
+    }
+    return 'd/m/Y G:i:s';
 }
 
 function get_form_upload($data, $extensions = 'png jpg jpeg', $maxSize = "1M", $required = true, $additionalClass = '')

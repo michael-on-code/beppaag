@@ -28,7 +28,7 @@ class User_model extends CI_Model
         $rolesIDs=[];
         if(!empty($allRoles)){
             foreach ($allRoles as $key=> $role){
-                $rolesIDs[]=$role->id;
+                $rolesIDs[]=$role->name;
             }
             if(!empty($roles)){
                 foreach ($roles as $role){
@@ -151,7 +151,7 @@ class User_model extends CI_Model
             foreach ($users as $key => $user) {
                 $users[$key] = $this->getUserMeta($user);
                 $groups = $this->ion_auth->get_users_groups($user['id'])->result();
-                if($users[$key]['added_by'] && is_numeric($users[$key]['added_by'])){
+                /*if($users[$key]['added_by'] && is_numeric($users[$key]['added_by'])){
                     $addedBy = $this->get_data_by_id($users[$key]['added_by']);
                     if(!empty($addedBy)){
                         $users[$key]['added_by']= (object)$addedBy;
@@ -159,34 +159,40 @@ class User_model extends CI_Model
                         $users[$key]['added_by']=null;
                     }
 
-                }
-                if(!empty($groups)){
+                }*/
+                $users[$key]['role'] = $this->getUserRealRoleByID($users[$key]['id'], true);
+                /*if(!empty($groups)){
                     $tempGroup=[];
                     foreach ($groups as $group){
                         $tempGroup[]=$group->description;
                     }
                     $users[$key]['roles'] = implode(', ',$tempGroup);
-                }
+                }*/
+                $users[$key] = (object)$users[$key];
             }
         }
         return $users;
     }
 
-    public function getRoleForSelect2()
+    public function getRoleForSelect2($idField='id', $withoutGroupName = '')
     {
         $roles = $this->ion_auth->groups()->result();
         //var_dump($roles);exit;
         //$memberId = $this->getGroupByName('members')->id;
-//        $temp = ['' => ''];
+        $temp = ['' => ''];
         if (!empty($roles)) {
             foreach ($roles as $role) {
-                /*if ($role->id == $memberId)
-                    continue;*/
-                $temp[$role->id] = $role->description;
+                if ($withoutGroupName != '') {
+                    if ($role->name == $withoutGroupName) {
+                        continue;
+                    }
+                }
+                $temp[$role->$idField] = $role->description;
             }
         }
         return $temp;
     }
+
 
     public function getUserRoleName($userId)
     {
@@ -259,6 +265,20 @@ class User_model extends CI_Model
         }
     }
 
+    public function getUserGroupIDsByGroupNames(array $groupNames){
+        //$groupNames = implode(', ', $groupNames);
+        $this->db->select('id');
+        $this->db->or_where_in('name', $groupNames);
+        $groups =  $this->db->get('groups')->result_array();
+        $temp=[];
+        if(!empty($groups)){
+            foreach ($groups as $group){
+                $temp[]=$group['id'];
+            }
+        }
+        return $temp;
+    }
+
     public function insert(array $data, array $group)
     {
         $metas = $this->get_metas_group();
@@ -271,10 +291,8 @@ class User_model extends CI_Model
                 }
             }
         }
-        $username = $data['last_name'].$data['first_name'] . uniqid();
-        $username = strtolower(preg_replace('/[^a-zA-Z0-9-_\.]/', '', $username));
-        $username = substr($username, 0, 100);
-        //temporary password
+        $username = $data['last_name'].$data['first_name'];
+        $username = getSlugifyString($username, true, true, true, 100).uniqid();
         $password = uniqid();
         $email = $data['email'];
         unset($data['email']);
@@ -313,10 +331,35 @@ class User_model extends CI_Model
         if(!empty($user)){
             $user = $this->getUserMeta($user);
             if ($withRoles) {
-                $user['roles'] = $this->getUserRole($user_id, 'id');
+                $user['role'] = $this->getUserRealRoleByID($user_id);
             }
         }
         return $user;
+    }
+
+    public function getUserRealRoleByID($user_id, $onlyDescription=false){
+        $roles = $this->getUserRole($user_id, 'name', 'members');
+        $realRole = '';
+        if(!empty($roles)){
+            $allRoles = getAppropriateUsersRoles(false);
+            foreach ($roles as $role) {
+                if(isset($allRoles[$role])){
+                    $realRole = $role;
+                    break;
+                }
+            }
+
+        }
+        if($onlyDescription){
+            return $this->getGroupNameDescription($realRole);
+        }
+        return $realRole;
+    }
+
+    public function getGroupNameDescription($name){
+        $this->db->select($return ='description');
+        $name = $this->db->get_where('groups', ['name'=>$name])->row();
+        return maybe_null_or_empty($name, $return);
     }
 
     public function activateUser($userID, $mustBeBanned=false)

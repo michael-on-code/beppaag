@@ -194,6 +194,10 @@ div.dropdown-menu.pop-profile > a.active{
 .wd-70-f{
     width:70px!important;
 }
+.wd-50-f{
+    width:50px!important;
+}
+
 button[data-repeater-delete]{
     position: absolute;
     right: 8px;
