@@ -17,8 +17,8 @@ $(function(){
     }
 
     if($('.form-error').length){
-        $('.form-error').prev('input, textarea, select').focus(function(){
-            $(this).next('.form-error').fadeOut('slow');
+        $('.form-error').parents('.form-group').find('input, textarea, select').focus(function(){
+            $(this).parents('.form-group').find('.form-error').fadeOut('slow');
             return false;
         });
     }

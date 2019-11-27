@@ -1,3 +1,6 @@
+<div class="container-fluid p-0 h-100">
+    <div class="row no-gutters h-100 full-height">
+        <div class="col-lg-4 d-none d-lg-flex bg" style="background-image:url('<?= $assetsUrl ?>pro/images/others/login-1.jpg')">
 <div class="d-flex h-100 p-h-40 p-v-15 flex-column justify-content-between">
     <div class="login-logo-triangle-container"></div>
     <div class="login-logo-container">
@@ -9,7 +12,7 @@
             ici, les évaluations des politiques publiques</p>
     </div>
     <div class="d-flex justify-content-between login-footer">
-        <span class="text-white">© 2019 BEPPAAG</span>
+        <span class="text-white">© 2019 <?= $options['siteName'] ?></span>
     </div>
 </div>
 </div>

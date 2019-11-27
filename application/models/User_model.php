@@ -128,6 +128,12 @@ class User_model extends CI_Model
         $sql = $onlyActiveOnes ? $sql." where active=1" : $sql;
         return $this->db->query($sql)->row()->num;
     }
+    
+    public function getUserActiveByID($userID){
+        $this->db->select('active');
+        $result = $this->db->get_where('users', ['id'=>$userID])->row();
+        return maybe_null_or_empty($result, 'active');
+    }
 
     public function getUsers($exceptCurrentUser = true, $onlyActiveUsers = false, $order = 'asc', $specificFields='')
     {

@@ -43,8 +43,6 @@
 <body>
 <div class="app">
     <?php get_flashdata() ?>
-    <div class="container-fluid p-0 h-100">
-        <div class="row no-gutters h-100 full-height">
-            <div class="col-lg-4 d-none d-lg-flex bg" style="background-image:url('<?= $assetsUrl ?>pro/images/others/login-1.jpg')">
+
 
 

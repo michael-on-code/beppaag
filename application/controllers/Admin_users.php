@@ -52,6 +52,47 @@ class Admin_users extends Pro_Controller{
         $this->render('users/add');
     }
 
+    public function ban($username){
+        $userID = (int)$this->user_model->getUserIDByUsername($username);
+        redirect_if_id_is_not_valid($userID, 'users', 'users');
+        $active = $this->user_model->getUserActiveByID($userID);
+        if($active==1){
+            $this->ion_auth->update($userID, ['active'=>2]);
+            get_success_message('Utilisateur banni avec succès');
+        }else{
+            get_warning_message();
+        }
+
+        pro_redirect('users');
+    }
+
+    public function activate($username){
+        $userID = (int)$this->user_model->getUserIDByUsername($username);
+        redirect_if_id_is_not_valid($userID, 'users', 'users');
+        $active = $this->user_model->getUserActiveByID($userID);
+        if($active==2){
+            $this->ion_auth->update($userID, ['active'=>1]);
+            get_success_message('Utilisateur activé avec succès');
+        }else{
+            get_warning_message();
+        }
+
+        pro_redirect('users');
+    }
+
+    public function delete_awaiting($username){
+        $userID = (int)$this->user_model->getUserIDByUsername($username);
+        redirect_if_id_is_not_valid($userID, 'users', 'users');
+        $active = $this->user_model->getUserActiveByID($userID);
+        if($active==0){
+            $this->ion_auth->delete_user($userID);
+            get_success_message('Utilisateur supprimé avec succès');
+        }else{
+            get_warning_message();
+        }
+        pro_redirect('users');
+    }
+
     public function edit($username){
         $userID = (int)$this->user_model->getUserIDByUsername($username);
         redirect_if_id_is_not_valid($userID, 'users', 'users');
