@@ -19,13 +19,16 @@
     <link href="<?= $assetsUrl ?>public/css/os-stylec577.css?v=1.0" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/stylefd49.css?v=1.01" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/m-style5fab.css?v=1.0" rel="stylesheet">
+
     <link href="<?= $assetsUrl ?>public/css/custom.css?v=1.01" rel="stylesheet">
+    <?php
+    $this->load->view('templates/_parts/header_css_file_include');
+    ?>
     <link href="<?= $assetsUrl ?>public/css/responsive.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>public/css/color.css?v=1.0" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/all.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.028" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.031" rel="stylesheet">
     <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'], '150x150')?>">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>

@@ -7,7 +7,7 @@
  */
 getBreadcrump([
         'title'=>$pageTitle
-])
+],  $options, 'event')
 ?>
 <!--Sub Header End-->
 <!--Main Content Start-->

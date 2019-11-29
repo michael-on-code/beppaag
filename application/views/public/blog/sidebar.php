@@ -8,79 +8,104 @@
 ?>
 <div class="col-md-3 col-sm-4">
     <div class="sidebar">
-        <div class="widget">
-            <h4>Nos Rubriques</h4>
-            <div class="categories inner">
-                <ul>
-                    <li><a href="#">Publication</a></li>
-                    <li><a href="#">Gestion de connaissance</a></li>
-                    <li><a href="#">Partenariat</a></li>
-                    <li><a href="#">Ressources techniques</a></li>
-                </ul>
+        <?php
+        if (!empty($categories)) {
+            ?>
+            <div class="widget">
+                <h4>Nos Rubriques</h4>
+                <div class="categories inner">
+                    <ul>
+                        <?php
+                        foreach ($categories as $category) {
+                            ?>
+                            <li>
+                                <a href="<?= site_url('blog/category/' . $category['slug']) ?>"><?= $category['name'] ?></a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!--Widget Start-->
-        <!--<div class="widget">
-                            <h4>About us</h4>
-                            <div class="about-widget inner"> <img data-src="<?/*= $assetsUrl */?>public/images/about-widget-img.jpg" alt="">
-                                <p> On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment. </p>
-                                <a href="#">More About us</a> </div>
-                        </div>-->
-        <!--Widget End-->
-        <!--Widget Start-->
-        <div class="widget">
-            <h4>Actualités récentes</h4>
-            <div class="recent-posts inner">
-                <ul>
-                    <li> <img data-src="<?= $assetsUrl ?>public/images/food-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
-                        <h6> <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>">Insécurité alimentaire : un regard sur les réponses</a> </h6>
-                    </li>
-                    <li> <img data-src="<?= $assetsUrl ?>public/images/tourism-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
-                        <h6> <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>">Politique Nationale de Développement de l’Artisanat </a> </h6>
-                    </li>
-                    <li> <img data-src="<?= $assetsUrl ?>public/images/poverty-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
-                        <h6> <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>">Politique Nationale du Tourisme</a> </h6>
-                    </li>
-                    <li> <img data-src="<?= $assetsUrl ?>public/images/stat-small.jpg" alt=""> <strong>02 Nov, 2019</strong>
-                        <h6> <a href="<?= site_url('blog/insecurite-alimentaire-au-benin') ?>">Politique Nationale du Tourisme</a> </h6>
-                    </li>
+            <?php
+        }
+        if (!empty($latestPosts)) {
+            ?>
+            <div class="widget">
+                <h4>Actualités récentes</h4>
+                <div class="recent-posts inner">
+                    <ul>
+                        <?php
+                        foreach ($latestPosts as $post) {
+                            ?>
+                            <li><img data-src="<?= getUploadedImageBySize($post['thumbnail'], '82x75') ?>"
+                                     alt="<?= $post['title'] ?>">
+                                <strong><?= getFullDateInFrench($post['created_at'], getRegularDateTimeFormat()) ?></strong>
+                                <h6><a data-toggle="tooltip" title="<?= $post['title'] ?>"
+                                       href="<?= site_url('blog/' . $post['slug']) ?>"><?= myWordLimiter($post['title'], 7) ?></a>
+                                </h6>
+                            </li>
+                            <?php
+                        }
 
-                </ul>
+                        ?>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!--Widget End-->
-        <!--Widget Start-->
+            <?php
+        }
+        if (!empty($latestEvents)) {
+            ?>
+            <div class="widget">
+                <h4>Evènements</h4>
+                <div class="upcoming-events inner">
+                    <ul>
+                        <?php
+                        foreach ($latestEvents as $event) {
+                            $dateArray = [];
+                            if ($startdate = convert_date_to_french(maybe_null_or_empty($event, 'starts_at', true))) {
+                                $dateArray = getFullDateInFrench($startdate, 'd/m/Y', true);
+                            }
+                            ?>
+                            <li>
+                                <?php
+                                if(!empty($dateArray)){
+                                    ?>
+                                    <div class="edate">
+                                        <strong><?= maybe_null_or_empty($dateArray, 'd') ?></strong> <?= substr(maybe_null_or_empty($dateArray, 'm'), 0, 4) ?>
+                                        <span class="year"><?= maybe_null_or_empty($dateArray, 'Y') ?></span>
+                                    </div>
+                                    <?php
+                                }
 
-        <!--Widget End-->
-        <!--Widget Start-->
-        <div class="widget">
-            <h4>Evènements</h4>
-            <div class="upcoming-events inner">
-                <ul>
-                    <li>
-                        <div class="edate"> <strong>02</strong> Nov <span class="year">2019</span> </div>
-                        <h6> <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>">Séminaire sur la bonne gestion</a> </h6>
-                        <span class="loc"><i class="fas fa-map-marker-alt"></i> Espace Dina, St Michel, Cotonou</span> </li>
-                    <li>
-                        <div class="edate"> <strong>04</strong> Nov <span class="year">2019</span> </div>
-                        <h6> <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>">Séminaire sur la bonne gestion</a> </h6>
-                        <span class="loc"><i class="fas fa-map-marker-alt"></i> Espace Dina, St Michel, Cotonou</span> </li>
-                    <li>
-                        <div class="edate"> <strong>18</strong> Jan <span class="year">2020</span> </div>
-                        <h6> <a href="<?= site_url('events/seminaire-sur-la-bonne-gestion-des-processus-evaluation') ?>">Séminaire sur la bonne gestion</a> </h6>
-                        <span class="loc"><i class="fas fa-map-marker-alt"></i> Espace Dina, St Michel, Cotonou</span> </li>
-                </ul>
+                                ?>
+
+                                <h6><a data-toggle="tooltip" title="<?= $event['title'] ?>" href="<?= site_url('events/' . $event['slug']) ?>"><?= myWordLimiter($event['title'], 6) ?></a>
+                                </h6>
+                                <span class="loc"><i class="fas fa-map-marker-alt"></i> <?= $event['location'] ?></span>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!--Widget End-->
-        <!--Widget Start-->
-        <!--Widget End-->
-
-        <!--Widget Start-->
-        <div class="widget">
-            <h4>Etiquettes</h4>
-            <div class="tags-widget inner"> <a href="#">Education</a> <a href="#">Santé</a> <a href="#">Travaux publics</a> <a href="#">Présidence</a> <a href="#">Ministères</a> <a href="#">Directions techniques</a> <a href="#">BTP</a> </div>
-        </div>
-        <!--Widget End-->
+            <?php
+        }
+        if (!empty($tags)) {
+            ?>
+            <div class="widget">
+                <h4>Etiquettes</h4>
+                <div class="tags-widget inner">
+                    <?php
+                    foreach ($tags as $tag) {
+                        ?> <a href="<?= site_url('blog/tag/'.$tag['slug']) ?>"><?= $tag['name'] ?></a><?php
+                    }
+                    ?>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
     </div>
 </div>

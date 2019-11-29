@@ -6,11 +6,7 @@
  * Time: 08:29
  */
 
-function myWordLimiter($string, $limit=6){
-    $ci=&get_instance();
-    $ci->load->helper('text');
-    return word_limiter($string, $limit);
-}
+
 
 function getRecommendationTablesNames(){
     $tables = new stdClass();
@@ -18,6 +14,11 @@ function getRecommendationTablesNames(){
     $tables->activities = 'recommendation_activities';
     $tables->meta = 'recommendation_meta';
     return $tables;
+}
+
+function includeIroColorPicker(){
+    $ci=&get_instance();
+    $ci->data['footerJs'][]=$ci->data['assetsUrl']."pro/vendors/iro-colorpicker/iro.min.js";
 }
 
 function includeFancyBoxAssets(){

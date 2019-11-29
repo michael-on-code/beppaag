@@ -188,6 +188,9 @@ div.dropdown-menu.pop-profile > a.active{
 .wd-100p-f{
     width: 100%!important;
 }
+.no-max-width{
+    max-width: unset!important;
+}
 .wd-150-f{
     width:150px!important;
 }
@@ -326,6 +329,9 @@ input.select2-input{
     .card-body > .btn{
         margin-bottom: 10px;
         margin-left: 10px;
+    }
+    .my-account-border-right{
+        border-right: 1px solid #edf2f9;
     }
 
 }

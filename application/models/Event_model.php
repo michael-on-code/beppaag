@@ -41,7 +41,7 @@ class Event_model extends CI_Model{
 
 
 
-    public function getAll($onlyActiveOnes=true, $tagsInString=true, $resultInArray=true, $order=true, $orderByField='id', $orderBy='desc', $onlyDeletedOnes=false){
+    public function getAll($onlyActiveOnes=true, $tagsInString=true, $resultInArray=true, $order=true, $orderByField='id', $orderBy='desc', $onlyDeletedOnes=false, $limit=0){
         $tables = $this->_tables;
         $this->db->select("$tables->events.*, $tables->categories.name as category, users.first_name, users.last_name");
         $this->db->join($tables->categories, "$tables->categories.id = $tables->events.category_id");
@@ -53,6 +53,9 @@ class Event_model extends CI_Model{
         }
         if($order){
             $this->db->order_by($orderByField, $orderBy);
+        }
+        if($limit){
+            $this->db->limit($limit);
         }
         $events = $this->db->get($this->_tables->events)->result_array();
         if(!empty($events)){

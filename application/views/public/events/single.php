@@ -13,7 +13,7 @@ getBreadcrump([
             'url'=>site_url('events')
         ]
     ]
-])
+],  $options, 'event')
 ?>
 <div class="main-content p80">
     <!--News Details Page Start-->

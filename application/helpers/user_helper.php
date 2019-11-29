@@ -392,10 +392,20 @@ function get_menu_by_group($group)
                     'order' => 5,
                     'icon' => 'anticon anticon-layout',
                     'submenus' => [
+
+                        [
+                            'title' => 'Général',
+                            'url' => pro_url('contents')
+                        ],
                         [
                             'title' => 'Entête',
                             'url' => pro_url('contents/header')
                         ],
+                        [
+                            'title' => 'Bannières',
+                            'url' => pro_url('contents/banners')
+                        ],
+
                         [
                             'title' => 'Pieds de page',
                             'url' => pro_url('contents/footer')

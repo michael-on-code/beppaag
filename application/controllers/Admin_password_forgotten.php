@@ -63,7 +63,7 @@ veuillez cliquez sur le bouton ci-dessous. Dans le cas échéant, veuillez s'il 
                             $mail['destination'] = $forgotten['identity'];
                             sendMail($siteName . ' <no-reply@akasigroup.com>', $mail);*/
                             get_success_message("Réinitialisation de mot de passe réussie. Un mail de réinitialisation a été envoyé à " . $forgotten['identity'], 10000);
-                            redirect('password-forgotten');
+                            pro_redirect('password-forgotten');
 
                         } else {
                             get_error_message("Demande de réinitialisation de mot de passe échouée. Veuillez réessayer");
@@ -87,10 +87,10 @@ veuillez cliquez sur le bouton ci-dessous. Dans le cas échéant, veuillez s'il 
             $userID = $this->user_model->getIDByEmail($reset['identity']);
             $this->user_model->update_meta($userID, 'completionToken', $token = md5(uniqid()));
             get_info_message('Veuillez définir à présent votre nouveau mot de passe', 10000);
-            redirect("login/complete/$userID/$token", 'refresh');
+            pro_redirect("login/complete/$userID/$token", 'refresh');
         } else { //if the reset didnt work then send them back to the forgot password page
             get_warning_message("Operation de réinitialisation échouée. Veuillez reessayer");
-            redirect("login");
+            pro_redirect("login");
         }
     }
 }

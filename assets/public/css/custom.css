@@ -91,9 +91,7 @@ body a:focus {
 header {
 	background: #fff;
 }
-.header .topbar {
-	background: #0a3764;
-}
+
 .topbar ul {
 	margin: 0px;
 	padding: 0px;

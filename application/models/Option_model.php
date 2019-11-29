@@ -41,7 +41,17 @@ class Option_model extends CI_Model{
             'siteFavicon',
             'siteLogo',
             'siteDefaultAvatar',
-            'notificationEmails'
+            'notificationEmails',
+            //banners
+            'home_banner',
+            'evaluation_banner',
+            'post_banner',
+            'event_banner',
+            'contact_banner',
+            'other_banner',
+            //content general
+            'site_main_color',
+            'site_secondary_color',
         );
     }
 

@@ -337,7 +337,7 @@ class User_model extends CI_Model
         if(!empty($user)){
             $user = $this->getUserMeta($user);
             if ($withRoles) {
-                $user['role'] = $this->getUserRealRoleByID($user_id);
+                $user['role'] = $this->getUserRealRoleByID($user_id, true);
             }
         }
         return $user;

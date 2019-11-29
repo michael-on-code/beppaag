@@ -72,7 +72,7 @@ class Pro_Controller extends MY_Controller
         $this->load->helper(['user', 'pro']);
         redirect_if_not_logged_in('login');
         $this->load->model('user_model');
-        $this->data['user']= (object) $this->user_model->get_data_by_id(null);
+        $this->data['user']= (object) $this->user_model->get_data_by_id(null, true);
         redirect_if_is_banned();
         $user_groups = $this->ion_auth->get_users_groups()->result();
         if (!empty($user_groups)) {

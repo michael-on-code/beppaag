@@ -17,7 +17,7 @@
         }
     } ?>
     <link href="<?= $assetsUrl ?>pro/css/app.min.css?v=1.002" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.046">
+    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.048">
 </head>
 <!-- end::Head -->
 
@@ -145,9 +145,9 @@
                                         <img src="<?= $userPhoto ?>" alt="">
                                     </div>
                                     <div class="m-l-10">
-                                        <p class="m-b-0 text-dark font-weight-semibold"><?= maybe_null_or_empty($user, 'last_name').' '.maybe_null_or_empty($user, 'first_name') ?></p>
+                                        <p class="m-b-0 text-dark font-weight-semibold"><?= substr(maybe_null_or_empty($user, 'last_name'), 0, 1).'. '.maybe_null_or_empty($user, 'first_name') ?></p>
                                         <p class="m-b-0 opacity-07">
-<!--                                            TODO get individual unique role-->
+                                            <?= maybe_null_or_empty($user, 'role') ?>
                                         </p>
                                     </div>
                                 </div>

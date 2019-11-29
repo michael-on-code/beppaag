@@ -32,6 +32,16 @@ function googleRecaptchaCurl1(array $data)
     return $ret;
 }
 
+function getCountInTable($table, $where = false, $whereArray = [])
+{
+    $ci =& get_instance();
+    $ci->db->from($table);
+    if ($where) {
+        $ci->db->where($whereArray);
+    }
+    return $ci->db->count_all_results();
+}
+
 function get_form_error($name)
 {
     return form_error($name, '<p class="form-error">', '</p>');
@@ -39,7 +49,7 @@ function get_form_error($name)
 
 function getSpecificImageSizeDimensions($sizeName)
 {
-    return maybe_null_or_empty(imageSizes(), $sizeName, true);
+    return maybe_null_or_empty(getAllImageSizes(), $sizeName, true);
 }
 
 function getUploadedImageBySize($imageFullName, $imageSize = '', $withFullUrl = true)
@@ -93,9 +103,9 @@ function getAllImageSizes()
             'width' => 900,
             'height' => 420,
         ],
-        '1350x400' => [//public-banner
-            'width' => 1350,
-            'height' => 400,
+        '1024x649' => [//public-banner
+            'width' => 1024,
+            'height' => 649,
         ],
 
     ];
@@ -169,6 +179,9 @@ function pro_url($url = '')
 
 function pro_redirect($uri = '', $method = 'auto', $code = NULL)
 {
+    if ($uri == '/') {
+        $uri == '';
+    }
     redirect("admin/$uri", $method, $code);
 }
 
@@ -211,7 +224,7 @@ function convert_date_to_english($date, $characterToCheck = '/', $inputFormat = 
     return null;
 }
 
-function redirect_if_id_is_not_valid($id, $table_name = '', $pro_redirect)
+function redirect_if_id_is_not_valid($id, $table_name = '', $redirect, $forProInterface=true, $show404=false)
 {
     if (is_numeric($id) && (int)$id > 0) {
         if ($table_name == '') {
@@ -223,8 +236,14 @@ function redirect_if_id_is_not_valid($id, $table_name = '', $pro_redirect)
                 return true;
         }
     }
-    get_warning_message('Action non authorisée');
-    pro_redirect($pro_redirect);
+    if($forProInterface){
+        get_warning_message('Action non authorisée');
+        pro_redirect($redirect);
+    }
+    if($show404){
+        show_404('');
+    }
+    redirect($redirect);
 }
 
 function getSlugifyString($string, $toLower = true, $removeBlankSpace = true, $replaceSpaceWithDash = true, $limitToNWords = 40)
@@ -266,7 +285,8 @@ function getTableByID($tableName, $id, $isArray = true)
     return $result->row();
 }
 
-function getPostTablesNames(){
+function getPostTablesNames()
+{
     $tables = new stdClass();
     $tables->posts = 'posts';
     $tables->categories = 'post_categories';
@@ -275,7 +295,40 @@ function getPostTablesNames(){
     $tables->tag_group = 'post_tag_groups';
     return $tables;
 }
-function getEventTablesNames(){
+
+function getPaginationConfigAndLink($baseUrl, $perPage,$totalRow, $page){
+
+    $ci =& get_instance();
+    $ci->load->library('pagination');
+    $config['page'] = $page;
+    $config['per_page'] = $perPage;
+    $config['base_url'] = $baseUrl;
+    $config['total_rows'] =$totalRow;
+    //$config['uri_segment'] = 3;
+    $config['page_query_string'] = TRUE;
+    $config['enable_query_strings'] = TRUE;
+    $config['full_tag_open'] = '<ul class="pagination">';
+    $config['full_tag_close'] = '</ul>';
+    $config['first_tag_open'] = '<li>';
+    $config['first_tag_close'] = '</li>';
+    $config['last_tag_open'] = '<li>';
+    $config['last_tag_close'] = ' </li>';
+    $config['next_tag_open'] = '<li>';
+    $config['next_tag_close'] = ' </li>';
+    $config['prev_tag_open'] = '<li>';
+    $config['prev_tag_close'] = '</li>';
+    $config['cur_tag_open'] = '<li class="active"><a href="#">';
+    $config['cur_tag_close'] = '</a></li>';
+    $config['num_tag_open'] = '<li>';
+    $config['num_tag_close'] = '</li>';
+    $config['query_string_segment'] = 'page';
+    $config['use_page_numbers'] = TRUE;
+    $ci->pagination->initialize($config);
+    return $ci->pagination->create_links();
+}
+
+function getEventTablesNames()
+{
     $tables = new stdClass();
     $tables->events = 'events';
     $tables->categories = 'event_categories';
@@ -303,38 +356,58 @@ function getEvaluationTablesNames()
     return $tables;
 }
 
-function getFullDateInFrench($date, $inputFormat = 'Y-m-d')
+function myWordLimiter($string, $limit = 6)
+{
+    $ci =& get_instance();
+    $ci->load->helper('text');
+    return word_limiter($string, $limit);
+}
+
+function getFullDateInFrench($date, $inputFormat = 'Y-m-d', $returnArray = false)
 {
     $day = DateTime::createFromFormat($inputFormat, $date)->format('d');
     $month = DateTime::createFromFormat($inputFormat, $date)->format('m');
     $year = DateTime::createFromFormat($inputFormat, $date)->format('Y');
-    return "$day ".getFrenchMonths()[$month]." $year";
+    if ($returnArray) {
+        return [
+            'd' => $day,
+            'm' => getFrenchMonths()[ (int)$month],
+            'Y' => $year,
+        ];
+    }
+    return "$day " . getFrenchMonths()[(int)$month] . " $year";
 }
 
 function getFrenchMonths()
 {
     return [
-        '1' => 'Janvier',
-        '2' => 'Février',
-        '3' => 'Mars',
-        '4' => 'Avril',
-        '5' => 'Mai',
-        '6' => 'Juin',
-        '7' => 'Juillet',
-        '8' => 'Août',
-        '9' => 'Septembre',
-        '10' => 'Octobre',
-        '11' => 'Novembre',
-        '12' => 'Décembre',
+        1 => 'Janvier',
+        2 => 'Février',
+        3 => 'Mars',
+        4 => 'Avril',
+        5 => 'Mai',
+        6 => 'Juin',
+        7 => 'Juillet',
+        8 => 'Août',
+        9 => 'Septembre',
+        10 => 'Octobre',
+        11 => 'Novembre',
+        12  => 'Décembre',
     ];
 }
 
-function getAllInTable($tableName, $isArray = true, $order = true, $orderByField = 'id', $orderBy = 'desc', $forSelect2 = false, $keyFieldForSelect2 = 'id', $valueFieldForSelect2 = 'name', $initialBlankValueForSelect2 = true, $specificDBSelect = "*", $defaultSelect2FirstOptionValue = '')
+function getAllInTable($tableName, $isArray = true, $order = true, $orderByField = 'id', $orderBy = 'desc',
+                       $forSelect2 = false, $keyFieldForSelect2 = 'id', $valueFieldForSelect2 = 'name',
+                       $initialBlankValueForSelect2 = true, $specificDBSelect = "*",
+                       $defaultSelect2FirstOptionValue = '', $where=[])
 {
     $ci =& get_instance();
     $ci->db->select($specificDBSelect);
     if ($order) {
         $ci->db->order_by($orderByField, $orderBy);
+    }
+    if(!empty($where)){
+        $ci->db->where($where);
     }
     $results = $ci->db->get($tableName);
     if ($isArray) {
@@ -376,9 +449,9 @@ function update_meta($id, $key, $value, $table_meta, $table_id_val)
     }
 }
 
-function getRegularDateTimeFormat($inEnglish=true)
+function getRegularDateTimeFormat($inEnglish = true)
 {
-    if($inEnglish){
+    if ($inEnglish) {
         return 'Y-m-d G:i:s';
     }
     return 'd/m/Y G:i:s';

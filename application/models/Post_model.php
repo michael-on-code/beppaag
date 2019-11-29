@@ -22,15 +22,24 @@ class Post_model extends CI_Model{
             'updated_by'//user who created user
         );
     }
+
+
     
-    public function getByID($postID){
-        $post = $this->db->get_where($this->_tables->posts, ['id' => $postID])->row_array();
+    public function getByID($postID, $onlyTags=true, $withTagName=true, $withTagSlug=false,$returnTagResult=false){
+        $table=$this->_tables;
+        $this->db->select("$table->posts.*, $table->categories.name as category");
+        $this->db->join($table->categories, "$table->categories.id = $table->posts.category_id");
+        $post = $this->db->get_where($this->_tables->posts, ["$table->posts.id" => $postID])->row_array();
         if (!empty($post)) {
             $post = $this->getPostMeta($post);
-            $post['tag_id'] = $this->getTagsByPostID($post['id'], true);
+            $post['tag_id'] = $this->getTagsByPostID($post['id'], $onlyTags,$withTagName,$withTagSlug,$returnTagResult);
 
         }
         return $post;
+    }
+
+    public function getRelatedPosts($categoryList, $tagList){
+
     }
 
     public function trash($postID){
@@ -42,8 +51,13 @@ class Post_model extends CI_Model{
 
 
 
-    public function getAll($onlyActiveOnes=true, $tagsInString=true, $resultInArray=true, $order=true, $orderByField='id', $orderBy='desc', $onlyDeletedOnes=false){
+    public function getAll($onlyActiveOnes=true, $tagsInString=true, $resultInArray=true,
+                           $order=true, $orderByField='id', $orderBy='desc', $onlyDeletedOnes=false, $limit=0,
+                           $withAuthorImage=false, $page=1, $checkInCategoryList=[],
+                           $checkInTagList=[], $postIDsNotIn=[], $postTagIn=[],
+                           $postIDsIn=[], $countResult=false){
         $tables = $this->_tables;
+        $this->db->distinct();
         $this->db->select("$tables->posts.*, $tables->categories.name as category, users.first_name, users.last_name");
         $this->db->join($tables->categories, "$tables->categories.id = $tables->posts.category_id");
         $this->db->join('users', "users.id = $tables->posts.created_by");
@@ -54,6 +68,37 @@ class Post_model extends CI_Model{
         }
         if($order){
             $this->db->order_by($orderByField, $orderBy);
+        }
+        if(!empty($checkInCategoryList)){
+            $this->db->where_in("$tables->posts.category_id", $checkInCategoryList);
+        }
+        if(!empty($checkInTagList)){
+            $this->db->join($tables->tag_group, "$tables->tag_group.post_id = $tables->posts.id");
+            $this->db->or_where_in("$tables->tag_group.id", $checkInCategoryList);
+        }
+        if(!empty($postTagIn)){
+            $this->db->join($tables->tag_group, "$tables->tag_group.post_id = $tables->posts.id");
+            $this->db->where_in("$tables->tag_group.id", $postTagIn);
+        }
+
+        if(!empty($postIDsNotIn)){
+            $this->db->where_not_in("$tables->posts.id", $postIDsNotIn);
+        }
+        if(!empty($postIDsIn)){
+            $this->db->where_in("$tables->posts.id", $postIDsIn);
+        }
+        if($countResult){
+            return $this->db->count_all_results($this->_tables->posts);
+        }
+
+        if($limit){
+            if($page){
+                $offset = ($page-1)*$limit;
+                $this->db->limit($limit, $offset);
+            }else{
+                $this->db->limit($limit);
+            }
+
         }
         $posts = $this->db->get($this->_tables->posts)->result_array();
         if(!empty($posts)){
@@ -67,6 +112,10 @@ class Post_model extends CI_Model{
                     }
                     $tags = implode(' | ', $temp);
                 }
+                if($withAuthorImage){
+                    $this->load->model('user_model');
+                    $posts[$key]['user_photo']=$this->user_model->get_meta($posts[$key]['created_by'], 'user_photo');
+                }
                 $posts[$key]['tag'] = $tags;
                 if (!$resultInArray) {
                     $posts[$key] = (object)$posts[$key];
@@ -76,19 +125,27 @@ class Post_model extends CI_Model{
         return $posts;
     }
     
-    public function getTagsByPostID($postID, $onlyTagIDs = false, $withName = true){
+    public function getTagsByPostID($postID, $onlyTagIDs = false, $withName = true, $withSlug=false, $returnResult=false){
         $tables = $this->_tables;
         if ($onlyTagIDs) {
             $select = "tag_id";
         } else {
             $select = "$tables->tag_group.*";
-            if ($withName) {
-                $select .= ", $tables->tags.name";
+            if ($withName || $withSlug) {
+                if($withName){
+                    $select .= ", $tables->tags.name";
+                }
+                if ($withSlug) {
+                    $select .= ", $tables->tags.slug";
+                }
                 $this->db->join($tables->tags, "$tables->tags.id = $tables->tag_group.tag_id");
             }
         }
         $this->db->select($select);
         $result = $this->db->get_where($this->_tables->tag_group, ['post_id' => $postID])->result_array();
+        if($returnResult){
+            return $result;
+        }
         if($onlyTagIDs){
             $temp=[];
             if(!empty($result)){
