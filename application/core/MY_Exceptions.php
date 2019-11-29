@@ -14,11 +14,11 @@ class MY_Exceptions extends CI_Exceptions {
         $this->CI =&get_instance();
     }
 
-    public function show_404($page = '', $log_error = true)
+    /*public function show_404($page = '', $log_error = true)
     {
 //        $this->CI->data['pageTitle']='Erreur 404';
 //        $this->CI->render('public/404', 'public');
-    }
+    }*/
 
     protected function render($the_view = NULL, $template = 'home')
     {
