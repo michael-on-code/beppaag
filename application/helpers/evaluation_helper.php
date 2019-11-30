@@ -18,6 +18,57 @@ function getExecutionLevels($forSelect = true, $defaultFirstElementValue = '')
     return $temp;
 }
 
+function getEvaluationRecommendationLabel($evaluationExecutionCount, $evaluationTotalRecommendationActivities)
+{
+    $recommendationAppreciation = '';
+    if ($evaluationTotalRecommendationActivities) {
+        $recommendationAppreciation = (float)((float)$evaluationExecutionCount / (float)$evaluationTotalRecommendationActivities) * 100;
+        $recommendationAppreciation = round($recommendationAppreciation, 1);
+    }
+    return [
+        'label' => getRecommandationStatus($recommendationAppreciation),
+        'percentage' => isset($recommendationAppreciation) ? $recommendationAppreciation : null
+    ];
+
+}
+
+function getEvaluationRecommendationIndicator($recommendationAppreciationLabel, $recommendationAppreciation, $assetsUrl, $class = '', $withInfo=false)
+{
+    ?>
+    <span class="<?= $class ?>">
+    <?php
+    if ($recommendationAppreciationLabel == 'bad') {
+        $level = 'Mauvais';
+        ?>
+        <img src="<?= $assetsUrl ?>pro/images/others/cancel.png" alt=""> <?= $recommendationAppreciation ?>
+        %
+        <?php
+    } elseif ($recommendationAppreciationLabel == 'fair') {
+        $level = 'Passable';
+        ?>
+        <img src="<?= $assetsUrl ?>pro/images/others/warning.png" alt=""> <?= $recommendationAppreciation ?>
+        %
+        <?php
+    } elseif ($recommendationAppreciationLabel == 'excellent') {
+        $level = 'Excellent';
+        ?>
+        <img src="<?= $assetsUrl ?>pro/images/others/checked.png" alt=""> <?= $recommendationAppreciation ?>
+        %
+        <?php
+    } else {
+        $level = 'Indisponible';
+        ?>
+        N/A
+        <?php
+    }
+    if($withInfo){
+        ?> <i data-toggle="tooltip" title="Appréciation du niveau d'execution des recommandations de l'évaluation : <?= $level ?>" class="fas fa-info-circle boldify"></i> <?php
+    }
+    ?>
+    </span>
+    <?php
+}
+
 function getRecommandationStatus($percentage)
 {
     if ($percentage === '') {
@@ -673,9 +724,9 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                         </div>
                                         <?php
                                         //Default first one
-                                        getQuestionRepeater([], 'first-one', ($questionsNotEmpty ? 'ignore-completely': ''));
+                                        getQuestionRepeater([], 'first-one', ($questionsNotEmpty ? 'ignore-completely' : ''));
                                         if ($questionsNotEmpty) {
-                                            foreach ($questions as $key=> $question) {
+                                            foreach ($questions as $key => $question) {
                                                 getQuestionRepeater($question, '');
                                             }
                                         }
@@ -836,10 +887,10 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                         </div>
                                         <?php
                                         //Default first one
-                                        getRecommendationRepeater([], 'first-one', ($recommendationsNotEmpty ? 'ignore-completely':''), $recommendationsNotEmpty);
+                                        getRecommendationRepeater([], 'first-one', ($recommendationsNotEmpty ? 'ignore-completely' : ''), $recommendationsNotEmpty);
                                         if ($recommendationsNotEmpty) {
-                                            foreach ($recommendations as $key=> $recommendation) {
-                                                getRecommendationRepeater($recommendation, '','',false,$key+1);
+                                            foreach ($recommendations as $key => $recommendation) {
+                                                getRecommendationRepeater($recommendation, '', '', false, $key + 1);
                                             }
                                         }
                                         ?>
@@ -872,7 +923,8 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
 
 }
 
-function getQuestionRepeater($question=[], $additionalClassToParent='', $additionalClassToFields=''){
+function getQuestionRepeater($question = [], $additionalClassToParent = '', $additionalClassToFields = '')
+{
     ?>
     <div class="col-md-6 repeater-item <?= $additionalClassToParent ?>" data-repeater-item>
         <button title="Supprimer activité" type="button" data-repeater-delete
@@ -884,29 +936,30 @@ function getQuestionRepeater($question=[], $additionalClassToParent='', $additio
             echo form_label($title = 'Libellé de la question évaluative');
             echo form_textarea([
                 'name' => 'title',
-                'class'=>"form-control $additionalClassToFields",
-                'placeholder'=>$title,
-                'required'=>'',
-                'rows'=>2,
-                'value'=>maybe_null_or_empty($question, 'title')
+                'class' => "form-control $additionalClassToFields",
+                'placeholder' => $title,
+                'required' => '',
+                'rows' => 2,
+                'value' => maybe_null_or_empty($question, 'title')
             ]);
             ?>
         </div>
         <div class="form-group text-area">
             <?= form_label("Reponses apportées") ?>
             <?= form_textarea([
-                'name' =>  'explanation',
+                'name' => 'explanation',
                 'class' => "my-summernote $additionalClassToFields",
                 'required' => '',
                 'data-summernote-height' => 250,
-                'value'=>maybe_null_or_empty($question, 'explanation')
+                'value' => maybe_null_or_empty($question, 'explanation')
             ]) ?>
         </div>
     </div>
     <?php
 }
 
-function getRecommendationRepeater($recommendations=[], $additionalClassToParent='', $additionalClassToFields='', $previousRecommendationExist = false,$key=0){
+function getRecommendationRepeater($recommendations = [], $additionalClassToParent = '', $additionalClassToFields = '', $previousRecommendationExist = false, $key = 0)
+{
     ?>
     <div class="card <?= $additionalClassToParent ?>" data-repeater-item>
         <div class="card-header">
@@ -935,7 +988,7 @@ function getRecommendationRepeater($recommendations=[], $additionalClassToParent
                             'placeholder' => $title,
                             'required' => '',
                             'rows' => 2,
-                            'value'=>maybe_null_or_empty($recommendations, 'title')
+                            'value' => maybe_null_or_empty($recommendations, 'title')
                         ])
                         ?>
                     </div>
@@ -947,7 +1000,7 @@ function getRecommendationRepeater($recommendations=[], $additionalClassToParent
                             'class' => "form-control $additionalClassToFields",
                             'placeholder' => $title,
                             'required' => '',
-                            'value'=>maybe_null_or_empty($recommendations, 'recipient')
+                            'value' => maybe_null_or_empty($recommendations, 'recipient')
                         ])
                         ?>
                     </div>

@@ -1093,7 +1093,10 @@ body > .footer > ul {
 .m-l-150 {
     margin-left: 150px !important
 }
-
+.boldify{
+    font-size: 13px;
+    font-weight: bold;
+}
 @media only screen and (max-width: 767px) {
     .m-l-150, .m-l-145, .m-l-140, .m-l-135, .m-l-130, .m-l-125, .m-l-120, .m-l-115, .m-l-110, .m-l-100, .m-l-95, .m-l-90, .m-l-85, .m-l-80, .m-l-75, .m-l-70, .m-l-65, .m-l-60, .m-l-55, .m-l-50, .m-l-45, .m-l-40, .m-l-35 {
         margin-left: 30px !important

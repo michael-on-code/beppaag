@@ -44,12 +44,7 @@
                     <tbody>
                     <?php if (isset($evaluations) && !empty($evaluations)) {
                         foreach ($evaluations as $key => $evaluation) {
-                            $recommendationAppreciation = '';
-                            if($evaluation->total_recommendation_activities_count){
-                                $recommendationAppreciation = (float) ((float)$evaluation->executed_count / (float)$evaluation->total_recommendation_activities_count) * 100;
-                                $recommendationAppreciation = round($recommendationAppreciation, 1);
-                            }
-                            $recommendationAppreciationLabel = getRecommandationStatus($recommendationAppreciation);
+                            $recommendationStatData = getEvaluationRecommendationLabel($evaluation->executed_count, $evaluation->total_recommendation_activities_count);
                             ?>
                             <tr>
                                 <td>
@@ -77,25 +72,9 @@
                                 <td data-toggle="tooltip" class=""
                                     data-placement="top"
                                     title="<?= $evaluation->thematic ?>"><?= myWordLimiter($evaluation->thematic) ?></td>
-                                <td class="text-center" data-sort="<?= $recommendationAppreciation ?>">
+                                <td class="text-center" data-sort="<?= $recommendationStatData['percentage'] ?>">
                                     <?php
-                                    if($recommendationAppreciationLabel=='bad'){
-                                        ?>
-                                        <span><img src="<?= $assetsUrl ?>pro/images/others/cancel.png" alt=""> <?= $recommendationAppreciation ?> %</span>
-                                        <?php
-                                    }elseif($recommendationAppreciationLabel=='fair'){
-                                        ?>
-                                        <span><img src="<?= $assetsUrl ?>pro/images/others/warning.png" alt=""> <?= $recommendationAppreciation ?> %</span>
-                                        <?php
-                                    }elseif($recommendationAppreciationLabel=='excellent'){
-                                        ?>
-                                        <span><img src="<?= $assetsUrl ?>pro/images/others/checked.png" alt=""> <?= $recommendationAppreciation ?> %</span>
-                                        <?php
-                                    }else{
-                                        ?>
-                                        <span><img src="<?= $assetsUrl ?>pro/images/others/not-applicable.png" alt=""></span>
-                                        <?php
-                                    }
+                                    getEvaluationRecommendationIndicator($recommendationStatData['label'], $recommendationStatData['percentage'], $assetsUrl);
                                     ?>
                                 </td><td data-sort="<?= $evaluation->active ?>">
                                     <?php

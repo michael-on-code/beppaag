@@ -363,19 +363,37 @@ function myWordLimiter($string, $limit = 6)
     return word_limiter($string, $limit);
 }
 
-function getFullDateInFrench($date, $inputFormat = 'Y-m-d', $returnArray = false)
+function getFullDateInFrench($date, $inputFormat = 'Y-m-d', $returnArray = false, $returnMonthInString=true, $withTime = false, $cutSubstringMonth=false)
 {
     $day = DateTime::createFromFormat($inputFormat, $date)->format('d');
     $month = DateTime::createFromFormat($inputFormat, $date)->format('m');
     $year = DateTime::createFromFormat($inputFormat, $date)->format('Y');
     if ($returnArray) {
-        return [
+        $return =[
             'd' => $day,
-            'm' => getFrenchMonths()[ (int)$month],
+            'm' => $returnMonthInString ? getFrenchMonths()[ (int)$month] : $month,
             'Y' => $year,
         ];
+        if($withTime){
+            $return ['G']=DateTime::createFromFormat($inputFormat, $date)->format('G');
+            $return ['i']=DateTime::createFromFormat($inputFormat, $date)->format('i');
+            $return ['s']=DateTime::createFromFormat($inputFormat, $date)->format('s');
+        }
+        return $return;
     }
-    return "$day " . getFrenchMonths()[(int)$month] . " $year";
+    $month = getFrenchMonths()[(int)$month];
+    if($cutSubstringMonth){
+        $month = substr($month, 0, 4);
+    }
+    return "$day " . $month . " $year";
+}
+
+function getRecommendationTablesNames(){
+    $tables = new stdClass();
+    $tables->recommendations = 'recommendations';
+    $tables->activities = 'recommendation_activities';
+    $tables->meta = 'recommendation_meta';
+    return $tables;
 }
 
 function getFrenchMonths()

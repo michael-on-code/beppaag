@@ -6,9 +6,9 @@
  * Time: 14:52
  */
 
-function getEventTemplatePreview($event){
+function getEventTemplatePreview($event, $class='col-md-4 col-sm-4'){
     ?>
-    <div class="col-md-4 col-sm-4">
+    <div class="<?= $class ?>">
         <!--News Post Start-->
         <div class="event-post">
             <div class="thumb"><a href="<?= $permalink= site_url('events/'.$event['slug']) ?>"><i class="fas fa-link"></i></a> <img data-src="<?= getUploadedImageBySize($event['thumbnail'], '360x260')?>"
@@ -87,7 +87,7 @@ function getBreadcrump(array $data, $options=[], $pageType=''){
     ?>
     <section class="banner banner-small scale-hover">
         <div class="">
-            <img src="<?= getUploadedImageBySize(maybe_null_or_empty($options, $banner), '1024x649')?>" class="cover transition">
+            <img data-src="<?= getUploadedImageBySize(maybe_null_or_empty($options, $banner), '1024x649')?>" class="cover transition">
         </div>
         <div class="infos on-container flex flex-col center text-left anim-title">
             <div>

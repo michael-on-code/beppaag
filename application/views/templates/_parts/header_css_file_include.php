@@ -10,16 +10,16 @@
 <style>
 
     body a:focus {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor = maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
     }
     .logo-nav-row ul.nav.navbar-nav.navbar-right .bars-btn a {
         line-height: 80px;
         padding: 0 0 0 20px;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-size: 14px;
     }
     .slide-content-box a, .slider-caption a {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
         font-family: 'Montserrat', sans-serif;
         font-size: 16px;
@@ -32,7 +32,7 @@
         letter-spacing: 1px;
     }
     .slide-content-box a:hover, .slider-caption a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor = maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
         color: #fff;
     }
     .main-slider .owl-dots {
@@ -72,7 +72,7 @@
         font-weight: 600;
     }
     .banner-tags li:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     /******** + ========== + Main Slider End + ========== + ********/
@@ -142,10 +142,10 @@
         opacity: 1;
     }
     .local-service-box:hover a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .Mayor-msg {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         width: 100%;
         float: left;
         padding: 15px;
@@ -224,7 +224,7 @@
         padding: 0 20px;
     }
     .Mayor-text a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     .lb-box {
@@ -288,7 +288,7 @@
     /******** + ========== + Event Festivals & News Articles Start + ========== + ********/
 
     .title-style-2 a {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
         font-family: 'Montserrat', sans-serif;
         line-height: 42px;
@@ -299,7 +299,7 @@
         border-radius: 3px;
     }
     .title-style-2 a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     .title-style-2 {
@@ -320,7 +320,7 @@
         box-shadow: 0 5px 15px rgba(0,0,0,.07);
     }
     .latest-updates h6 {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
         line-height: 58px;
         font-weight: 700;
@@ -353,7 +353,7 @@
         width: 2px;
         height: 0;
         content: "";
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
     }
     .latest-updates ul li strong {
         display: block;
@@ -380,7 +380,7 @@
         margin-right: 5px;
     }
     .latest-updates ul li strong a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .event-post {
         width: 100%;
@@ -431,10 +431,10 @@
         padding: 0 20px;
     }
     .event-post:hover .event-post-loc a, .event-post:hover h5 a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .event-post:hover .event-post-loc a {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .event-post:hover .event-post-loc a i {
@@ -472,11 +472,11 @@
         z-index: 99;
         text-align: center;
         line-height: 44px;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         opacity: 0;
     }
     .new-thumb a:hover, .thumb a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .mb20 {
@@ -544,7 +544,7 @@
         line-height: 50px;
         z-index: 99;
         text-align: center;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         opacity: 0;
         font-size: 16px;
     }
@@ -552,7 +552,7 @@
         height: 100%;
     }
     .ch-box .ch-thumb a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .ch-box:hover .ch-thumb a {
@@ -564,7 +564,7 @@
         text-shadow: 1px 1px 1px rgba(0,0,0,.5);
     }
     .ch-box .ch-txt ul li a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .ch-box:hover .ch-txt {
         height: 160px;
@@ -604,7 +604,7 @@
     }
     .ch-box .ch-txt ul li:after {
         content: "|";
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         margin: 0 10px;
     }
     .ch-box .ch-txt ul li:last-child:after {
@@ -622,7 +622,7 @@
         width: 40px;
         height: 120px;
         margin: auto;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         z-index: 99;
         color: #fff;
         border-radius: 5px 0 0px 5px;
@@ -643,10 +643,10 @@
         content: "\f105";
     }
     .city-highlights .owl-carousel .owl-nav button.owl-next:hover, .city-highlights .owl-carousel .owl-nav button.owl-prev:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
     }
     .ch-box .ch-txt h5 a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     /******** + ========== + Cityscapes & Highlights End + ========== + ********/
 
@@ -748,7 +748,7 @@
         margin: 0 0 30px;
     }
     .emergency-info {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         width: 100%;
         float: left;
         border-radius: 5px;
@@ -841,7 +841,7 @@
     }
     .query ul li strong {
         display: block;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-size: 12px;
         font-weight: 800;
         text-transform: uppercase;
@@ -886,9 +886,9 @@
         position: relative;
     }
     .fact-box:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         opacity: 0.9;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border-color: <?= $mainColor ?>;
     }
     .fact-box:hover span, .fact-box:hover strong {
         color: #fff;
@@ -897,7 +897,7 @@
         padding: 0 6px;
     }
     .fact-box strong {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-size: 36px;
         font-weight: 800;
         display: block;
@@ -919,7 +919,7 @@
         color: #cccccc;
     }
     .stay-connected {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         border-radius: 5px;
         width: 100%;
         float: left;
@@ -948,7 +948,7 @@
     .stay-connected input[type="submit"] {
         width: 100%;
         border: 0px;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
         height: 55px;
         line-height: 55px;
@@ -1223,7 +1223,7 @@
         color: #fff;
     }
     .h2-Mayor-msg .Mayor-txt a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     .city-tour {
@@ -1420,7 +1420,7 @@
         text-align: right;
     }
     .e-numbers .info-num strong {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-size: 12px;
         text-transform: uppercase;
         display: block;
@@ -1428,7 +1428,7 @@
     }
     .e-numbers .info-num h3 {
         font-weight: 300;
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
         font-size: 28px;
     }
     .department-links h5 {
@@ -1462,8 +1462,8 @@
         height: 165px;
     }
     .e-numbers .em-box:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
+        border-color: <?= $mainColor ?>;
     }
     .e-numbers .em-box:hover i, .e-numbers .em-box:hover strong.em-deprt, .e-numbers .em-box:hover strong.em-num {
         color: #fff;
@@ -1474,7 +1474,7 @@
     }
     .e-numbers .em-box strong.em-num {
         font-size: 36px;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-weight: 900;
         display: block;
     }
@@ -1523,7 +1523,7 @@
         color: #f63859;
     }
     span.ecat {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         display: inline-block;
         color: #fff;
         line-height: 24px;
@@ -1544,7 +1544,7 @@
         text-transform: uppercase;
     }
     .btn-group.share-post button.dropdown-toggle:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .btn-group.share-post .dropdown-menu {
         border: 0px;
@@ -1651,7 +1651,7 @@
         display: none;
     }
     .news-meta .post-user {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-style: italic;
     }
     .post-user img {
@@ -1677,13 +1677,13 @@
         z-index: 99;
     }
     .ecat.c1 {
-        background-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background-color: <?= $mainColor ?>;
     }
     .ecat.c2 {
         background-color: #f7941d;
     }
     .ecat.c3 {
-        background-color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background-color: <?= $secondaryColor ?>;
     }
     .ecat.c4 {
         background-color: #72bf44;
@@ -1766,7 +1766,7 @@
     .hc-box .hc-box-cap li:after {
         content: "|";
         margin: 0 10px;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .hc-box .hc-box-cap li:last-child:after {
         display: none;
@@ -1780,7 +1780,7 @@
         width: 60px;
         height: 60px;
         border-radius: 100%;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         font-size: 0px;
         opacity: .3;
     }
@@ -1803,11 +1803,11 @@
         font-size: 20px;
     }
     .highlights-cityscapes .owl-carousel .owl-nav button.owl-prev:hover, .highlights-cityscapes .owl-carousel .owl-nav button.owl-next:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         opacity: 1;
     }
     .hc-box:hover .hc-box-cap h5 a, .hc-box:hover .hc-box-cap li a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .hc-box .hc-box-cap p {
         color: #fff;
@@ -1844,7 +1844,7 @@
         border-color: #f63859;
     }
     .community-box h6 {
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
         border-bottom: 1px solid #eeeeee;
         line-height: 53px;
         font-weight: 700;
@@ -1881,12 +1881,12 @@
         bottom: 0;
     }
     .community-box ul li a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .community-box a.see-more:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border-color: <?= $mainColor ?>;
     }
     /*** + === + Citizens & Community Corner End + === + ***/
 
@@ -2002,7 +2002,7 @@
         margin: 0 0 20px;
     }
     .team-heading a {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
         font-family: 'Montserrat', sans-serif;
         text-transform: 700;
@@ -2014,7 +2014,7 @@
         text-transform: uppercase;
     }
     .team-heading a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     /*** + === + City Official Members End + === + ***/
@@ -2024,7 +2024,7 @@
     /*** + === + Home 2 Footer Start + === + ***/
 
     .home3.footer {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
     }
     .home3.footer p.copyr {
         color: #fff;
@@ -2056,7 +2056,7 @@
         margin-right: 8px;
     }
     .footer-widget ul li a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .textwidget address ul {
         margin: 20px 0 0;
@@ -2131,8 +2131,8 @@
         color: rgba(255,255,255,.20);
     }
     .twitter-widget a.reply-tw:hover {
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
+        border-color: <?= $secondaryColor ?>;
     }
     /*** + === + Home 2 Footer End + === + ***/
 
@@ -2182,7 +2182,7 @@
     }
     .become-vol {
         float: right;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         line-height: 40px;
         color: #fff;
         text-transform: uppercase;
@@ -2201,7 +2201,7 @@
         line-height: 40px;
     }
     .cross-btn:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .become-vol:hover {
@@ -2364,7 +2364,7 @@
         width: 220px;
     }
     .h3-navbar .donate-btn a {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
         text-transform: uppercase;
         font-size: 12px;
@@ -2429,7 +2429,7 @@
         margin: 0 0 30px;
     }
     .h3-slider-caption a {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
         font-family: 'Montserrat', sans-serif;
         font-size: 16px;
@@ -2443,7 +2443,7 @@
         box-shadow: 0 5px 10px rgba(0,0,0,.12);
     }
     .h3-slider-caption a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     /*********** Mayor Msg with Video Start ***********/
@@ -2517,7 +2517,7 @@
         margin: auto;
         width: 15px;
         height: 2px;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         content: "";
     }
     .news-box {
@@ -2635,7 +2635,7 @@
         top: -1px;
         width: 0;
         height: 1px;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         content: "";
     }
     .news-box-f img {
@@ -2656,11 +2656,11 @@
         opacity: 1;
     }
     .news-box:hover .news-box-f a {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .news-box:hover .new-txt h6 a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .news-box:hover {
         box-shadow: 0px 10px 30px 0 rgba(0,0,0,.20);
@@ -2670,7 +2670,7 @@
     }
     .news-details blockquote {
         width: 85%;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         overflow: hidden;
         margin: 0 auto 20px;
         border: 0px;
@@ -2703,8 +2703,8 @@
         margin-right: 3px;
     }
     .single-post-tags a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
+        border-color: <?= $secondaryColor ?>;
         color: #fff;
     }
     .about-post-author {
@@ -2779,7 +2779,7 @@
         color: #888888;
     }
     ul.post-time a i {
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
         font-size: 12px;
     }
     .user-comments {
@@ -2928,7 +2928,7 @@
         font-size: 14px;
         border-radius: 3px;
         text-align: center;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
         text-transform: uppercase;
         font-weight: 700;
@@ -2979,7 +2979,7 @@
         color: #222;
     }
     .deprt-icon-box a.rm {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         display: inline-block;
         color: #fff;
         line-height: 24px;
@@ -2996,14 +2996,14 @@
         opacity: 1;
     }
     .deprt-icon-box:hover h6 a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .deprt-icon-box a.rm:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     a.jobs-link {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         display: block;
         line-height: 52px;
         clear: both;
@@ -3016,7 +3016,7 @@
         font-weight: 700;
     }
     a.jobs-link:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     ul.reports {
@@ -3077,7 +3077,7 @@
         overflow: hidden;
     }
     .recent-events .nav-tabs>li>a {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         text-transform: uppercase;
         font-family: 'Montserrat', sans-serif;
         font-size: 16px;
@@ -3096,7 +3096,7 @@
         top: 0;
         width: 100%;
         height: 3px;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         content: "";
     }
     .recent-events .nav-tabs>li.active>a, .recent-events .nav-tabs>li.active>a:focus, .recent-events .nav-tabs>li.active>a:hover {
@@ -3130,7 +3130,7 @@
         left: -30px;
         width: 3px;
         height: 0;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         content: "";
         top: -20px;
     }
@@ -3149,7 +3149,7 @@
     }
     .event-list li strong.edate {
         display: block;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-size: 16px;
         font-weight: 700;
         text-transform: uppercase;
@@ -3176,8 +3176,8 @@
         border-radius: 15px;
     }
     .event-list a.joinnow:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
+        border-color: <?= $mainColor ?>;
         color: #fff;
     }
     .event-list li.el-title {
@@ -3198,18 +3198,18 @@
         line-height: 22px;
     }
     .event-list li.el-title p i {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         margin-right: 5px;
     }
     .recent-events .event-list:hover:after {
         height: 113px;
     }
     .recent-events .event-list:hover h6 a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .recent-events .event-list:hover a.joinnow {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
+        border-color: <?= $mainColor ?>;
         color: #fff;
     }
     .event-big {
@@ -3233,7 +3233,7 @@
         bottom: 0;
         background: rgba(0,0,0,.80);
         width: 100%;
-        border-left: 3px solid <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border-left: 3px solid <?= $mainColor ?>;
         padding: 20px;
         height: 88px;
     }
@@ -3246,7 +3246,7 @@
         color: #fff;
     }
     .event-cap h5 a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .event-cap ul {
         margin: 0 0 10px;
@@ -3262,7 +3262,7 @@
     }
     .event-cap ul li:after {
         content: "|";
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         padding: 0 12px;
     }
     .event-cap ul li:last-child:after {
@@ -3324,7 +3324,7 @@
     .community-links-style-two li a img {
         width: 45px;
         height: 45px;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         border-radius: 100%;
         margin-right: 10px;
     }
@@ -3334,10 +3334,10 @@
         color: #444444;
     }
     .community-links-style-two li a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .community-links-style-two li a:hover img {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
     }
     .h3-team-box {
         position: relative;
@@ -3406,7 +3406,7 @@
         opacity: 1;
     }
     .team-info ul li a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     #h3team-slider .owl-nav {
         position: absolute;
@@ -3422,12 +3422,12 @@
         margin: 0 0 0 10px;
         font-size: 0px;
         text-align: center;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     #h3team-slider .owl-next:hover, #h3team-slider .owl-prev:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border-color: <?= $mainColor ?>;
     }
     #h3team-slider .owl-prev:before, #h3team-slider .owl-next:after {
         content: "\f105";
@@ -3449,7 +3449,7 @@
         color: #144b8b;
     }
     .home3.emergency-numbers .e-numbers .em-box i {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .home3.emergency-numbers .e-numbers .em-box strong.em-num {
         color: #144b8b;
@@ -3479,8 +3479,8 @@
     .site-pagination .pagination>.active>a, .site-pagination .pagination>.active>a:focus, .site-pagination .pagination>.active>a:hover, .site-pagination .pagination>.active>span, .site-pagination .pagination>.active>span:focus, .site-pagination .pagination>.active>span:hover, .site-pagination .pagination>li>a:focus, .site-pagination .pagination>li>a:hover, .site-pagination .pagination>li>span:focus, .site-pagination .pagination>li>span:hover {
         z-index: 2;
         color: #fff;
-        background-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background-color: <?= $mainColor ?>;
+        border-color: <?= $mainColor ?>;
     }
     .events-wrapper .event-post-full .thumb {
         width: 390px;
@@ -3539,7 +3539,7 @@
     }
     .event-list-box .edate strong {
         display: block;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-weight: 900;
     }
     .event-list-box .event-title {
@@ -3561,7 +3561,7 @@
         font-weight: 500;
     }
     .event-list-box .event-title p i {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         margin-right: 5px;
     }
     a.join-now {
@@ -3586,11 +3586,11 @@
         box-shadow: 0 6px 12px rgba(247,56,89,.12);
     }
     .event-list-box:hover .event-title h6 a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .event-list-box:hover a.join-now {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
+        border-color: <?= $mainColor ?>;
         color: #fff;
     }
     /******** + ========== + Event Pages End + ========== + ********/
@@ -3701,10 +3701,10 @@
         font-size: 12px;
         margin-right: 10px;
         font-weight: 700;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .widget .archives a:hover, .widget .categories a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         padding: 0 10px;
     }
     .widget .upcoming-events li {
@@ -3714,7 +3714,7 @@
     }
     .widget .upcoming-events .edate {
         width: 62px;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         position: absolute;
         left: 0;
         top: 0;
@@ -3747,7 +3747,7 @@
         line-height: 22px;
     }
     .widget h6 a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .widget .upcoming-events span.loc {
         color: #888888;
@@ -3755,7 +3755,7 @@
         display: block;
     }
     .widget .upcoming-events li:hover .edate {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
     }
     .fb-like img {
         max-width: 100%;
@@ -3775,9 +3775,9 @@
         border-radius: 20px;
     }
     .tags-widget a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border-color: <?= $mainColor ?>;
     }
     .issues-content h3, .issues-content h4 {
         margin-bottom: 15px;
@@ -3885,7 +3885,7 @@
         font-weight: 700;
     }
     .team-detail .advisor {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-size: 20px;
         font-style: italic;
         font-family: 'Lato', sans-serif;
@@ -3900,7 +3900,7 @@
     }
     .contact-team {
         float: left;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
         border-radius: 3px;
         line-height: 50px;
@@ -3910,7 +3910,7 @@
         font-weight: 700;
     }
     .contact-team:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     ul.member-social {
@@ -4059,7 +4059,7 @@
         list-style: none;
     }
     .newsletter-style2 button {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
         width: 100%;
         border: 0px;
@@ -4148,7 +4148,7 @@
         font-size: 16px;
     }
     .checklist li i {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-size: 14px;
         margin-right: 6px;
     }
@@ -4261,18 +4261,18 @@
         margin: 0 0 10px;
     }
     .post-comments-form input[type="submit"] {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
-        border: 1px solid <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        border: 1px solid <?= $secondaryColor ?>;
         font-family: 'Montserrat', sans-serif;
         font-size: 16px;
         font-weight: 600;
         text-align: center;
     }
     .post-comments-form input[type="submit"]:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border-color: <?= $mainColor ?>;
     }
     ul.gallery-2-col img:hover, ul.gallery-3-col img:hover, ul.gallery-4-col img:hover {
         background: #000;
@@ -4395,11 +4395,11 @@
         padding: 30px 65px;
     }
     .deprt-icon-box:hover h5 a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
 
     .service-page-bottom .newsletter-form button {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
     }
     .service-page-bottom .newsletter-form button:hover {
         background: #38a1f3;
@@ -4476,7 +4476,7 @@
         margin-right: 5px;
     }
     .city-updates ul li strong a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .city-updates li.more-news {
         padding: 0px;
@@ -4484,7 +4484,7 @@
     }
     .city-updates li.more-news a {
         line-height: 55px;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         text-align: center;
         display: block;
         text-transform: uppercase;
@@ -4493,7 +4493,7 @@
         font-weight: 700;
     }
     .city-updates li.more-news a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     .community-links-style-two.col3 li {
@@ -4533,7 +4533,7 @@
         color: #fff;
     }
     .ch-box .ch-txt h6 a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .cityscapes .ch-box:hover .ch-txt {
         height: 145px;
@@ -4553,7 +4553,7 @@
         display: block;
         line-height: 63px;
         color: #fff;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         font-family: 'Montserrat', sans-serif;
         font-size: 18px;
         font-weight: 600;
@@ -4602,7 +4602,7 @@
         background: #546e7a;
     }
     .department-links li a.c9 {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
     }
     .department-links li a:hover:after {
         width: 100%;
@@ -4663,7 +4663,7 @@
         margin: auto;
         text-align: center;
         line-height: 40px;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         z-index: 999;
         opacity: 0;
     }
@@ -4675,7 +4675,7 @@
         opacity: 1;
     }
     .gallery-thumb a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     /***  Filter Able Gallery ****/
@@ -4740,7 +4740,7 @@
         display: none
     }
     .button-group .button:hover, .button-group .button:active, .button-group .button.is-checked {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>
+        color: <?= $mainColor ?>
     }
     div#filters {
         margin-bottom: 30px;
@@ -4817,7 +4817,7 @@
         top: 0;
         line-height: 26px;
         font-size: 20px;
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
     }
     .map-form {
         width: 100%;
@@ -4861,7 +4861,7 @@
         min-height: 180px;
     }
     .contact-form input[type="submit"] {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         border: 0px;
         border-radius: 3px;
         height: 50px;
@@ -4874,7 +4874,7 @@
         font-weight: 700;
     }
     .contact-form input[type="submit"]:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .add-box-2 {
@@ -4883,7 +4883,7 @@
         text-align: center;
     }
     .add-box-2 i {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         font-size: 48px;
     }
     .add-box-2 h5 {
@@ -4967,7 +4967,7 @@
     .event-counter a {
         background: #ffffff;
         text-transform: uppercase;
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
         font-size: 14px;
         font-weight: 700;
         display: inline-block;
@@ -4977,7 +4977,7 @@
         box-shadow: 0 3px 6px rgba(0,0,0,.12);
     }
     .event-counter a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .event-counter li.first-col strong {
@@ -5052,7 +5052,7 @@
         font-size: 16px;
     }
     .event-content ul.emeta li strong {
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
         font-weight: 400;
     }
     .event-content ul.emeta li:after {
@@ -5064,7 +5064,7 @@
         display: none;
     }
     .event-details blockquote {
-        background: #fff;
+        background: <?= $secondaryColor ?>;
         border-radius: 3px;
         border: 0px;
         padding: 40px;
@@ -5096,7 +5096,7 @@
     .event-date-share .edate {
         width: 68px;
         height: 82px;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         text-align: center;
         border-radius: 3px;
         overflow: hidden;
@@ -5259,7 +5259,7 @@
         right: 0;
         margin: auto;
         background: #fff;
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
         text-align: center;
         line-height: 40px;
         font-size: 14px;
@@ -5267,7 +5267,7 @@
         opacity: 0;
     }
     .event-gallery .eg-thumb a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
     .leave-comment {
@@ -5348,7 +5348,7 @@
         left: 0;
         right: 0;
         bottom: -18px;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
         text-shadow: 0 2px 0 #dedede;
         font-size: 16px;
     }
@@ -5362,12 +5362,12 @@
         color: #0077b5;
     }
     .event-share ul a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border-color: <?= $mainColor ?>;
     }
     .event-share ul a:hover.like:after {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     /***==============  Event Details End	   ==============***/
 
@@ -5466,11 +5466,11 @@
         border-radius: 100%;
         line-height: 45px;
         text-align: center;
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
         opacity: 0;
     }
     .campaign-thumb a:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .campaign-box:hover .campaign-thumb a {
@@ -5487,7 +5487,7 @@
         text-align: center;
         line-height: 45px;
         color: #fff;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         font-weight: 600;
@@ -5521,7 +5521,7 @@
         text-align: center;
         border-radius: 100%;
         font-size: 12px;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
     }
     ul.funds {
         margin: 0;
@@ -5556,7 +5556,7 @@
     }
     ul.participants li strong i {
         font-style: normal;
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
     }
     .campaign-txt .progress {
         width: 100%;
@@ -5565,7 +5565,7 @@
         background: #e6e6e6;
     }
     .campaign-txt .progress .progress-bar {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         border-radius: 10px;
     }
     .campaign-txt h5 {
@@ -5601,11 +5601,11 @@
         top: 0;
     }
     .campaign-box:hover h6 a, .campaign-box:hover h5 a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .campaign-box:hover a.dbutton {
         color: #fff;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
     }
 
 
@@ -5647,7 +5647,7 @@
         font-size: 14px;
     }
     .dn-btn {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
         text-transform: uppercase;
         font-family: 'Montserrat', sans-serif;
@@ -5659,11 +5659,11 @@
         padding: 0 25px;
     }
     .causes-listing .campaign-box:hover .dn-btn {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .causes-listing .campaign-box:hover h4 a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     /*************************/
 
@@ -5694,7 +5694,7 @@
     }
     .single-donation-box .progress .progress-bar {
         border-radius: 15px;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
     }
     .single-donation-box .funds li:first-child {
         text-align: left;
@@ -5722,8 +5722,8 @@
         padding: 0 20px;
     }
     .single-donation-box .radio-boxes input[type=radio].css-radio+label.css-label:hover, .single-donation-box .radio-boxes input[type=radio].css-radio:checked+label.css-label {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
+        border-color: <?= $mainColor ?>;
         color: #fff;
     }
     .radio-boxes {
@@ -5774,13 +5774,13 @@
         margin: 0px;
     }
     .radio-boxes input[type=radio].css-radio+label.css-label:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
+        border-color: <?= $mainColor ?>;
         color: #fff;
     }
     .radio-boxes input[type=radio].css-radio:checked+label.css-label {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
+        border-color: <?= $mainColor ?>;
         color: #fff;
     }
     .radio-boxes .inputs {
@@ -5802,7 +5802,7 @@
     li.form-submit button {
         width: 100%;
         border: 0px;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
         font-family: 'Montserrat', sans-serif;
         font-size: 16px;
@@ -5813,7 +5813,7 @@
         cursor: pointer;
     }
     li.form-submit button:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     /******** + ========== + Causes End + ========== + ********/
@@ -5911,12 +5911,12 @@ Donation Page Start
         color: #fff;
         font-weight: 600;
         font-family: 'Montserrat', sans-serif;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         border-radius: 5px;
         cursor: pointer;
     }
     .donator-details input[type="submit"]:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     .form-check.form-check-inline {
@@ -6005,7 +6005,7 @@ Testimonials Start
         border-radius: 30px;
     }
     .testimonials-section .owl-theme .owl-dots .owl-dot.active span, .testimonials-section .owl-theme .owl-dots .owl-dot span:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
     }
     .testimonials-section .owl-dots {
         text-align: center;
@@ -6067,7 +6067,7 @@ Testimonials End
         border: 1px solid #ababab;
     }
     .login-box input[type="submit"] {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         line-height: 53px;
         padding: 0 30px;
         border-radius: 3px;
@@ -6127,7 +6127,7 @@ Testimonials End
         padding-top: 60px;
     }
     .login-account {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         width: 100%;
         float: left;
         border-radius: 3px;
@@ -6158,7 +6158,7 @@ Testimonials End
     }
     .login-account input[type="submit"] {
         width: 100%;
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
         text-align: center;
         text-transform: uppercase;
@@ -6171,7 +6171,7 @@ Testimonials End
     }
     .login-account input[type="submit"]:hover {
         background: #fff;
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .register-account li {
         margin-bottom: 18px;
@@ -6181,11 +6181,11 @@ Testimonials End
         font-weight: 700;
     }
     .register-account a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     .register-account input[type="submit"] {
         width: 100%;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
         text-align: center;
         text-transform: uppercase;
@@ -6197,7 +6197,7 @@ Testimonials End
         margin-top: 10px;
     }
     .register-account input[type="submit"]:hover {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
     }
     /***==============  Login / Register Page end	   ==============***/
@@ -6242,7 +6242,7 @@ Coming Soon Start
     .cs-txt .countdown-section {
         width: 170px;
         height: 170px;
-        border: 8px solid <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border: 8px solid <?= $mainColor ?>;
         display: inline-block;
         border-radius: 100%;
         margin: 0 15px;
@@ -6279,13 +6279,13 @@ Coming Soon Start
     .cs-newsletter-form input.form-control {
         height: 53px;
         line-height: 49;
-        border: 2px solid <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border: 2px solid <?= $mainColor ?>;
         background: none;
         padding: 0 20px;
         color: #fff;
     }
     .cs-newsletter-form button.subscribe {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         position: absolute;
         right: 0;
         bottom: 0;
@@ -6359,7 +6359,7 @@ Page 404
         float: left;
     }
     .wrap-404 button.btn {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         height: 53px;
         line-height: 53px;
         border: 0px;
@@ -6369,7 +6369,7 @@ Page 404
         font-size: 18px;
     }
     .wrap-404 a.back {
-        background: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
         display: inline-block;
         border-radius: 3px;
@@ -6467,7 +6467,7 @@ Search Overlay End
         right: -300px;
         height: 100vh;
         z-index: 999;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
         transition: all 0.3s;
         box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
@@ -6510,7 +6510,7 @@ Search Overlay End
     }
     #sidebar .sidebar-header {
         padding: 20px;
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
     }
     #sidebar ul.components {
         padding: 20px 0;
@@ -6527,7 +6527,7 @@ Search Overlay End
         color: #fff;
     }
     #sidebar ul li a:hover {
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
         background: #fff;
     }
     #sidebar ul li.active>a {
@@ -6567,39 +6567,39 @@ Search Overlay End
     .wrap-404 a.back,
     .wrap-404 button.btn,
     .main-slider .owl-carousel button.owl-dot span:hover, .main-slider .owl-carousel button.owl-dot.active span, .banner-tags li:hover, .header .topbar, .city-highlights .owl-carousel .owl-nav button.owl-next:hover, .city-highlights .owl-carousel .owl-nav button.owl-prev:hover, .sub-menu a:hover, .logo-nav-row .dropdown-menu>li>a:hover, .slider-caption a:hover, .Mayor-text a:hover, .title-style-2 a:hover, .city-highlights .owl-carousel .owl-nav button.owl- next:hover, .city-highlights .owl-carousel .owl-nav button.owl-prev:hover, .emergency-info, .stay-connected input[type="submit"], .h2-Mayor-msg .Mayor-txt a:hover, .team-heading a:hover, .h3-slider-caption a:hover, .news-details blockquote, .single-post-tags a:hover, .post-comments-form input[type="submit"], .deprt-icon-box a.rm:hover, a.jobs-link:hover, .community-links-style-two li a img, .widget .upcoming-events li:hover .edate, .contact-team, .newsletter-style2 button, .post-comments-form input[type="submit"], .service-page-bottom .newsletter-form button, .city-updates li.more-news a:hover, .department-links li a, .contact-form input[type="submit"], .event-date-share .edate, .event-gallery .eg-thumb a:hover, a.dbutton, .dn-btn, .single-donation-box .progress .progress-bar, li.form-submit button, .donator-details input[type="submit"], .login-box input[type="submit"], .login-account, .register-account input[type="submit"], .home3.emergency-numbers .newsletter-form button {
-        background-color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background-color: <?= $secondaryColor ?>;
     }
     /******** + ========== + Blue Text Color Start + ========== + ********/
 
     .sub-menu a, .logo-nav-row .dropdown-menu>li>a, .e-numbers .info-num h3, .community-box h6, .twitter-widget a.reply-tw:hover, ul.post-time a i, .add-box i, .event-counter a, .event-content ul.emeta li strong, .event-gallery .eg-thumb a, .campaign-thumb a, ul.participants li strong i {
-        color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        color: <?= $secondaryColor ?>;
     }
     /******** + ========== + Blue Border Color Start + ========== + ********/
 
     .main-slider .owl-carousel button.owl-dot span:hover, .main-slider .owl-carousel button.owl-dot.active span, .twitter-widget a.reply-tw:hover, .single-post-tags a:hover, .post-comments-form input[type="submit"] {
-        border-color: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        border-color: <?= $secondaryColor ?>;
     }
     /******** + ========== + Pink BackgroundColor Start + ========== + ********/
 
     .event-share ul a.like, .h3-logo-row ul.quick-links li a:hover,
     #search .btn, #search .close, .slider-caption a, .Mayor-msg, .title-style-2 a, .latest-updates h6, .latest-updates ul li:after, .new-thumb a:hover, .thumb a:hover, .ch-box .ch-thumb a:hover, .city-highlights .owl-carousel .owl-nav button.owl-next, .city-highlights .owl-carousel .owl-nav button.owl-prev, .stay-connected, .e-numbers .em-box:hover, span.ecat, .highlights-cityscapes .owl-carousel .owl-nav button.owl- prev, .highlights-cityscapes .owl-carousel .owl-nav button.owl-next, .highlights-cityscapes .owl-carousel .owl-nav button.owl- prev:hover, .highlights-cityscapes .owl-carousel .owl-nav button.owl-next:hover, .community-box a.see-more:hover, .team-heading a, .home3.footer, .become-vol, .cross-btn:hover, .h3-navbar .donate-btn a, .h3-slider-caption a, .title-style-3 p:before, .news-box-f:after, .news-box:hover .news-box-f a, .deprt-icon-box a.rm, a.jobs-link, .recent-events .nav-tabs>li>a, .recent-events .nav-tabs>li>a:after, .recent-events .event-list:after, .event-list a.joinnow:hover, .recent-events .event-list:hover a.joinnow, .community-links-style-two li a:hover img, #h3team-slider .owl-next:hover, #h3team-slider .owl- prev:hover, .event-list-box:hover a.join-now, .widget .upcoming-events .edate, .tags-widget a:hover, .contact-team:hover, .post-comments-form input[type="submit"]:hover, .city-updates li.more-news a, .department-links li a.c9, .gallery-thumb a:hover, .contact-form input[type="submit"]:hover, .event-counter a:hover, .event-share ul a:hover, .campaign-thumb a:hover, .campaign-box:hover a.dbutton, .causes-listing .campaign-box:hover .dn-btn, .single-donation-box .radio-boxes input[type=radio].css- radio+label.css-label:hover, .single-donation-box .radio- boxes input[type=radio].css-radio:checked+label.css-label, .radio-boxes input[type=radio].css-radio+label.css-label:hover, .radio-boxes input[type=radio].css-radio:checked+label.css-label, li.form-submit button:hover, .donator-details input[type="submit"]:hover, .testimonials-section .owl-theme .owl-dots .owl-dot.active span, .testimonials-section .owl-theme .owl-dots .owl-dot span:hover, .login-account input[type="submit"], .register-account input[type="submit"]:hover, .cs-newsletter-form button.subscribe, ul.team-social:after, .call2action a, .h2-Mayor-msg, .newsletter-form button, .community-box a.see-more:hover, .community-box:hover a.see-more, .ecat.c1, .site-pagination .pagination>.active>a, .site-pagination .pagination>.active>a:focus, .site-pagination .pagination>.active>a:hover, .site-pagination .pagination>.active>span, .site-pagination .pagination>.active>span:focus, .site-pagination .pagination>.active>span:hover, .site-pagination .pagination>li>a:focus, .site-pagination .pagination>li>a:hover, .site-pagination .pagination>li>span:focus, .site-pagination .pagination>li>span:hover, .serbox-cap .rm:hover {
-        background-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        background-color: <?= $mainColor ?>;
     }
     /******** + ========== + Pink Text Color Start + ========== + ********/
     .lb-ser-box li:hover h6,
     .footer-social a:hover, .some-facts ul li:hover strong, .team-box .team-txt strong, .team-box:hover .team-txt h5, ul.check-list i, .local-box:hover a, .event-post-full:hover .event-post-loc a, .event-post-full:hover .event-post-txt h5 a, .news-post:hover .news-post-txt h5 a, .logo-nav-row ul.nav.navbar-nav.navbar-right .search-btn a, .logo-nav-row ul.nav.navbar-nav.navbar-right .bars-btn a, .logo-nav-row .nav .open>a, .logo-nav-row .nav .open>a:focus, .logo-nav-row .nav .open>a:hover, .logo-nav-row .navbar-nav>li>a:hover, .about-widget a:hover, .widget .recent-posts strong, .widget .recent-posts h6 a:hover, .button-group .button:hover, .button-group .button:active, .button-group .button.is-checked, .local-service-box:hover a, .latest-updates ul li strong a:hover, .event-post:hover .event-post-loc a, .event-post:hover h5 a, .new-thumb a, .thumb a, .ch-box .ch-thumb a, .ch-box .ch-txt ul li a:hover, .ch-box .ch-txt ul li:after, .ch-box .ch-txt h5 a:hover, .query ul li strong, .fact-box strong, .e-numbers .info-num strong, .e-numbers .em-box strong.em-num, .btn-group.share-post button.dropdown-toggle:hover, .news-meta .post-user, .hc-box .hc-box-cap li:after, .hc-box:hover .hc-box-cap h5 a, .hc-box:hover .hc-box-cap li a, .community-box ul li a:hover, .footer-widget ul li a:hover, .news-box:hover .new-txt h6 a, .deprt-icon-box:hover h6 a, .event-list li strong.edate, .event-list li.el-title p i, .recent-events .event-list:hover h6 a, .event-cap h5 a:hover, .event-cap ul li:after, .community-links-style-two li a:hover, .team-info ul li a:hover, #h3team-slider .owl-next, #h3team-slider .owl-prev, .home3.emergency-numbers .e-numbers .em-box i, .event-list-box .edate strong, .event-list-box .event-title p i, .event-list-box:hover .event-title h6 a, .widget h6 a:hover, .team-detail .advisor, .checklist li i, .deprt-icon-box:hover h5 a, .city-updates ul li strong a:hover, .ch-box .ch-txt h6 a:hover, .gallery-thumb a, .add-box-2 i, .event-share ul a:hover.like:after, .campaign-box:hover h6 a, .campaign-box:hover h5 a, .causes-listing .campaign-box:hover h4 a, .login-account input[type="submit"]:hover, .register-account a {
-        color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        color: <?= $mainColor ?>;
     }
     /******** + ========== + Pink Border Color Start + ========== + ********/
     .h3-logo-row ul.quick-links li a:hover,
     .community-box:hover a.see-more, .cs-newsletter-form input.form-control, .cs-txt .countdown-section, .fact-box:hover, .e-numbers .em-box:hover, .community-box a.see-more:hover, .event-list a.joinnow:hover, .recent-events .event-list:hover a.joinnow, #h3team-slider .owl-next:hover, #h3team-slider .owl-prev:hover, .site-pagination .pagination>.active>a, .site-pagination .pagination>.active>a:focus, .site-pagination .pagination>.active>a:hover, .site-pagination .pagination>.active>span, .site-pagination .pagination>.active>span:focus, .site-pagination .pagination>.active>span:hover, .site-pagination .pagination>li>a:focus, .site-pagination .pagination>li>a:hover, .site-pagination .pagination>li>span:focus, .site-pagination .pagination>li>span:hover, .event-list-box:hover a.join-now, .tags-widget a:hover, .post-comments-form input[type="submit"]:hover, .event-share ul a:hover, .single-donation-box .radio-boxes input[type=radio].css-radio+label.css-label:hover, .single-donation-box .radio-boxes input[type=radio].css-radio:checked+label.css-label, .radio-boxes input[type=radio].css-radio+label.css-label:hover, .radio-boxes input[type=radio].css-radio:checked+label.css-label, .fact-box:hover {
-        border-color: <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        border-color: <?= $mainColor ?>;
     }
     .facts-icon:after {
-        box-shadow: 0 0 0 2px <?= maybe_null_or_empty($options, 'site_main_color', false, '#d94148') ?>;
+        box-shadow: 0 0 0 2px <?= $mainColor ?>;
     }
     .header .topbar {
-        background: <?= maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
+        background: <?= $secondaryColor ?>;
     }
 
 </style>

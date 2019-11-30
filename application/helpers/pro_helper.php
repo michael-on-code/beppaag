@@ -8,13 +8,7 @@
 
 
 
-function getRecommendationTablesNames(){
-    $tables = new stdClass();
-    $tables->recommendations = 'recommendations';
-    $tables->activities = 'recommendation_activities';
-    $tables->meta = 'recommendation_meta';
-    return $tables;
-}
+
 
 function includeIroColorPicker(){
     $ci=&get_instance();

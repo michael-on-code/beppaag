@@ -52,11 +52,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //TODO use :any instead of (.+). View DOc URI Routing
 $route['default_controller'] = 'home';
 $route['404_override'] = 'p_404';
-$route['events/(.+)'] = 'events/index/(.+)';
-$route['evaluations/page/:num'] = 'evaluations/index/$1';
-//$route['evaluation/year/(.+)'] = 'evaluation/year/(.+)';
-//$route['evaluation/sector/(.+)'] = 'evaluation/sector/(.+)';
-//$route['evaluation/(.+)'] = 'evaluation/(.+)';
+$route['evaluations/year/(.+)'] = 'evaluations/year/$1';
+$route['evaluations/sector/(.+)'] = 'evaluations/sector/$1';
+$route['evaluations/(.+)'] = 'evaluations/index/$1';
+$route['events/tag/(.+)'] = 'events/tag/$1';
+$route['events/category/(.+)'] = 'events/category/$1';
+$route['events/(.+)'] = 'events/index/$1';
+
 $route['blog/tag/(.+)'] = 'blog/tag/$1';
 $route['blog/category/(.+)'] = 'blog/category/$1';
 $route['blog/(.+)'] = 'blog/index/$1';

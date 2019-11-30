@@ -98,22 +98,32 @@ getBreadcrump([
                                                 </div>
 
                                                 <div class="eval-list-content">
-                                                    <h5><a href="<?= $permalink=site_url("evaluations/$evaluation->slug") ?>"><?= $evaluation->title ?></a>
+                                                    <h5>
+                                                        <a href="<?= $permalink = site_url("evaluations/$evaluation->slug") ?>"><?= $evaluation->title ?></a>
                                                     </h5>
                                                     <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                                     <div class="eval-list-btns-container">
-                                                        <span class="post-date"><i class="far fa-calendar-alt"></i> <a
+                                                        <span data-toggle="tooltip" title="Année d'évaluation"
+                                                              class="post-date"><i class="far fa-calendar-alt"></i> <a
                                                                     href="<?= site_url("evaluations/year/$evaluation->year") ?>"><?= $evaluation->year ?></a></span>
-                                                        <span class="post-date"><i class="far fa-calendar-plus"></i> <?= getFullDateInFrench($evaluation->created_at, getRegularDateTimeFormat()) ?></span>
+                                                        <span data-toggle="tooltip" title="Date d'ajout"
+                                                              class="post-date"><i
+                                                                    class="far fa-calendar-plus"></i> <?= getFullDateInFrench($evaluation->created_at, getRegularDateTimeFormat(), false, false, false, true) ?></span>
+                                                        <?php
+                                                        $recommendationStatData = getEvaluationRecommendationLabel($evaluation->executed_count, $evaluation->total_recommendation_activities_count);
+                                                        getEvaluationRecommendationIndicator($recommendationStatData['label'], $recommendationStatData['percentage'], $assetsUrl, 'm-l-10 boldify', true);
+                                                        ?>
                                                         <span class="eval-list-btns">
-                                                   <a style="" class="see-more" href="<?= $permalink ?>"> <i class="fa fa-eye"></i> | Lire</a>
-                                                <!--<a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>-->
+                                                   <a style="" class="see-more" href="<?= $permalink ?>"> <i
+                                                               class="fa fa-eye"></i> | Lire</a>
+                                                            <!--<a class="see-more" href="#"> <i class="fa fa-download"></i> | Télécharger</a>-->
                                                 <div class="btn-group share-post no-float">
                                                    <a class="see-more" href="#" class="dropdown-toggle"
                                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
                                                                class="fa fa-download" style="margin-right: 5px"></i> | Télécharger</a>
                                                    <ul class="dropdown-menu downloading">
-                                                      <li><a href="#">Rapport de l'évaluation</a></li>
+                                                      <li><a download
+                                                             href="<?= $uploadPath . $evaluation->evaluation_file ?>">Rapport de l'évaluation</a></li>
                                                       <li><a href="#">Résumé des recommandations</a></li>
                                                       <li class="all"><a href="#">Télécharger tout</a></li>
                                                    </ul>
@@ -130,7 +140,9 @@ getBreadcrump([
                                                       <li><a href="#" class="linken"><i class="fab fa-linkedin-in"></i></a></li>
                                                    </ul>
                                                 </div>
+
                                                 </span>
+
 
                                                     </div>
                                                 </div>
@@ -159,19 +171,21 @@ getBreadcrump([
 
                                         <div class="eval-list-content">
                                             <a class="see-more"><i class="fa fa-download"></i> | Tout Télécharger</a>
-                                            <div class="pull-right pagination-content">
-                                                <b class="text-bold"><?= $countStart ?> - <?= $countEnd ?> / <?= $totalCount ?></b>
+                                            <!--<div class="pull-right pagination-content">
+                                                <b class="text-bold"><?/*= $countStart */?> - <?/*= $countEnd */?>
+                                                    / <?/*= $totalCount */?></b>
                                                 <?php
-                                                if($totalCount > $countEnd){
-                                                    ?>
-                                                    <a class="btn-search" href="<?=  $currentOffset == 0 ? site_url('evaluations') : site_url("evaluations/page/$currentOffset") ?>">
+/*                                                if ($totalCount > $countEnd) {
+                                                    */?>
+                                                    <a class="btn-search"
+                                                       href="<?/*= $currentOffset == 0 ? site_url('evaluations') : site_url("evaluations/page/$currentOffset") */?>">
                                                         <i class="fa fa-angle-right"></i>
                                                     </a>
                                                     <?php
-                                                }
-                                                ?>
+/*                                                }
+                                                */?>
 
-                                            </div>
+                                            </div>-->
                                             <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                         </div>
 

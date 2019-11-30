@@ -11,6 +11,47 @@ jQuery(document).ready(function($) {
             });
         })
     }
+    if ($(window).width() > 768) {
+        if ($(".evaluation-single").length) {
+            var menuTop = $(".evaluation-sidebar-container").offset().top;
+            var menuLeft = $(".evaluation-sidebar-container").offset().left;
+            var menuWidth = $(".evaluation-sidebar-container").width();
+            var footerTop = $(".evaluation-sidebar-container").offset().top;
+            var menuHeight = $(".evaluation-sidebar-container").height();
+            var evalDocHeight = $(".evaluation-start").height();
+            $(window).scroll(function() {
+                if ($(window).height() < $(window).width()) {
+                    if ($(window).scrollTop() >= (menuTop - 80)) {
+                        var x1 = menuHeight - 160;
+                        $(".evaluation-sidebar-container").addClass("fixed");
+                        $(".evaluation-sidebar-container").css({
+                            width:menuWidth+"px"
+                        });
+                        if($(window).scrollTop() > (evalDocHeight + 100) ){
+                            $(".evaluation-sidebar-container").removeClass("fixed");
+                            $(".evaluation-sidebar-container").parent().css({
+                                height : $(".evaluation-start").height()+'px'
+                            });
+                            $(".evaluation-sidebar-container").css({
+                                position: 'absolute',
+                                bottom:'0px'
+                            });
+                        }else{
+                            $(".evaluation-sidebar-container").addClass("fixed");
+                        }
+                    } else{
+                        $(".evaluation-sidebar-container").removeClass("fixed");
+                        $(".evaluation-sidebar-container").css({
+                            position: 'relative',
+                            bottom: 'unset',
+                        });
+                    }
+
+                }
+            });
+        }
+    }
+
     if($('.cutter').length){
         $('.cutter').each(function () {
             $(this).line($(this).attr('data-line') ? $(this).attr('data-line') : 2, "...")

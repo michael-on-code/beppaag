@@ -31,7 +31,7 @@ class Evaluation_model extends CI_Model
         return $years;
     }
 
-    public function getMinifiedAll($select = '*', $onlyActiveOnes=true, $page=0, $limit=8, $order=true, $orderByField='id', $orderBy='desc'){
+    public function getMinifiedAll($select = '*', $onlyActiveOnes=true, $page=0, $limit=8, $order=true, $orderByField='id', $orderBy='desc', $withFile=true){
         $this->db->select($select);
         $this->db->limit($limit, $page);
         if ($onlyActiveOnes) {
@@ -41,6 +41,13 @@ class Evaluation_model extends CI_Model
             $this->db->order_by($orderByField, $orderBy);
         }
         $evaluations = $this->db->get($this->_tables->evaluations)->result();
+        if($withFile){
+            if(!empty($evaluations)){
+                foreach ($evaluations as $key=>$evaluation){
+                    $evaluations[$key]->evaluation_file=$this->get_meta($evaluation->id, 'evaluation_file');
+                }
+            }
+        }
         $countResult = count($evaluations);
         $this->db->reset_query();
         $this->db->select('id');
@@ -60,7 +67,10 @@ class Evaluation_model extends CI_Model
 
     }
 
-    public function getAll($onlyActiveOnes = true, $sectorsInString = true, $thematicsInString = true, $resultInArray = true, $order=true, $orderByField='id', $orderBy='desc')
+    public function getAll($onlyActiveOnes = true, $sectorsInString = true,
+                           $thematicsInString = true, $resultInArray = true,
+                           $order=true, $orderByField='id',
+                           $orderBy='desc', $countResult=false)
     {
         $tables = $this->_tables;
         $recommendationTables = getRecommendationTablesNames();
@@ -68,6 +78,7 @@ class Evaluation_model extends CI_Model
 
         //$recommendationsIDs = $this->recommendation_model->getByEvaluationID()
         //$recommendationIDs = implode()
+        $this->db->distinct();
         $this->db->select("$tables->evaluations.*, $tables->types.name as type, $tables->temporalities.name as temporality, 
         $tables->leading_authorities.name as leading_authority, $tables->contracting_authorities.name as contracting_authority, 
        users.first_name, users.last_name, (SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
@@ -90,6 +101,9 @@ class Evaluation_model extends CI_Model
         //$this->db->group_by(["U_recommendation_id"]);
         if($order){
             $this->db->order_by($orderByField, $orderBy);
+        }
+        if($countResult){
+            return $this->db->count_all_results($this->_tables->evaluations);
         }
         $evaluations = $this->db->get($this->_tables->evaluations)->result_array();
         //var_dump($evaluations);exit;
@@ -206,13 +220,40 @@ class Evaluation_model extends CI_Model
         return $result;
     }
 
-    public function getByID($evaluationID)
+    public function getByID($evaluationID, $withAllInfo=false)
     {
-        $evaluation = $this->db->get_where($this->_tables->evaluations, ['id' => $evaluationID])->row_array();
+        $tables = $this->_tables;
+        if($withAllInfo){
+            $this->db->select("$tables->evaluations.*, $tables->contracting_authorities.name as contracting_authority,$tables->contracting_authorities.description as contracting_authority_desc, 
+            $tables->leading_authorities.name as leading_authority,$tables->leading_authorities.description as leading_authority_desc, $tables->temporalities.name as temporality,$tables->temporalities.description as temporality_desc, 
+            $tables->types.name as type, $tables->types.description as type_desc");
+            $this->db->join($tables->contracting_authorities, "$tables->contracting_authorities.id = $tables->evaluations.contracting_authority_id");
+            $this->db->join($tables->leading_authorities, "$tables->leading_authorities.id = $tables->evaluations.leading_authority_id");
+            $this->db->join($tables->temporalities, "$tables->temporalities.id = $tables->evaluations.temporality_id");
+            $this->db->join($tables->types, "$tables->types.id = $tables->evaluations.type_id");
+        }
+        $evaluation = $this->db->get_where($this->_tables->evaluations, ["$tables->evaluations.id" => $evaluationID])->row_array();
         if (!empty($evaluation)) {
             $evaluation = $this->getEvaluationMeta($evaluation);
-            $evaluation['sector_id'] = $this->getSectorsByEvaluationID($evaluation['id'], true);
-            $evaluation['thematic_id'] = $this->getThematicsByEvaluationID($evaluation['id'], true);
+            if ($withAllInfo) {
+                $temp = [];
+                $sectors = $this->getSectorsByEvaluationID($evaluation['id'], false, true);
+                $thematics = $this->getThematicsByEvaluationID($evaluation['id'], false, true);
+                foreach ($sectors as $sector) {
+                    $temp[] = maybe_null_or_empty($sector, 'name');
+                }
+                $sectors = implode(' | ', $temp);
+                $temp = [];
+                foreach ($thematics as $thematic) {
+                    $temp[] = maybe_null_or_empty($thematic, 'name');
+                }
+                $thematics = implode(' | ', $temp);
+            }else{
+                $sectors = $this->getSectorsByEvaluationID($evaluation['id'], true);
+                $thematics = $this->getThematicsByEvaluationID($evaluation['id'], true);
+            }
+            $evaluation['sector_id'] = $sectors;
+            $evaluation['thematic_id'] = $thematics;
             $evaluation['questions'] = $this->getEvaluationQuestions($evaluation['id']);
             $this->load->model('recommendation_model');
             $evaluation['recommendations'] = $this->recommendation_model->getByEvaluationID($evaluation['id']);

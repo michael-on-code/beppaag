@@ -5,8 +5,11 @@
  * Date: 06/11/2019
  * Time: 12:22
  */
+if(!isset($sidebarClass)){
+    $sidebarClass = 'col-md-3 col-sm-4';
+}
 ?>
-<div class="col-md-3 col-sm-4">
+<div class="<?= $sidebarClass ?>">
     <div class="sidebar">
         <?php
         if (isset($years) && !empty($years)) {
