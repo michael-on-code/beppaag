@@ -35,6 +35,30 @@
         background: <?= $secondaryColor = maybe_null_or_empty($options, 'site_secondary_color', false, '#0a3764') ?>;
         color: #fff;
     }
+    a#scrollUp {
+        bottom: 50px;
+        position: fixed;
+        right: 30px;
+        background: <?= $secondaryColor ?>;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        font-size: 24px;
+        color: #fff;
+        line-height: 45px;
+        border-radius: 3px;
+    }
+    .evaluation-sidebar .widget {
+        background-color: <?= $secondaryColor ?>!important;
+        box-shadow: unset;
+    }
+    .eval-list-content h5 a:hover{
+        color : <?= $mainColor ?>!important;
+    }
+
+    a#scrollUp:hover {
+        background: <?= $mainColor ?>;
+    }
     .main-slider .owl-dots {
         position: absolute;
         right: 20px;

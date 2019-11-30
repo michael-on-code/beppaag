@@ -18,6 +18,35 @@ function getExecutionLevels($forSelect = true, $defaultFirstElementValue = '')
     return $temp;
 }
 
+function getExecutionLevelByRecommendationsFromActivitiesArray($activities)
+{
+    $level = 'Inconnu';
+    if (!empty($activities)) {
+        $totalActivities = count($activities);
+        $totalExecuted = 0;
+        foreach ($activities as $activity) {
+            if ($activity['execution_level'] == 'executed') {
+                $totalExecuted++;
+            }
+        }
+        /*NB
+            Appréciation du niveau d’exécution d’une recommandation
+            « Exécuté » : Si toutes ses déclinaisons (activités) sont exécutées
+            « En cours » : Si au moins l’une de ses déclinaisons est exécutée
+            « Non exécuté » : Si aucune de ses déclinaisons n’est entièrement exécutée
+        */
+
+        if ($totalExecuted == 0) {
+            $level = 'Non exécuté';
+        } elseif ($totalExecuted == $totalActivities) {
+            $level = 'Exécuté';
+        } else {
+            $level = 'En cours';
+        }
+    }
+    return $level;
+}
+
 function getEvaluationRecommendationLabel($evaluationExecutionCount, $evaluationTotalRecommendationActivities)
 {
     $recommendationAppreciation = '';
@@ -32,7 +61,7 @@ function getEvaluationRecommendationLabel($evaluationExecutionCount, $evaluation
 
 }
 
-function getEvaluationRecommendationIndicator($recommendationAppreciationLabel, $recommendationAppreciation, $assetsUrl, $class = '', $withInfo=false)
+function getEvaluationRecommendationIndicator($recommendationAppreciationLabel, $recommendationAppreciation, $assetsUrl, $class = '', $withInfo = false)
 {
     ?>
     <span class="<?= $class ?>">
@@ -61,8 +90,10 @@ function getEvaluationRecommendationIndicator($recommendationAppreciationLabel, 
         N/A
         <?php
     }
-    if($withInfo){
-        ?> <i data-toggle="tooltip" title="Appréciation du niveau d'execution des recommandations de l'évaluation : <?= $level ?>" class="fas fa-info-circle boldify"></i> <?php
+    if ($withInfo) {
+        ?> <i data-toggle="tooltip"
+              title="Appréciation du niveau d'execution des recommandations de l'évaluation : <?= $level ?>"
+              class="fas fa-info-circle boldify"></i> <?php
     }
     ?>
     </span>

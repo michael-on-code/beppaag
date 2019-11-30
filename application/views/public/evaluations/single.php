@@ -10,145 +10,7 @@ getBreadcrump([
 ], $options, 'evaluation')
 ?>
 <style type="text/css">
-    .panel-default > .panel-heading {
-        padding: 12px 0px 12px 10px;
-    }
 
-    .panel {
-        margin-bottom: 30px !important;
-    }
-
-    .panel-title a {
-        text-transform: uppercase;
-    }
-
-    h4.panel-title {
-        font-weight: 700;
-        font-size: 18px;
-        padding-left: 10px;
-    }
-
-    .evaluation-sidebar-content {
-        padding: 20px 36px 0px 30px;
-    }
-
-    .evaluation-sidebar-content h6 {
-        font-weight: 600;
-        padding: 0px 2px 16px 0px;
-        color: white;
-        font-size: 14px;
-        line-height: 1.1;
-        border-bottom: 1px solid #eeeeee38;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .evaluation-sidebar-content h6 img {
-        position: absolute;
-        top: -15px;
-        right: 5px;
-        left: unset;
-    }
-
-    .panel-body {
-        padding-left: 20px;
-    }
-
-    .panel-body .myRow {
-        /*padding: 0px 20px;*/
-        margin-bottom: 14px;
-    }
-
-    .panel-body .myRow label {
-        text-transform: uppercase;
-    }
-
-    .panel-body .myRow, .panel-body .myRow p {
-        color: #000;
-        font-size: 16px
-    }
-
-    .each-question label {
-        margin-top: 10px;
-        margin-bottom: 15px;
-        font-size: 16px;
-        font-weight: 600;
-        color: #000;
-        padding: 0px 0px 20px 0px;
-        border-bottom: 1px solid #d0d0d0;
-    }
-    .panel.questions-heading{
-        margin-bottom: unset!important;
-    }
-
-    @media (min-width: 998px) {
-        .evaluation-sidebar-content h6.recommendations img {
-            top: -6px;
-        }
-    }
-
-    @media (min-width: 998px) {
-        .evaluation-sidebar-content h6 img {
-            right: unset;
-            left: 88%;
-        }
-    }
-
-    @media (max-width: 500px) {
-        .evaluation-sidebar-content h6 img {
-            right: unset;
-            left: 95%;
-        }
-    }
-
-    @media (min-width: 500px) and (max-width: 998px) {
-        .evaluation-sidebar-content h6 img {
-            right: unset;
-            left: 40%;
-        }
-    }
-
-    @media (min-width: 998px) and (max-width: 1200px) {
-        .evaluation-sidebar-content h6 {
-            font-size: 12px !important;
-            line-height: 1.3 !important;
-        }
-    }
-
-    .evaluation-sidebar-content {
-        cursor: pointer;
-    }
-
-    .evaluation-sidebar-content:hover, .evaluation-sidebar-content.active {
-        background-color: #4084c3;
-    }
-
-    .evaluation-sidebar-content h6:hover, .evaluation-sidebar-content.active h6, {
-        color: #ffffff !important;
-    }
-
-    .evaluation-sidebar .widget {
-        background-color: <?= $options['site_secondary_color'] ?>;
-        box-shadow: unset;
-    }
-
-    .evaluation-sidebar .symbol-icon {
-        width: 40px;
-    }
-
-    .evaluation-sidebar .widget {
-        float: unset !important;
-    }
-
-    .pos-relative {
-        position: relative;
-    }
-
-    .evaluation-sidebar-container.fixed {
-        position: fixed !important;
-        top: 10px !important;
-        bottom: auto !important;
-    }
 
 
 </style>
@@ -191,6 +53,9 @@ getBreadcrump([
                             <div class="evaluation-sidebar-content">
                                 <h6>Télécharger tout <img class="symbol-icon"
                                                           data-src="<?= $assetsUrl ?>public/images/zip.png" alt=""></h6>
+                            </div>
+                            <div class="evaluation-sidebar-content">
+                                <a href="<?= site_url('evaluations') ?>"><h6><i class="fas fa-long-arrow-left"></i> Retour</h6></a>
                             </div>
 
 
@@ -325,6 +190,39 @@ getBreadcrump([
                                                             <div class="each-question">
                                                                 <label for=""><?= $question['title'] ?></label>
                                                                 <?= $question['explanation'] ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+
+                                    </div>
+                                    <div data-scroll-index="6">
+                                        <div class="panel panel-default questions-heading">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Recommandations</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        if(!empty($evaluation['recommendations'])){
+                                            foreach ($evaluation['recommendations'] as $recommendation){
+                                                ?>
+                                                <div class="panel panel-default">
+                                                    <div id="collapseFive" class="panel-collapse collapse in recommendations">
+                                                        <div class="panel-body">
+                                                            <div class="each-recommendation">
+                                                                <label for="">
+                                                                    <?= $recommendation['title'] ?>
+                                                                </label>
+                                                                <div class="other-content">
+                                                                    <p> <span>Destinataires : </span> <?= $recommendation['recipient'] ?></p>
+                                                                    <p> <span>Niveau d'exécution : </span> <?= getExecutionLevelByRecommendationsFromActivitiesArray(maybe_null_or_empty($recommendation, 'activities')) ?></p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

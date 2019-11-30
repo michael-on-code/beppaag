@@ -52,7 +52,7 @@ class Evaluations extends Public_Controller {
             $this->data['evaluation']=$this->evaluation_model->getByID($evaluationID, true);
             $this->data['sidebarClass']='col-md-3';
             $this->data['pageTitle']= $this->data['evaluation']['title'];
-            //var_dump($this->data['evaluation']);exit;
+            //var_dump($this->data['evaluation']['recommendations'][0]);exit;
             $this->render('evaluations/single');
         }
         
