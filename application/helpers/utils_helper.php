@@ -356,6 +356,13 @@ function getEvaluationTablesNames()
     return $tables;
 }
 
+function addZeroBeforeNumber($number){
+    if($number<1){
+        return $number;
+    }
+    return sprintf("%02s", $number);
+}
+
 function myWordLimiter($string, $limit = 6)
 {
     $ci =& get_instance();

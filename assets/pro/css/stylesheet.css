@@ -335,3 +335,9 @@ input.select2-input{
     }
 
 }
+.dashboard-stats img{
+    width: 48px;
+}
+.dashboard-stats .card-body{
+    padding: 30px 20px;
+}

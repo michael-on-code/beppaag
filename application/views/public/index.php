@@ -161,15 +161,15 @@
                                 </div>
                             </li>
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/progress.png" alt=""></i> <strong>870</strong>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/progress.png" alt=""></i> <strong><?= $totalInProgressRecommendation ?></strong>
                                     <span>Recommandations en cours</span></div>
                             </li>
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/checked.png" alt=""></i> <strong>900</strong> <span>Recommandations exécutées</span>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/checked.png" alt=""></i> <strong><?= $totalExecutedRecommendation ?></strong> <span>Recommandations exécutées</span>
                                 </div>
                             </li>
                             <li class="col-md-4 col-sm-4">
-                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/warning.png" alt=""></i> <strong>150</strong>
+                                <div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/warning.png" alt=""></i> <strong><?= $totalNonExecutedRecommendation ?></strong>
                                     <span>Recommandations non exécutées</span></div>
                             </li>
                             <li class="col-md-4 col-sm-4">

@@ -154,46 +154,52 @@ getBreadcrump([
                                 </ul>
                                 <?php
                             }
+                            ?>
+                            <ul class="eval-ul eval-last">
+                                <li>
+                                    <div class="row">
+                                        <div class="eval-list-container">
+                                            <div>
+                                                <label class="checkbox-container">
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
 
-                        } ?>
-
-                        <!--                        LAST LINE -->
-                        <ul class="eval-ul eval-last">
-                            <li>
-                                <div class="row">
-                                    <div class="eval-list-container">
-                                        <div>
-                                            <label class="checkbox-container">
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-
-                                        <div class="eval-list-content">
-                                            <a class="see-more"><i class="fa fa-download"></i> | Tout Télécharger</a>
-                                            <!--<div class="pull-right pagination-content">
-                                                <b class="text-bold"><?/*= $countStart */?> - <?/*= $countEnd */?>
-                                                    / <?/*= $totalCount */?></b>
-                                                <?php
-/*                                                if ($totalCount > $countEnd) {
-                                                    */?>
-                                                    <a class="btn-search"
-                                                       href="<?/*= $currentOffset == 0 ? site_url('evaluations') : site_url("evaluations/page/$currentOffset") */?>">
-                                                        <i class="fa fa-angle-right"></i>
-                                                    </a>
+                                            <div class="eval-list-content">
+                                                <a class="see-more"><i class="fa fa-download"></i> | Tout Télécharger</a>
+                                                <div class="pull-right pagination-content">
+                                                    <b class="text-bold"><?= $countStart ?> - <?= $countEnd ?>
+                                                        / <?= $totalCount ?></b>
                                                     <?php
-/*                                                }
-                                                */?>
+                                                    if ($totalCount > $countEnd) {
+                                                        ?>
+                                                        <a class="btn-search"
+                                                           href="<?= $currentOffset == 0 ? site_url('evaluations') : site_url("evaluations/page/$currentOffset") ?>">
+                                                            <i class="fa fa-angle-right"></i>
+                                                        </a>
+                                                        <?php
+                                                    }
+                                                    ?>
 
-                                            </div>-->
-                                            <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
+                                                </div>
+                                                <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
+                                            </div>
+
                                         </div>
 
                                     </div>
+                                </li>
+                            </ul>
+                            <?php
 
-                                </div>
-                            </li>
-                        </ul>
+                        }else{
+                            ?>
+                            <h4>Désolé, aucun contenu trouvé</h4>
+                            <?php
+                        }
+
+                        ?>
 
                     </div>
                 </div>

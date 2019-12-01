@@ -29,14 +29,17 @@ class Blog extends Public_Controller
         $page = (int)$this->input->get('page');
         $tagPosts = getAllInTable($this->_tables->tag_group, true, false, '', '',false, '', '', '', '', '', ['tag_id'=>$tagID]);
         $postIDs=[];
+        $this->data['posts']=[];
+        $totalRow=0;
         if(!empty($tagPosts)){
             foreach ($tagPosts as $tagPost){
                 $postIDs[]=$tagPost['post_id'];
             }
+            $this->data['posts'] = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [], [], [], [], $postIDs);
+            $totalRow = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [], [], [], [], $postIDs, true);
+
         }
-        $this->data['posts'] = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [], [], [], [], $postIDs);
         $config['base_url'] = site_url('blog');
-        $totalRow = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [], [], [], [], $postIDs, true);
         $this->data['links'] = getPaginationConfigAndLink(site_url('blog'), $limit, $totalRow, $page);
         $this->render('blog/index');
     }

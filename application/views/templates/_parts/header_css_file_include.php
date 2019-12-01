@@ -52,6 +52,15 @@
         background-color: <?= $secondaryColor ?>!important;
         box-shadow: unset;
     }
+    .tags-widget a.active{
+        background: <?= $mainColor ?>;
+        color:#ffffff;
+        border: 1px solid <?= $mainColor ?>;
+    }
+    .widget .archives a.active, .widget .categories a.active{
+        color: <?= $mainColor ?>;
+        padding: 0 10px;
+    }
     .eval-list-content h5 a:hover{
         color : <?= $mainColor ?>!important;
     }

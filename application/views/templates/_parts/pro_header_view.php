@@ -15,9 +15,17 @@
             <link href="<?= $css ?>?v=1.000" rel="stylesheet" type="text/css"/>
             <?php
         }
-    } ?>
+    }
+    if (isset($footerJsHeader) && !empty($footerJsHeader)) {
+        foreach ($footerJsHeader as $js) {
+            ?>
+            <script src="<?= $js ?>" type="text/javascript"></script>
+            <?php
+        }
+    }
+    ?>
     <link href="<?= $assetsUrl ?>pro/css/app.min.css?v=1.002" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.048">
+    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.049">
 </head>
 <!-- end::Head -->
 

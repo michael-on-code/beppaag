@@ -70,7 +70,8 @@ class Evaluation_model extends CI_Model
     public function getAll($onlyActiveOnes = true, $sectorsInString = true,
                            $thematicsInString = true, $resultInArray = true,
                            $order=true, $orderByField='id',
-                           $orderBy='desc', $countResult=false)
+                           $orderBy='desc', $countResult=false, $checkYear='',
+                           $checkTemporality='', $checkEvaluationIDsIn=[])
     {
         $tables = $this->_tables;
         $recommendationTables = getRecommendationTablesNames();
@@ -88,7 +89,16 @@ class Evaluation_model extends CI_Model
        where $recommendationTables->activities.recommendation_id IN 
        (SELECT $recommendationTables->recommendations.id FROM $recommendationTables->recommendations where evaluation_id = $tables->evaluations.id)) as total_recommendation_activities_count");
         if ($onlyActiveOnes) {
-            $this->db->where(['active' => 1]);
+            $this->db->where(["$tables->evaluations.active" => 1]);
+        }
+        if($checkYear){
+            $this->db->where(['year' => $checkYear]);
+        }
+        if($checkTemporality){
+            $this->db->where(['temporality_id' => $checkTemporality]);
+        }
+        if(!empty($checkEvaluationIDsIn)){
+            $this->db->where_in("$tables->evaluations.id", $checkEvaluationIDsIn);
         }
         //$this->db->having(array('executed_count =' => 'My Title', 'id <' => $id));
         $this->db->join($tables->types, "$tables->types.id = $tables->evaluations.type_id");

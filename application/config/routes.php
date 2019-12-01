@@ -52,6 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //TODO use :any instead of (.+). View DOc URI Routing
 $route['default_controller'] = 'home';
 $route['404_override'] = 'p_404';
+$route['evaluations/thematic/(.+)'] = 'evaluations/thematic/$1';
+$route['evaluations/temporality/(.+)'] = 'evaluations/temporality/$1';
 $route['evaluations/year/(.+)'] = 'evaluations/year/$1';
 $route['evaluations/sector/(.+)'] = 'evaluations/sector/$1';
 $route['evaluations/(.+)'] = 'evaluations/index/$1';

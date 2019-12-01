@@ -11,6 +11,13 @@ jQuery(document).ready(function ($) {
             });
         })
     }
+    if($('.sidebar .widget').length){
+        $('.sidebar .widget a').each(function () {
+            if($(this).attr('href')==pageUrl){
+                $(this).addClass('active');
+            }
+        })
+    }
     if ($(window).width() > 768) {
         if ($(".evaluation-single").length) {
             var menuTop = $(".evaluation-sidebar-container").offset().top;

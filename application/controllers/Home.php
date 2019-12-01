@@ -16,6 +16,32 @@ class Home extends Public_Controller {
     public function index(){
         $this->data['pageTitle']= 'Accueil';
         $this->load->model(['post_model', 'event_model']);
+        $this->load->model('recommendation_model');
+        $recommendations = $this->recommendation_model->getAll();
+        $totalExecutedRecommendation = 0;
+        $totalNonExecutedRecommendation = 0;
+        $totalInProgressRecommendation = 0;
+        if(!empty($recommendations)){
+            $this->load->helper('evaluation');
+            foreach ($recommendations as $recommendation) {
+                $appreciation = getExecutionLevelByRecommendationsFromActivitiesArray(maybe_null_or_empty($recommendation, 'activities', true));
+                switch ($appreciation) {
+                    case 'Exécuté':
+                        $totalExecutedRecommendation++;
+                        break;
+                    case 'En cours':
+                        $totalInProgressRecommendation++;
+                        break;
+                    default :
+                        $totalNonExecutedRecommendation++;
+                        break;
+
+                }
+            }
+        }
+        $this->data['totalExecutedRecommendation']=$totalExecutedRecommendation;
+        $this->data['totalNonExecutedRecommendation']=$totalNonExecutedRecommendation;
+        $this->data['totalInProgressRecommendation']=$totalInProgressRecommendation;
         $this->data['latestPosts']=$this->post_model->getAll(true, true, true, 'true', 'id', 'desc', false, 4, true);
         $this->data['latestEvents']=$this->event_model->getAll(true, true, true, 'true', 'id', 'desc', false, 3, true);
         $this->data['totalPosts']=getCountInTable('posts', ['active'=>1]);

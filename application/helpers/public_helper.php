@@ -77,6 +77,13 @@ function getPostTemplatePreview($post, $options, $outerClass='col-md-3 col-sm-6'
     <?php
 }
 
+function includeEvaluationColirLibAssets(){
+    $ci=&get_instance();
+    $ci->data['footerJs'][]=$ci->data['assetsUrl'].'public/lib/colorlib-search/js/extention/choices.js';
+    $ci->data['footerJs'][]=$ci->data['assetsUrl'].'public/lib/colorlib-search/js/extention/flatpickr.js';
+    $ci->data['headerCss'][]=$ci->data['assetsUrl'].'public/lib/colorlib-search/css/main.css';
+}
+
 function getBreadcrump(array $data, $options=[], $pageType=''){
     if($pageType==''){
         $banner='other_banner';

@@ -21,6 +21,16 @@ class Recommendation_model extends CI_Model{
         );
     }
 
+    public function getAll(){
+        $results = $this->db->get($this->_tables->recommendations)->result_array();
+        if(!empty($results)){
+            foreach ($results as $key=>$result){
+                $results[$key]['activities']=$this->getRecommendationActivities($result['id']);
+            }
+        }
+        return $results;
+    }
+
     public function getByEvaluationID($evaluationID, $select="*", $withMetas=true){
         $this->db->select($select);
         $recommendations = $this->db->get_where($this->_tables->recommendations, ['evaluation_id'=>$evaluationID])->result_array();
