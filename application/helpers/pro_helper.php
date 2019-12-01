@@ -155,7 +155,7 @@ function getAdminDashboardView($assetsUrl)
 
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <!--<div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <canvas id="myChart" width="400" height="400"></canvas>
@@ -200,7 +200,7 @@ function getAdminDashboardView($assetsUrl)
                     </script>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
