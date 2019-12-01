@@ -124,7 +124,7 @@
                             <h2>Derniers évènements</h2>
                         </div>
                         <div class="col-md-6 col-sm-6 outerTitleDescription">
-                            <p class="innerTitleDescription">Retrouvez les derniers évènements organisés par la BEPPAAG au suget de la gestion des processus evaluatifs</p>
+                            <p class="innerTitleDescription">Retrouvez les derniers évènements organisés par la BEPPAAG au sujet de la gestion des processus evaluatifs</p>
                         </div>
                         <div class="col-md-2 "><a class="mg-t-17" href="<?= site_url('events') ?>">Voir tout</a></div>
                     </div>

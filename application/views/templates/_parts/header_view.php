@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <ul class="right-links">
-                        <li><a href="#"><i class="fas fa-phone"></i> <strong>+229 90 90 90 90</strong></a></li>
+                        <li><a href="tel://+22990909090"><i class="fas fa-phone"></i> <strong>+229 90 90 90 90</strong></a></li>
                         <li><a href="mailto:contact@beppaag.com"><i class="fas fa-envelope"></i> contact@beppaag.com</a></li>
                         <li> <a href="<?= pro_url() ?>"><i class="fas fa-desktop"></i> Connexion</a> </li>
                     </ul>

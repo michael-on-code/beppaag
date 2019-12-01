@@ -1,3 +1,6 @@
 <div class="main-content">
-    <?= $html ?>
+    <?php
+    if(isset($html)){
+        echo $html;
+    } ?>
 </div>
