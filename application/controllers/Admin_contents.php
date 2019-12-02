@@ -11,6 +11,7 @@ class Admin_contents extends Pro_Controller{
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('content');
     }
 
     public function banners(){
@@ -91,8 +92,48 @@ class Admin_contents extends Pro_Controller{
         $this->render('index');
     }
     public function footer(){
+        if($footer = $this->input->post('footer')){
+            setFormValidationRules([
+                [
+                    'name'=>'footer[footer_background_color]',
+                    'label'=>'Couleur arrière plan du pieds de page',
+                    'rules'=>'trim|required',
+                ],
+                [
+                    'name'=>'footer[footer_logo]',
+                    'label'=>'Logo du pieds de page',
+                    'rules'=>'trim|required',
+                ],
+            ]);
+            if($this->form_validation->run()){
+                if(maybe_null_or_empty($footer, 'footer_links')){
+                    foreach ($footer['footer_links'] as $key=> $footerLink){
+                        if(!maybe_null_or_empty($footerLink, 'label')){
+                            unset($footer['footer_links'][$key]);
+                            continue;
+                        }
+                        if(maybe_null_or_empty($footerLink, 'links')){
+                            foreach ($footerLink['links'] as $keyLink => $link){
+                                if(!maybe_null_or_empty($link, 'label')){
+                                    unset($footer['footer_links'][$key]['links'][$keyLink]);
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                }
+                $this->option_model->update_all_options($footer);
+                get_success_message('Contenus du pieds de page mis à jour avec succès');
+                pro_redirect('contents/footer');
+            }else{
+                get_error_message();
+            }
+        }
         $this->data['pageTitle']="Modification du contenu du pied de page";
-        $this->render('index');
+        $this->data['footer']=maybe_null_or_empty($this->data['options'], 'footer');
+        includeDropifyAssets();
+        includeJQueryRepeaterAssets();
+        $this->render('contents/footer');
     }
     public function home_page(){
         $this->data['pageTitle']="Modification du contenu de la page d'accueil";

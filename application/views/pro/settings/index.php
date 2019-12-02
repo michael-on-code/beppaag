@@ -45,6 +45,20 @@
                         </div>
                         <div class="form-group">
                             <?php
+                            echo form_label('ID de suivi Google Analytics', 'googleAnalyticsID');
+                            echo form_input([
+                                'name' => 'options[googleAnalyticsID]',
+                                'class' => 'form-control',
+                                'placeholder' => 'ID de suivi Google Analytics',
+                                'id' => 'googleAnalyticsID',
+                                'required' => '',
+                                'value'=>set_value('options[googleAnalyticsID]', maybe_null_or_empty($options, 'googleAnalyticsID'))
+                            ]);
+                            echo form_error('options[googleAnalyticsID]')
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <?php
                             echo form_label('Clé Publique Google Recaptcha', 'googleRecaptchaPublicKey');
                             echo form_input([
                                 'name' => 'options[googleRecaptchaPublicKey]',
@@ -71,6 +85,7 @@
                             echo form_error('options[googleRecaptchaSecretKey]')
                             ?>
                         </div>
+
 
                         <div class="form-group">
                             <?php echo form_label("Attacher le logo de la plateforme ");

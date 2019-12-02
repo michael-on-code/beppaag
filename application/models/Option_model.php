@@ -38,6 +38,7 @@ class Option_model extends CI_Model{
 //            'siteFooterDescription',
             'googleRecaptchaPublicKey',
             'googleRecaptchaSecretKey',
+            'googleAnalyticsID',
             'siteFavicon',
             'siteLogo',
             'siteDefaultAvatar',
@@ -52,6 +53,14 @@ class Option_model extends CI_Model{
             //content general
             'site_main_color',
             'site_secondary_color',
+            //footer content
+            'footer_background_color',
+            'footer_logo',
+            'site_facebook_url',
+            'site_twitter_url',
+            'site_youtube_url',
+            'site_flickr_url',
+            'footer_links'
         );
     }
 

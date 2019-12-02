@@ -35,13 +35,13 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153632512-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= maybe_null_or_empty($options, 'googleAnalyticsID', false, 'UA-153632512-1') ?>"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-153632512-1');
+        gtag('config', "<?= maybe_null_or_empty($options, 'googleAnalyticsID', false, 'UA-153632512-1') ?>");
     </script>
 
 </head>

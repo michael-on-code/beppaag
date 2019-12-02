@@ -75,6 +75,10 @@ function getAllImageSizes()
             'width' => 150,
             'height' => 150,
         ],
+        '263x84' => [//footer-logo
+            'width' => 263,
+            'height' => 84,
+        ],
         '263x200' => [//post-preview-small
             'width' => 263,
             'height' => 200,

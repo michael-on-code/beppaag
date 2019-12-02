@@ -41,6 +41,10 @@ class Admin_settings extends Pro_Controller{
                     'rules'=>'trim|required'
                 ],*/
                 [
+                    'name'=>'options[googleAnalyticsID]',
+                    'label'=>'ID de suivi Google Analytics',
+                    'rules'=>'trim|required'
+                ],[
                     'name'=>'options[googleRecaptchaPublicKey]',
                     'label'=>'Clé publique Google Recaptcha',
                     'rules'=>'trim|required'
