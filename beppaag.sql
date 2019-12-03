@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 29 Novembre 2019 à 02:34
+-- Généré le :  Mar 03 Décembre 2019 à 07:57
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -405,7 +405,7 @@ INSERT INTO `events` (`id`, `slug`, `title`, `location`, `active`, `created_by`,
 (1, 'seminaire-sur-la-bonne-gestion-des-proce5ddd316ca5', 'Séminaire sur la bonne gestion des processus d\'évaluation', ' Espace DINA, St Michel, Cotonou, Bénin', 1, 1, '2019-11-26 14:06:36', '2019-11-26 14:12:36', '2019-11-05 00:00:00', '2019-11-16 00:00:00', 1),
 (2, '22eme-colloque-et-lecole-dete-du-sifee5ddd4bf338dd', '22ème colloque et l’école d’été du SIFÉE', ' Espace DINA, St Michel', 1, 1, '2019-11-26 15:59:47', NULL, '2019-12-04 00:00:00', '2019-12-28 00:00:00', 3),
 (3, '36eme-session-du-conseil-des-ministres-d5ddd4cd088', '36ème Session du Conseil des Ministres du CAMES', ' Espace DINA, St Michel', 1, 1, '2019-11-26 16:03:28', NULL, '2019-12-12 00:00:00', '2019-12-29 00:00:00', 4),
-(4, 'gala-des-champions-20185ddd4d9538dff', 'Gala des Champions 2018', 'Centre International des Conférences de Cotonou (CIC)', 1, 1, '2019-11-26 16:06:45', '2019-11-28 15:00:43', '2020-01-10 00:00:00', NULL, 5),
+(4, 'gala-des-champions-20185ddd4d9538dff', 'Gala des Champions 2019', 'Centre International des Conférences de Cotonou (CIC)', 1, 1, '2019-11-26 16:06:45', '2019-12-01 08:31:04', '2020-01-10 00:00:00', NULL, 5),
 (5, 'semaine-du-numerique5ddd4e79a0281', 'Semaine du numérique', 'Golden Tulip Hotel', 1, 1, '2019-11-26 16:10:33', '2019-11-28 15:00:30', '2019-12-28 00:00:00', NULL, 4),
 (6, 'pelerinage-annuel-et-touristique-de-ouid5ddd500a29', 'Pélérinage Annuel et Touristique de Ouidah', 'Ouidah', 1, 1, '2019-11-26 16:17:14', '2019-11-28 14:20:12', '2019-12-26 00:00:00', '2019-12-31 00:00:00', 6);
 
@@ -516,8 +516,8 @@ INSERT INTO `event_tag_groups` (`id`, `tag_id`, `event_id`) VALUES
 (13, 3, 6),
 (14, 8, 6),
 (15, 7, 5),
-(16, 5, 4),
-(17, 6, 4);
+(18, 5, 4),
+(19, 6, 4);
 
 -- --------------------------------------------------------
 
@@ -564,6 +564,9 @@ CREATE TABLE `login_attempts` (
 CREATE TABLE `logs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
+  `element_id` int(10) UNSIGNED NOT NULL,
+  `element_type` varchar(35) NOT NULL,
+  `time` int(10) UNSIGNED NOT NULL,
   `title` text NOT NULL,
   `params` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -603,7 +606,7 @@ INSERT INTO `options` (`id`, `key`, `value`) VALUES
 (3, 'googleRecaptchaPublicKey', '6LdBbL4UAAAAAN35hhhAHJ6V7PbZAeLG_RvC9weK'),
 (4, 'googleRecaptchaSecretKey', '6LdBbL4UAAAAAJEod1c6up-2iWfi2aXyAMQK1CH5'),
 (5, 'siteLogo', 'presidence-logo4.png'),
-(6, 'siteFavicon', 'favicon12.jpg'),
+(6, 'siteFavicon', 'favicon.ico'),
 (7, 'siteDefaultAvatar', 'defaukt.png'),
 (8, 'home_banner', 'banner2.jpg'),
 (9, 'post_banner', 'business-1031754_19201.jpg'),
@@ -612,7 +615,15 @@ INSERT INTO `options` (`id`, `key`, `value`) VALUES
 (12, 'event_banner', 'event-1597531_19201.jpg'),
 (13, 'other_banner', 'banner3.jpg'),
 (14, 'site_main_color', '#d94148'),
-(15, 'site_secondary_color', '#0a3764');
+(15, 'site_secondary_color', '#0a3764'),
+(16, 'footer_background_color', '#383838'),
+(17, 'site_facebook_url', 'https://web.facebook.com/presidencebenin'),
+(18, 'site_twitter_url', 'https://twitter.com/PresidenceBenin'),
+(19, 'site_youtube_url', 'https://youtube.com/PresidenceBenin'),
+(20, 'site_flickr_url', 'https://www.flickr.com/presidencebenin/albums/'),
+(21, 'footer_logo', 'logo-presidence-white1.png'),
+(22, 'footer_links', 'a:6:{i:1;a:2:{s:5:"label";s:13:"LA PRESIDENCE";s:5:"links";a:5:{i:1;a:2:{s:5:"label";s:13:"Le Président";s:3:"url";s:69:"https://www.presidence.bj/home/la-presidence/le-president/biographie/";}i:2;a:2:{s:5:"label";s:39:"Le secretaire general de la Présidence";s:3:"url";s:95:"https://www.presidence.bj/home/la-presidence/le-secretaire-general-de-la-presidence/biographie/";}i:3;a:2:{s:5:"label";s:20:"Ecrire au Président";s:3:"url";s:46:"https://www.presidence.bj/ecrire-au-president/";}i:4;a:2:{s:5:"label";s:21:"Agenda du président ";s:3:"url";s:33:"https://www.presidence.bj/agenda/";}i:5;a:2:{s:5:"label";s:47:"Phrases fortes du Président de la République ";s:3:"url";s:51:"https://www.presidence.bj/phrases-fortes-president/";}}}i:2;a:2:{s:5:"label";s:17:"LES INSTITUTIONS ";s:5:"links";a:6:{i:1;a:2:{s:5:"label";s:24:"L’Assemblée Nationale";s:3:"url";s:68:"https://www.presidence.bj/home/les-institutions/assemblee-nationale/";}i:2;a:2:{s:5:"label";s:25:"La Cour Constitutionnelle";s:3:"url";s:74:"https://www.presidence.bj/home/les-institutions/la-cour-constitutionnelle/";}i:3;a:2:{s:5:"label";s:16:"La cour suprême";s:3:"url";s:64:"https://www.presidence.bj/home/les-institutions/la-cour-supreme/";}i:4;a:2:{s:5:"label";s:31:"Le Conseil Economique et Social";s:3:"url";s:80:"https://www.presidence.bj/home/les-institutions/le-conseil-economique-et-social/";}i:5;a:2:{s:5:"label";s:60:"La Haute Autorité de l’Audiovisuel et de la Communication";s:3:"url";s:104:"https://www.presidence.bj/home/les-institutions/la-haute-autorite-de-audiovisuel-et-de-la-communication/";}i:6;a:2:{s:5:"label";s:24:"La Haute Cour de Justice";s:3:"url";s:73:"https://www.presidence.bj/home/les-institutions/la-haute-cour-de-justice/";}}}i:3;a:2:{s:5:"label";s:12:"BENIN REVELE";s:5:"links";a:9:{i:1;a:2:{s:5:"label";s:36:"Mot du président de la république ";s:3:"url";s:69:"https://www.presidence.bj/home/benin-revele/mot-president-republique/";}i:2;a:2:{s:5:"label";s:30:"Découvrir le Bénin Révélé";s:3:"url";s:67:"https://www.presidence.bj/home/benin-revele/decouvrir-benin-revele/";}i:3;a:2:{s:5:"label";s:25:"Site Web Bénin Révélé";s:3:"url";s:26:"http://revealingbenin.com/";}i:4;a:2:{s:5:"label";s:17:"Lire la synthèse";s:3:"url";s:44:"https://www.presidence.bj/benin-revele/read/";}i:5;a:2:{s:5:"label";s:26:"Télécharger la synthèse";s:3:"url";s:48:"https://www.presidence.bj/benin-revele/download/";}i:6;a:2:{s:5:"label";s:35:"Télécharger la version complète ";s:3:"url";s:65:"https://www.presidence.bj/benin-revele/version-complete/download/";}i:7;a:2:{s:5:"label";s:35:"Télécharger les 45 projets phares";s:3:"url";s:66:"https://www.presidence.bj/benin-revele/45-projets-phares/download/";}i:8;a:2:{s:5:"label";s:20:"download the sommury";s:3:"url";s:51:"https://www.presidence.bj/revealing-benin/download/";}i:9;a:2:{s:5:"label";s:32:"Download the 45 flagship projets";s:3:"url";s:72:"https://www.presidence.bj/revealing-benin/45-flagship-projects/download/";}}}i:4;a:2:{s:5:"label";s:8:"LE BENIN";s:5:"links";a:4:{i:1;a:2:{s:5:"label";s:13:"Les symboles ";s:3:"url";s:67:"https://www.presidence.bj/home/le-benin/les-symboles/les-armoiries/";}i:2;a:2:{s:5:"label";s:10:"L\'histoire";s:3:"url";s:49:"https://www.presidence.bj/home/le-benin/histoire/";}i:3;a:2:{s:5:"label";s:14:"La Géographie";s:3:"url";s:51:"https://www.presidence.bj/home/le-benin/geographie/";}i:4;a:2:{s:5:"label";s:30:"Challenge je connais le Bénin";s:3:"url";s:32:"https://challenge.presidence.bj/";}}}i:5;a:2:{s:5:"label";s:14:"LES ACTUALITES";s:5:"links";a:4:{i:1;a:2:{s:5:"label";s:12:"Communiqués";s:3:"url";s:49:"https://www.presidence.bj/actualites/communiques/";}i:2;a:2:{s:5:"label";s:22:"Discours et interviews";s:3:"url";s:57:"https://www.presidence.bj/actualites/discours-interviews/";}i:3;a:2:{s:5:"label";s:14:"Comptes rendus";s:3:"url";s:52:"https://www.presidence.bj/actualites/comptes-rendus/";}i:4;a:2:{s:5:"label";s:15:"point de presse";s:3:"url";s:50:"https://www.presidence.bj/actualites/point-presse/";}}}i:6;a:2:{s:5:"label";s:12:"LIENS UTILES";s:5:"links";a:4:{i:1;a:2:{s:5:"label";s:16:"Bénin Révélé";s:3:"url";s:27:"https://revealingbenin.com/";}i:2;a:2:{s:5:"label";s:38:"Secrétariat général du gouvernement";s:3:"url";s:20:"https://sgg.gouv.bj/";}i:3;a:2:{s:5:"label";s:33:"Compétences au service du Bénin";s:3:"url";s:34:"https://competences.presidence.bj/";}i:4;a:2:{s:5:"label";s:36:"Evaluation des politiques publiques ";s:3:"url";s:57:"https://www.presidence.bj/evaluation-politiques-publiques";}}}}'),
+(23, 'googleAnalyticsID', 'UA-153632512-1');
 
 -- --------------------------------------------------------
 
@@ -932,7 +943,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$08$m.lpmZm2LPNIPirzKtSnke/yK4BBkA9w61WL85Nf.aHDzTZHT04y2', '', 'admin@admin.com', '', NULL, NULL, '1yLC9uxD69SYN3QEwwlBIe', 1268889823, 1574981552, 1, 'Michael', 'AKASI', 'ADMIN', '0'),
+(1, '127.0.0.1', 'administrator', '$2y$08$m.lpmZm2LPNIPirzKtSnke/yK4BBkA9w61WL85Nf.aHDzTZHT04y2', '', 'admin@admin.com', '', NULL, NULL, 'mcWsXTVKrHKFMJv5PMC5te', 1268889823, 1575359285, 1, 'Group', 'AKASI', 'ADMIN', '0'),
 (4, '::1', 'animashaunmichael5dde8f980b3e6', '$2y$08$aJG5.T4.G3UMcVcHW08jB.VEcSVv955o.2pRgYko0/YKvsbAEe2aK', NULL, 'michaeloncode@gmail.com', NULL, NULL, 1574926911, 'KIQkKSBWMPw.hXKlvwZgHe', 1574866840, 1574929404, 1, 'Michael', 'ANIMASHAUN', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -1132,7 +1143,8 @@ ALTER TABLE `login_attempts`
 --
 ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `element_id` (`element_id`);
 
 --
 -- Index pour la table `newsletter`
@@ -1317,7 +1329,7 @@ ALTER TABLE `event_tags`
 -- AUTO_INCREMENT pour la table `event_tag_groups`
 --
 ALTER TABLE `event_tag_groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT pour la table `groups`
 --
@@ -1342,7 +1354,7 @@ ALTER TABLE `newsletter`
 -- AUTO_INCREMENT pour la table `options`
 --
 ALTER TABLE `options`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT pour la table `posts`
 --

@@ -11,8 +11,7 @@ function getEventTemplatePreview($event, $class='col-md-4 col-sm-4'){
     <div class="<?= $class ?>">
         <!--News Post Start-->
         <div class="event-post">
-            <div class="thumb"><a href="<?= $permalink= site_url('events/'.$event['slug']) ?>"><i class="fas fa-link"></i></a> <img data-src="<?= getUploadedImageBySize($event['thumbnail'], '360x260')?>"
-                                                                                                                                    alt="<?= $event['title'] ?>"></div>
+            <div class="thumb lazy" data-src="<?= getUploadedImageBySize($event['thumbnail'], '360x260')?>"><a href="<?= $permalink= site_url('events/'.$event['slug']) ?>"><i class="fas fa-link"></i></a> </div>
             <div class="event-post-txt">
                 <h5><a class="size-16" href="<?= $permalink ?>"><?= $event['title'] ?></a></h5>
                 <?php
@@ -46,9 +45,12 @@ function getPostTemplatePreview($post, $options, $outerClass='col-md-3 col-sm-6'
         $userPhoto=$options['siteDefaultAvatar'];
     }
     ?>
-    <div class="<?= $outerClass ?>">
+    <style>
+        background: url(http://localhost/beppaagg/uploads/Pipeline-illust-Niger-Benin-Port-de-Cotonou-accords-janv-2019-263x200.jpg);
+    </style>
+    <div class="<?= $outerClass ?> myNews">
         <div class="news-box">
-            <div class="new-thumb"> <span class="cat c<?= rand(1, 4) ?>"><?= $post['category'] ?></span> <img data-src="<?= getUploadedImageBySize($post['thumbnail'], '263x200')?>" alt="<?= $post['title'] ?>"> </div>
+            <div class="new-thumb lazy" data-src="<?= getUploadedImageBySize($post['thumbnail'], '263x200')?>"> <span class="cat c<?= rand(1, 4) ?>"><?= $post['category'] ?></span> </div>
             <div class="new-txt">
                 <div class="row">
                     <div class="col-xs-10">

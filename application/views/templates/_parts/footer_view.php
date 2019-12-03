@@ -111,7 +111,7 @@ if (isset($clientData) && !empty($clientData)) {
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/scrollIt.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/scrollUp.js"></script>
-<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.12"></script>
+<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.13"></script>
 </body>
 
 </html>

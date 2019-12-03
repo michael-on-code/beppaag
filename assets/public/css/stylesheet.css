@@ -1377,3 +1377,13 @@ h4.panel-title {
     top: 10px !important;
     bottom: auto !important;
 }
+div.lazy{
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.myNews .new-thumb.lazy{
+    height: 200px;
+}
+.event-post .thumb.lazy{
+    height: 260px;
+}

@@ -34,7 +34,7 @@
             </div>
             <div class="row">
                 <!--Local Box Start-->
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('evaluations') ?>">
                             <img data-src="<?= $assetsUrl ?>public/images/report-symbol.png" alt="">
@@ -46,7 +46,7 @@
                 </div>
                 <!--Local Box End-->
                 <!--Local Box Start-->
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('events') ?>">
                             <img data-src="<?= $assetsUrl ?>public/images/calendar-symbol.png" alt="">
@@ -58,7 +58,7 @@
                 </div>
                 <!--Local Box End-->
                 <!--Local Box Start-->
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('blog') ?>">
                             <img data-src="<?= $assetsUrl ?>public/images/brochure-symbol.png" alt="">
@@ -69,7 +69,7 @@
                 </div>
                 <!--Local Box End-->
                 <!--Local Box Start-->
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="deprt-icon-box">
                         <a data-scroll-nav="1" href="<?= site_url('/') ?>">
                             <img data-src="<?= $assetsUrl ?>public/images/analysis-symbol.png" alt="">

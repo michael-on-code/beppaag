@@ -3469,7 +3469,7 @@
         height: 225px;
         margin: 0 0 28px;
         box-shadow: 0px 5px 15px 0 rgba(0, 0, 0, .07);
-        padding: 40px;
+        padding: 40px 0px;
         position: relative;
     }
 

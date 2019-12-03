@@ -414,6 +414,7 @@ jQuery(document).ready(function ($) {
     }
 
     $('img').Lazy();
+    $('.lazy').lazy();
 
     if ($('select.my-choices').length) {
         const choices = new Choices('select.my-choices',
