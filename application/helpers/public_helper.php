@@ -11,7 +11,7 @@ function getEventTemplatePreview($event, $class='col-md-4 col-sm-4'){
     <div class="<?= $class ?>">
         <!--News Post Start-->
         <div class="event-post">
-            <div class="thumb lazy" data-src="<?= getUploadedImageBySize($event['thumbnail'], '360x260')?>"><a href="<?= $permalink= site_url('events/'.$event['slug']) ?>"><i class="fas fa-link"></i></a> </div>
+            <div class="thumb lazy" data-src="<?= getUploadedImageBySize($event['thumbnail'], '360x260')?>"><a href="<?= $permalink= site_url('events/'.$event['id']) ?>"><i class="fas fa-link"></i></a> </div>
             <div class="event-post-txt">
                 <h5><a class="size-16" href="<?= $permalink ?>"><?= $event['title'] ?></a></h5>
                 <?php
@@ -70,7 +70,7 @@ function getPostTemplatePreview($post, $options, $outerClass='col-md-3 col-sm-6'
                         </div>
                     </div>
                 </div>
-                <h6><a class="size-16" href="<?= $permalink = site_url('blog/'.$post['slug']) ?>"  ><?= $post['title'] ?></a></h6>
+                <h6><a class="size-16" href="<?= $permalink = site_url('blog/'.$post['id']) ?>"  ><?= $post['title'] ?></a></h6>
                 <p> <?= myWordLimiter(strip_tags($post['content']), 15) ?> </p>
             </div>
             <div class="news-box-f"> <img data-src="<?= getUploadedImageBySize($userPhoto, '150x150')?>" alt=""> <?= substr($post['last_name'], 0, 1).'. '.$post['first_name'] ?> <a href="<?= $permalink ?>"><i class="fas fa-arrow-right"></i></a> </div>

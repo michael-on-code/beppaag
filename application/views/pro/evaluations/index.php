@@ -106,12 +106,12 @@
                                 <td ><?= $evaluation->first_name.' '.$evaluation->last_name ?></td>
                                 <td class="text-center actions-btn-container">
 
-                                    <a target="_blank" href="<?= site_url("evaluations/$evaluation->slug") ?>" data-toggle="tooltip"
+                                    <a target="_blank" href="<?= site_url("evaluations/$evaluation->id") ?>" data-toggle="tooltip"
                                        data-placement="top" title="Voir Evaluation"
                                        class="btn btn-dark btn-icon">
                                         <i class="anticon anticon-eye"></i>
                                     </a>
-                                    <a href="<?= pro_url("evaluations/edit/$evaluation->slug") ?>" data-toggle="tooltip"
+                                    <a href="<?= pro_url("evaluations/edit/$evaluation->id") ?>" data-toggle="tooltip"
                                        data-placement="top" title="Modifier evaluation"
                                        class="btn btn-primary btn-icon">
                                         <i class="anticon anticon-edit"></i>
@@ -121,7 +121,7 @@
                                         ?>
                                         <a data-confirm-message="Voulez-vous vraiment activer et publier cette évaluation ?"
                                            href="#"
-                                           data-href="<?= pro_url("evaluations/activate/$evaluation->slug") ?>" data-toggle="tooltip"
+                                           data-href="<?= pro_url("evaluations/activate/$evaluation->id") ?>" data-toggle="tooltip"
                                            data-placement="top" title="Activer & Publier évaluation"
                                            class="btn btn-success btn-icon prompt">
                                             <i class="anticon anticon-check"></i>
@@ -132,7 +132,7 @@
                                         ?>
                                         <a data-confirm-message="Voulez-vous vraiment déplacer à la corbeille cette évaluation ?"
                                            href="#"
-                                           data-href="<?= pro_url("evaluations/delete/$evaluation->slug") ?>" data-toggle="tooltip"
+                                           data-href="<?= pro_url("evaluations/delete/$evaluation->id") ?>" data-toggle="tooltip"
                                            data-placement="top" title="Déplacer évaluation à la corbeille"
                                            class="btn btn-danger btn-icon prompt">
                                             <i class="anticon anticon-delete"></i>

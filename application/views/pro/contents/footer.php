@@ -1,11 +1,11 @@
 <div class="main-content">
     <?php getAdminBreadcrump([
-        'title'=>$pageTitle,
+        'title' => $pageTitle,
     ]) ?>
     <div class="card">
         <div class="card-body">
             <h4><?= $pageTitle ?></h4>
-            <p>Le formulaire ci-dessous permet de modifier les bannières présentes sur le portail web publique
+            <p>Le formulaire ci-dessous permet de modifier le contenu general du pieds de page sur le portail web publique
             </p>
             <div class="m-t-25">
                 <?= form_open_multipart('', [
@@ -13,7 +13,7 @@
                 ]) ?>
                 <div class="row">
                     <div class="col-md-6">
-<!--                        <h4>Liens Réseaux sociaux</h4>-->
+                        <!--                        <h4>Liens Réseaux sociaux</h4>-->
                         <div class="form-group">
                             <?php
                             echo form_label($title = "Couleur arrière plan pieds de page", $id = 'footer_background_color');
@@ -90,9 +90,9 @@
                             ?>
                         </div>
                         <div class="form-group">
-                            <?php echo form_label($title="Attacher le logo en pied de page");
-                            $target ='footer_logo';
-                            $file = set_value($name="footer[$target]", maybe_null_or_empty($options, $target, true));
+                            <?php echo form_label($title = "Attacher le logo en pied de page");
+                            $target = 'footer_logo';
+                            $file = set_value($name = "footer[$target]", maybe_null_or_empty($options, $target, true));
                             ?>
                             <a class="my-file-preview-btn"
                                data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
@@ -121,6 +121,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <h4>Menu du pieds de page</h4>
                         <?php
                         $footerLinks = set_value('footer_links', maybe_null_or_empty($options, 'footer_links', true), false);
                         $footerLinksNotEmpty = !empty($footerLinks);
@@ -160,7 +161,5 @@
     </div>
 </div>
 <script>
-    var validationRules = {
-
-    }
+    var validationRules = {}
 </script>

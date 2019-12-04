@@ -49,18 +49,18 @@ class Admin_events extends Pro_Controller{
         $this->render('events/index');
     }
 
-    public function delete($slug){
+    public function delete($eventID){
         $tables = getEventTablesNames();
-        $eventID = (int) getIDBySlug($tables->events, $slug);
+        //$eventID = (int) getIDBySlug($tables->events, $slug);
         redirect_if_id_is_not_valid($eventID, $tables->events, 'events');
         $this->event_model->trash($eventID);
         get_success_message("Evenement déplacé à la corbeille avec succès");
         pro_redirect('events');
     }
 
-    public function activate($slug){
+    public function activate($eventID){
         $tables = getEventTablesNames();
-        $eventID = (int) getIDBySlug($tables->events, $slug);
+        //$eventID = (int) getIDBySlug($tables->events, $slug);
         redirect_if_id_is_not_valid($eventID, $tables->events, 'events');
         $this->event_model->activate($eventID);
         get_success_message("Evenement activé et publié avec succès");
@@ -117,9 +117,9 @@ class Admin_events extends Pro_Controller{
         includeDatePickerAssets();
         $this->render('events/add');
     }
-    public function edit($slug=''){
+    public function edit($eventID){
         $tables = getEventTablesNames();
-        $eventID = (int) getIDBySlug($tables->events, $slug);
+        //$eventID = (int) getIDBySlug($tables->events, $slug);
         redirect_if_id_is_not_valid($eventID, $tables->events, 'events');
         setEventValidation(true, $eventID);
         $this->data['pageTitle']="Modifier un evenement";

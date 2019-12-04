@@ -99,7 +99,7 @@ getBreadcrump([
 
                                                 <div class="eval-list-content">
                                                     <h5>
-                                                        <a href="<?= $permalink = site_url("evaluations/$evaluation->slug") ?>"><?= $evaluation->title ?></a>
+                                                        <a href="<?= $permalink = site_url("evaluations/$evaluation->id") ?>"><?= $evaluation->title ?></a>
                                                     </h5>
                                                     <!--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et </p>-->
                                                     <div class="eval-list-btns-container">

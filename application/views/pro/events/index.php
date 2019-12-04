@@ -82,12 +82,12 @@
                                 <td ><?= $event->first_name.' '.$event->last_name ?></td>
                                 <td class="text-center actions-btn-container">
 
-                                    <a target="_blank" href="<?= site_url("events/$event->slug") ?>" data-toggle="tooltip"
+                                    <a target="_blank" href="<?= site_url("events/$event->id") ?>" data-toggle="tooltip"
                                        data-placement="top" title="Voir Evenement"
                                        class="btn btn-dark btn-icon">
                                         <i class="anticon anticon-eye"></i>
                                     </a>
-                                    <a href="<?= pro_url("events/edit/$event->slug") ?>" data-toggle="tooltip"
+                                    <a href="<?= pro_url("events/edit/$event->id") ?>" data-toggle="tooltip"
                                        data-placement="top" title="Modifier evenement"
                                        class="btn btn-primary btn-icon">
                                         <i class="anticon anticon-edit"></i>
@@ -97,7 +97,7 @@
                                         ?>
                                         <a data-confirm-message="Voulez-vous vraiment activer et publier cet evenement ?"
                                            href="#"
-                                           data-href="<?= pro_url("events/activate/$event->slug") ?>" data-toggle="tooltip"
+                                           data-href="<?= pro_url("events/activate/$event->id") ?>" data-toggle="tooltip"
                                            data-placement="top" title="Activer & Publier evenement"
                                            class="btn btn-success btn-icon prompt">
                                             <i class="anticon anticon-check"></i>
@@ -108,7 +108,7 @@
                                         ?>
                                         <a data-confirm-message="Voulez-vous vraiment déplacer cet evenement à la corbeille  ?"
                                            href="#"
-                                           data-href="<?= pro_url("events/delete/$event->slug") ?>" data-toggle="tooltip"
+                                           data-href="<?= pro_url("events/delete/$event->id") ?>" data-toggle="tooltip"
                                            data-placement="top" title="Déplacer evenement à la corbeille"
                                            class="btn btn-danger btn-icon prompt">
                                             <i class="anticon anticon-delete"></i>

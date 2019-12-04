@@ -60,7 +60,12 @@ class Option_model extends CI_Model{
             'site_twitter_url',
             'site_youtube_url',
             'site_flickr_url',
-            'footer_links'
+            'footer_links',
+            //header content
+            'site_phone',
+            'site_email',
+            'site_header_post_cat_submenu',
+            'top_header_links'
         );
     }
 

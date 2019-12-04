@@ -10,11 +10,13 @@ class MY_Controller extends CI_Controller
         parent::__construct();
         $this->data['assetsUrl']=base_url('assets/');
         $this->data['options']=$this->option_model->get_options();
+        $tables = getPostTablesNames();
+        $this->data['header_post_cats']=[];
+        if($cats = maybe_null_or_empty($this->data['options'], 'site_header_post_cat_submenu')){
+            $this->data['header_post_cats']=getAllInTable($tables->categories, false, false, '', '', false, '', '', '', 'slug, name', '',[], $cats);
+        }
         $this->data['uploadPath']=base_url('uploads/');
         $this->data['pageTitle']='';
-        /*
-        $this->load->helper('user');*/
-
     }
 
     protected function render($the_view = NULL, $template = 'home')

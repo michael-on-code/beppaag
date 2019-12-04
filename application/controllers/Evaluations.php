@@ -123,8 +123,8 @@ class Evaluations extends Public_Controller {
         $this->render('evaluations/index');
     }
 
-    public function index($slug=""){
-        if(trim($slug)==''){
+    public function index($evaluationID=""){
+        if(trim($evaluationID)==''){
             $this->load->helper('form');
             $choose= 'Choisir ...';
             $this->data['pageTitle']= 'Liste des Evaluations';
@@ -141,8 +141,8 @@ class Evaluations extends Public_Controller {
             includeEvaluationColirLibAssets();
             $this->render('evaluations/index');
         }else{
-            $evaluationID = (int) getIDBySlug($this->_tables->evaluations, $slug);
-            redirect_if_id_is_not_valid($evaluationID, $this->_tables->evaluations, 'evaluations', false, false);
+            //$evaluationID = (int) getIDBySlug($this->_tables->evaluations, $evaluationID);
+            redirect_if_id_is_not_valid($evaluationID, $this->_tables->evaluations, 'evaluations', false, false, ['active'=>1]);
             $this->data['evaluation']=$this->evaluation_model->getByID($evaluationID, true);
             $this->data['sidebarClass']='col-md-3';
             $this->data['pageTitle']= $this->data['evaluation']['title'];

@@ -55,18 +55,18 @@ class Blog extends Public_Controller
         $this->render('blog/index');
     }
 
-    public function index($postSlug = "")
+    public function index($postID = "")
     {
 
-        if (trim($postSlug) == "") {
+        if (trim($postID) == "") {
             $this->data['pageTitle'] = 'Actualités';
             $page = (int)$this->input->get('page');
             $this->data['posts'] = $this->post_model->getAll(true, true, true, 'true', 'id', 'desc', false, $limit = 9, true, $page);
             $this->data['links'] = getPaginationConfigAndLink(site_url('blog'), $limit, getCountInTable($this->_tables->posts, ['active' => 1]), $page);
             $this->render('blog/index');
         } else {
-            $postID = (int) getIDBySlug($this->_tables->posts, $postSlug);
-            redirect_if_id_is_not_valid($postID, $this->_tables->posts, 'blog', false, false);
+            //$postID = (int) getIDBySlug($this->_tables->posts, $postID);
+            redirect_if_id_is_not_valid($postID, $this->_tables->posts, 'blog', false, false,['active'=>1]);
             $this->data['post']=$this->post_model->getByID($postID, false, true, true, true);
             $tags=[];
             if($allTags = maybe_null_or_empty($this->data['post'], 'tag_id')){

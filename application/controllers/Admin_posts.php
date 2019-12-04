@@ -49,18 +49,18 @@ class Admin_posts extends Pro_Controller{
         $this->render('posts/index');
     }
 
-    public function delete($slug){
+    public function delete($postID){
         $tables = getPostTablesNames();
-        $postID = (int) getIDBySlug($tables->posts, $slug);
+        //$postID = (int) getIDBySlug($tables->posts, $slug);
         redirect_if_id_is_not_valid($postID, $tables->posts, 'posts');
         $this->post_model->trash($postID);
         get_success_message("Article déplacé à la corbeille avec succès");
         pro_redirect('posts');
     }
 
-    public function activate($slug){
+    public function activate($postID){
         $tables = getPostTablesNames();
-        $postID = (int) getIDBySlug($tables->posts, $slug);
+        //$postID = (int) getIDBySlug($tables->posts, $slug);
         redirect_if_id_is_not_valid($postID, $tables->posts, 'posts');
         $this->post_model->activate($postID);
         get_success_message("Article activé et publié avec succès");
@@ -117,9 +117,9 @@ class Admin_posts extends Pro_Controller{
         $this->render('posts/add');
     }
 
-    public function edit($slug=''){
+    public function edit($postID){
         $tables = getPostTablesNames();
-        $postID = (int) getIDBySlug($tables->posts, $slug);
+        //$postID = (int) getIDBySlug($tables->posts, $slug);
         redirect_if_id_is_not_valid($postID, $tables->posts, 'posts');
         setPostValidation(true, $postID);
         $this->data['pageTitle']="Modifier un article";

@@ -43,7 +43,7 @@
                                     if(maybe_null_or_empty($link, 'label', true)){
                                         ?>
                                         <li>
-                                            <a href="<?= $link['url'] ?>"><?= $link['label'] ?></a>
+                                            <a target="_blank" href="<?= $link['url'] ?>"><?= $link['label'] ?></a>
                                         </li>
                                         <?php
                                     }

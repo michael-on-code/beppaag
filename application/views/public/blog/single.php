@@ -74,7 +74,7 @@ getBreadcrump([
                                                 ?>
                                                 <li class="col-md-4 col-sm-4">
                                                     <div class="rel-box">
-                                                        <h6><a href="<?= site_url('blog/'.$relatedPost['slug']) ?>"><?= $relatedPost['title'] ?></a></h6>
+                                                        <h6><a href="<?= site_url('blog/'.$relatedPost['id']) ?>"><?= $relatedPost['title'] ?></a></h6>
                                                         <ul class="news-meta">
                                                             <li><?= getFullDateInFrench($relatedPost['created_at'], getRegularDateTimeFormat()) ?></li>
                                                         </ul>

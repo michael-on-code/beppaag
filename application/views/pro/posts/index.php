@@ -77,12 +77,12 @@
                                 <td ><?= $post->first_name.' '.$post->last_name ?></td>
                                 <td class="text-center actions-btn-container">
 
-                                    <a target="_blank" href="<?= site_url("posts/$post->slug") ?>" data-toggle="tooltip"
+                                    <a target="_blank" href="<?= site_url("blog/$post->id") ?>" data-toggle="tooltip"
                                        data-placement="top" title="Voir Article"
                                        class="btn btn-dark btn-icon">
                                         <i class="anticon anticon-eye"></i>
                                     </a>
-                                    <a href="<?= pro_url("posts/edit/$post->slug") ?>" data-toggle="tooltip"
+                                    <a href="<?= pro_url("posts/edit/$post->id") ?>" data-toggle="tooltip"
                                        data-placement="top" title="Modifier article"
                                        class="btn btn-primary btn-icon">
                                         <i class="anticon anticon-edit"></i>
@@ -92,7 +92,7 @@
                                         ?>
                                         <a data-confirm-message="Voulez-vous vraiment activer et publier cet article ?"
                                            href="#"
-                                           data-href="<?= pro_url("posts/activate/$post->slug") ?>" data-toggle="tooltip"
+                                           data-href="<?= pro_url("posts/activate/$post->id") ?>" data-toggle="tooltip"
                                            data-placement="top" title="Activer & Publier article"
                                            class="btn btn-success btn-icon prompt">
                                             <i class="anticon anticon-check"></i>
@@ -103,7 +103,7 @@
                                         ?>
                                         <a data-confirm-message="Voulez-vous vraiment déplacer cet article à la corbeille  ?"
                                            href="#"
-                                           data-href="<?= pro_url("posts/delete/$post->slug") ?>" data-toggle="tooltip"
+                                           data-href="<?= pro_url("posts/delete/$post->id") ?>" data-toggle="tooltip"
                                            data-placement="top" title="Déplacer article à la corbeille"
                                            class="btn btn-danger btn-icon prompt">
                                             <i class="anticon anticon-delete"></i>

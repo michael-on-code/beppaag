@@ -7706,11 +7706,14 @@ Search Overlay End
     }
 
     .facts-icon:after {
-        box-shadow: 0 0 0 2px<?= $mainColor ?>;
+        box-shadow: 0 0 0 2px <?= $mainColor ?>;
     }
 
     .header .topbar {
         background: <?= $secondaryColor ?>;
+    }
+    .footer-nav a:hover{
+        color: <?= $mainColor ?>;
     }
 
     body > .footer {

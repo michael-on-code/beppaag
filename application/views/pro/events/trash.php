@@ -76,7 +76,7 @@
                                         ?>
                                         <a data-confirm-message="Voulez-vous vraiment restaurer et publier cet evenement ?"
                                            href="#"
-                                           data-href="<?= pro_url("events/activate/$event->slug") ?>" data-toggle="tooltip"
+                                           data-href="<?= pro_url("events/activate/$event->id") ?>" data-toggle="tooltip"
                                            data-placement="top" title="Restaurer & Publier evenement"
                                            class="btn btn-success btn-icon prompt">
                                             <i class="anticon anticon-check"></i>

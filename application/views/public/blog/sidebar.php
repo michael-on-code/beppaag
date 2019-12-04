@@ -42,7 +42,7 @@
                                      alt="<?= $post['title'] ?>">
                                 <strong><?= getFullDateInFrench($post['created_at'], getRegularDateTimeFormat()) ?></strong>
                                 <h6><a data-toggle="tooltip" title="<?= $post['title'] ?>"
-                                       href="<?= site_url('blog/' . $post['slug']) ?>"><?= myWordLimiter($post['title'], 7) ?></a>
+                                       href="<?= site_url('blog/' . $post['id']) ?>"><?= myWordLimiter($post['title'], 7) ?></a>
                                 </h6>
                             </li>
                             <?php
@@ -80,7 +80,7 @@
 
                                 ?>
 
-                                <h6><a data-toggle="tooltip" title="<?= $event['title'] ?>" href="<?= site_url('events/' . $event['slug']) ?>"><?= myWordLimiter($event['title'], 6) ?></a>
+                                <h6><a data-toggle="tooltip" title="<?= $event['title'] ?>" href="<?= site_url('events/' . $event['id']) ?>"><?= myWordLimiter($event['title'], 6) ?></a>
                                 </h6>
                                 <span class="loc"><i class="fas fa-map-marker-alt"></i> <?= $event['location'] ?></span>
                             </li>

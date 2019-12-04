@@ -71,7 +71,7 @@
                                         ?>
                                         <a data-confirm-message="Voulez-vous vraiment restaurer et publier cet article ?"
                                            href="#"
-                                           data-href="<?= pro_url("posts/activate/$post->slug") ?>" data-toggle="tooltip"
+                                           data-href="<?= pro_url("posts/activate/$post->id") ?>" data-toggle="tooltip"
                                            data-placement="top" title="Restaurer & Publier article"
                                            class="btn btn-success btn-icon prompt">
                                             <i class="anticon anticon-check"></i>

@@ -49,10 +49,10 @@ class Events extends Public_Controller {
         $this->render('events/index');
     }
 
-    public function index($eventSlug = "")
+    public function index($eventID = "")
     {
 
-        if (trim($eventSlug) == "") {
+        if (trim($eventID) == "") {
             $this->data['pageTitle'] = 'Evènements';
             $page = (int)$this->input->get('page');
             $this->data['events'] = $this->event_model->getAll(true, true, true, 'true', 'id', 'desc', false, $limit = 6, true, $page);
@@ -60,8 +60,8 @@ class Events extends Public_Controller {
             $this->data['links'] = getPaginationConfigAndLink(site_url('events'), $limit, getCountInTable($this->_tables->events, ['active' => 1]), $page);
             $this->render('events/index');
         } else {
-            $eventID = (int) getIDBySlug($this->_tables->events, $eventSlug);
-            redirect_if_id_is_not_valid($eventID, $this->_tables->events, 'events', false, false);
+            //$eventID = (int) getIDBySlug($this->_tables->events, $eventID);
+            redirect_if_id_is_not_valid($eventID, $this->_tables->events, 'events', false, false,['active'=>1]);
             $this->data['event']=$this->event_model->getByID($eventID, false, true, true, true);
             $tags=[];
             if($allTags = maybe_null_or_empty($this->data['event'], 'tag_id')){

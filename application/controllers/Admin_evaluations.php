@@ -89,9 +89,9 @@ class Admin_evaluations extends Pro_Controller{
         $this->render('evaluations/add');
     }
 
-    public function edit($evaluationSlug){
+    public function edit($evaluationID){
         $tables = getEvaluationTablesNames();
-        $evaluationID = (int) getIDBySlug($tables->evaluations, $evaluationSlug);
+        //$evaluationID = (int) getIDBySlug($tables->evaluations, $evaluationSlug);
         redirect_if_id_is_not_valid($evaluationID, $tables->evaluations, 'evaluations');
         $this->data['pageTitle']="Modifier une évaluation";
         setEvaluationFormValidation(true, $evaluationID);

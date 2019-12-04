@@ -53,18 +53,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-6">
-                    <ul class="left-links">
-                        <li><a target="_blank" href="https://www.presidence.bj/">LA PRESIDENCE</a></li>
-                        <li><a target="_blank" href="https://www.unicef.fr">UNICEF</a></li>
-                        <li><a href="#">CNE</a></li>
-                        <li><a href="#">BEPPAAG</a></li>
-                        <!--<li> <a href="#">A-Z Index</a> </li>-->
-                    </ul>
+                    <?php
+                    if($links = maybe_null_or_empty($options, 'top_header_links')){
+                        ?>
+                        <ul class="left-links">
+                            <?php
+                            foreach ($links as $link){
+                                ?>
+                                <li><a target="_blank" href="<?= $link['url'] ?>"><?= $link['label'] ?></a></li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                        <?php
+                    }
+                    ?>
+
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <ul class="right-links">
-                        <li><a href="tel://+22990909090"><i class="fas fa-phone"></i> <strong>+229 90 90 90 90</strong></a></li>
-                        <li><a href="mailto:contact@beppaag.com"><i class="fas fa-envelope"></i> contact@beppaag.com</a></li>
+                        <?php
+                        if($phone = maybe_null_or_empty($options, 'site_phone')){
+                            ?>
+                            <li><a href="tel://<?= $phone ?>"><i class="fas fa-phone"></i> <strong><?= $phone ?></strong></a></li>
+                            <?php
+                        }
+                        if($mail = maybe_null_or_empty($options, 'site_email')){
+                            ?>
+                            <li><a href="mailto:<?= $mail ?>"><i class="fas fa-envelope"></i> <?= $mail ?></a></li>
+                            <?php
+                        }
+                        ?>
                         <li> <a href="<?= pro_url() ?>"><i class="fas fa-desktop"></i> Connexion</a> </li>
                     </ul>
                 </div>
@@ -90,21 +109,29 @@
                                 <li><a href="<?= site_url('evaluations') ?>">Evaluations</a></li>
                                 <li><a href="<?= site_url('events') ?>">Evènements</a></li>
                                 <li><a href="<?= site_url('blog') ?>">Actualités</a></li>
+                                <?php
+                                if(!empty($header_post_cats)){
+                                    ?>
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                            role="button" aria-haspopup="true" aria-expanded="false">Rubriques
+                                            <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <?php
+                                            foreach ($header_post_cats as $cat){
+                                                ?> <li><a href="<?= site_url("blog/category/$cat->slug") ?>"><?= $cat->name ?></a></li> <?php
+                                            }
+                                            ?>
+                                        </ul>
+                                    </li>
+                                    <?php
+                                }
+                                ?>
                                 <li class="dropdown"><a href="##" class="dropdown-toggle" data-toggle="dropdown"
-                                                        role="button" aria-haspopup="true" aria-expanded="false">Rubriques
-                                        <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="##">Publications</a></li>
-                                        <li><a href="##">Gestion de connaissances</a></li>
-                                        <li><a href="##">Partenariat</a></li>
-                                        <li><a href="##">Ressources techniques</a></li>
-                                    </ul>
-                                </li><li class="dropdown"><a href="##" class="dropdown-toggle" data-toggle="dropdown"
                                                              role="button" aria-haspopup="true" aria-expanded="false">Médiathèque
                                         <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="##">Photos</a></li>
-                                        <li><a href="##">Vidéos</a></li>
+                                        <li><a href="<?= ($flickrURl = (maybe_null_or_empty($options, 'site_flickr_url'))) ? $flickrURl : '#' ?>">Photos</a></li>
+                                        <li><a href="<?= ($youtubeURL = (maybe_null_or_empty($options, 'site_youtube_url'))) ? $youtubeURL : '#' ?>">Vidéos</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="<?= site_url('contact') ?>">Contact</a></li>

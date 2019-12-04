@@ -228,14 +228,19 @@ function convert_date_to_english($date, $characterToCheck = '/', $inputFormat = 
     return null;
 }
 
-function redirect_if_id_is_not_valid($id, $table_name = '', $redirect, $forProInterface=true, $show404=false)
+function redirect_if_id_is_not_valid($id, $table_name = '', $redirect, $forProInterface=true, $show404=false, $additionalWhere=[])
 {
     if (is_numeric($id) && (int)$id > 0) {
         if ($table_name == '') {
             return true;
         } else {
             $CI = &get_instance();
-            $query = $CI->db->query("SELECT COUNT(id) AS nombre FROM $table_name WHERE id=$id");
+            $CI->db->select("COUNT(id) AS nombre");
+            $CI->db->where(['id'=>$id]);
+            if(!empty($additionalWhere)){
+                $CI->db->where($additionalWhere);
+            }
+            $query = $CI->db->get($table_name);
             if ($query->row()->nombre)
                 return true;
         }
@@ -428,7 +433,7 @@ function getFrenchMonths()
 function getAllInTable($tableName, $isArray = true, $order = true, $orderByField = 'id', $orderBy = 'desc',
                        $forSelect2 = false, $keyFieldForSelect2 = 'id', $valueFieldForSelect2 = 'name',
                        $initialBlankValueForSelect2 = true, $specificDBSelect = "*",
-                       $defaultSelect2FirstOptionValue = '', $where=[])
+                       $defaultSelect2FirstOptionValue = '', $where=[], $whereIn=[], $whereInCheck='id')
 {
     $ci =& get_instance();
     $ci->db->select($specificDBSelect);
@@ -438,6 +443,10 @@ function getAllInTable($tableName, $isArray = true, $order = true, $orderByField
     if(!empty($where)){
         $ci->db->where($where);
     }
+    if(!empty($whereIn)){
+        $ci->db->where_in($whereInCheck, $whereIn);
+    }
+
     $results = $ci->db->get($tableName);
     if ($isArray) {
         $results = $results->result_array();

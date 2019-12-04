@@ -113,7 +113,7 @@ getBreadcrump([
                                                     ?>
                                                     <li class="col-md-4 col-sm-4">
                                                         <div class="rel-box">
-                                                            <h6><a href="<?= site_url('events/'.$relatedEvent['slug']) ?>"><?= $relatedEvent['title'] ?></a></h6>
+                                                            <h6><a href="<?= site_url('events/'.$relatedEvent['id']) ?>"><?= $relatedEvent['title'] ?></a></h6>
                                                             <ul class="news-meta">
                                                                 <li><?= getFullDateInFrench($relatedEvent['starts_at'], getRegularDateTimeFormat()) ?></li>
                                                             </ul>
@@ -130,30 +130,6 @@ getBreadcrump([
                                 ?>
                             </div>
                         </div>
-                        <!--Event Details End-->
-                        <!--Event Speakers Start-->
-                        <!--<div class="event-speakers">
-                            <h3>Orateurs et invités spéciaux</h3>
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="h3-team-box">
-                                        <div class="team-info">
-                                            <h5>AKPONA Cyrille</h5>
-                                            <strong>Expert Comptable</strong>
-                                            <p> M. Cyrille nous parlera de ses experiences dans l'administration publique </p>
-                                            <ul>
-                                                <li><strong>Reseaux sociaux:</strong></li>
-                                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <img data-src="<?/*= $assetsUrl */?>public/images/speaker1.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
-                        <!--Event Speakers End-->
                     </div>
                 </div>
                 <!--Content Col End-->

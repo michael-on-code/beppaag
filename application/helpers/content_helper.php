@@ -78,6 +78,59 @@ function getFooterRepeater($footerLink = [], $additionalClassToParent = '', $add
     </div>
     <?php
 }
+function getTopHeaderMenuRepeater($topHeaderLinks = [], $additionalClassToParent = '', $additionalClassToFields = '', $previousFooterLinkExist = false, $key = 0)
+{
+    ?>
+    <div class="card <?= $additionalClassToParent ?>" data-repeater-item>
+        <div class="card-header">
+            <h5 class="card-title">
+                <a data-toggle="collapse" href="#collapseDefault-<?= $key ?>">
+                    <span class="collapse-identifier">#</span>
+                    <span class="collapse-header-seperator"> - </span>
+                    <span class="collapse-header-text"><?= myWordLimiter(maybe_null_or_empty($topHeaderLinks, 'label'), 15) ?></span>
+                </a>
+            </h5>
+            <button title="Supprimer le lien" type="button" data-repeater-delete
+                    class="btn btn-danger btn-rounded">
+                <i class="anticon anticon-delete"></i>
+            </button>
+        </div>
+        <div id="collapseDefault-<?= $key ?>" class="collapse"
+             data-parent="#accordion-default">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <?php
+                        echo form_label($title = 'Libellé du lien');
+                        echo form_input([
+                            'name' => 'label',
+                            'class' => "form-control my-recommendation-title $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'value' => maybe_null_or_empty($topHeaderLinks, 'label')
+                        ])
+                        ?>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <?php
+                        echo form_label($title = 'URL du lien');
+                        echo form_input([
+                            'name' => 'url',
+                            'class' => "form-control $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'type' => 'url',
+                            'value' => maybe_null_or_empty($topHeaderLinks, 'url')
+                        ])
+                        ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+}
 
 function getFooterLinkRepeaterItem($values = [], $additionalClassToParent = '', $additionalClassToFields = '')
 {
