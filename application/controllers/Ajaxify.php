@@ -15,12 +15,15 @@ class Ajaxify extends CI_Controller {
     public function doCronJobs(){
         if($this->input->is_ajax_request()){
             $availableCrons = $this->cron_model->getAll();
-            json_encode($availableCrons);die();
+            //echo json_encode($availableCrons);die();
             if(!empty($availableCrons)){
                 foreach ($availableCrons as $cron){
                     if($this->cron_model->checkCronStatus($cron['id'])==1){
                         $this->cron_model->lockCronByID($cron['id']);
-                        $this->caller([$this, $cron['function_to_call']], maybe_unserialize($cron['	params']));
+                        $cron['params']= (array) json_decode($cron['params']);
+                        if(!empty($cron['params']) && is_array($cron['params'])){
+                            $this->caller([$this, $cron['function_to_call']], $cron['params']);
+                        }
                         $this->cron_model->disableCron($cron['id']);
                     }
                 }
@@ -43,10 +46,10 @@ class Ajaxify extends CI_Controller {
 
     private function caller(callable $func, $param = [])
     {
-        return call_user_func_array($func, $param);
+        return call_user_func_array($func, [$param]);
     }
 
-    public function sendNotifications($params){
-        mailSender($params);
+    public function sendNotifications($param){
+        mailSender($param);
     }
 }

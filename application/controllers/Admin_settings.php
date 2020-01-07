@@ -35,11 +35,11 @@ class Admin_settings extends Pro_Controller{
                     'label'=>'Pied de page de la plateforme',
                     'rules'=>'trim|required'
                 ],*/
-                /*[
+                [
                     'name'=>'options[notificationEmails]',
                     'label'=>'Emails de notification',
                     'rules'=>'trim|required'
-                ],*/
+                ],
                 [
                     'name'=>'options[googleAnalyticsID]',
                     'label'=>'ID de suivi Google Analytics',

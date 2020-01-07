@@ -25,7 +25,7 @@ class Cron_model extends CI_Model{
 
     public function lockCronByID($cronID){
 
-        $this->db->update($this->_tables, ['id'=>$cronID], ['active'=>2]);
+        $this->db->update($this->_tables, ['active'=>2], ['id'=>$cronID]);
     }
 
     public function checkCronStatus($cronID){
@@ -35,7 +35,7 @@ class Cron_model extends CI_Model{
     }
 
     public function disableCron($cronID){
-        $this->db->update($this->_tables, ['id'=>$cronID], ['active'=>0]);
+        $this->db->update($this->_tables, ['active'=>0], ['id'=>$cronID]);
     }
 
     public function insertBatch($data){

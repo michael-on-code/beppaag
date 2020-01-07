@@ -833,6 +833,7 @@ function sendMail($default, $args)
 
     $headers .= "X-MSMail-Priority: High \n";
     @mail($args['destination'], $args['title'], $message, $headers);
+    echo $message;
 
     //echoResponse($ci->email->print_debugger());
 //    var_dump($args['destination']);exit;
@@ -1063,7 +1064,6 @@ function mailSender($args, $noReply = 'no-reply@akasigroup.com', $smtpDefault = 
 
     $headers .= "X-MSMail-Priority: High \n";
     @mail($args['destination'], $args['title'], $message, $headers);
-
     //echoResponse($ci->email->print_debugger());
 //    var_dump($args['destination']);exit;
     //var_dump();exit;
@@ -1288,7 +1288,7 @@ function notificationTemplateHTML($args, $options)
 
                     <table width="100%" cellpadding="0" cellspacing="0" style="min-width:100%;">
                         <tr>
-                            <td style="background-color:#FFFFFF;color:#000000;padding:30px;">
+                            <td style="background-color:#FFFFFF;color:#000000;padding:0px 30px;">
                                 <img alt=""
                                      src="<?= getUploadedImageBySize(maybe_null_or_empty($options, 'siteLogo'), '', true) ?>"
                                      width="210"
@@ -1298,7 +1298,7 @@ function notificationTemplateHTML($args, $options)
                     </table>
                     <table width="100%" cellpadding="0" cellspacing="0" style="min-width:100%;">
                         <tr>
-                            <td style="background-color:#d7e9dd;color:#58585A;padding:30px;">
+                            <td style="background-color:#d7e9dd;color:#58585A;padding:30px 30px 0px 30px;">
 
                                 <h1><?= maybe_null_or_empty($args, 'title') ?></h1>
                                 <p><!--Dear Akasi Group Members,<br><br>
@@ -1372,9 +1372,8 @@ text-decoration: none;"><?= $args['btnLabel'] ?></a>
                         ?>
 
                         <tr>
-                            <td style="background-color:#d7e9dd;color:#58585A;padding:30px;">
-                                <p><br>
-                                    <br>==================== <br>Equipe <?= maybe_null_or_empty($options, 'siteName') ?>
+                            <td style="background-color:#d7e9dd;color:#58585A;padding:0px 30px 30px 30px;">
+                                <p>==================== <br>Equipe <?= maybe_null_or_empty($options, 'siteName') ?>
                                     <br><a href="mailto:<?= maybe_null_or_empty($options, 'site_email') ?>"
                                            target="_blank"><?= maybe_null_or_empty($options, 'site_email') ?></a>
                                     <u></u><u></u></p>

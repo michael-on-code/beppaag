@@ -45,6 +45,21 @@
                         </div>
                         <div class="form-group">
                             <?php
+                            echo form_label('Emails de notification', 'notificationEmails');
+                            echo form_input([
+                                'name' => 'options[notificationEmails]',
+                                'class' => 'form-control',
+                                'placeholder' => 'Emails de notification',
+                                'id' => 'notificationEmails',
+                                'required' => '',
+                                'value'=>set_value('options[notificationEmails]', maybe_null_or_empty($options, 'notificationEmails'))
+                            ]);
+                            echo form_error('options[notificationEmails]');
+                            getFieldInfo('Séparer les mails de notifications par une virgule');
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <?php
                             echo form_label('ID de suivi Google Analytics', 'googleAnalyticsID');
                             echo form_input([
                                 'name' => 'options[googleAnalyticsID]',

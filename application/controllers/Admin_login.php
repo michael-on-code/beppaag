@@ -66,12 +66,11 @@ class Admin_login extends Login_Controller{
         if ($userID && $activationCode) {
             $activate = $this->ion_auth->activate($userID, $activationCode);
             if ($activate) {
-                echo 'Veuillez Patienter...';
                 $this->load->model('user_model');
                 $this->user_model->update_meta($userID, 'completionToken', $token=md5(uniqid()));
                 //TODO $this->sendAdminNotificationMail($user_id);
                 get_info_message('Veuillez définir à présent votre mot de passe pour finaliser votre inscription', 10000);
-                redirect("login/complete/$userID/$token");
+                pro_redirect("login/complete/$userID/$token");
             } else {
                 get_error_message('Action non authorisée');
                 pro_redirect();;

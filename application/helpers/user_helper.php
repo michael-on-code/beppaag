@@ -187,13 +187,13 @@ function setUserValidation($edit, $userID = '')
                         [
                             'title' => "activation",
                             'function_to_call' => 'sendNotifications',
-                            'params' => maybe_serialize($activationParams),
+                            'params' => json_encode($activationParams),
                             'starts_at' => date('Y-m-d')
                         ],
                         [
                             'title' => "admin-notification",
                             'function_to_call' => 'sendNotifications',
-                            'params' => maybe_serialize($notificationParams),
+                            'params' => json_encode($notificationParams),
                             'starts_at' => date('Y-m-d')
                         ]
                     ]);
@@ -838,7 +838,7 @@ function getActivationMailParams($data, $userData = [], $siteName)
         $userData = $data;
     }
     $mail['title'] = "Finaliser inscription";
-    $mail['message'] = "Bonjour Mr/Mme $data->last_name $data->first_name. <br> Vous avez été désignés pour administrer la plateforme de $siteName. <br>
+    $mail['description'] = "Bonjour Mr/Mme $data->last_name $data->first_name. <br> Vous avez été désignés pour administrer la plateforme de $siteName. <br>
 Veuillez finaliser votre inscription en cliquant sur le bouton ci-dessous";
     $mail['btnLabel'] = "Finaliser inscription";
     $mail['btnLink'] = pro_url('login/activate/') . "$userData->id/$userData->activation";
@@ -848,7 +848,6 @@ Veuillez finaliser votre inscription en cliquant sur le bouton ci-dessous";
 
 function getUserAddNotificationMailParams($userData, $title, $description)
 {
-    $title = 'AKASI-ABE Notification : ' . $title;
     $elements['Nom'] = maybe_null_or_empty($userData, 'last_name');
     $elements['Prénom(s)'] = maybe_null_or_empty($userData, 'first_name');
     $elements['Email'] = maybe_null_or_empty($userData, 'email');
@@ -856,6 +855,7 @@ function getUserAddNotificationMailParams($userData, $title, $description)
     $args['elements'] = $elements;
     $args['title'] = $title;
     $args['description'] = $description;
-    $args['destination'] = 'michaeloncode@gmail.com';
+    $ci=&get_instance();
+    $args['destination'] = $ci->option_model->get_option('notificationEmails');
     return $args;
 }
