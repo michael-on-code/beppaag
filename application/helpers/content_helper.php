@@ -131,6 +131,83 @@ function getTopHeaderMenuRepeater($topHeaderLinks = [], $additionalClassToParent
     </div>
     <?php
 }
+function getContactInfoRepeater($contactInfos = [], $additionalClassToParent = '', $additionalClassToFields = '', $previousFooterLinkExist = false, $key = 0)
+{
+    ?>
+    <div class="card <?= $additionalClassToParent ?>" data-repeater-item>
+        <div class="card-header">
+            <h5 class="card-title">
+                <a data-toggle="collapse" href="#collapseDefault-<?= $key ?>">
+                    <span class="collapse-identifier">#</span>
+                    <span class="collapse-header-seperator"> - </span>
+                    <span class="collapse-header-text"><?= myWordLimiter(maybe_null_or_empty($contactInfos, 'label'), 15) ?></span>
+                </a>
+            </h5>
+            <button title="Supprimer la rubrique" type="button" data-repeater-delete
+                    class="btn btn-danger btn-rounded">
+                <i class="anticon anticon-delete"></i>
+            </button>
+        </div>
+        <div id="collapseDefault-<?= $key ?>" class="collapse"
+             data-parent="#accordion-default">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <?php
+                        echo form_label($title = 'Libellé de la rubrique');
+                        echo form_input([
+                            'name' => 'label',
+                            'class' => "form-control my-recommendation-title $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'value' => maybe_null_or_empty($contactInfos, 'label')
+                        ])
+                        ?>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <?php
+                        echo form_label($title = 'Téléphone');
+                        echo form_input([
+                            'name' => 'phone',
+                            'class' => "form-control $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'value' => maybe_null_or_empty($contactInfos, 'phone')
+                        ])
+                        ?>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <?php
+                        echo form_label($title = 'Adresse');
+                        echo form_input([
+                            'name' => 'adress',
+                            'class' => "form-control $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'value' => maybe_null_or_empty($contactInfos, 'adress')
+                        ])
+                        ?>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <?php
+                        echo form_label($title = 'Email');
+                        echo form_input([
+                            'name' => 'email',
+                            'class' => "form-control $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'type' => 'email',
+                            'value' => maybe_null_or_empty($contactInfos, 'email')
+                        ])
+                        ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+}
 
 function getFooterLinkRepeaterItem($values = [], $additionalClassToParent = '', $additionalClassToFields = '')
 {

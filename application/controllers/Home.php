@@ -14,7 +14,7 @@ class Home extends Public_Controller {
     }
 
     public function index(){
-        $this->data['pageTitle']= 'Accueil';
+        $this->data['pageTitle']= $this->data['pageDescription'];
         $this->load->model(['post_model', 'event_model']);
         $this->load->model('recommendation_model');
         $recommendations = $this->recommendation_model->getAll();

@@ -67,11 +67,18 @@ class Evaluation_model extends CI_Model
 
     }
 
+    public function trash($evaluationID){
+        $this->db->update($this->_tables->evaluations, ['active'=>2], ['id'=>$evaluationID]);
+    }
+    public function activate($evaluationID){
+        $this->db->update($this->_tables->evaluations, ['active'=>1], ['id'=>$evaluationID]);
+    }
+
     public function getAll($onlyActiveOnes = true, $sectorsInString = true,
                            $thematicsInString = true, $resultInArray = true,
                            $order=true, $orderByField='id',
                            $orderBy='desc', $countResult=false, $checkYear='',
-                           $checkTemporality='', $checkEvaluationIDsIn=[])
+                           $checkTemporality='', $checkEvaluationIDsIn=[], $onlyDeletedOnes=false)
     {
         $tables = $this->_tables;
         $recommendationTables = getRecommendationTablesNames();
@@ -88,8 +95,15 @@ class Evaluation_model extends CI_Model
        (SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
        where $recommendationTables->activities.recommendation_id IN 
        (SELECT $recommendationTables->recommendations.id FROM $recommendationTables->recommendations where evaluation_id = $tables->evaluations.id)) as total_recommendation_activities_count");
-        if ($onlyActiveOnes) {
+        if ($onlyActiveOnes && !$onlyDeletedOnes) {
             $this->db->where(["$tables->evaluations.active" => 1]);
+        }
+        if(!$onlyActiveOnes && !$onlyDeletedOnes){
+            $this->db->or_where(["$tables->evaluations.active" => 1]);
+            $this->db->or_where(["$tables->evaluations.active" => 0]);
+        }
+        if($onlyDeletedOnes){
+            $this->db->where(["$tables->evaluations.active" => 2]);
         }
         if($checkYear){
             $this->db->where(['year' => $checkYear]);

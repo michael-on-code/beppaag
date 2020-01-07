@@ -133,11 +133,11 @@ getBreadcrump([
                                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
                                                                class="fa fa-share-alt" style="margin-right: 5px"></i> | Partager</a>
                                                    <ul class="dropdown-menu">
-                                                      <li><a href="#" class="fb"><i
+                                                      <li><a <?= getSharerAttributes($permalink, $evaluation->title) ?> class="fb"><i
                                                                       class="fab fa-facebook-f"></i></a></li>
-                                                      <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
-                                                      <li><a href="#" class="tw"><i class="fab fa-twitter"></i></a></li>
-                                                      <li><a href="#" class="linken"><i class="fab fa-linkedin-in"></i></a></li>
+                                                      <li><a <?= getSharerAttributes($permalink, $evaluation->title, 'whatsapp') ?> class="whats"><i class="fab fa-whatsapp"></i></a></li>
+                                                      <li><a <?= getSharerAttributes($permalink, $evaluation->title, 'twitter') ?> class="tw"><i class="fab fa-twitter"></i></a></li>
+                                                      <li><a <?= getSharerAttributes($permalink, $evaluation->title, 'linkedin') ?> class="linken"><i class="fab fa-linkedin-in"></i></a></li>
                                                    </ul>
                                                 </div>
 
@@ -195,7 +195,7 @@ getBreadcrump([
 
                         }else{
                             ?>
-                            <h4>Désolé, aucun contenu trouvé</h4>
+                            <h4 class="sorry-no-content">Désolé, aucun contenu trouvé</h4>
                             <?php
                         }
 

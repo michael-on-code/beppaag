@@ -13,7 +13,8 @@ function get_current_user_id()
     return $ci->ion_auth->user()->row()->id;
 }
 
-function getAddOrEditUserHTML($edit=false, $user=[], $roles,$uploadPath,$pageTitle){
+function getAddOrEditUserHTML($edit = false, $user = [], $roles, $uploadPath, $pageTitle)
+{
     ?>
     <div class="card">
         <div class="card-body">
@@ -72,8 +73,8 @@ function getAddOrEditUserHTML($edit=false, $user=[], $roles,$uploadPath,$pageTit
                             <?php
                             echo form_label($title = "Rôle de l'utilisateur", $id = 'role');
                             echo form_dropdown($name = "user[$id]", $roles, set_value($name, maybe_null_or_empty($user, 'role')), [
-                                'class'=>"select2",
-                                'required'=>"",
+                                'class' => "select2",
+                                'required' => "",
                             ]);
                             echo get_form_error($name);
                             ?>
@@ -86,7 +87,7 @@ function getAddOrEditUserHTML($edit=false, $user=[], $roles,$uploadPath,$pageTit
                                data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
                                data-placement="top" title="Visualiser la photo" target="_blank"
                                href="<?= $file ? $uploadPath . $file : '#' ?>"> <span
-                                    class="anticon anticon-cloud-upload"></span></a>
+                                        class="anticon anticon-cloud-upload"></span></a>
                             <?php
                             $data = [
                                 'name' => '',
@@ -114,9 +115,7 @@ function getAddOrEditUserHTML($edit=false, $user=[], $roles,$uploadPath,$pageTit
 
                 <?= form_close() ?>
                 <script>
-                    var validationRules = {
-
-                    }
+                    var validationRules = {}
                 </script>
             </div>
         </div>
@@ -124,9 +123,10 @@ function getAddOrEditUserHTML($edit=false, $user=[], $roles,$uploadPath,$pageTit
     <?php
 }
 
-function setUserValidation($edit, $userID = ''){
+function setUserValidation($edit, $userID = '')
+{
     $ci =& get_instance();
-    if($user = $ci->input->post('user')){
+    if ($user = $ci->input->post('user')) {
         setFormValidationRules([
             [
                 'name' => 'user[last_name]',
@@ -157,22 +157,57 @@ function setUserValidation($edit, $userID = ''){
                 'rules' => 'trim'
             ],
         ]);
-        if($ci->form_validation->run()){
+        if ($ci->form_validation->run()) {
             $roles = getAppropriateUsersRoles(false);
-            $user['role']=maybe_null_or_empty($roles, $user['role']);
+            $user['role'] = maybe_null_or_empty($roles, $user['role']);
             $userGroupsIDs = $ci->user_model->getUserGroupIDsByGroupNames($user['role']);
             unset($user['role']);
-            if(!$edit){
+            if (!$edit) {
                 //insert
                 $user['added_by'] = get_current_user_id();
-                $ci->user_model->insert($user, $userGroupsIDs);
-            }else{
+                if ($userData = $ci->user_model->insert($user, $userGroupsIDs)) {
+                    $userData = (object)$userData;
+                    $data = (object)$user;
+                    $siteName = $ci->data['options']['siteName'];
+                    $groupArray = $ci->ion_auth->get_users_groups($userData->id)->result();
+                    $temp = [];
+                    if (!empty($groupArray)) {
+                        foreach ($groupArray as $role) {
+                            $temp[] = $role->description;
+                        }
+                    }
+                    $fetchedUserData = $ci->ion_auth->user($userData->id)->row();
+                    $fetchedUserData->roles = implode(', ', $temp);
+                    //send user mail
+                    $ci->load->model('cron_model');
+                    $activationParams = getActivationMailParams($data, $userData, $siteName);
+                    $notificationParams = getUserAddNotificationMailParams($fetchedUserData, "Ajout d'un nouvel utilisateur", "Chers administrateurs,<br><br>
+                                    Un nouvel utilisateur vient d'être ajouté à la plateforme");
+                    $ci->cron_model->insertBatch([
+                        [
+                            'title' => "activation",
+                            'function_to_call' => 'sendNotifications',
+                            'params' => maybe_serialize($activationParams),
+                            'starts_at' => date('Y-m-d')
+                        ],
+                        [
+                            'title' => "admin-notification",
+                            'function_to_call' => 'sendNotifications',
+                            'params' => maybe_serialize($notificationParams),
+                            'starts_at' => date('Y-m-d')
+                        ]
+                    ]);
+                    get_success_message("L'utilisateur a été créé avec succès <br> Un mail de confirmation a été envoyé à $userData->email", 10000);
+                } else {
+                    get_error_message('Oops... Une erreur a été rencontrée');
+                }
+            } else {
                 $user['updated_by'] = get_current_user_id();
                 $ci->user_model->update($userID, $user, $userGroupsIDs);
+                get_success_message("Utilisateur modifié avec succès");
             }
-            get_success_message("Utilisateur ".($edit ? 'modifié' : 'ajouté'). ' avec succès');
             pro_redirect('users');
-        }else{
+        } else {
             get_error_message();
         }
     }
@@ -255,7 +290,7 @@ function get_menu_by_group($group)
                                 [
                                     'title' => 'Secteurs',
                                     'url' => pro_url('sectors')
-                                ],[
+                                ], [
                                     'title' => 'Types',
                                     'url' => pro_url('types')
                                 ],
@@ -514,26 +549,27 @@ function redirect_if_logged_in($to = 'dashboard')
     }
 }
 
-function getAppropriateUsersRoles($onlyKeys = true,$forSelect2=false){
+function getAppropriateUsersRoles($onlyKeys = true, $forSelect2 = false)
+{
 
     $roles = [
-        'admin'=>[
+        'admin' => [
             'admin', 'editor', 'evaluation_moderator', 'recommendation_moderator', 'members'
         ],
-        'editor'=>[
+        'editor' => [
             'editor', 'evaluation_moderator', 'recommendation_moderator', 'members'
         ],
-        'evaluation_moderator'=>[
+        'evaluation_moderator' => [
             'evaluation_moderator', 'members'
         ],
-        'recommendation_moderator'=>[
+        'recommendation_moderator' => [
             'recommendation_moderator', 'members'
         ],
     ];
-    if($onlyKeys){
-        $temp=[];
-        if($forSelect2){
-            $temp['']='';
+    if ($onlyKeys) {
+        $temp = [];
+        if ($forSelect2) {
+            $temp[''] = '';
         }
         return array_merge($temp, array_keys($roles));
     }
@@ -796,21 +832,21 @@ function getCountries()
 }
 
 
-function sendActivationMail($data, $userData = [], $siteName)
+function getActivationMailParams($data, $userData = [], $siteName)
 {
     if (empty($userData)) {
         $userData = $data;
     }
     $mail['title'] = "Finaliser inscription";
-    $mail['message'] = "Bonjour Mr/Mme $data->last_name $data->first_name. <br> Vous avez été désignés pour administrer la plateforme de $siteName. 
+    $mail['message'] = "Bonjour Mr/Mme $data->last_name $data->first_name. <br> Vous avez été désignés pour administrer la plateforme de $siteName. <br>
 Veuillez finaliser votre inscription en cliquant sur le bouton ci-dessous";
     $mail['btnLabel'] = "Finaliser inscription";
-    $mail['btnLink'] = site_url('login/activate/') . "$userData->id/$userData->activation";
+    $mail['btnLink'] = pro_url('login/activate/') . "$userData->id/$userData->activation";
     $mail['destination'] = $userData->email;
-    sendMail($siteName . ' <no-reply@akasigroup.com>', $mail);
+    return $mail;
 }
 
-function sendUserAddNotificationMail($userData, $title, $description)
+function getUserAddNotificationMailParams($userData, $title, $description)
 {
     $title = 'AKASI-ABE Notification : ' . $title;
     $elements['Nom'] = maybe_null_or_empty($userData, 'last_name');
@@ -820,5 +856,6 @@ function sendUserAddNotificationMail($userData, $title, $description)
     $args['elements'] = $elements;
     $args['title'] = $title;
     $args['description'] = $description;
-    notificationMailSender($args);
+    $args['destination'] = 'michaeloncode@gmail.com';
+    return $args;
 }

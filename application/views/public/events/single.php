@@ -27,9 +27,11 @@ getBreadcrump([
                                     class="cat c<?= rand(1, 4) ?>"><?= $event['category'] ?></span><img data-src="<?= getUploadedImageBySize($event['thumbnail'], '848x420')?>" alt="<?= $event['title'] ?>"> </div>
                         <!--Counter-->
                         <?php
+                        $contentClass='mg-t-50';
                         $dateArray=[];
                         if(isset($event['starts_at']) && $event['starts_at'] && $event['starts_at']!=''){
                             if(strtotime($event['starts_at']) > time()){
+                                $contentClass='';
                                 $dateArray = getFullDateInFrench($event['starts_at'], getRegularDateTimeFormat(), true, false, true);
                                 ?>
                                 <div class="event-counter">
@@ -49,12 +51,8 @@ getBreadcrump([
                                 <?php
                             }
                         }
-
                         ?>
-
-                        <!--Counter End-->
-                        <!--Event Details text-->
-                        <div class="event-content">
+                        <div class="event-content <?= $contentClass ?>">
                             <!--Date and Share Start-->
                             <div class="event-date-share">
                                 <?php
@@ -68,10 +66,10 @@ getBreadcrump([
                                 <div class="event-share">
                                     <ul>
                                         <li><a class="like" href="#"><i class="fas fa-share-alt"></i> <!--2k--></a></li>
-                                        <li><a class="fb" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a class="whats" href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                        <li><a class="tw" href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a class="in" href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a class="fb" <?= getSharerAttributes($permalink=getPermalink($event['id'], 'events'), '') ?>><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a class="whats" <?= getSharerAttributes($permalink, '', 'whatsapp') ?>><i class="fab fa-whatsapp"></i></a></li>
+                                        <li><a class="tw" <?= getSharerAttributes($permalink, $event['title'], 'twitter') ?>><i class="fab fa-twitter"></i></a></li>
+                                        <li><a class="in" <?= getSharerAttributes($permalink, '', 'linkedin') ?>><i class="fab fa-linkedin-in"></i></a></li>
 <!--                                        <li><a href="#"><i class="fas fa-ellipsis-h"></i></a></li>-->
                                     </ul>
                                 </div>

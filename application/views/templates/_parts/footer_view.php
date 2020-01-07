@@ -57,7 +57,6 @@
                     </li>
                     <?php
                 }
-
             }
             ?>
         </ul>
@@ -65,12 +64,12 @@
     }
     ?>
 
-    <span class="hr center"></span>
-    <ul>
-        <li><a href="<?= site_url('contact') ?>">Contact</a></li>
-<!--        <li><a href="sitemap.html">Plan du site</a></li>-->
-    </ul>
-    <span class="center">&copy; 2019 <?= $options['siteName'] ?>. Propulsé par <a target="_blank" href="http://akasigroup.com">AKASI Consulting Group</a></span>
+<!--    <span class="hr center"></span>-->
+    <!--<ul>
+        <li><a href="<?/*= site_url('contact') */?>">Contact</a></li>
+        <li><a href="sitemap.html">Plan du site</a></li>
+    </ul>-->
+    <div class="center">&copy; 2019 <?= $options['siteName'] ?>. Propulsé par <a target="_blank" href="http://akasigroup.com">AKASI Consulting Group</a></div>
     <div class="flag-container"><ul class="flag"><li></li><li></li><li></li></ul></div>
 </div>
 <div class="search-block popup">
@@ -107,11 +106,11 @@ if (isset($clientData) && !empty($clientData)) {
 ?>
 <script src="<?= $assetsUrl ?>public/js/script34b3.js"></script>
 <script src="<?= $assetsUrl ?>public/js/owl.carousel.min.js"></script>
-<script src="<?= $assetsUrl ?>public/js/line-cutter.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/scrollIt.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/scrollUp.js"></script>
 <script src="<?= $assetsUrl ?>public/js/custom.js?v=1.13"></script>
+<script src="<?= $assetsUrl ?>public/js/ajaxify.js"></script>
 </body>
 
 </html>

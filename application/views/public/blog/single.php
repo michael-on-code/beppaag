@@ -41,10 +41,10 @@ getBreadcrump([
                                                     class="fas fa-share-alt"></i> Partager
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#" class="whats"><i class="fab fa-whatsapp"></i></a></li>
-                                            <li><a href="#" class="tw"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#" class="linken"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a <?= getSharerAttributes($permalink = getPermalink($post['id'], 'blog'), $post['title'], 'facebook') ?> class="fb"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a <?= getSharerAttributes($permalink, $post['title'], 'whatsapp') ?> class="whats"><i class="fab fa-whatsapp"></i></a></li>
+                                            <li><a <?= getSharerAttributes($permalink, $post['title'], 'twitter') ?> class="tw"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a <?= getSharerAttributes($permalink, $post['title'], 'linkedin') ?> class="linken"><i class="fab fa-linkedin-in"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

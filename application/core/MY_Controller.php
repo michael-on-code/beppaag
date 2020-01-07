@@ -17,6 +17,9 @@ class MY_Controller extends CI_Controller
         }
         $this->data['uploadPath']=base_url('uploads/');
         $this->data['pageTitle']='';
+        $this->data['clientData']['publicAjaxifyUrl'] =site_url('ajaxify/doCronJobs');
+        $this->data['clientData']['csrf_token_name'] = $this->security->get_csrf_token_name();
+        $this->data['clientData']['csrf_hash'] = $this->security->get_csrf_hash();
     }
 
     protected function render($the_view = NULL, $template = 'home')
@@ -38,6 +41,9 @@ class Public_Controller extends MY_Controller
         parent::__construct();
         //$this->load->library(['ion_auth', 'session', 'form_validation']);
         $this->load->helper('public');
+        $this->data['pageDescription']=maybe_null_or_empty($this->data['options'], 'siteDescription');
+        $this->data['pageDefaultImageUrl']=getUploadedImageBySize($this->data['options']['siteLogo'], '');
+        $this->data['pageUrl']=site_url();
     }
 
 
@@ -83,8 +89,6 @@ class Pro_Controller extends MY_Controller
             $this->data['userRole']=getUserRolesInString($user_groups);
         }
         $this->data['clientData']['uploadUrl'] =site_url('upload/doAjaxUpload');
-        $this->data['clientData']['csrf_token_name'] = $this->security->get_csrf_token_name();
-        $this->data['clientData']['csrf_hash'] = $this->security->get_csrf_hash();
         $this->data['clientData']['uploadPath'] = $this->data['uploadPath'];
     }
 

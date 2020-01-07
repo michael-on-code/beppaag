@@ -65,7 +65,11 @@ class Option_model extends CI_Model{
             'site_phone',
             'site_email',
             'site_header_post_cat_submenu',
-            'top_header_links'
+            'top_header_links',
+            //contact content
+            'contact_infos',
+            'contact_form_receiver',
+            'contact_google_map_iframe_html',
         );
     }
 

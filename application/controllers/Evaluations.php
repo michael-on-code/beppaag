@@ -146,6 +146,10 @@ class Evaluations extends Public_Controller {
             $this->data['evaluation']=$this->evaluation_model->getByID($evaluationID, true);
             $this->data['sidebarClass']='col-md-3';
             $this->data['pageTitle']= $this->data['evaluation']['title'];
+            //            SEO
+            $this->data['pageUrl']=getPermalink($this->data['evaluation']['id'], 'evaluations');
+            $this->data['pageDefaultImageUrl']=getUploadedImageBySize($this->data['evaluation']['cover_photo'], '848x420');
+            $this->data['pageDescription']=myWordLimiter(strip_tags($this->data['evaluation']['description']), 30);
             //var_dump($this->data['evaluation']['recommendations'][0]);exit;
             $this->render('evaluations/single');
         }

@@ -75,6 +75,11 @@ class Blog extends Public_Controller
                 }
             }
             $this->data['relatedPosts']=$this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 3, false, 1, [$this->data['post']['category_id']], $tags, [$this->data['post']['id']]);
+            //            SEO
+            $this->data['pageUrl']=getPermalink($this->data['post']['id'], 'blog');
+            $this->data['pageDefaultImageUrl']=getUploadedImageBySize($this->data['post']['thumbnail'], '848x420');
+            $this->data['pageDescription']=myWordLimiter(strip_tags($this->data['post']['content']), 30);
+
             $this->data['pageTitle'] = $this->data['post']['title'];
             $this->render('blog/single');
         }

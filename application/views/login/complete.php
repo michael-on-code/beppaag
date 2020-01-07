@@ -71,7 +71,7 @@
                                                     <a href="<?= pro_url('login') ?>"> <i
                                                                 class="anticon anticon-arrow-left"></i> Retour</a>
                                                 </span>
-                                    <button type="submit" class="btn btn-primary"><span>Définir</span>
+                                    <button disabled type="submit" class="btn btn-primary"><span>Définir</span>
                                         <i class="anticon anticon-loading m-l-5"></i>
                                     </button>
                                 </div>

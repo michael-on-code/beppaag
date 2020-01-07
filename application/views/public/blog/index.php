@@ -16,7 +16,7 @@ getBreadcrump([
     <!--Events Start-->
     <div class="news-wrapper news-full">
         <div class="container">
-            <div class="row">
+            <div class="row container">
                 <?php
                 if (!empty($posts)) {
                     ?>
@@ -54,7 +54,7 @@ getBreadcrump([
                 } else {
                     ?>
                     <div class="col-md-9 col-sm-8">
-                        <h4>Désolé, aucun contenu trouvé</h4>
+                        <h4 class="sorry-no-content">Désolé, aucun contenu trouvé</h4>
                     </div>
                     <?php
                 }

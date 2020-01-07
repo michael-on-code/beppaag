@@ -15,7 +15,7 @@ getBreadcrump([
     <!--Events Start-->
     <div class="events-wrapper">
         <div class="container">
-            <div class="row">
+            <div class="row container">
                 <?php
                 if(!empty($events)){
                     $perLine = 3;
@@ -35,7 +35,7 @@ getBreadcrump([
                     }
                 }else{
                     ?>
-                    <div class="col-md-12">
+                    <div class="col-md-12 sorry-no-content">
                         Désolé, aucun contenu trouvé
                     </div>
                     <?php

@@ -168,7 +168,7 @@ class Admin_contents extends Pro_Controller{
             }
         }
         $this->data['pageTitle']="Modification du contenu du pied de page";
-        $this->data['footer']=maybe_null_or_empty($this->data['options'], 'footer');
+        //$this->data['footer']=maybe_null_or_empty($this->data['options'], 'footer');
         includeDropifyAssets();
         includeJQueryRepeaterAssets();
         $this->render('contents/footer');
@@ -178,8 +178,43 @@ class Admin_contents extends Pro_Controller{
         $this->render('index');
     }
     public function contact_page(){
+        if($contact = $this->input->post('contact')){
+            //var_dump($contact);exit;
+            setFormValidationRules([
+                [
+                    'name'=>'contact[contact_infos]',
+                    'label'=>'Informatons de contacts',
+                    'rules'=>'required'
+                ],
+                [
+                    'name'=>'contact[contact_form_receiver]',
+                    'label'=>'Destinataire du formulaire de contact',
+                    'rules'=>'trim|required|valid_email'
+                ],
+                [
+                    'name'=>'contact[contact_google_map_iframe_html]',
+                    'label'=>'Code HTML Iframe Google Maps',
+                    'rules'=>'trim|required'
+                ],
+            ]);
+            if($this->form_validation->run()){
+                if(isset($contact['contact_infos']) && !empty($contact['contact_infos'])){
+                    foreach ($contact['contact_infos'] as $key=> $info){
+                        if(!maybe_null_or_empty($info, 'label')){
+                            unset($contact['contact_infos'][$key]);
+                        }
+                    }
+                }
+                $this->option_model->update_all_options($contact);
+                get_success_message('Contenus de la page contact mis à jour avec succès');
+                pro_redirect('contents/contact-page');
+            }else{
+                get_error_message();
+            }
+        }
         $this->data['pageTitle']="Modification du contenu de la page contact";
-        $this->render('index');
+        includeJQueryRepeaterAssets();
+        $this->render('contents/contact');
     }
 
 

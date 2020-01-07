@@ -54,6 +54,62 @@ class Admin_evaluations extends Pro_Controller{
         $this->render('evaluations/index');
     }
 
+    public function trash(){
+        $this->data['pageTitle']='Evaluations déplacées à la corbeille';
+        $this->data['isEditor']=user_can('editor');
+        $this->data['evaluations']=$this->evaluation_model->getAll(false, true, true, false, true, 'id', 'desc', false, '', '', [], true);
+        //var_dump($this->data['evaluations']);exit;
+        $this->data['tableHeaders']=[
+            'Cover'/*Picture*/,'Année', "Titre de l'évaluation", "Objet de l'évaluation",
+            "Secteur de l'évaluation", "Thématique de l'évaluation", "Appréciation", "Statut",
+            "Type de l'évaluation", "Temporalité", "Structure ayant conduit l'évaluation",
+            "Authorité contractante de l'évaluation" ,"Ajoutée le", "Ajoutée par",
+        ];
+        $numberColumns = count($this->data['tableHeaders']);
+        for($i=8; $i<$numberColumns; $i++){
+            $this->data['invisiblesColumns'][]=$i;
+        }
+        $this->data['visiblesColumns']=[
+            0,1,2,3,4,5,6,7
+        ];
+        $unOrderableColumns=[];
+        for($i=0; $i<=$numberColumns; $i++){//<= because of action column
+            if($i==1 || $i==12 || $i==7|| $i==6){
+                continue;
+            }
+            $unOrderableColumns[]=$i;
+        }
+        //var_dump($unOrderableColumns);exit;
+        $this->data['clientData']['invisiblesColumns']=$this->data['invisiblesColumns'];
+        $this->data['clientData']['allColumns']=array_keys($this->data['tableHeaders']);
+        //$this->data['clientData']['evaluations']=$this->data['evaluations'];
+        $this->data['clientData']['unOrderableColumns']=$unOrderableColumns;
+        includeDatatablesAssets();
+        includeSelect2Assets();
+        includeSweetAlertAssets();
+        includeFancyBoxAssets();
+        //var_dump($this->data['evaluations']);exit;
+        $this->render('evaluations/trash');
+    }
+
+    public function delete($evaluationID){
+        $tables = getEvaluationTablesNames();
+        //$evaluationID = (int) getIDBySlug($tables->evaluations, $slug);
+        redirect_if_id_is_not_valid($evaluationID, $tables->evaluations, 'evaluations');
+        $this->evaluation_model->trash($evaluationID);
+        get_success_message("Evaluation déplacée à la corbeille avec succès");
+        pro_redirect('evaluations');
+    }
+
+    public function activate($evaluationID){
+        $tables = getEvaluationTablesNames();
+        //$evaluationID = (int) getIDBySlug($tables->evaluations, $slug);
+        redirect_if_id_is_not_valid($evaluationID, $tables->evaluations, 'evaluations');
+        $this->evaluation_model->activate($evaluationID);
+        get_success_message("Evaluation activée et publiée avec succès");
+        pro_redirect('evaluations');
+    }
+    
     public function add(){
         setEvaluationFormValidation();
         $this->data['pageTitle']='Ajouter Evaluation';

@@ -70,8 +70,13 @@ class Events extends Public_Controller {
                 }
             }
             $this->data['relatedEvents']=$this->event_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 3, false, 1, [$this->data['event']['category_id']], $tags, [$this->data['event']['id']]);
-            //var_dump($this->data['relatedEvents']);exit;
+//            SEO
+            $this->data['pageUrl']=getPermalink($this->data['event']['id'], 'events');
+            $this->data['pageDefaultImageUrl']=getUploadedImageBySize($this->data['event']['thumbnail'], '848x420');
+            $this->data['pageDescription']=myWordLimiter(strip_tags($this->data['event']['content']), 30);
+
             $this->data['pageTitle'] = $this->data['event']['title'];
+
 
             //SIDEBAR ELEMENTS START
             $postTables = getPostTablesNames();
@@ -83,7 +88,7 @@ class Events extends Public_Controller {
             //INCLUDE ASSETS
             $this->data['footerJs'][]=$this->data['assetsUrl']."public/js/jquery.prettyPhoto.js";
             $this->data['headerCss'][]=$this->data['assetsUrl']."public/css/prettyPhoto.css";
-            $this->data['footerJs'][]=$this->data['assetsUrl']."public/js/jquery.countdown.js?v=1.01";
+            $this->data['footerJs'][]=$this->data['assetsUrl']."public/js/jquery.countdown.js?v=1.02";
             $this->render('events/single');
         }
 

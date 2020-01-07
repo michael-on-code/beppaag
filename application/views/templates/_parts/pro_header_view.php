@@ -41,7 +41,7 @@
             <div class="logo logo-dark">
                 <a href="<?= pro_url() ?>">
                     <img class="real-logo" src="<?= getUploadedImageBySize($options['siteLogo'], '345x119')?>" alt="Logo">
-                    <img class="logo-fold" src="<?= getUploadedImageBySize($options['siteFavicon'], '150x150')?>" alt="Logo">
+                    <img class="logo-fold" src="<?= getUploadedImageBySize($options['siteFavicon'])?>" alt="Logo">
                 </a>
             </div>
 

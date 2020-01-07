@@ -228,7 +228,7 @@ function convert_date_to_english($date, $characterToCheck = '/', $inputFormat = 
     return null;
 }
 
-function redirect_if_id_is_not_valid($id, $table_name = '', $redirect, $forProInterface=true, $show404=false, $additionalWhere=[])
+function redirect_if_id_is_not_valid($id, $table_name = '', $redirect, $forProInterface = true, $show404 = false, $additionalWhere = [])
 {
     if (is_numeric($id) && (int)$id > 0) {
         if ($table_name == '') {
@@ -236,8 +236,8 @@ function redirect_if_id_is_not_valid($id, $table_name = '', $redirect, $forProIn
         } else {
             $CI = &get_instance();
             $CI->db->select("COUNT(id) AS nombre");
-            $CI->db->where(['id'=>$id]);
-            if(!empty($additionalWhere)){
+            $CI->db->where(['id' => $id]);
+            if (!empty($additionalWhere)) {
                 $CI->db->where($additionalWhere);
             }
             $query = $CI->db->get($table_name);
@@ -245,11 +245,11 @@ function redirect_if_id_is_not_valid($id, $table_name = '', $redirect, $forProIn
                 return true;
         }
     }
-    if($forProInterface){
+    if ($forProInterface) {
         get_warning_message('Action non authorisée');
         pro_redirect($redirect);
     }
-    if($show404){
+    if ($show404) {
         show_404('');
     }
     redirect($redirect);
@@ -305,14 +305,15 @@ function getPostTablesNames()
     return $tables;
 }
 
-function getPaginationConfigAndLink($baseUrl, $perPage,$totalRow, $page){
+function getPaginationConfigAndLink($baseUrl, $perPage, $totalRow, $page)
+{
 
     $ci =& get_instance();
     $ci->load->library('pagination');
     $config['page'] = $page;
     $config['per_page'] = $perPage;
     $config['base_url'] = $baseUrl;
-    $config['total_rows'] =$totalRow;
+    $config['total_rows'] = $totalRow;
     //$config['uri_segment'] = 3;
     $config['page_query_string'] = TRUE;
     $config['enable_query_strings'] = TRUE;
@@ -365,8 +366,9 @@ function getEvaluationTablesNames()
     return $tables;
 }
 
-function addZeroBeforeNumber($number){
-    if($number<1){
+function addZeroBeforeNumber($number)
+{
+    if ($number < 1) {
         return $number;
     }
     return sprintf("%02s", $number);
@@ -379,32 +381,33 @@ function myWordLimiter($string, $limit = 6)
     return word_limiter($string, $limit);
 }
 
-function getFullDateInFrench($date, $inputFormat = 'Y-m-d', $returnArray = false, $returnMonthInString=true, $withTime = false, $cutSubstringMonth=false)
+function getFullDateInFrench($date, $inputFormat = 'Y-m-d', $returnArray = false, $returnMonthInString = true, $withTime = false, $cutSubstringMonth = false)
 {
     $day = DateTime::createFromFormat($inputFormat, $date)->format('d');
     $month = DateTime::createFromFormat($inputFormat, $date)->format('m');
     $year = DateTime::createFromFormat($inputFormat, $date)->format('Y');
     if ($returnArray) {
-        $return =[
+        $return = [
             'd' => $day,
-            'm' => $returnMonthInString ? getFrenchMonths()[ (int)$month] : $month,
+            'm' => $returnMonthInString ? getFrenchMonths()[(int)$month] : $month,
             'Y' => $year,
         ];
-        if($withTime){
-            $return ['G']=DateTime::createFromFormat($inputFormat, $date)->format('G');
-            $return ['i']=DateTime::createFromFormat($inputFormat, $date)->format('i');
-            $return ['s']=DateTime::createFromFormat($inputFormat, $date)->format('s');
+        if ($withTime) {
+            $return ['G'] = DateTime::createFromFormat($inputFormat, $date)->format('G');
+            $return ['i'] = DateTime::createFromFormat($inputFormat, $date)->format('i');
+            $return ['s'] = DateTime::createFromFormat($inputFormat, $date)->format('s');
         }
         return $return;
     }
     $month = getFrenchMonths()[(int)$month];
-    if($cutSubstringMonth){
+    if ($cutSubstringMonth) {
         $month = substr($month, 0, 4);
     }
     return "$day " . $month . " $year";
 }
 
-function getRecommendationTablesNames(){
+function getRecommendationTablesNames()
+{
     $tables = new stdClass();
     $tables->recommendations = 'recommendations';
     $tables->activities = 'recommendation_activities';
@@ -426,24 +429,24 @@ function getFrenchMonths()
         9 => 'Septembre',
         10 => 'Octobre',
         11 => 'Novembre',
-        12  => 'Décembre',
+        12 => 'Décembre',
     ];
 }
 
 function getAllInTable($tableName, $isArray = true, $order = true, $orderByField = 'id', $orderBy = 'desc',
                        $forSelect2 = false, $keyFieldForSelect2 = 'id', $valueFieldForSelect2 = 'name',
                        $initialBlankValueForSelect2 = true, $specificDBSelect = "*",
-                       $defaultSelect2FirstOptionValue = '', $where=[], $whereIn=[], $whereInCheck='id')
+                       $defaultSelect2FirstOptionValue = '', $where = [], $whereIn = [], $whereInCheck = 'id')
 {
     $ci =& get_instance();
     $ci->db->select($specificDBSelect);
     if ($order) {
         $ci->db->order_by($orderByField, $orderBy);
     }
-    if(!empty($where)){
+    if (!empty($where)) {
         $ci->db->where($where);
     }
-    if(!empty($whereIn)){
+    if (!empty($whereIn)) {
         $ci->db->where_in($whereInCheck, $whereIn);
     }
 
@@ -836,37 +839,6 @@ function sendMail($default, $args)
     //var_dump();exit;
 }
 
-function sendMail1($default = '', $args)
-{
-    //$default = 'info@nakayobenin.com';
-    $ci =& get_instance();
-    $ci->load->library('email');
-    $config['mailtype'] = 'html';
-    $config['smtp_host'] = 'mail15.lwspanel.com';
-    $config['protocol'] = 'smtp';
-    $config['smtp_port'] = 587;
-    $config['smtp_user'] = 'info@nakayobenin.com';
-    $config['smtp_pass'] = 'Instagram2017!';
-    $config['validate'] = true;
-
-    $ci->email->initialize($config);
-//    var_dump($args['info']);exit;
-    $options = $ci->option_model->get_options();
-    $options['site_name'] = $ci->config->item('siteName');
-//    var_dump($options);exit;
-    $message = mailTemplateHtml($args, $options);
-    //var_dump($message);exit;
-    $ci->email->from($default, lang('team') . ' ' . $options['site_name']);
-    $ci->email->to($args['destination']);
-    $ci->email->subject($args['title']);
-    $ci->email->message($message);
-//    if(isset($args['attachment']) && !empty($args['attachment'])){
-//        $this->email->attach($args['attachment']['buffer'], 'attachment', $args['attachment']['filename'], $args['attachment']['mime']);
-//    }
-    $ci->email->send();
-//    var_dump($args['destination']);exit;
-//    var_dump($ci->email->print_debugger());exit;
-}
 
 function mailTemplateHtml($args, $options)
 {
@@ -1068,4 +1040,374 @@ function sendNotificationMail($message, $title = '', $tableMessage = '')
     $mail['btnLink'] = site_url('/');
     $mail['destination'] = maybe_null_or_empty($options, 'notificationEmails');
     sendMail($siteName . ' <no-reply@akasigroup.com>', $mail);
+}
+
+function mailSender($args, $noReply = 'no-reply@akasigroup.com', $smtpDefault = 'mail.akasigroup.com')
+{
+    //$default = 'no-reply@csti-digital.com';
+    ini_set("SMTP", $smtpDefault);
+    $ci =& get_instance();
+    $options = $ci->option_model->get_options();
+    $siteName = maybe_null_or_empty($options, 'siteName');
+    $default = $siteName . " <$noReply>";
+    $message = notificationTemplateHTML($args, $options);
+    //echo $message;exit;
+    $headers = "MIME-Version: 1.0 \n";
+
+    $headers .= "Content-type: text/html; charset=iso-8859-1 \n";
+
+    $headers .= "From: $default  \n";
+
+    $headers .= "Disposition-Notification-To: $default  \n";
+    $headers .= "X-Priority: 1  \n";
+
+    $headers .= "X-MSMail-Priority: High \n";
+    @mail($args['destination'], $args['title'], $message, $headers);
+
+    //echoResponse($ci->email->print_debugger());
+//    var_dump($args['destination']);exit;
+    //var_dump();exit;
+}
+
+function notificationTemplateHTML($args, $options)
+{
+    //TODO title,
+    $path = get_upload_path();
+    ob_start();
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><?= maybe_null_or_empty($args, 'title') ?></title>
+        <style>
+            html,
+            body,
+            table,
+            tbody,
+            tr,
+            td,
+            div,
+            p,
+            ul,
+            ol,
+            li,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 0;
+                line-height: 0;
+                -ms-text-size-adjust: 100%;
+                -webkit-text-size-adjust: 100%;
+            }
+
+            table {
+                border-spacing: 0;
+                mso-table-lspace: 0pt;
+                mso-table-rspace: 0pt;
+            }
+
+            table td {
+                border-collapse: collapse;
+            }
+
+            .ExternalClass {
+                width: 100%;
+            }
+
+            .ExternalClass,
+            .ExternalClass p,
+            .ExternalClass span,
+            .ExternalClass font,
+            .ExternalClass td,
+            .ExternalClass div {
+                line-height: 100%;
+            }
+
+            /* Outermost container in Outlook.com */
+            .ReadMsgBody {
+                width: 100%;
+            }
+
+            img {
+                -ms-interpolation-mode: bicubic;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: Arial;
+            }
+
+            h1 {
+                font-size: 28px;
+                line-height: 32px;
+                padding-top: 10px;
+                padding-bottom: 24px;
+            }
+
+            h2 {
+                font-size: 24px;
+                line-height: 28px;
+                padding-top: 10px;
+                padding-bottom: 20px;
+            }
+
+            h3 {
+                font-size: 20px;
+                line-height: 24px;
+                padding-top: 10px;
+                padding-bottom: 16px;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 20px;
+                font-family: Georgia, Arial, sans-serif;
+            }
+        </style>
+        <style>
+
+            .container600 {
+                width: 600px;
+                max-width: 100%;
+            }
+
+            @media all and (max-width: 599px) {
+                .container600 {
+                    width: 100% !important;
+                }
+            }
+
+            .message-content-body tr td {
+                vertical-align: middle;
+            }
+
+            .message-content-head tr td:first-child {
+                width: 37%;
+            }
+
+            /*FLag*/
+            .flag {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                line-height: 1.42857143;
+                font-size: 14px;
+                font-family: 'Lato', sans-serif;
+                text-align: center;
+                color: #fff;
+                box-sizing: border-box;
+                margin-top: 0;
+                padding: 0;
+                height: 100%;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                list-style-type: none;
+                margin-bottom: auto;
+            }
+
+            .flag > td {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                line-height: 1.42857143;
+                font-family: 'Lato', sans-serif;
+                list-style-type: none;
+                font-size: inherit;
+                color: inherit;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                width: 33.33%;
+                display: inline-block;
+                box-sizing: border-box;
+                vertical-align: middle;
+                float: left;
+            }
+
+            .flag > td:first-child {
+                background: RGB(16, 135, 87);
+            }
+
+            .flag > td:first-child + td {
+                background: RGB(255, 190, 0);
+                width: 33.34%;
+            }
+
+            .flag td:first-child + td + td {
+                background: RGB(235, 0, 0);
+            }
+
+            .flag-container {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                line-height: 1.42857143;
+                font-size: 14px;
+                font-family: 'Lato', sans-serif;
+                text-align: center;
+                color: #fff;
+                box-sizing: border-box;
+                width: 100%;
+                height: 8px;
+                margin-bottom: 0;
+            }
+        </style>
+
+        <!--[if gte mso 9]>
+        <style>
+            .ol {
+                width: 100%;
+            }
+        </style>
+        <![endif]-->
+
+    </head>
+    <body style="background-color:#F4F4F4;">
+    <center>
+
+        <!--[if gte mso 9]>
+        <table width="600" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+        <![endif]-->
+        <table class="container600" cellpadding="0" cellspacing="0" border="0" width="100%"
+               style="width:calc(100%);max-width:calc(600px);margin: 0 auto;">
+            <tr>
+                <td width="100%" style="text-align: left;">
+
+                    <table width="100%" cellpadding="0" cellspacing="0" style="min-width:100%;">
+                        <tr>
+                            <td style="background-color:#FFFFFF;color:#000000;padding:30px;">
+                                <img alt=""
+                                     src="<?= getUploadedImageBySize(maybe_null_or_empty($options, 'siteLogo'), '', true) ?>"
+                                     width="210"
+                                     style="display: block;width: auto;margin: auto;max-width: 300px"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="min-width:100%;">
+                        <tr>
+                            <td style="background-color:#d7e9dd;color:#58585A;padding:30px;">
+
+                                <h1><?= maybe_null_or_empty($args, 'title') ?></h1>
+                                <p><!--Dear Akasi Group Members,<br><br>
+                                    Une ABE vient d'être publiée sur la plateforme AKASI-ABE-->
+                                    <?= maybe_null_or_empty($args, 'description') ?>
+                                </p>
+                            </td>
+                        </tr>
+                        <?php
+                        if (isset($args['elements']) && !empty($args['elements'])) {
+                            ?>
+                            <tr>
+                                <td style="padding:20px;background-color:#d7e9dd;">
+                                    <table width="100%" cellpadding="0" cellspacing="0" style="min-width:100%;">
+                                        <thead class="message-content-head">
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        </thead>
+                                        <tbody class=" message-content-body">
+                                        <?php
+                                        foreach ($args['elements'] as $key => $element) {
+                                            ?>
+                                            <tr>
+                                                <td valign="top"
+                                                    style="padding:5px; font-family: Arial,sans-serif; font-size: 16px; line-height:20px;">
+                                                    <strong><?= $key ?></strong></td>
+                                                <td valign="top"
+                                                    style="padding:5px; font-family: Arial,sans-serif; font-size: 16px; line-height:20px;">
+                                                    <?= $element ?>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
+
+
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                        <?php
+                        if (isset($args['btnLink']) && isset($args['btnLabel'])) {
+                            ?>
+                            <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                <td style="background-color:#d7e9dd;color:#58585A;padding:30px;">
+                                    <a target="_blank" href="<?= $args['btnLink'] ?>" class="btn-primary"
+                                       itemprop="url"
+                                       style="-webkit-tap-highlight-color: rgba(0,0,0,0);
+box-sizing: border-box;
+background: #d94148;
+color: #fff;
+font-family: 'Montserrat', sans-serif;
+line-height: 42px;
+float: left;
+font-weight: 500;
+font-size: 14px;
+padding: 0 20px;
+border-radius: 3px;
+-webkit-transition: all ease-in-out 0.3s;
+background-color: #d94148;
+text-decoration: none;"><?= $args['btnLabel'] ?></a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+
+                        <tr>
+                            <td style="background-color:#d7e9dd;color:#58585A;padding:30px;">
+                                <p><br>
+                                    <br>==================== <br>Equipe <?= maybe_null_or_empty($options, 'siteName') ?>
+                                    <br><a href="mailto:<?= maybe_null_or_empty($options, 'site_email') ?>"
+                                           target="_blank"><?= maybe_null_or_empty($options, 'site_email') ?></a>
+                                    <u></u><u></u></p>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="min-width:100%;">
+                        <tr>
+                            <td width="100%"
+                                style="min-width:100%;background-color:#3f5a50;color:#FFFFFF;padding:30px;">
+                                <p style="font-size:16px;line-height:20px;font-family:Georgia,Arial,sans-serif;text-align:center;">
+                                    <?= maybe_null_or_empty($options, 'siteDescription') ?></p>
+                            </td>
+                        </tr>
+                        <table width="100%" class="flag-container">
+                            <tr class="flag">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tr>
+                        </table>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <!--[if gte mso 9]></td></tr></table>
+        <![endif]-->
+    </center>
+    </body>
+    </html>
+    <?php
+    return ob_get_clean();
 }

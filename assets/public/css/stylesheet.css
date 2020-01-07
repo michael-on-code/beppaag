@@ -1313,6 +1313,9 @@ h4.panel-title {
 .panel.questions-heading{
     margin-bottom: unset!important;
 }
+.infos h1.small-title{
+    font-size: 3em;
+}
 
 @media (min-width: 998px) {
     .evaluation-sidebar-content h6.recommendations img {
@@ -1331,6 +1334,9 @@ h4.panel-title {
     .evaluation-sidebar-content h6 img {
         right: unset;
         left: 95%;
+    }
+    .infos h1.small-title{
+        font-size: 2em;
     }
 }
 
@@ -1387,3 +1393,16 @@ div.lazy{
 .event-post .thumb.lazy{
     height: 260px;
 }
+h1.small-title span{
+    font-size: 48px;
+}
+ul.flag{
+    margin-bottom: auto;
+}
+.mg-t-50{
+    margin-top: 50px;
+}
+.sorry-no-content{
+    margin-bottom: 20px;
+}
+
