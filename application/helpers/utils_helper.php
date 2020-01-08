@@ -1237,17 +1237,17 @@ function notificationTemplateHTML($args, $options)
                 float: left;
             }
 
-            .flag > td:first-child {
-                background: RGB(16, 135, 87);
+            .flag > td.green-bg {
+                background: #108757!important;
             }
 
-            .flag > td:first-child + td {
-                background: RGB(255, 190, 0);
+            .flag > td.yellow-bg {
+                background: #ffbe00!important;;
                 width: 33.34%;
             }
 
-            .flag td:first-child + td + td {
-                background: RGB(235, 0, 0);
+            .flag > td.red-bg {
+                background: #eb0000!important;;
             }
 
             .flag-container {
@@ -1391,9 +1391,9 @@ text-decoration: none;"><?= $args['btnLabel'] ?></a>
                         </tr>
                         <table width="100%" class="flag-container">
                             <tr class="flag">
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td class="green-bg"></td>
+                                <td class="yellow-bg"></td>
+                                <td class="red-bg"></td>
                             </tr>
                             </tr>
                         </table>
