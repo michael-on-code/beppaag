@@ -78,7 +78,7 @@ class Evaluation_model extends CI_Model
                            $thematicsInString = true, $resultInArray = true,
                            $order=true, $orderByField='id',
                            $orderBy='desc', $countResult=false, $checkYear='',
-                           $checkTemporality='', $checkEvaluationIDsIn=[], $onlyDeletedOnes=false)
+                           $checkTemporality='', $checkEvaluationIDsIn=[], $onlyDeletedOnes=false, $limit=0, $offset=0)
     {
         $tables = $this->_tables;
         $recommendationTables = getRecommendationTablesNames();
@@ -91,7 +91,9 @@ class Evaluation_model extends CI_Model
         $tables->leading_authorities.name as leading_authority, $tables->contracting_authorities.name as contracting_authority, 
        users.first_name, users.last_name, (SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
        where $recommendationTables->activities.execution_level = 'executed' AND $recommendationTables->activities.recommendation_id IN 
-       (SELECT $recommendationTables->recommendations.id FROM $recommendationTables->recommendations where evaluation_id = $tables->evaluations.id)) as executed_count, 
+       (SELECT $recommendationTables->recommendations.id FROM $recommendationTables->recommendations where evaluation_id = $tables->evaluations.id)) as executed_count, (SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
+       where $recommendationTables->activities.execution_level = 'unknown' AND $recommendationTables->activities.recommendation_id IN 
+       (SELECT $recommendationTables->recommendations.id FROM $recommendationTables->recommendations where evaluation_id = $tables->evaluations.id)) as unknown_count, 
        (SELECT COUNT($recommendationTables->activities.execution_level) FROM $recommendationTables->activities 
        where $recommendationTables->activities.recommendation_id IN 
        (SELECT $recommendationTables->recommendations.id FROM $recommendationTables->recommendations where evaluation_id = $tables->evaluations.id)) as total_recommendation_activities_count");
@@ -129,6 +131,13 @@ class Evaluation_model extends CI_Model
         if($countResult){
             return $this->db->count_all_results($this->_tables->evaluations);
         }
+        if($limit){
+        	if($offset){
+        		$this->db->limit($limit, $offset);
+			}else{
+				$this->db->limit($limit);
+			}
+		}
         $evaluations = $this->db->get($this->_tables->evaluations)->result_array();
         //var_dump($evaluations);exit;
         if (!empty($evaluations)) {

@@ -6,7 +6,7 @@ $(function(){
         type: 'POST',
         dataType: 'JSON',
         cache: false,
-        success: function (response) {}
+        //success: function (response) {}
     });
 
 });

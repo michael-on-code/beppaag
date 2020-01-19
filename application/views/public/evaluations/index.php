@@ -110,7 +110,7 @@ getBreadcrump([
                                                               class="post-date"><i
                                                                     class="far fa-calendar-plus"></i> <?= getFullDateInFrench($evaluation->created_at, getRegularDateTimeFormat(), false, false, false, true) ?></span>
                                                         <?php
-                                                        $recommendationStatData = getEvaluationRecommendationLabel($evaluation->executed_count, $evaluation->total_recommendation_activities_count);
+                                                        $recommendationStatData = getEvaluationRecommendationLabel($evaluation->executed_count, $evaluation->total_recommendation_activities_count, $evaluation->unknown_count);
                                                         getEvaluationRecommendationIndicator($recommendationStatData['label'], $recommendationStatData['percentage'], $assetsUrl, 'm-l-10 boldify', true);
                                                         ?>
                                                         <span class="eval-list-btns">
@@ -169,13 +169,23 @@ getBreadcrump([
                                             <div class="eval-list-content">
                                                 <a class="see-more"><i class="fa fa-download"></i> | Tout Télécharger</a>
                                                 <div class="pull-right pagination-content">
+													<?php
+													if ($previousOffset>=0) {
+														?>
+														<a class="btn-search" style="padding: 1px 3px 1px 7px"
+														   href="<?= $previousOffset < 1 ? current_url() : current_url()."?page=$previousOffset" ?>">
+															<i class="fa fa-angle-left"></i>
+														</a>
+														<?php
+													}
+													?>
                                                     <b class="text-bold"><?= $countStart ?> - <?= $countEnd ?>
                                                         / <?= $totalCount ?></b>
                                                     <?php
                                                     if ($totalCount > $countEnd) {
                                                         ?>
                                                         <a class="btn-search"
-                                                           href="<?= $currentOffset == 0 ? site_url('evaluations') : site_url("evaluations/page/$currentOffset") ?>">
+                                                           href="<?= $currentOffset == 0 ? site_url('evaluations') : current_url()."?page=$currentOffset" ?>">
                                                             <i class="fa fa-angle-right"></i>
                                                         </a>
                                                         <?php

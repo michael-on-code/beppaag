@@ -44,7 +44,8 @@
                     <tbody>
                     <?php if (isset($evaluations) && !empty($evaluations)) {
                         foreach ($evaluations as $key => $evaluation) {
-                            $recommendationStatData = getEvaluationRecommendationLabel($evaluation->executed_count, $evaluation->total_recommendation_activities_count);
+                        	//var_dump($evaluation);
+                            $recommendationStatData = getEvaluationRecommendationLabel($evaluation->executed_count, $evaluation->total_recommendation_activities_count, $evaluation->unknown_count);
                             ?>
                             <tr>
                                 <td>

@@ -15,6 +15,7 @@ function getExecutionLevels($forSelect = true, $defaultFirstElementValue = '')
     $temp['executed'] = "Exécuté";
     $temp['in_progress'] = "En cours";
     $temp['unexecuted'] = "Non exécuté";
+    $temp['unknown'] = "Inconnu";
     return $temp;
 }
 
@@ -25,6 +26,9 @@ function getExecutionLevelByRecommendationsFromActivitiesArray($activities)
         $totalActivities = count($activities);
         $totalExecuted = 0;
         foreach ($activities as $activity) {
+            if ($activity['execution_level'] == 'unknown') {
+                return $level;
+            }
             if ($activity['execution_level'] == 'executed') {
                 $totalExecuted++;
             }
@@ -34,6 +38,7 @@ function getExecutionLevelByRecommendationsFromActivitiesArray($activities)
             « Exécuté » : Si toutes ses déclinaisons (activités) sont exécutées
             « En cours » : Si au moins l’une de ses déclinaisons est exécutée
             « Non exécuté » : Si aucune de ses déclinaisons n’est entièrement exécutée
+            « Inconnu » : S'il existe au moins un Inconnu
         */
 
         if ($totalExecuted == 0) {
@@ -47,10 +52,14 @@ function getExecutionLevelByRecommendationsFromActivitiesArray($activities)
     return $level;
 }
 
-function getEvaluationRecommendationLabel($evaluationExecutionCount, $evaluationTotalRecommendationActivities)
+function getEvaluationRecommendationLabel($evaluationExecutionCount, $evaluationTotalRecommendationActivities, $evaluationUnknownCount=0)
 {
+	$continue = true;
+	if($evaluationUnknownCount>0){
+		$continue = false;
+	}
     $recommendationAppreciation = '';
-    if ($evaluationTotalRecommendationActivities) {
+    if ($evaluationTotalRecommendationActivities && $continue) {
         $recommendationAppreciation = (float)((float)$evaluationExecutionCount / (float)$evaluationTotalRecommendationActivities) * 100;
         $recommendationAppreciation = round($recommendationAppreciation, 1);
     }
@@ -113,18 +122,6 @@ function getRecommandationStatus($percentage)
     } else {
         return 'excellent';
     }
-    /*switch ($percentage) {
-        case $percentage < 50 :
-            return 'bad';
-            break;
-        case ($percentage >= 50 && $percentage < 75) :
-            return 'fair';
-            break;
-        default:
-            return 'excellent';
-            break;
-
-    }*/
 }
 
 function setEvaluationFormValidation($edit = false, $evaluationID = '')
@@ -1012,13 +1009,13 @@ function getRecommendationRepeater($recommendations = [], $additionalClassToPare
                 <div class="row">
                     <div class="form-group col-md-8">
                         <?php
-                        echo form_label($title = 'Titre de la recommandation');
+                        echo form_label($title = 'Description de la recommandation');
                         echo form_textarea([
                             'name' => 'title',
-                            'class' => "form-control my-recommendation-title $additionalClassToFields",
+                            'class' => "my-summernote my-recommendation-title $additionalClassToFields",
                             'placeholder' => $title,
                             'required' => '',
-                            'rows' => 2,
+							'data-summernote-height' => 150,
                             'value' => maybe_null_or_empty($recommendations, 'title')
                         ])
                         ?>

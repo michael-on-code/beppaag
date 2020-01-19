@@ -15,10 +15,12 @@ class Evaluations extends Public_Controller {
         $this->load->helper('evaluation');
         $this->_tables = getEvaluationTablesNames();
         $choose= 'Choisir ...';
+        $this->_limit = 12;
         $this->data['sectors']=getAllInTable($this->_tables->sectors, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name', $choose);
         $this->data['thematics']=getAllInTable($this->_tables->thematics, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
         $this->data['temporalities']=getAllInTable($this->_tables->temporalities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
         $this->data['years']=$this->evaluation_model->getDistinctYears(true, $choose);
+        //TODO convert page get into positive value
     }
 
     public function year($year){
@@ -26,13 +28,16 @@ class Evaluations extends Public_Controller {
         $this->load->helper('form');
         $choose= 'Choisir ...';
         $this->data['pageTitle']= "Année d'évaluation : ".$year;
-        $page = (int)$this->input->get('page');
-        $limit = 8;
-        $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, $year);
+        $page =  (int)$this->input->get('page');
+        $limit = $this->_limit;
+        $offset = $limit * $page;
+		$this->data['previousOffset']=$page-1;
+        $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, $year, '', [], false, $limit, $offset);
         $countResult=count($this->data['evaluations']);
         $this->data['totalCount']=$this->evaluation_model->getAll(true, true, true, false, '', '', '', true, $year);
         $this->data['countStart']=($start=$page*$limit)+1;
         $this->data['currentOffset']=$page+1;
+
         $this->data['countEnd']=$start+$countResult;
         $this->data['countResult']=$countResult;
         $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
@@ -47,11 +52,13 @@ class Evaluations extends Public_Controller {
         $choose= 'Choisir ...';
         $temporality = getTableByID($this->_tables->temporalities, $temporalityID);
         $this->data['pageTitle']= "Temporalité d'évaluation : ".maybe_null_or_empty($temporality, 'name');
-        $page = (int)$this->input->get('page');
-        $limit = 8;
-        $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', $temporalityID);
+		$page =  (int)$this->input->get('page');
+		$limit = $this->_limit;
+		$offset = $limit * $page;
+		$this->data['previousOffset']=$page-1;
+        $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', $temporalityID, [], false, $limit, $offset);
         $countResult=count($this->data['evaluations']);
-        $this->data['totalCount']=$this->evaluation_model->getAll(true, true, true, false, '', '', '', true, $temporalityID);
+        $this->data['totalCount']=$this->evaluation_model->getAll(true, true, true, false, '', '', '', true, '',$temporalityID);
         $this->data['countStart']=($start=$page*$limit)+1;
         $this->data['currentOffset']=$page+1;
         $this->data['countEnd']=$start+$countResult;
@@ -71,17 +78,19 @@ class Evaluations extends Public_Controller {
         $postIDs=[];
         $this->data['evaluations']=[];
         $this->data['totalCount']=0;
+		$page =  (int)$this->input->get('page');
+		$limit = $this->_limit;
+		$offset = $limit * $page;
+		$this->data['previousOffset']=$page-1;
         if(!empty($allthematics)){
             foreach ($allthematics as $mythematic){
                 $postIDs[]= (int) $mythematic['evaluation_id'];
             }
-            $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', '', $postIDs);
+            $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', '', $postIDs, false, $limit, $offset);
             //var_dump($postIDs);exit;
             $this->data['totalCount']=$this->evaluation_model->getAll(true, true, true, false, '', '', '', true, '', '', $postIDs);
         }
         $this->data['pageTitle']= "Thématique d'évaluation : ".maybe_null_or_empty($thematic, 'name');
-        $page = (int)$this->input->get('page');
-        $limit = 8;
         $countResult=count($this->data['evaluations']);
         $this->data['countStart']=($start=$page*$limit)+1;
         $this->data['currentOffset']=$page+1;
@@ -102,17 +111,19 @@ class Evaluations extends Public_Controller {
         $postIDs=[];
         $this->data['evaluations']=[];
         $this->data['totalCount']=0;
+		$page =  (int)$this->input->get('page');
+		$limit = $this->_limit;
+		$offset = $limit * $page;
+		$this->data['previousOffset']=$page-1;
         if(!empty($allSectors)){
             foreach ($allSectors as $mySector){
                 $postIDs[]= (int) $mySector['evaluation_id'];
             }
-            $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', '', $postIDs);
+			$this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', '', $postIDs, false, $limit, $offset);
             //var_dump($postIDs);exit;
             $this->data['totalCount']=$this->evaluation_model->getAll(true, true, true, false, '', '', '', true, '', '', $postIDs);
         }
         $this->data['pageTitle']= "Secteur d'évaluation : ".maybe_null_or_empty($sector, 'name');
-        $page = (int)$this->input->get('page');
-        $limit = 8;
         $countResult=count($this->data['evaluations']);
         $this->data['countStart']=($start=$page*$limit)+1;
         $this->data['currentOffset']=$page+1;
@@ -128,13 +139,15 @@ class Evaluations extends Public_Controller {
             $this->load->helper('form');
             $choose= 'Choisir ...';
             $this->data['pageTitle']= 'Liste des Evaluations';
-            $page = (int)$this->input->get('page');
-            $limit = 8;
-            $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false);
+			$page = (int)$this->input->get('page');
+			$limit = $this->_limit;
+			$offset = $limit * $page;
+            $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', '', [], false, $limit, $offset);
             $countResult=count($this->data['evaluations']);
             $this->data['totalCount']=$this->evaluation_model->getAll(true, true, true, false, '', '', '', true);
             $this->data['countStart']=($start=$page*$limit)+1;
             $this->data['currentOffset']=$page+1;
+			$this->data['previousOffset']=$page-1;
             $this->data['countEnd']=$start+$countResult;
             $this->data['countResult']=$countResult;
             $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
