@@ -379,10 +379,10 @@ $config['encryption_key'] = '';
 */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200;
+$config['sess_expiration'] = 18000;
 $config['sess_save_path'] = NULL;
 $config['sess_match_ip'] = FALSE;
-$config['sess_time_to_update'] = 300;
+$config['sess_time_to_update'] = 18000;
 $config['sess_regenerate_destroy'] = FALSE;
 
 /*
@@ -451,9 +451,9 @@ $config['global_xss_filtering'] = FALSE;
 $config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'beppaagg_csrf_token_nonce';
 $config['csrf_cookie_name'] = 'beppaagg_csrf_cookie_nonce';
-$config['csrf_expire'] = 1800;
+$config['csrf_expire'] = 18000;
 $config['csrf_regenerate'] = FALSE;
-$config['csrf_exclude_uris'] = array();
+$config['csrf_exclude_uris'] = array('ajaxify/doCronJobs');
 
 /*
 |--------------------------------------------------------------------------

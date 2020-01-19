@@ -19,6 +19,10 @@
     div#bs-example-navbar-collapse-1 ul {
         margin-left: 30px;
     }
+	.container {
+		width: 90%!important;
+	}
+
 }
 
 @media (min-width: 1024px) and (max-width: 1200px) {
