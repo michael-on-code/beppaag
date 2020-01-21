@@ -651,31 +651,51 @@ function mySelect2(removeContainer=false) {
     }
 }
 
-function mySummerNote(element='', destroyBefore=false) {
+function mySummerNote(element='', destroyBefore=false, isRecommedation=false) {
     if(element==''){
         element = $('.my-summernote');
     }
+    if(element.hasClass('my-recommendation-title')){
+    	isRecommedation=true;
+	}
     if (element.length) {
         if(element.length>1){
-            element.each(function () {
+            element.each(function (index, el) {
+            	var myThis = $(this);
                 if(destroyBefore){
                     $(this).summernote('destroy');
                 }
-                $(this).summernote({
-                    lang: 'fr-FR',
-                    toolbar: [
-                        // [groupName, [list of button]]
-                        ['style', ['bold', 'italic', 'underline', 'clear']],
-                        ['fontsize', ['fontsize']],
-                        ['color', ['color']],
-                        ['para', ['ul', 'ol', 'paragraph', 'style']],
-                        ['height', ['height']],
-                        ['table', ['table']],
-                        ['insert', ['link', 'picture']],
-                        ['view', ['fullscreen', 'codeview']],
-                    ],
-                    height: $(this).attr('data-summernote-height') ? $(this).attr('data-summernote-height') : 130
-                });
+                var options = {
+					lang: 'fr-FR',
+					toolbar: [
+						// [groupName, [list of button]]
+						['style', ['bold', 'italic', 'underline', 'clear']],
+						['fontsize', ['fontsize']],
+						['color', ['color']],
+						['para', ['ul', 'ol', 'paragraph', 'style']],
+						['height', ['height']],
+						['table', ['table']],
+						['insert', ['link', 'picture']],
+						['view', ['fullscreen', 'codeview']],
+					],
+					height: $(this).attr('data-summernote-height') ? $(this).attr('data-summernote-height') : 130
+				};
+                if(isRecommedation){
+					options['callbacks']= {
+						onKeyup: function (e) {
+							setTimeout(function () {
+								var value = $('<span>'+myThis.val()+'</span>').text();
+								//console.log(value);
+								if(value.length > 50){
+									value = value.substring(0, 50)+ '...';
+								}
+								//console.log(el);
+								$(el).parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
+							}, 200);
+						}
+					}
+				}
+                $(this).summernote(options);
             });
         }else{
             if(destroyBefore){
@@ -699,4 +719,11 @@ function mySummerNote(element='', destroyBefore=false) {
         }
 
     }
+}
+
+function stripHTML(dirtyString) {
+	var container = document.createElement('div');
+	var text = document.createTextNode(dirtyString);
+	container.appendChild(text);
+	return container.innerHTML; // innerHTML will be a xss safe string
 }

@@ -1012,10 +1012,10 @@ function getRecommendationRepeater($recommendations = [], $additionalClassToPare
                         echo form_label($title = 'Description de la recommandation');
                         echo form_textarea([
                             'name' => 'title',
-                            'class' => "form-control my-recommendation-title $additionalClassToFields",
+                            'class' => "my-summernote my-recommendation-title $additionalClassToFields",
                             'placeholder' => $title,
                             'required' => '',
-							'rows' => 2,
+							'data-summernote-height' => 250,
                             'value' => maybe_null_or_empty($recommendations, 'title')
                         ])
                         ?>
