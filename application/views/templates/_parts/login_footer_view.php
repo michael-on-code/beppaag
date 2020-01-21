@@ -6,6 +6,7 @@ if (isset($clientData) && !empty($clientData)) {
         var clientData = <?= json_encode($clientData) ?>
 	</script>
 	<?php
+	//fake
 }
 ?>
 <script src="<?= $assetsUrl ?>pro/js/app.min.js"></script>
