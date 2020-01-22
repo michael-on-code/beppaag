@@ -65,7 +65,7 @@ getBreadcrump([
                 </div>
                 <div class="col-md-9 evaluation-start">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-9 evaluation-box">
                             <div class="news-box">
                                 <div class="text-center">
                                     <img style="width: auto;"

@@ -1410,3 +1410,9 @@ ul.flag{
     margin-bottom: 20px;
 }
 
+p.MsoNormal, p font, p.MsoNormal span, .evaluation-box span, .evaluation-box li, .evaluation-box font {
+	color: #000000!important;
+	font-size: 16px!important;
+}
+
+

@@ -25,7 +25,7 @@
     }
     ?>
     <link href="<?= $assetsUrl ?>pro/css/app.min.css?v=1.002" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.051">
+    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.052">
 </head>
 <!-- end::Head -->
 
