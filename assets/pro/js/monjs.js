@@ -706,20 +706,31 @@ function mySummerNote(element='', destroyBefore=false) {
 						['insert', ['link', 'picture']],
 						['view', ['fullscreen', 'codeview']],
 					],
+					fontSize :16,
+					foreColor :'black',
 					height: $(this).attr('data-summernote-height') ? $(this).attr('data-summernote-height') : 130
 				};
+				options['callbacks']={};
+				options['callbacks']['onPaste']=function (e) {
+					var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+					e.preventDefault();
+					//bufferText = bufferText.replace(/\r?\n/g, '<br>');
+					// Firefox fix
+					setTimeout(function () {
+						document.execCommand('insertText', false, bufferText);
+					}, 10);
+				};
+
                 if($(el).hasClass('my-recommendation-title')){
-					options['callbacks']= {
-						onKeyup: function (e) {
-							setTimeout(function () {
-								var value = $('<span>'+myThis.val()+'</span>').text();
-								if(value.length > 100){
-									value = value.substring(0, 100)+ '...';
-								}
-								console.log(el);
-								$(el).parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
-							}, 200);
-						}
+					options['callbacks']['onKeyup']=function (e) {
+						setTimeout(function () {
+							var value = $('<span>'+myThis.val()+'</span>').text();
+							if(value.length > 100){
+								value = value.substring(0, 100)+ '...';
+							}
+							console.log(el);
+							$(el).parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
+						}, 200);
 					}
 				}
                 $(this).summernote(options);
@@ -741,19 +752,29 @@ function mySummerNote(element='', destroyBefore=false) {
 					['insert', ['link', 'picture']],
 					['view', ['fullscreen', 'codeview']],
 				],
+				fontSize :16,
+				foreColor :'black',
 				height: element.attr('data-summernote-height') ? element.attr('data-summernote-height') : 130
 			};
+			options['callbacks']={};
+			options['callbacks']['onPaste']=function (e) {
+				var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+				e.preventDefault();
+				//bufferText = bufferText.replace(/\r?\n/g, '<br>');
+				// Firefox fix
+				setTimeout(function () {
+					document.execCommand('insertText', false, bufferText);
+				}, 10);
+			};
 			if(element.hasClass('my-recommendation-title')){
-				options['callbacks']= {
-					onKeyup: function (e) {
-						setTimeout(function () {
-							var value = $('<span>'+element.val()+'</span>').text();
-							if(value.length > 100){
-								value = value.substring(0, 100)+ '...';
-							}
-							element.parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
-						}, 200);
-					}
+				options['callbacks']['onKeyup']=function (e) {
+					setTimeout(function () {
+						var value = $('<span>'+element.val()+'</span>').text();
+						if(value.length > 100){
+							value = value.substring(0, 100)+ '...';
+						}
+						element.parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
+					}, 200);
 				}
 			}
 			element.summernote(options);

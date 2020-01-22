@@ -341,3 +341,7 @@ input.select2-input{
 .dashboard-stats .card-body{
     padding: 30px 20px;
 }
+.note-editable {font-family: Arial; font-size: 16px!important;}
+.note-editable *{
+	color: black;
+}
