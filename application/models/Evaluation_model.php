@@ -74,6 +74,15 @@ class Evaluation_model extends CI_Model
         $this->db->update($this->_tables->evaluations, ['active'=>1], ['id'=>$evaluationID]);
     }
 
+    public function getDrafts(){
+		$tables = $this->_tables;
+		$this->db->select("$tables->evaluations.*, users.first_name, users.last_name");
+		$this->db->join('users', "users.id = $tables->evaluations.created_by");
+		$this->db->order_by('id', 'desc');
+		$this->db->where(["$tables->evaluations.active" => 3]);
+		return $this->db->get($this->_tables->evaluations)->result();
+	}
+
     public function getAll($onlyActiveOnes = true, $sectorsInString = true,
                            $thematicsInString = true, $resultInArray = true,
                            $order=true, $orderByField='id',
@@ -305,7 +314,9 @@ class Evaluation_model extends CI_Model
                 }
                 $questionsData[$key]['evaluation_id']=$evaluationID;
             }
-            $this->db->insert_batch($this->_tables->questions, $questionsData);
+            if(!empty($questionsData)){
+				$this->db->insert_batch($this->_tables->questions, $questionsData);
+			}
         }
 
     }
@@ -314,13 +325,13 @@ class Evaluation_model extends CI_Model
         return $this->db->get_where($this->_tables->questions, ['evaluation_id'=>$evaluationID])->result_array();
     }
 
-    public function insertOrUpdateEvaluation($update=false, $evaluation, $evaluationID = '', $isActorAssociated=true, $questionsData=[], $recommendationsData)
+    public function insertOrUpdateEvaluation($update=false, $evaluation, $evaluationID = '', $isActorAssociated=true, $questionsData=[], $recommendationsData, $isDraft=false)
     {
         $this->load->model('recommendation_model');
         //TODO $evaluation for logs
         $data = $evaluation;
-        $sectors = $data['sector_id'];
-        $thematics = $data['thematic_id'];
+        $sectors = maybe_null_or_empty($data, 'sector_id');
+        $thematics = maybe_null_or_empty($data, 'thematic_id');
         unset($data['sector_id'], $data['thematic_id']);
         $data['recommendation_actor_associated']=(int) maybe_null_or_empty($data, 'recommendation_actor_associated');
         if($isActorAssociated){
@@ -342,7 +353,12 @@ class Evaluation_model extends CI_Model
         }
         if ($evaluationID == '' && !$update) {
             if(user_can('editor')){
-                $data['active']=1;
+            	if($isDraft){
+					$data['active']=3;
+				}else{
+					$data['active']=1;
+				}
+
             }
             $data['slug'] = getSlugifyString($data['title'], true, true, true, 40) . uniqid();
             $data['created_by'] = get_current_user_id();
@@ -351,27 +367,39 @@ class Evaluation_model extends CI_Model
             $evaluationID = $this->db->insert_id();
 
         } else {
+			if($isDraft){
+				$data['active']=3;
+			}else{
+				$data['active']=1;
+			}
             $data['updated_at'] = date(getRegularDateTimeFormat());
             $this->db->update($this->_tables->evaluations, $data, ['id' => $evaluationID]);
         }
         $sectorToInsert = [];
-        foreach ($sectors as $key => $sectorID) {
-            $sectorToInsert[$key]['sector_id'] = $sectorID;
-            $sectorToInsert[$key]['evaluation_id'] = $evaluationID;
-        }
+        if(!empty($sectors)){
+			foreach ($sectors as $key => $sectorID) {
+				$sectorToInsert[$key]['sector_id'] = $sectorID;
+				$sectorToInsert[$key]['evaluation_id'] = $evaluationID;
+			}
+			$this->insertOrUpdateEvaluationSectorGroup($sectorToInsert, 'evaluation_id', $evaluationID);
+		}
         $thematicToInsert = [];
-        foreach ($thematics as $key => $thematicID) {
-            $thematicToInsert[$key]['thematic_id'] = $thematicID;
-            $thematicToInsert[$key]['evaluation_id'] = $evaluationID;
-        }
+        if(!empty($thematics)){
+			foreach ($thematics as $key => $thematicID) {
+				$thematicToInsert[$key]['thematic_id'] = $thematicID;
+				$thematicToInsert[$key]['evaluation_id'] = $evaluationID;
+			}
+			$this->insertOrUpdateEvaluationThematicGroup($thematicToInsert, 'evaluation_id', $evaluationID);
+		}
         if (!empty($meta_datas)) {
             foreach ($meta_datas as $key => $meta_data) {
                 $this->update_meta($evaluationID, $key, $meta_data);
             }
         }
-        $this->insertOrUpdateEvaluationSectorGroup($sectorToInsert, 'evaluation_id', $evaluationID);
-        $this->insertOrUpdateEvaluationThematicGroup($thematicToInsert, 'evaluation_id', $evaluationID);
-        $this->updateEvaluationQuestions($evaluationID, $questionsData);
+        if(!empty($questionsData)){
+			$this->updateEvaluationQuestions($evaluationID, $questionsData);
+		}
+		var_dump('reached here');
         if(!$isActorAssociated){
             $this->recommendation_model->updateRecommendationWithActivitiesForEvaluation($evaluationID, $recommendationsData);
         }

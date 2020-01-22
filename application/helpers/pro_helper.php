@@ -10,11 +10,11 @@
 function getAdminDashboardView($assetsUrl)
 {
     $ci =& get_instance();
-    $totalPosts = getCountInTable('posts', ['active' => 1]);
-    $totalEvents = getCountInTable('events', ['active' => 1]);
-    $totalEvaluations = getCountInTable('evaluations', ['active' => 1]);
-    $totalRecommendations = getCountInTable('recommendations', ['active' => 1]);
-    $totalUsers = getCountInTable('users', ['active' => 1]);
+    $totalPosts = getCountInTable('posts', true, ['active' => 1]);
+    $totalEvents = getCountInTable('events', true, ['active' => 1]);
+    $totalEvaluations = getCountInTable('evaluations', true, ['active' => 1]);
+    $totalRecommendations = getCountInTable('recommendations',true,  ['active' => 1]);
+    $totalUsers = getCountInTable('users', true, ['active' => 1]);
     $ci->load->model('recommendation_model');
     $recommendations = $ci->recommendation_model->getAll();
     $totalExecutedRecommendation = 0;
@@ -382,17 +382,28 @@ function includeDropifyAssets()
     $ci->data['headerCss'][] = $ci->data['assetsUrl'] . 'pro/vendors/dropify/dist/css/dropify.min.css';
 }
 
-function getAllFormButtons($edit = false, $cancelUrl)
+function getAllFormButtons($edit = false, $cancelUrl, $withDraftButton=false, $draftButtonAdditionalClass='', $submitLabel='')
 {
     ?>
-    <div class="form-group pull-right">
-        <a href="<?= $cancelUrl ?>" class="btn btn-primary m-l-5 real-btn-primary">
+    <div class="form-group pull-right form-buttons">
+        <a href="<?= $cancelUrl ?>" class="btn btn-dark m-l-5 ">
             <i class="anticon anticon-arrow-left"></i> Annuler
         </a>
         <button type="button" class="btn btn-warning m-l-5 clear-form">
-            Effacer
+			<i class="anticon anticon-undo"></i> Effacer
         </button>
-        <?php getFormSubmit($edit ? 'Modifier' : 'Ajouter') ?>
+		<?php
+		if($withDraftButton){
+			?>
+			<button type="button" class="btn real-btn-primary m-l-5 draftify-form <?= $draftButtonAdditionalClass ?>">
+				<i class="anticon anticon-save"></i> Enregistrer brouillon
+			</button>
+			<?php
+		}
+		?>
+        <?php
+		$submitLabel = $submitLabel == '' ? ($edit ? 'Modifier' : 'Ajouter') : $submitLabel;
+		getFormSubmit($submitLabel) ?>
     </div>
     <?php
 }

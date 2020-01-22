@@ -16,10 +16,22 @@ class Admin_evaluations extends Pro_Controller{
         $this->data['clientData']['ajaxifyUrl']=pro_url('ajaxify/');
     }
 
+    public function draft(){
+		$this->data['pageTitle']='Evaluations enregistrées en mode brouillon';
+		$this->data['isEditor']=user_can('editor');
+		$this->data['evaluations']=$this->evaluation_model->getDrafts();
+		$this->data['tableHeaders']=[
+			"Titre de l'évaluation","Ajoutée par", "Ajoutée le", "Mise à jour le",
+		];
+		//var_dump($this->data['evaluations']);exit();
+		includeDatatablesAssets();
+		$this->render('evaluations/draft');
+	}
+
     public function index(){
         $this->data['pageTitle']='Evaluations';
         $this->data['isEditor']=user_can('editor');
-        $this->data['evaluations']=$this->evaluation_model->getAll(false, true, true, false);
+        $this->data['evaluations']=$this->evaluation_model->getAll(false, true, true, false, true, 'id', 'desc', false, '', '', [], false, 0, 0);
         //var_dump($this->data['evaluations']);exit;
         $this->data['tableHeaders']=[
             'Cover'/*Picture*/,'Année', "Titre de l'évaluation", "Objet de l'évaluation",

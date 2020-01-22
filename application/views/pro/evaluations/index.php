@@ -113,10 +113,10 @@
                                         <i class="anticon anticon-eye"></i>
                                     </a>
                                     <a href="<?= pro_url("evaluations/edit/$evaluation->id") ?>" data-toggle="tooltip"
-                                       data-placement="top" title="Modifier evaluation"
-                                       class="btn btn-primary btn-icon">
-                                        <i class="anticon anticon-edit"></i>
-                                    </a>
+										   data-placement="top" title="Modifier evaluation"
+										   class="btn btn-primary btn-icon">
+										<i class="anticon anticon-edit"></i>
+									</a>
                                     <?php
                                     if ($isEditor && !$evaluation->active) {
                                         ?>

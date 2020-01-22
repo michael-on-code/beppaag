@@ -128,100 +128,116 @@ function setEvaluationFormValidation($edit = false, $evaluationID = '')
 {
     $ci =& get_instance();
     if (($evaluation = $ci->input->post('evaluation')) && ($questions = $ci->input->post('questions'))) {
-        $validations = [
-            [
-                'name' => 'evaluation[title]',
-                'label' => "Titre de l'évaluation",
-                'rules' => 'trim|required'
-            ],
-            [
-                'name' => 'evaluation[object]',
-                'label' => "Objet de l'évaluation",
-                'rules' => 'trim|required'
-            ],
-            [
-                'name' => 'evaluation[year]',
-                'label' => "Année d'évaluation",
-                'rules' => 'trim|required|is_natural_no_zero'
-            ],
-            [
-                'name' => 'evaluation[type_id]',
-                'label' => "Type d'évaluation",
-                'rules' => 'trim|required|is_natural_no_zero'
-            ],
-            [
-                'name' => 'evaluation[sector_id][]',
-                'label' => "Type d'évaluation",
-                'rules' => 'trim|required'
-            ],
-            [
-                'name' => 'evaluation[temporality_id]',
-                'label' => "Temporalité de l'évaluation",
-                'rules' => 'trim|required|is_natural_no_zero'
-            ],
-            [
-                'name' => 'evaluation[leading_authority_id]',
-                'label' => "Structure ayant conduit l'évaluation",
-                'rules' => 'trim|required|is_natural_no_zero'
-            ],
-            [
-                'name' => 'evaluation[sector_id][]',
-                'label' => "Thématique de l'évaluation",
-                'rules' => 'trim|required'
-            ],
-            [
-                'name' => 'evaluation[contracting_authority_id]',
-                'label' => "Authorité contractante de l'évaluation",
-                'rules' => 'trim|required|is_natural_no_zero'
-            ],
-            [
-                'name' => 'evaluation[objective]',
-                'label' => "Objectifs et résultats attendus",
-                'rules' => 'trim|required'
-            ],
-            [
-                'name' => 'evaluation[description]',
-                'label' => "Description sommaire",
-                'rules' => 'trim|required'
-            ],
-            [
-                'name' => 'evaluation[methodological_approach]',
-                'label' => "Approche méthodologique",
-                'rules' => 'trim|required'
-            ],
-            [
-                'name' => 'evaluation[cover_photo]',
-                'label' => "Photo de page de couverture",
-                'rules' => 'trim|required'
-            ],
-            [
-                'name' => 'evaluation[evaluation_file]',
-                'label' => "Fichier PDF d'évaluation",
-                'rules' => 'trim|required'
-            ],
-        ];
-        if ($isActorAssociated = maybe_null_or_empty($evaluation, 'recommendation_actor_associated', true)) {
-            $validations[] = [
-                'name' => 'evaluation[recommendation_actor_id]',
-                'label' => "Acteur de recommandation",
-                'rules' => 'trim|required|is_natural_no_zero'
-            ];
-            $validations[] = [
-                'name' => 'evaluation[recommendation_start_date]',
-                'label' => "Date de début de recommandation",
-                'rules' => 'trim|required'
-            ];
-            $validations[] = [
-                'name' => 'evaluation[recommendation_comment]',
-                'label' => "Commentaires à l'endroit de l'acteur",
-                'rules' => 'trim'
-            ];
-        }
-        setFormValidationRules($validations);
+		//var_dump($ci->input-
+		$isActorAssociated = maybe_null_or_empty($evaluation, 'recommendation_actor_associated', true);
+		$isDraft = $ci->input->post('evaluation-draft') && ($ci->input->post('evaluation-draft')=='new-draft');
+		if($isDraft){
+			$validations = [
+				[
+					'name' => 'evaluation[title]',
+					'label' => "Titre de l'évaluation",
+					'rules' => 'trim|required'
+				]
+			];
+		}else{
+			$validations = [
+				[
+					'name' => 'evaluation[title]',
+					'label' => "Titre de l'évaluation",
+					'rules' => 'trim|required'
+				],
+				[
+					'name' => 'evaluation[object]',
+					'label' => "Objet de l'évaluation",
+					'rules' => 'trim|required'
+				],
+				[
+					'name' => 'evaluation[year]',
+					'label' => "Année d'évaluation",
+					'rules' => 'trim|required|is_natural_no_zero'
+				],
+				[
+					'name' => 'evaluation[type_id]',
+					'label' => "Type d'évaluation",
+					'rules' => 'trim|required|is_natural_no_zero'
+				],
+				[
+					'name' => 'evaluation[sector_id][]',
+					'label' => "Type d'évaluation",
+					'rules' => 'trim|required'
+				],
+				[
+					'name' => 'evaluation[temporality_id]',
+					'label' => "Temporalité de l'évaluation",
+					'rules' => 'trim|required|is_natural_no_zero'
+				],
+				[
+					'name' => 'evaluation[leading_authority_id]',
+					'label' => "Structure ayant conduit l'évaluation",
+					'rules' => 'trim|required|is_natural_no_zero'
+				],
+				[
+					'name' => 'evaluation[sector_id][]',
+					'label' => "Thématique de l'évaluation",
+					'rules' => 'trim|required'
+				],
+				[
+					'name' => 'evaluation[contracting_authority_id]',
+					'label' => "Authorité contractante de l'évaluation",
+					'rules' => 'trim|required|is_natural_no_zero'
+				],
+				[
+					'name' => 'evaluation[objective]',
+					'label' => "Objectifs et résultats attendus",
+					'rules' => 'trim|required'
+				],
+				[
+					'name' => 'evaluation[description]',
+					'label' => "Description sommaire",
+					'rules' => 'trim|required'
+				],
+				[
+					'name' => 'evaluation[methodological_approach]',
+					'label' => "Approche méthodologique",
+					'rules' => 'trim|required'
+				],
+				[
+					'name' => 'evaluation[cover_photo]',
+					'label' => "Photo de page de couverture",
+					'rules' => 'trim|required'
+				],
+				[
+					'name' => 'evaluation[evaluation_file]',
+					'label' => "Fichier PDF d'évaluation",
+					'rules' => 'trim|required'
+				],
+			];
+			if ($isActorAssociated) {
+				$validations[] = [
+					'name' => 'evaluation[recommendation_actor_id]',
+					'label' => "Acteur de recommandation",
+					'rules' => 'trim|required|is_natural_no_zero'
+				];
+				$validations[] = [
+					'name' => 'evaluation[recommendation_start_date]',
+					'label' => "Date de début de recommandation",
+					'rules' => 'trim|required'
+				];
+				$validations[] = [
+					'name' => 'evaluation[recommendation_comment]',
+					'label' => "Commentaires à l'endroit de l'acteur",
+					'rules' => 'trim'
+				];
+			}
+		}
+		setFormValidationRules($validations);
         if ($ci->form_validation->run()) {
             if ($ci->evaluation_model->insertOrUpdateEvaluation($edit, $evaluation, $evaluationID,
-                $isActorAssociated, $questions, $ci->input->post('recommendations'))) {
-                get_success_message('Evaluation ' . ($edit ? 'modifiée' : 'ajoutée') . ' avec succès');
+                $isActorAssociated, $questions, $ci->input->post('recommendations'), $isDraft)) {
+                get_success_message('Evaluation ' . ($isDraft ? 'enregistrée en mode brouillon' : ($edit ? 'modifiée' : 'ajoutée')) . ' avec succès');
+                if($isDraft){
+                	pro_redirect('evaluations/draft');
+				}
                 pro_redirect('evaluations');
             } else {
                 get_warning_message("Une erreur s'est produite <br> Veuillez recommencer");
@@ -478,7 +494,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                             echo form_label($title = "Titre de l'évaluation", 'title');
                             echo form_input([
                                 'name' => $name = 'evaluation[title]',
-                                'class' => 'form-control',
+                                'class' => 'form-control mandatory-field',
                                 'placeholder' => $title,
                                 'id' => 'title',
                                 'required' => '',
@@ -527,11 +543,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
                                                 </div>
-                                                <?php
-                                                echo get_form_error($name)
-                                                ?>
+
                                             </div>
                                         </div>
+										<?php
+										echo get_form_error($name)
+										?>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <div class="input-group with-add-btn ">
@@ -554,11 +571,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
                                                 </div>
-                                                <?php
-                                                echo get_form_error($name)
-                                                ?>
                                             </div>
+
                                         </div>
+										<?php
+										echo get_form_error($name)
+										?>
                                     </div>
                                 </div>
 
@@ -596,11 +614,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
                                                 </div>
-                                                <?php
-                                                echo get_form_error($name)
-                                                ?>
                                             </div>
+
                                         </div>
+										<?php
+										echo get_form_error($name)
+										?>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <div class="input-group with-add-btn ">
@@ -622,11 +641,11 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
                                                 </div>
-                                                <?php
-                                                echo get_form_error($name)
-                                                ?>
                                             </div>
                                         </div>
+										<?php
+										echo get_form_error($name)
+										?>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <div class="input-group with-add-btn ">
@@ -651,11 +670,11 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
                                                 </div>
-                                                <?php
-                                                echo get_form_error($name)
-                                                ?>
                                             </div>
                                         </div>
+										<?php
+										echo get_form_error($name)
+										?>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <div class="input-group with-add-btn ">
@@ -677,11 +696,11 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                         <i
                                                                 class="anticon anticon-plus"></i></button>
                                                 </div>
-                                                <?php
-                                                echo get_form_error($name)
-                                                ?>
                                             </div>
                                         </div>
+										<?php
+										echo get_form_error($name)
+										?>
                                     </div>
 
 
@@ -856,11 +875,12 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                                     'required' => ''
                                                 ]);
                                                 ?>
-                                                <?php
-                                                echo get_form_error($name)
-                                                ?>
                                             </div>
+
                                         </div>
+										<?php
+										echo get_form_error($name)
+										?>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <?php
@@ -932,7 +952,9 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
 
                 </div>
 
-                <?php getAllFormButtons($edit, pro_url('evaluations')) ?>
+                <?php
+				$submitButtonLabel=maybe_null_or_empty($evaluation, 'active')==3 ? 'Publier': '';
+				getAllFormButtons($edit, pro_url('evaluations'), true, 'evaluation-draftify', $submitButtonLabel) ?>
                 <?= form_close() ?>
 
             </div>
@@ -995,7 +1017,7 @@ function getRecommendationRepeater($recommendations = [], $additionalClassToPare
                 <a data-toggle="collapse" href="#collapseDefault-<?= $key ?>">
                     <span class="collapse-identifier">#</span>
                     <span class="collapse-header-seperator"> - </span>
-                    <span class="collapse-header-text"><?= myWordLimiter(maybe_null_or_empty($recommendations, 'title'), 15) ?></span>
+                    <span class="collapse-header-text"><?= myCharacterLimiter(strip_tags(maybe_null_or_empty($recommendations, 'title')), 100) ?></span>
                 </a>
             </h5>
             <button title="Supprimer activité" type="button" data-repeater-delete
@@ -1015,7 +1037,7 @@ function getRecommendationRepeater($recommendations = [], $additionalClassToPare
                             'class' => "my-summernote my-recommendation-title $additionalClassToFields",
                             'placeholder' => $title,
                             'required' => '',
-							'data-summernote-height' => 250,
+							'data-summernote-height' => 120,
                             'value' => maybe_null_or_empty($recommendations, 'title')
                         ])
                         ?>

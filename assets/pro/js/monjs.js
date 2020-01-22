@@ -166,12 +166,33 @@ $(function () {
     myDatepicker();
 
     if ($('.form-error').length) {
-        $('.form-error').prev('input, textarea, select').focus(function () {
-            $(this).next('.form-error').fadeOut('slow');
+		$('.form-error').prev('input, textarea, select').focus(function () {
+			$(this).next('.form-error').fadeOut('slow');
+			$(this).next('.form-error').remove();
+			return false;
+		});
+        $('.form-error').parent().focus(function () {
+        	console.log('focused');
+            $(this).find('.form-error').fadeOut('slow');
+			$(this).find('.form-error').remove();
             return false;
         });
     }
 
+    $(document).on('click', 'form button.evaluation-draftify', function (e) {
+    	e.preventDefault();
+		var form = $(this).parents('form');
+		//form.find('.form-buttons a, .form-buttons button:not(.form-buttons .evaluation-draftify)').attr('disabled', true);
+		var fieldElements = form.find('input:not(.mandatory-field), textarea:not(.mandatory-field), select:not(.mandatory-field)');
+		fieldElements.removeAttr('required');
+		form.prepend('<input type="hidden" value="new-draft" name="evaluation-draft">');
+		// $(this).find('i').remove();
+		// $(this).html($(this).text() + '<i class="anticon anticon-loading m-l-5"></i>');
+		form.submit();
+		fieldElements.attr('required', true);
+		form.find('input[name="evaluation-draft"]').remove();
+		// $(this).addClass('is-loading');
+	});
     $(document).on('click', 'form button.clear-form', function () {
         var form = $(this).parents('form');
         form.find('textarea, input').each(function () {
@@ -226,6 +247,7 @@ $(function () {
             submitHandler: function (form) {
                 // do other things for a valid form
                 $(form).find('button[type=submit]').addClass('is-loading');
+                //remove draft hidden checker
                 form.submit();
             }
         });
@@ -443,6 +465,12 @@ $(function () {
                 myDatepicker();
                 myCurrency();
                 mySelect2(true);
+				var subSummernote = $(this).find('.my-summernote');
+				mySummerNote(subSummernote, true);
+				$(this).find('.note-editor.note-frame.card')[1].remove();
+				subSummernote.on("summernote.change", function (e) {   // callback as jquery custom event
+					validateObj.form();
+				});
             },
             repeaters: [{
                 // (Required)
@@ -484,6 +512,7 @@ $(function () {
                     $('.select2').on('change', function (e) {
                         validateObj.form();
                     });
+
                 },
             }],
             //initEmpty: true,
@@ -491,13 +520,14 @@ $(function () {
         });
     }
 
-    $(document).on('keyup', '.my-recommendation-title', function () {
+
+    /*$(document).on('keyup', '.my-recommendation-title', function () {
         var value = $(this).val();
         if(value.length > 50){
             value = value.substring(0, 50)+ '...';
         }
         $(this).parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
-    });
+    });*/
 
 
 
@@ -651,13 +681,11 @@ function mySelect2(removeContainer=false) {
     }
 }
 
-function mySummerNote(element='', destroyBefore=false, isRecommedation=false) {
+function mySummerNote(element='', destroyBefore=false) {
     if(element==''){
         element = $('.my-summernote');
     }
-    if(element.hasClass('my-recommendation-title')){
-    	isRecommedation=true;
-	}
+
     if (element.length) {
         if(element.length>1){
             element.each(function (index, el) {
@@ -680,16 +708,15 @@ function mySummerNote(element='', destroyBefore=false, isRecommedation=false) {
 					],
 					height: $(this).attr('data-summernote-height') ? $(this).attr('data-summernote-height') : 130
 				};
-                if(isRecommedation){
+                if($(el).hasClass('my-recommendation-title')){
 					options['callbacks']= {
 						onKeyup: function (e) {
 							setTimeout(function () {
 								var value = $('<span>'+myThis.val()+'</span>').text();
-								//console.log(value);
-								if(value.length > 50){
-									value = value.substring(0, 50)+ '...';
+								if(value.length > 100){
+									value = value.substring(0, 100)+ '...';
 								}
-								//console.log(el);
+								console.log(el);
 								$(el).parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
 							}, 200);
 						}
@@ -701,21 +728,35 @@ function mySummerNote(element='', destroyBefore=false, isRecommedation=false) {
             if(destroyBefore){
                 element.summernote('destroy');
             }
-            element.summernote({
-                lang: 'fr-FR',
-                toolbar: [
-                    // [groupName, [list of button]]
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph', 'style']],
-                    ['height', ['height']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture']],
-                    ['view', ['fullscreen', 'codeview']],
-                ],
-                height: element.attr('data-summernote-height') ? element.attr('data-summernote-height') : 130
-            });
+			var options = {
+				lang: 'fr-FR',
+				toolbar: [
+					// [groupName, [list of button]]
+					['style', ['bold', 'italic', 'underline', 'clear']],
+					['fontsize', ['fontsize']],
+					['color', ['color']],
+					['para', ['ul', 'ol', 'paragraph', 'style']],
+					['height', ['height']],
+					['table', ['table']],
+					['insert', ['link', 'picture']],
+					['view', ['fullscreen', 'codeview']],
+				],
+				height: element.attr('data-summernote-height') ? element.attr('data-summernote-height') : 130
+			};
+			if(element.hasClass('my-recommendation-title')){
+				options['callbacks']= {
+					onKeyup: function (e) {
+						setTimeout(function () {
+							var value = $('<span>'+element.val()+'</span>').text();
+							if(value.length > 100){
+								value = value.substring(0, 100)+ '...';
+							}
+							element.parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
+						}, 200);
+					}
+				}
+			}
+			element.summernote(options);
         }
 
     }

@@ -273,7 +273,7 @@ function get_menu_by_group($group)
                     'icon' => 'anticon anticon-database',
                     'submenus' => [
                         [
-                            'title' => 'Liste',
+                            'title' => 'Liste publiée',
                             'url' => pro_url('evaluations')
                         ],
                         [
@@ -281,6 +281,9 @@ function get_menu_by_group($group)
                             'url' => pro_url('evaluations/add')
                         ],
                         [
+                            'title' => 'Brouillon',
+                            'url' => pro_url('evaluations/draft')
+                        ],[
                             'title' => 'Corbeille',
                             'url' => pro_url('evaluations/trash')
                         ],
@@ -330,7 +333,7 @@ function get_menu_by_group($group)
                     'icon' => 'anticon anticon-read',
                     'submenus' => [
                         [
-                            'title' => 'Liste',
+                            'title' => 'Liste publiée',
                             'url' => pro_url('posts'),
                         ],
                         [
@@ -376,7 +379,7 @@ function get_menu_by_group($group)
                     'icon' => 'anticon anticon-calendar',
                     'submenus' => [
                         [
-                            'title' => 'Liste',
+                            'title' => 'Liste publiée',
                             'url' => pro_url('events'),
                         ],
                         [

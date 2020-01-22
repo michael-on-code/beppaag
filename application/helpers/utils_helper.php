@@ -34,7 +34,7 @@ function googleRecaptchaCurl1(array $data)
 
 function getCountInTable($table, $where = false, $whereArray = [])
 {
-    $ci =& get_instance();
+    $ci =& get_instance();;
     $ci->db->from($table);
     if ($where) {
         $ci->db->where($whereArray);
@@ -379,6 +379,12 @@ function myWordLimiter($string, $limit = 6)
     $ci =& get_instance();
     $ci->load->helper('text');
     return word_limiter($string, $limit);
+}
+
+function myCharacterLimiter($string, $limit=100){
+	$ci =& get_instance();
+	$ci->load->helper('text');
+	return character_limiter($string, $limit);
 }
 
 function getFullDateInFrench($date, $inputFormat = 'Y-m-d', $returnArray = false, $returnMonthInString = true, $withTime = false, $cutSubstringMonth = false)
@@ -764,10 +770,10 @@ function megaMetasInsert(array $metaDatas, $id, $table_id_val)
 }
 
 
-function convert_date_to_french($date)
+function convert_date_to_french($date, $returnFormat = 'd/m/Y')
 {
     if ($date && $date != '0000-00-00' && is_string($date) && strpos($date, '-') && strtotime($date)) {
-        return date('d/m/Y', strtotime($date));
+        return date($returnFormat, strtotime($date));
     }
     return null;
 }

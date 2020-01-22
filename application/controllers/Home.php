@@ -44,9 +44,9 @@ class Home extends Public_Controller {
         $this->data['totalInProgressRecommendation']=$totalInProgressRecommendation;
         $this->data['latestPosts']=$this->post_model->getAll(true, true, true, 'true', 'id', 'desc', false, 4, true);
         $this->data['latestEvents']=$this->event_model->getAll(true, true, true, 'true', 'id', 'desc', false, 3, true);
-        $this->data['totalPosts']=getCountInTable('posts', ['active'=>1]);
-        $this->data['totalEvents']=getCountInTable('events', ['active'=>1]);
-        $this->data['totalEvaluations']=getCountInTable('evaluations', ['active'=>1]);
+        $this->data['totalPosts']=getCountInTable('posts', true, ['active'=>1]);
+        $this->data['totalEvents']=getCountInTable('events', true, ['active'=>1]);
+        $this->data['totalEvaluations']=getCountInTable('evaluations', true, ['active'=>1]);
         //var_dump($this->data['totalPosts']);exit;
         $this->render('index');
     }
