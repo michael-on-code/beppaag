@@ -37,12 +37,12 @@ a:hover, a:focus {
     position: absolute;
     z-index: 9999;
     /* width: 30%; */
-    top: 68px;
-    left: 6px;
+    top: 27px;
+    left: 14px;
 }
 
 .login-logo-container img {
-    width: 56%;
+    width: 100%;
 }
 
 .banner-text-container {
@@ -98,7 +98,7 @@ img.logo-fold{
     opacity: 1;
 }
 .logo img.real-logo{
-    width: 190px;
+    width: 70px;
 }
 label.is-invalid, span.is-invalid{
     color: #de4436;
@@ -344,5 +344,18 @@ input.select2-input{
 .note-editable {font-family: Arial; font-size: 16px!important;}
 .note-editable *{
 	color: black;
+}
+@media (min-width: 1024px) and (max-width: 1200px){
+	.banner-text-container {
+		position: absolute;
+		top: 23%;
+	}
+	.login-form-container{
+		margin-top: 51px;
+	}
+	.login-container .my-h-auto {
+		height: auto!important;
+	}
+
 }
 

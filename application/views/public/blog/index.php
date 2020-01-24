@@ -15,14 +15,14 @@ getBreadcrump([
 <div class="main-content p80">
     <!--Events Start-->
     <div class="news-wrapper news-full">
-        <div class="container">
-            <div class="row container">
+        <div class="row">
+            <div class="container">
                 <?php
                 if (!empty($posts)) {
                     ?>
                     <div class="col-md-9 col-sm-8">
                         <!--News Full Start-->
-                        <div class="row">
+                        <div class="row mobile-container">
                             <!--News Box Start-->
                             <?php
                             $perLine = 3;

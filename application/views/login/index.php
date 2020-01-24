@@ -4,7 +4,7 @@
 <div class="d-flex h-100 p-h-40 p-v-15 flex-column justify-content-between">
     <div class="login-logo-triangle-container"></div>
     <div class="login-logo-container">
-        <img src="<?= getUploadedImageBySize($options['siteLogo'], '345x119')?>" alt="">
+        <img src="<?= getUploadedImageBySize($options['siteLogo'], '150x150')?>" alt="">
     </div>
     <div class="banner-text-container">
         <h1 class="text-white m-b-20 font-weight-normal">Portail Web des Evaluations</h1>
@@ -17,13 +17,13 @@
 </div>
 </div>
 <div class="col-lg-8 bg-white">
-    <div class="container h-100">
+    <div class="container h-100 login-container">
         <div class="row no-gutters my-h-auto align-items-center">
-            <div class="hide-on-big-screen m-t-10 m-auto">
-                <img width="90%" src="<?= $assetsUrl ?>public/images/presidence-logo1.png" alt="">
-                <hr class="mobile-m-t-b-10">
-            </div>
-            <div class="col-md-8 col-lg-7 col-xl-6 mx-auto">
+            <div class="col-md-8 col-lg-7 col-xl-6 mx-auto login-form-container">
+				<div class="hide-on-big-screen m-t-10 m-auto"style="text-align: center">
+					<img style="width: 35%" src="<?= getUploadedImageBySize($options['siteLogo'], '150x150')?>" alt="">
+					<hr class="mobile-m-t-b-10">
+				</div>
                 <h2>Se connecter</h2>
                 <p class="m-b-30">Saisissez vos informations de connexion pour vous authentifier</p>
                 <?php echo form_open() ?>

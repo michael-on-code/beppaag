@@ -72,14 +72,6 @@
     <div class="center">&copy; 2019 <?= $options['siteName'] ?>. Propulsé par <a target="_blank" href="http://akasigroup.com">AKASI Consulting Group</a></div>
     <div class="flag-container"><ul class="flag"><li></li><li></li><li></li></ul></div>
 </div>
-<div class="search-block popup">
-    <form action="https://www.presidence.bj/search/" method="get">
-        <input type="text" name="keyword" id="search" class="input-search center" placeholder="Que recherchez-vous ?" />
-        <input type="submit" value="" class="btn" />
-    </form>
-    <span class="close center"></span>
-    <p><br />Fermer</p>
-</div>
 <!--Footer End-->
 <div class="overlay"></div>
 <!--</div>-->

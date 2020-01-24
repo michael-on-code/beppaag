@@ -7724,7 +7724,7 @@ Search Overlay End
         if($logo = maybe_null_or_empty($options, 'footer_logo', true)){
             ?>
     body > .footer > span:first-child {
-        background: url("<?= getUploadedImageBySize($logo, '263x84') ?>") center center no-repeat!important;;
+        background: url("<?= getUploadedImageBySize($logo, '150x150') ?>") center center no-repeat!important;;
     }
     <?php
         }

@@ -14,8 +14,8 @@ getBreadcrump([
 <div class="main-content">
     <!--Events Start-->
     <div class="events-wrapper">
-        <div class="container">
-            <div class="row container">
+        <div class="row">
+            <div class="container">
                 <?php
                 if(!empty($events)){
                     $perLine = 3;
@@ -23,7 +23,7 @@ getBreadcrump([
                     foreach ($events as $key=> $event){
                         if ($perLine && $total) {
                             if ($key % $perLine == 0) {
-                                echo '<div class="row">';
+                                echo '<div class="row mobile-container">';
                             }
                         }
                         getEventTemplatePreview($event, 'col-md-4 col-sm-6');

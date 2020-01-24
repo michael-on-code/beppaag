@@ -8,7 +8,7 @@
     <meta name="description" content="<?= $options['siteDescription'] ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'])?>">
+    <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'], '150x150')?>">
     <?php if (isset($headerCss) && !empty($headerCss)) {
         foreach ($headerCss as $css) {
             ?>
@@ -25,7 +25,7 @@
     }
     ?>
     <link href="<?= $assetsUrl ?>pro/css/app.min.css?v=1.002" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.052">
+    <link rel="stylesheet" href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.054">
 </head>
 <!-- end::Head -->
 
@@ -41,7 +41,7 @@
             <div class="logo logo-dark">
                 <a href="<?= pro_url() ?>">
                     <img class="real-logo" src="<?= getUploadedImageBySize($options['siteLogo'], '345x119')?>" alt="Logo">
-                    <img class="logo-fold" src="<?= getUploadedImageBySize($options['siteFavicon'])?>" alt="Logo">
+                    <img class="logo-fold" src="<?= getUploadedImageBySize($options['siteFavicon'], '150x150')?>" alt="Logo">
                 </a>
             </div>
 

@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between m-b-30">
                                 <img class="img-fluid m-auto" alt=""
-                                     src="<?= getUploadedImageBySize($options['siteLogo'], '345x119') ?>">
+                                     src="<?= getUploadedImageBySize($options['siteLogo'], '150x150') ?>">
                             </div>
                             <h5 class="m-b-25 text-center"><?= $pageTitle ?></h5>
                             <?= form_open() ?>
