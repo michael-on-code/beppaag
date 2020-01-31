@@ -91,6 +91,14 @@ function getAllImageSizes()
             'width' => 360,
             'height' => 420,
         ],
+		'445x350' => [//director-photo-preview
+            'width' => 445,
+            'height' => 350,
+        ],
+		'445x520' => [//team-photo-preview
+            'width' => 445,
+            'height' => 520,
+        ],
         '345x119' => [//logo
             'width' => 345,
             'height' => 119,

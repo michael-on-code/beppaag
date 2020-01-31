@@ -20,80 +20,120 @@
 <!--Slider End-->
 <!--Main Content Start-->
 <div class="main-content">
+	<!--<section class="Mayor-video-msg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-sm-5">
+					<div class="city-tour gallery"> <strong> Mayor of City </strong> <a href="http://youtu.be/VVvgm7AhFc8" data-rel="prettyPhoto" title="City Tour"><img data-src="<?/*= $assetsUrl */?>public/images/playicon.png" alt=""></a> <img class="width-100p" data-src="<?/*= $assetsUrl */?>public/images/mik.jpg" alt=""> </div>
+				</div>
+				<div class="col-md-8 col-sm-7">
+					<div class="Mayor-welcome">
+						<h5>Welcome to Visit your City</h5>
+						<p>The Hightst Glory of the Citizen’s revolution was this; it connected in one indissoluble bond the principles of civil government with the principles of humanity. Saepe eveniet ut et voluptates etena repudiandae sint et molestiae non recusandae.</p>
+						<h6>Edward Robert</h6>
+						<strong>Mayor of the City</strong> </div>
+				</div>
+			</div>
+		</div>
+	</section>-->
     <section class="wf100 p80 h2-local-brands depart-info">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="section-title">
                         <h2>Parcourir & Découvrir</h2>
                         <p>Découvrez les pages essentielles de notre plateforme de Gestion des Processus Evaluatifs au Bénin à partir desquelles vous retrouverez toutes les informations
                             relatives aux évaluations au Bénin
                         </p>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <!--Local Box Start-->
-				<div class="col-md-1"></div>
-                <div class="col-md-2 col-sm-2 col-xs-6">
-                    <div class="deprt-icon-box">
-                        <a href="<?= site_url('evaluations') ?>">
-                            <img data-src="<?= $assetsUrl ?>public/images/report-symbol.png" alt="">
-                        </a>
+					<div class="row">
+						<!--Local Box Start-->
+<!--						<div class="col-md-1"></div>-->
+						<div class="col-md-4 col-sm-4 col-xs-6">
+							<div class="deprt-icon-box">
+								<a href="<?= site_url('evaluations') ?>">
+									<img data-src="<?= $assetsUrl ?>public/images/report-symbol.png" alt="">
+								</a>
 
-                        <h6> <a href="<?= site_url('evaluations') ?>">Evaluations</a> </h6>
-                        <a class="rm" href="<?= site_url('evaluations') ?>">Découvrir</a>
-                    </div>
-                </div>
-                <!--Local Box End-->
-                <!--Local Box Start-->
-                <div class="col-md-2 col-sm-2 col-xs-6">
-                    <div class="deprt-icon-box">
-                        <a href="<?= site_url('events') ?>">
-                            <img data-src="<?= $assetsUrl ?>public/images/calendar-symbol.png" alt="">
-                        </a>
+								<h6> <a href="<?= site_url('evaluations') ?>">Evaluations</a> </h6>
+								<a class="rm" href="<?= site_url('evaluations') ?>">Découvrir</a>
+							</div>
+						</div>
+						<!--Local Box End-->
+						<!--Local Box Start-->
+						<div class="col-md-4 col-sm-4 col-xs-6">
+							<div class="deprt-icon-box">
+								<a href="<?= site_url('events') ?>">
+									<img data-src="<?= $assetsUrl ?>public/images/calendar-symbol.png" alt="">
+								</a>
 
-                        <h6> <a href="<?= site_url('events') ?>">Evènements</a> </h6>
-                        <a class="rm" href="<?= site_url('events') ?>">Découvrir</a>
-                    </div>
+								<h6> <a href="<?= site_url('events') ?>">Evènements</a> </h6>
+								<a class="rm" href="<?= site_url('events') ?>">Découvrir</a>
+							</div>
+						</div>
+						<!--Local Box End-->
+						<!--Local Box Start-->
+						<div class="col-md-4 col-sm-4 col-xs-6">
+							<div class="deprt-icon-box">
+								<a href="<?= site_url('blog') ?>">
+									<img data-src="<?= $assetsUrl ?>public/images/brochure-symbol.png" alt="">
+								</a>
+								<h6> <a href="<?= site_url('blog') ?>">Actualités</a> </h6>
+								<a class="rm" href="<?= site_url('blog') ?>">Découvrir</a>
+							</div>
+						</div>
+						<!--Local Box End-->
+						<!--Local Box Start-->
+						<div class="col-md-4 col-sm-4 col-xs-6">
+							<div class="deprt-icon-box">
+								<a href="<?= site_url('evaluations') ?>">
+									<img data-src="<?= $assetsUrl ?>public/images/agreement.png" alt="">
+								</a>
+								<h6> <a href="<?= site_url('evaluations') ?>">Coopération en évaluation</a>
+								</h6>
+								<a class="rm" href="<?= site_url('evaluations') ?>">Découvrir</a>
+							</div>
+						</div>
+						<!--Local Box End-->
+						<!--Local Box Start-->
+						<div class="col-md-4 col-sm-4 col-xs-6">
+							<div class="deprt-icon-box">
+								<a data-scroll-nav="1" href="<?= site_url('/') ?>">
+									<img data-src="<?= $assetsUrl ?>public/images/analysis-symbol.png" alt="">
+								</a>
+								<h6> <a data-scroll-nav="1" href="<?= site_url('/') ?>">Statistiques</a>
+								</h6>
+								<a class="rm" data-scroll-nav="1" href="<?= site_url('/') ?>">Découvrir</a>
+							</div>
+						</div>
+						<!--Local Box End-->
+					</div>
                 </div>
-                <!--Local Box End-->
-                <!--Local Box Start-->
-                <div class="col-md-2 col-sm-2 col-xs-6">
-                    <div class="deprt-icon-box">
-                        <a href="<?= site_url('blog') ?>">
-                            <img data-src="<?= $assetsUrl ?>public/images/brochure-symbol.png" alt="">
-                        </a>
-                        <h6> <a href="<?= site_url('blog') ?>">Actualités</a> </h6>
-                        <a class="rm" href="<?= site_url('blog') ?>">Découvrir</a>
-                    </div>
-                </div>
-                <!--Local Box End-->
-                <!--Local Box Start-->
-                <div class="col-md-2 col-sm-2 col-xs-6">
-                    <div class="deprt-icon-box">
-                        <a data-scroll-nav="1" href="<?= site_url('/') ?>">
-                            <img data-src="<?= $assetsUrl ?>public/images/agreement.png" alt="">
-                        </a>
-                        <h6> <a href="<?= site_url('evaluations') ?>">Coopération en évaluation</a>
-                        </h6>
-                        <a class="rm" href="<?= site_url('evaluations') ?>">Découvrir</a>
-                    </div>
-                </div>
-                <!--Local Box End-->
-				<!--Local Box Start-->
-                <div class="col-md-2 col-sm-2 col-xs-6">
-                    <div class="deprt-icon-box">
-                        <a data-scroll-nav="1" href="<?= site_url('/') ?>">
-                            <img data-src="<?= $assetsUrl ?>public/images/analysis-symbol.png" alt="">
-                        </a>
-                        <h6> <a data-scroll-nav="1" href="<?= site_url('/') ?>">Statistiques</a>
-                        </h6>
-                        <a class="rm" data-scroll-nav="1" href="<?= site_url('/') ?>">Découvrir</a>
-                    </div>
-                </div>
-                <!--Local Box End-->
+				<?php if($options['site_director_name'] && $options['site_director_photo'] && $options['site_director_phrase'] ){
+					?>
+					<div class="col-md-4">
+						<!--Mayor Msg Start-->
+						<div class="Mayor-msg">
+							<div class="Mayor-thumb"><img data-src="<?= getUploadedImageBySize($options['site_director_photo'], '445x350') ?>" alt="<?= $options['site_director_name'] ?>"> <span class="Mayor-sig">
+									<?php if($options['site_director_signature']){
+										?>
+										<img data-src="<?= getUploadedImageBySize($options['site_director_signature']) ?>" alt="<?= $options['site_director_name'] ?>">
+										<?php
+									} ?>
+
+								</span> </div>
+							<div class="Mayor-text"> <span>Le mot du Directeur</span>
+								<h5><?= $options['site_director_name'] ?></h5>
+								<p> <?= $options['site_director_phrase'] ?></p>
+								<!--<a href="#">En savoir plus</a>--> </div>
+						</div>
+						<!--Mayor Msg End-->
+					</div>
+					<?php
+				} ?>
+
             </div>
+
         </div>
     </section>
     <!--Local Boards & Services End-->

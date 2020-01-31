@@ -131,6 +131,8 @@ function getTopHeaderMenuRepeater($topHeaderLinks = [], $additionalClassToParent
     </div>
     <?php
 }
+
+
 function getContactInfoRepeater($contactInfos = [], $additionalClassToParent = '', $additionalClassToFields = '', $previousFooterLinkExist = false, $key = 0)
 {
     ?>
@@ -201,6 +203,102 @@ function getContactInfoRepeater($contactInfos = [], $additionalClassToParent = '
                         ])
                         ?>
                     </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+function getTeamMemberRepeater($teamMember = [], $additionalClassToParent = '', $additionalClassToFields = '', $previousFooterLinkExist = false, $key = 0)
+{
+    ?>
+    <div class="card <?= $additionalClassToParent ?>" data-repeater-item>
+        <div class="card-header">
+            <h5 class="card-title">
+                <a data-toggle="collapse" href="#collapseDefault-<?= $key ?>">
+                    <span class="collapse-identifier">#</span>
+                    <span class="collapse-header-seperator"> - </span>
+                    <span class="collapse-header-text"><?= myWordLimiter(maybe_null_or_empty($teamMember, 'name'), 4) ?></span>
+                </a>
+            </h5>
+            <button title="Supprimer le membre" type="button" data-repeater-delete
+                    class="btn btn-danger btn-rounded">
+                <i class="anticon anticon-delete"></i>
+            </button>
+        </div>
+        <div id="collapseDefault-<?= $key ?>" class="collapse"
+             data-parent="#accordion-default">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <?php
+                        echo form_label($title = 'Nom complet');
+                        echo form_input([
+                            'name' => 'name',
+                            'class' => "form-control my-recommendation-title $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'value' => maybe_null_or_empty($teamMember, 'name')
+                        ])
+                        ?>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <?php
+                        echo form_label($title = 'Rôle');
+                        echo form_input([
+                            'name' => 'role',
+                            'class' => "form-control $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'value' => maybe_null_or_empty($teamMember, 'role')
+                        ])
+                        ?>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <?php
+                        echo form_label($title = 'Description');
+                        echo form_textarea([
+                            'name' => 'description',
+                            'class' => "form-control $additionalClassToFields",
+                            'placeholder' => $title,
+                            'required' => '',
+                            'rows'=>3,
+                            'value' => maybe_null_or_empty($teamMember, 'description')
+                        ])
+                        ?>
+                    </div>
+					<div class="form-group col-md-12">
+						<?php echo form_label($title="Attacher la photo du membre");
+						$target ='photo';
+						$file = set_value($name="$target", maybe_null_or_empty($teamMember, $target, true));
+						?>
+						<a class="my-file-preview-btn"
+						   data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
+						   data-placement="top" title="Visualiser la photo" target="_blank"
+						   href="<?= $file ? $uploadPath . $file : '#' ?>"> <span
+								class="anticon anticon-cloud-upload"></span></a>
+						<?php
+						$data = [
+							'name' => '',
+							'attributes' => [
+								'data-target' => $target,
+								'data-target-name' => $name,
+							],
+							'title' => $title,
+						];
+						if ($file) {
+							$data['value'] = $uploadPath . $file;
+						} else {
+							$data['value'] = '';
+						}
+						echo form_hidden($name, set_value($name, $file));
+						get_form_upload($data, $extensions = 'jpg jpeg png', '1M', true, 'auto-upload');
+						echo get_form_error($name);
+						getFieldInfo('Dimensions recommandées : 445x520 Format : JPG|PNG|JPEG Taille Max : 1M');
+						?>
+					</div>
 
                 </div>
             </div>

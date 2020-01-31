@@ -1527,3 +1527,7 @@ p.MsoNormal, p font, p.MsoNormal span, .evaluation-box span, .evaluation-box li,
 .deprt-icon-box:hover {
 	padding: 20px 20px!important;
 }
+.width-100p {
+	width: 100%;
+}
+

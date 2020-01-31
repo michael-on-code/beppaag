@@ -70,6 +70,13 @@ class Option_model extends CI_Model{
             'contact_infos',
             'contact_form_receiver',
             'contact_google_map_iframe_html',
+			//home content
+			'site_director_name',
+			'site_director_signature',
+			'site_director_photo',
+			'site_director_phrase',
+			//team content
+			//'site_team_members',
         );
     }
 

@@ -102,6 +102,7 @@ if (isset($clientData) && !empty($clientData)) {
 <script src="<?= $assetsUrl ?>public/js/scrollIt.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/scrollUp.js"></script>
 <script src="<?= $assetsUrl ?>public/js/jquery.ticker.js"></script>
+<script src="<?= $assetsUrl ?>public/js/jquery.prettyPhoto.js"></script>
 <script src="<?= $assetsUrl ?>public/js/custom.js?v=1.15"></script>
 <script src="<?= $assetsUrl ?>public/js/ajaxify.js?v=1.001"></script>
 </body>

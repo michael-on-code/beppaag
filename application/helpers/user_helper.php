@@ -448,9 +448,12 @@ function get_menu_by_group($group)
                             'title' => 'Pieds de page',
                             'url' => pro_url('contents/footer')
                         ],
-                        /*[
+                        [
                             'title' => 'Accueil',
                             'url' => pro_url('contents/home-page')
+                        ],/*[
+                            'title' => 'Equipe',
+                            'url' => pro_url('contents/team')
                         ],*/
                         [
                             'title' => 'Contact',

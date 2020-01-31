@@ -72,95 +72,7 @@ $(function () {
     mySummerNote();
 
     //Dropify
-    if ($('.dropify').length) {
-        var myDropify = $('.dropify').dropify({
-            messages: {
-                default: 'Glissez / déposez un fichier ici ou cliquez ici',
-                replace: 'Glissez / déposez un fichier ou cliquez ici pour remplacer',
-                remove: 'Enlever',
-                error: 'Ooops, une erreur a été rencontrée'
-            },
-            error: {
-                'fileSize': 'Le ficher est trop volumineux | {{ value }} max.',
-                'fileExtension': "Le format du fichier n'est pas autorisé | {{ value }} autorisé."
-            }
-        });
-
-        myDropify.each(function () {
-            if ($(this).hasClass('auto-upload')) {
-                $(this).on('change', function () {
-                    var data = {};
-                    var dropifyInput = $(this);
-                    var currentForm = dropifyInput.parents('form');
-                    var currentFormGroup = dropifyInput.parents('.form-group');
-                    var submitBtn = currentForm.find('button[type=submit]');
-                    var fileExists = this.files && this.files[0];
-                    if (fileExists) {
-                        var sizeExplode = dropifyInput.attr('data-max-file-size').split('M');
-                        var maxSize = parseInt(sizeExplode[0]) * 1024 * 1024;
-                        if (maxSize < this.files[0].size) {
-                            return;
-                        }
-                        //check first if extensions is valid because of Dropify Bug
-                        var fileStringExplode = this.files[0].name.split('.');
-                        var extension = fileStringExplode[(fileStringExplode.length) - 1];
-                        var allowedExtensions = dropifyInput.attr('data-allowed-file-extensions');
-                        if (allowedExtensions.indexOf(extension) === -1) {
-                            return;
-                        }
-                        var fd = new FormData();
-                        var target = dropifyInput.attr('data-target');
-                        var targetName = dropifyInput.attr('data-target-name');
-                        fd.append(target, this.files[0]);
-                        fd.append('name', target);
-                        fd.append(clientData.csrf_token_name, clientData.csrf_hash);
-                        $.ajax({
-                            url: clientData.uploadUrl,
-                            processData: false,
-                            contentType: false,
-                            data: fd,
-                            type: 'POST',
-                            dataType: 'JSON',
-                            cache: false,
-                            beforeSend: function () {
-                                dropifyInput.addClass('upload-on-progress');
-                                submitBtn.attr('disabled', true);
-                                currentFormGroup.find('label').append(' <span data-toggle="tooltip" data-placement="top" ' +
-                                    'title="Upload en cours" class="upload-spinner" role="status" aria-hidden="true">' +
-                                    '<i class="anticon anticon-loading"></i></span>');
-                            },
-                            error: function () {
-                                alert('Ooops... Une erreur a été rencontrée');
-                            },
-
-                            success: function (response) {
-                                //console.log(response);
-                                if (response.status) {
-                                    clientData.csrf_token_name = response.csrf_token_name;
-                                    clientData.csrf_hash = response.csrf_hash;
-                                    $('input[name="' + targetName + '"]').val(response.fileName);
-                                    var previewBtn = currentFormGroup.find('.my-file-preview-btn');
-                                    previewBtn.attr('href', clientData.uploadPath + response.fileName);
-                                    dropifyInput.removeClass('upload-on-progress');
-                                    currentFormGroup.find('label span.upload-spinner').fadeOut();
-                                    currentFormGroup.find('label span.upload-spinner').remove();
-                                    previewBtn.fadeIn();
-                                    if (currentForm.find('.upload-on-progress').length < 1) {
-                                        submitBtn.removeAttr('disabled')
-                                    }
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        });
-        myDropify.on('dropify.beforeClear', function (event, element) {
-            var $this = $(element.element);
-            $this.parents('.form-group').find('input[type=hidden]').val('');
-            $this.parents('.form-group').find('.my-file-preview-btn').fadeOut();
-        });
-    }
+	myDropify();
 
     toast();
     myDatepicker();
@@ -463,11 +375,14 @@ $(function () {
                 });
                 $(this).fadeIn();
                 myDatepicker();
+                //myDropify($(this).find('.dropify'));
                 myCurrency();
                 mySelect2(true);
 				var subSummernote = $(this).find('.my-summernote');
 				mySummerNote(subSummernote, true);
-				$(this).find('.note-editor.note-frame.card')[1].remove();
+				if($(this).find('.note-editor.note-frame.card').length > 0){
+					$(this).find('.note-editor.note-frame.card')[1].remove();
+				}
 				subSummernote.on("summernote.change", function (e) {   // callback as jquery custom event
 					validateObj.form();
 				});
@@ -521,13 +436,13 @@ $(function () {
     }
 
 
-    /*$(document).on('keyup', '.my-recommendation-title', function () {
+    $(document).on('keyup', 'input.my-recommendation-title', function () {
         var value = $(this).val();
         if(value.length > 50){
             value = value.substring(0, 50)+ '...';
         }
         $(this).parents('.collapse').parent('.card').find('.collapse-header-text').text(value);
-    });*/
+    });
 
 
 
@@ -679,6 +594,101 @@ function mySelect2(removeContainer=false) {
             $('.select2-container').show();
         }
     }
+}
+
+function myDropify(element=''){
+	if(element==''){
+		element = $('.dropify');
+	}
+	if (element.length) {
+		var myDropify = element.dropify({
+			messages: {
+				default: 'Glissez / déposez un fichier ici ou cliquez ici',
+				replace: 'Glissez / déposez un fichier ou cliquez ici pour remplacer',
+				remove: 'Enlever',
+				error: 'Ooops, une erreur a été rencontrée'
+			},
+			error: {
+				'fileSize': 'Le ficher est trop volumineux | {{ value }} max.',
+				'fileExtension': "Le format du fichier n'est pas autorisé | {{ value }} autorisé."
+			}
+		});
+
+		myDropify.each(function () {
+			if ($(this).hasClass('auto-upload')) {
+				$(this).on('change', function () {
+					var data = {};
+					var dropifyInput = $(this);
+					var currentForm = dropifyInput.parents('form');
+					var currentFormGroup = dropifyInput.parents('.form-group');
+					var submitBtn = currentForm.find('button[type=submit]');
+					var fileExists = this.files && this.files[0];
+					if (fileExists) {
+						var sizeExplode = dropifyInput.attr('data-max-file-size').split('M');
+						var maxSize = parseInt(sizeExplode[0]) * 1024 * 1024;
+						if (maxSize < this.files[0].size) {
+							return;
+						}
+						//check first if extensions is valid because of Dropify Bug
+						var fileStringExplode = this.files[0].name.split('.');
+						var extension = fileStringExplode[(fileStringExplode.length) - 1];
+						var allowedExtensions = dropifyInput.attr('data-allowed-file-extensions');
+						if (allowedExtensions.indexOf(extension) === -1) {
+							return;
+						}
+						var fd = new FormData();
+						var target = dropifyInput.attr('data-target');
+						var targetName = dropifyInput.attr('data-target-name');
+						fd.append(target, this.files[0]);
+						fd.append('name', target);
+						fd.append(clientData.csrf_token_name, clientData.csrf_hash);
+						$.ajax({
+							url: clientData.uploadUrl,
+							processData: false,
+							contentType: false,
+							data: fd,
+							type: 'POST',
+							dataType: 'JSON',
+							cache: false,
+							beforeSend: function () {
+								dropifyInput.addClass('upload-on-progress');
+								submitBtn.attr('disabled', true);
+								currentFormGroup.find('label').append(' <span data-toggle="tooltip" data-placement="top" ' +
+									'title="Upload en cours" class="upload-spinner" role="status" aria-hidden="true">' +
+									'<i class="anticon anticon-loading"></i></span>');
+							},
+							error: function () {
+								alert('Ooops... Une erreur a été rencontrée');
+							},
+
+							success: function (response) {
+								//console.log(response);
+								if (response.status) {
+									clientData.csrf_token_name = response.csrf_token_name;
+									clientData.csrf_hash = response.csrf_hash;
+									$('input[name="' + targetName + '"]').val(response.fileName);
+									var previewBtn = currentFormGroup.find('.my-file-preview-btn');
+									previewBtn.attr('href', clientData.uploadPath + response.fileName);
+									dropifyInput.removeClass('upload-on-progress');
+									currentFormGroup.find('label span.upload-spinner').fadeOut();
+									currentFormGroup.find('label span.upload-spinner').remove();
+									previewBtn.fadeIn();
+									if (currentForm.find('.upload-on-progress').length < 1) {
+										submitBtn.removeAttr('disabled')
+									}
+								}
+							}
+						});
+					}
+				});
+			}
+		});
+		myDropify.on('dropify.beforeClear', function (event, element) {
+			var $this = $(element.element);
+			$this.parents('.form-group').find('input[type=hidden]').val('');
+			$this.parents('.form-group').find('.my-file-preview-btn').fadeOut();
+		});
+	}
 }
 
 function mySummerNote(element='', destroyBefore=false) {

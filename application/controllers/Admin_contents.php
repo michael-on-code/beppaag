@@ -175,7 +175,37 @@ class Admin_contents extends Pro_Controller{
     }
     public function home_page(){
         $this->data['pageTitle']="Modification du contenu de la page d'accueil";
-        $this->render('index');
+        includeDropifyAssets();
+        if($home = $this->input->post('home')){
+			setFormValidationRules([
+				[
+					'name'=>'home[site_director_name]',
+					'label'=>'Nom du Directeur',
+					'rules'=>'trim|required'
+				],
+				[
+					'name'=>'home[site_director_phrase]',
+					'label'=>'Mot du Directeur',
+					'rules'=>'trim|required'
+				],
+				[
+					'name'=>'home[site_director_photo]',
+					'label'=>'Photo du Directeur',
+					'rules'=>'trim|required'
+				],
+				[
+					'name'=>'home[site_director_signature]',
+					'label'=>'Signature du Directeur',
+					'rules'=>'trim'
+				],
+			]);
+			if($this->form_validation->run()){
+				$this->option_model->update_all_options($home);
+				get_success_message('Contenus de la page accueil mis à jour avec succès');
+				pro_redirect('contents/home-page');
+			}
+		}
+        $this->render('contents/home_page');
     }
     public function contact_page(){
         if($contact = $this->input->post('contact')){
@@ -216,6 +246,38 @@ class Admin_contents extends Pro_Controller{
         includeJQueryRepeaterAssets();
         $this->render('contents/contact');
     }
+
+    /*public function team(){
+    	includeDropifyAssets();
+		if($team = $this->input->post('team')){
+			//var_dump($contact);exit;
+			setFormValidationRules([
+				[
+					'name'=>'team[teams]',
+					'label'=>'Informatons de contacts',
+					'rules'=>'required'
+				],
+
+			]);
+			if($this->form_validation->run()){
+				if(isset($contact['contact_infos']) && !empty($contact['contact_infos'])){
+					foreach ($contact['contact_infos'] as $key=> $info){
+						if(!maybe_null_or_empty($info, 'label')){
+							unset($contact['contact_infos'][$key]);
+						}
+					}
+				}
+				$this->option_model->update_all_options($contact);
+				get_success_message('Contenus de la page contact mis à jour avec succès');
+				pro_redirect('contents/contact-page');
+			}else{
+				get_error_message();
+			}
+		}
+		$this->data['pageTitle']="Modification du contenu de la page équipe";
+		includeJQueryRepeaterAssets();
+		$this->render('contents/team');
+	}*/
 
 
 }
