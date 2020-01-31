@@ -412,7 +412,13 @@ jQuery(document).ready(function ($) {
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
     }
-
+	if ($('#my_newsticker').length) {
+		$("#my_newsticker").newsticker({
+			effect: "slide-h",
+			autoplay: true,
+			timer: 5000,
+		});
+	}
     $('img').Lazy();
     $('.lazy').lazy();
 

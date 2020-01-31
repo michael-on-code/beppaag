@@ -34,7 +34,8 @@
             </div>
             <div class="row">
                 <!--Local Box Start-->
-                <div class="col-md-3 col-sm-3 col-xs-6">
+				<div class="col-md-1"></div>
+                <div class="col-md-2 col-sm-2 col-xs-6">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('evaluations') ?>">
                             <img data-src="<?= $assetsUrl ?>public/images/report-symbol.png" alt="">
@@ -46,7 +47,7 @@
                 </div>
                 <!--Local Box End-->
                 <!--Local Box Start-->
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-2 col-sm-2 col-xs-6">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('events') ?>">
                             <img data-src="<?= $assetsUrl ?>public/images/calendar-symbol.png" alt="">
@@ -58,7 +59,7 @@
                 </div>
                 <!--Local Box End-->
                 <!--Local Box Start-->
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-2 col-sm-2 col-xs-6">
                     <div class="deprt-icon-box">
                         <a href="<?= site_url('blog') ?>">
                             <img data-src="<?= $assetsUrl ?>public/images/brochure-symbol.png" alt="">
@@ -69,7 +70,19 @@
                 </div>
                 <!--Local Box End-->
                 <!--Local Box Start-->
-                <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="col-md-2 col-sm-2 col-xs-6">
+                    <div class="deprt-icon-box">
+                        <a data-scroll-nav="1" href="<?= site_url('/') ?>">
+                            <img data-src="<?= $assetsUrl ?>public/images/agreement.png" alt="">
+                        </a>
+                        <h6> <a href="<?= site_url('evaluations') ?>">Coopération en évaluation</a>
+                        </h6>
+                        <a class="rm" href="<?= site_url('evaluations') ?>">Découvrir</a>
+                    </div>
+                </div>
+                <!--Local Box End-->
+				<!--Local Box Start-->
+                <div class="col-md-2 col-sm-2 col-xs-6">
                     <div class="deprt-icon-box">
                         <a data-scroll-nav="1" href="<?= site_url('/') ?>">
                             <img data-src="<?= $assetsUrl ?>public/images/analysis-symbol.png" alt="">

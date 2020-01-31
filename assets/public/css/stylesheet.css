@@ -14,6 +14,11 @@
         padding: 18px 17px;
     }
 }
+@media (max-width: 1200px) {
+    .newsticker .bn-title {
+        display: none!important;
+    }
+}
 
 @media (min-width: 1200px) {
     div#bs-example-navbar-collapse-1 ul {
@@ -256,6 +261,9 @@ body {
         display: flex;
         margin-top: 10px;
     }
+	.newsticker>ul{
+		left: 0px!important;
+	}
 
 }
 
@@ -1416,9 +1424,106 @@ ul.flag{
     margin-bottom: 20px;
 }
 
-p.MsoNormal, p font, p.MsoNormal span, .evaluation-box span, .evaluation-box li, .evaluation-box font {
+p.MsoNormal, p font, p.MsoNormal span, .evaluation-box span, .evaluation-box li, .evaluation-box font, .evaluation-box p.Default {
 	color: #000000!important;
 	font-size: 16px!important;
+	font-family: Arial!important;
 }
+/**************   News Ticker  **************/
 
 
+.newsticker {
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	position: relative;
+	overflow: hidden;
+}
+.newsticker>.bn-title {
+	width: auto;
+	height: 45px;
+	display: inline-block;
+	position: relative;
+}
+.newsticker>.bn-title>strong {
+	display: inline-block;
+	line-height: 45px;
+	font-size: 14px;
+	color: #ffffff;
+	height: 45px;
+	box-sizing: border-box;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.newsticker>ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 45px;
+	font-size: 14px;
+	left: 0px;
+}
+.newsticker>ul>li {
+	position: absolute;
+	height: 45px;
+	width: 100%;
+	line-height: 45px;
+	display: none;
+}
+.newsticker>ul>li>a {
+	text-decoration: none;
+	color: #ffffff;
+	overflow: hidden;
+	display: block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-weight: normal;
+}
+.newsticker>ul>li>a>span {
+	color: #ffffff;
+}
+.newsticker>ul>li>a:hover {
+	color: #ffffffb3;
+}
+.newsticker>.bn-navi {
+	width: 45px;
+	height: 45px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	display: none;
+}
+.newsticker>.bn-navi>span {
+	width: 20px;
+	height: 45px;
+	position: absolute;
+	top: 0;
+	cursor: pointer;
+	opacity: 0.3;
+	background-image: url(images/bn-arrows.png);
+	background-repeat: no-repeat;
+}
+.newsticker>.bn-navi>span:hover {
+	opacity: 1;
+}
+.newsticker>.bn-navi>span:first-child {
+	background-position: left center;
+	left: 0;
+}
+.newsticker>.bn-navi>span:last-child {
+	background-position: right center;
+	right: 0;
+}
+.newsticker:hover .bn-navi {
+	opacity: 1;
+}
+.newsticker .bn-title, .newsticker ul li a{
+	color : #ffffff;
+}
+.deprt-icon-box:hover {
+	padding: 20px 20px!important;
+}

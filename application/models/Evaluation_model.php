@@ -31,7 +31,7 @@ class Evaluation_model extends CI_Model
         return $years;
     }
 
-    public function getMinifiedAll($select = '*', $onlyActiveOnes=true, $page=0, $limit=8, $order=true, $orderByField='id', $orderBy='desc', $withFile=true){
+    public function getMinifiedAll($select = '*', $onlyActiveOnes=true, $page=0, $limit=8, $order=true, $orderByField='id', $orderBy='desc', $withFile=true, $withPaginationData = true){
         $this->db->select($select);
         $this->db->limit($limit, $page);
         if ($onlyActiveOnes) {
@@ -41,6 +41,9 @@ class Evaluation_model extends CI_Model
             $this->db->order_by($orderByField, $orderBy);
         }
         $evaluations = $this->db->get($this->_tables->evaluations)->result();
+        if(!$withPaginationData){
+        	return $evaluations;
+		}
         if($withFile){
             if(!empty($evaluations)){
                 foreach ($evaluations as $key=>$evaluation){

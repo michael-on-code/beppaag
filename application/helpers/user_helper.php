@@ -418,12 +418,12 @@ function get_menu_by_group($group)
                         ],
                     ]
                 ],
-                [
+                /*[
                     'title' => 'Newsletter',
                     'url' => pro_url('newsletter'),
                     'order' => 7,
                     'icon' => 'anticon anticon-idcard',
-                ],
+                ],*/
                 [
                     'title' => 'Contenu global',
                     'url' => pro_url('contents'),
@@ -448,10 +448,10 @@ function get_menu_by_group($group)
                             'title' => 'Pieds de page',
                             'url' => pro_url('contents/footer')
                         ],
-                        [
+                        /*[
                             'title' => 'Accueil',
                             'url' => pro_url('contents/home-page')
-                        ],
+                        ],*/
                         [
                             'title' => 'Contact',
                             'url' => pro_url('contents/contact-page')
@@ -468,12 +468,12 @@ function get_menu_by_group($group)
                     'order' => 9,
                     'icon' => 'anticon anticon-setting'
                 ),
-                array(
+                /*array(
                     'title' => 'Journal',
                     'url' => pro_url('logs'),
                     'order' => 7,
                     'icon' => 'anticon anticon-audit'
-                ),
+                ),*/
 
                 array(
                     'url' => pro_url('users'),
