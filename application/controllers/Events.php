@@ -23,7 +23,7 @@ class Events extends Public_Controller {
         redirect_if_id_is_not_valid($tagID, $this->_tables->tags, 'events', false, false);
         $tag = getTableByID($this->_tables->tags, $tagID);
         $this->data['pageTitle'] = 'Etiquette '.$tag['name'];
-        $page = (int)$this->input->get('page');
+        $page = abs((int)$this->input->get('page'));
         $tagevents = getAllInTable($this->_tables->tag_group, true, false, '', '',false, '', '', '', '', '', ['tag_id'=>$tagID]);
         $eventIDs=[];
         if(!empty($tagevents)){
@@ -42,7 +42,7 @@ class Events extends Public_Controller {
         redirect_if_id_is_not_valid($categoryID, $this->_tables->categories, 'events', false, false);
         $tag = getTableByID($this->_tables->categories, $categoryID);
         $this->data['pageTitle'] = 'Rubrique '.$tag['name'];
-        $page = (int)$this->input->get('page');
+        $page = abs((int)$this->input->get('page'));
         $this->data['events'] = $this->event_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID]);
         $totalRow = $this->event_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID], [], [], [], [], true);
         $this->data['links'] = getPaginationConfigAndLink(site_url('events'),$limit, $totalRow, $page);
@@ -54,7 +54,7 @@ class Events extends Public_Controller {
 
         if (trim($eventID) == "") {
             $this->data['pageTitle'] = 'Evènements';
-            $page = (int)$this->input->get('page');
+            $page = abs((int)$this->input->get('page'));
             $this->data['events'] = $this->event_model->getAll(true, true, true, 'true', 'id', 'desc', false, $limit = 6, true, $page);
             //var_dump($this->data['events']);exit;
             $this->data['links'] = getPaginationConfigAndLink(site_url('events'), $limit, getCountInTable($this->_tables->events, ['active' => 1]), $page);

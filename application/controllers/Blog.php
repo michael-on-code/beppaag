@@ -26,7 +26,7 @@ class Blog extends Public_Controller
         redirect_if_id_is_not_valid($tagID, $this->_tables->tags, 'blog', false, false);
         $tag = getTableByID($this->_tables->tags, $tagID);
         $this->data['pageTitle'] = 'Etiquette '.$tag['name'];
-        $page = (int)$this->input->get('page');
+        $page = abs((int)$this->input->get('page'));
         $tagPosts = getAllInTable($this->_tables->tag_group, true, false, '', '',false, '', '', '', '', '', ['tag_id'=>$tagID]);
         $postIDs=[];
         $this->data['posts']=[];
@@ -48,7 +48,7 @@ class Blog extends Public_Controller
         redirect_if_id_is_not_valid($categoryID, $this->_tables->categories, 'blog', false, false);
         $tag = getTableByID($this->_tables->categories, $categoryID);
         $this->data['pageTitle'] = 'Rubrique '.$tag['name'];
-        $page = (int)$this->input->get('page');
+        $page = abs((int)$this->input->get('page'));
         $this->data['posts'] = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID]);
         $totalRow = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID], [], [], [], [], true);
         $this->data['links'] = getPaginationConfigAndLink(site_url('blog'),$limit, $totalRow, $page);
@@ -60,7 +60,7 @@ class Blog extends Public_Controller
 
         if (trim($postID) == "") {
             $this->data['pageTitle'] = 'Actualités';
-            $page = (int)$this->input->get('page');
+            $page = abs((int)$this->input->get('page'));
             $this->data['posts'] = $this->post_model->getAll(true, true, true, 'true', 'id', 'desc', false, $limit = 9, true, $page);
             $this->data['links'] = getPaginationConfigAndLink(site_url('blog'), $limit, getCountInTable($this->_tables->posts, true, ['active' => 1]), $page);
             $this->render('blog/index');

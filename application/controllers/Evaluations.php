@@ -28,7 +28,7 @@ class Evaluations extends Public_Controller {
         $this->load->helper('form');
         $choose= 'Choisir ...';
         $this->data['pageTitle']= "Année d'évaluation : ".$year;
-        $page =  (int)$this->input->get('page');
+        $page =  abs((int)$this->input->get('page'));
         $limit = $this->_limit;
         $offset = $limit * $page;
 		$this->data['previousOffset']=$page-1;
@@ -52,7 +52,7 @@ class Evaluations extends Public_Controller {
         $choose= 'Choisir ...';
         $temporality = getTableByID($this->_tables->temporalities, $temporalityID);
         $this->data['pageTitle']= "Temporalité d'évaluation : ".maybe_null_or_empty($temporality, 'name');
-		$page =  (int)$this->input->get('page');
+		$page =  abs((int)$this->input->get('page'));
 		$limit = $this->_limit;
 		$offset = $limit * $page;
 		$this->data['previousOffset']=$page-1;
@@ -67,7 +67,7 @@ class Evaluations extends Public_Controller {
         includeEvaluationColirLibAssets();
         $this->render('evaluations/index');
     }
-    
+
     public function thematic($thematicSlug){
         $thematicID = (int) getIDBySlug($this->_tables->thematics, $thematicSlug);
         redirect_if_id_is_not_valid($thematicID, $this->_tables->thematics, 'evaluations', false, false);
@@ -78,7 +78,7 @@ class Evaluations extends Public_Controller {
         $postIDs=[];
         $this->data['evaluations']=[];
         $this->data['totalCount']=0;
-		$page =  (int)$this->input->get('page');
+		$page =  abs((int)$this->input->get('page'));
 		$limit = $this->_limit;
 		$offset = $limit * $page;
 		$this->data['previousOffset']=$page-1;
@@ -111,7 +111,7 @@ class Evaluations extends Public_Controller {
         $postIDs=[];
         $this->data['evaluations']=[];
         $this->data['totalCount']=0;
-		$page =  (int)$this->input->get('page');
+		$page =  abs((int)$this->input->get('page'));
 		$limit = $this->_limit;
 		$offset = $limit * $page;
 		$this->data['previousOffset']=$page-1;
@@ -139,7 +139,7 @@ class Evaluations extends Public_Controller {
             $this->load->helper('form');
             $choose= 'Choisir ...';
             $this->data['pageTitle']= 'Liste des Evaluations';
-			$page = (int)$this->input->get('page');
+			$page = abs((int)$this->input->get('page'));
 			$limit = $this->_limit;
 			$offset = $limit * $page;
             $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', '', [], false, $limit, $offset);
