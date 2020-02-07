@@ -1424,7 +1424,7 @@ ul.flag{
     margin-bottom: 20px;
 }
 
-p.MsoNormal, p font, p.MsoNormal span, .evaluation-box span, .evaluation-box li, .evaluation-box font, .evaluation-box p.Default {
+p.MsoNormal, p font, p.MsoNormal span, .evaluation-box span, .evaluation-box li, .evaluation-box font, .evaluation-box p.Default, .evaluation-box .panel-body p {
 	color: #000000!important;
 	font-size: 16px!important;
 	font-family: Arial!important;

@@ -271,12 +271,21 @@
 						</div>
 						<ul>
 							<li>
-								<input type="text" name="fullname" class="form-control" required
-									   placeholder="Saisissez votre nom">
+								<?= form_input([
+									'name'=>'fullname',
+									'class'=>'form-control',
+									'placeholder'=>'Saisissez votre nom',
+									'required'=>'',
+								]) ?>
 							</li>
 							<li>
-								<input type="email" name="email" class="form-control" required
-									   placeholder="Saisissez votre adresse mail">
+								<?= form_input([
+									'name'=>'email',
+									'class'=>'form-control',
+									'placeholder'=>'Saisissez votre nom',
+									'required'=>'',
+									'type'=>'email',
+								]) ?>
 							</li>
 							<li>
 								<button type="submit">Soumettre</button>

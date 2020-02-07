@@ -442,7 +442,9 @@ jQuery(document).ready(function ($) {
 				alert('Oopps... Une erreur a été rencontrée')
 			},
 			success: function (response) {
-				form.trigger('reset');
+				if(response.status){
+					form.trigger('reset');
+				}
 				button.removeAttr('disabled');
 				button.removeClass(grayBGClass);
 				var alertType = response.status ? "my-alert-success" : "my-alert-danger";
