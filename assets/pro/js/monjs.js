@@ -227,11 +227,21 @@ $(function () {
     }
 
     if ($('.my-datatable').length) {
+    	var buttonArray = [];
+    	if($('.my-datatable').hasClass('with-excel-button')){
+    		buttonArray.push({
+				extend: 'excel',
+				text: 'Télécharger en Excel'
+			},);
+		}
+    	//console.log(buttonArray);
         var table = $('.my-datatable').DataTable({
             columnDefs: [{
                 'targets': [0], /* column index */
                 'orderable': false, /* true or false */
             }],
+			dom: 'Blfrtip',
+			buttons : buttonArray,
             //stateSave: true,
             info: true,
             stripe: true,

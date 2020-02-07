@@ -21,7 +21,7 @@
             <p>Trouvez dans le tableau ci-dessous, la liste des évaluations enregistrées en mode brouillon</p>
             <div class="m-t-25">
 
-                <table class="table table-responsive-md table-hover wd-100p-f">
+                <table class="table table-responsive-md table-hover wd-100p-f my-datatable">
                     <thead>
                     <tr>
                         <?php

@@ -320,6 +320,15 @@ function includeFancyBoxAssets()
     $ci->data['headerCss'][] = $ci->data['assetsUrl'] . "pro/vendors/fancybox/jquery.fancybox.min.css";
 }
 
+function includeDatatableButtonsAssets(){
+	$ci =& get_instance();
+	$ci->data['headerCss'][] = "//cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css";
+	$ci->data['footerJs'][] = "//cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js";
+	$ci->data['footerJs'][] = "//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.62/pdfmake.min.js";
+	$ci->data['footerJs'][] = "//cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js";
+	$ci->data['footerJs'][] = "//cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js";
+}
+
 function includeDatatablesAssets()
 {
     $ci =& get_instance();

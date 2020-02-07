@@ -418,12 +418,12 @@ function get_menu_by_group($group)
                         ],
                     ]
                 ],
-                /*[
+                [
                     'title' => 'Newsletter',
                     'url' => pro_url('newsletter'),
                     'order' => 7,
                     'icon' => 'anticon anticon-idcard',
-                ],*/
+                ],
                 [
                     'title' => 'Contenu global',
                     'url' => pro_url('contents'),

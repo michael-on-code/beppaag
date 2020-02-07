@@ -14,7 +14,15 @@ class Admin_newsletter extends Pro_Controller{
     }
 
     public function index(){
-        $this->data['pageTitle']="Newsletter";
-        $this->render('index');
+    	$this->load->model('newsletter_model');
+        $this->data['pageTitle']="Liste des abonnés ayant souscrit à la Newsletter";
+        includeDatatablesAssets();
+		includeDatatableButtonsAssets();
+        $this->data['newsletters']= $this->newsletter_model->getAll();
+		$this->data['tableHeaders']=[
+			"Nom complet","Email", "Téléphone"
+		];
+        //var_dump($this->data['newsletters']);exit;
+        $this->render('newsletter/index');
     }
 }

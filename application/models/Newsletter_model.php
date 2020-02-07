@@ -24,6 +24,11 @@ class Newsletter_model extends CI_Model{
 		$this->db->update($this->_tableName, $data, ['email'=>$data['email']]);
 	}
 
+	public function getAll(){
+		$this->db->order_by('id', 'DESC');
+		return $this->db->get($this->_tableName)->result();
+	}
+
 
 	public function checkEmail($email){
 		$this->db->select('COUNT(id) as num');
