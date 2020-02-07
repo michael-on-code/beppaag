@@ -20,7 +20,6 @@ class Evaluations extends Public_Controller {
         $this->data['thematics']=getAllInTable($this->_tables->thematics, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
         $this->data['temporalities']=getAllInTable($this->_tables->temporalities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
         $this->data['years']=$this->evaluation_model->getDistinctYears(true, $choose);
-        //TODO convert page get into positive value
     }
 
     public function year($year){

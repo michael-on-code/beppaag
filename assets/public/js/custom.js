@@ -422,6 +422,41 @@ jQuery(document).ready(function ($) {
     $('img').Lazy();
     $('.lazy').lazy();
 
+    $('#newsletter_form').on('submit', function(e){
+    	e.preventDefault();
+    	var form = $(this);
+    	var button = form.find('button[type=submit]');
+    	var grayBGClass = 'grayish-color';
+    	var alertBox = form.find('div.alert');
+    	$.ajax({
+			url: clientData.newsletterUrl,
+			data: form.serialize(),
+			type: 'POST',
+			dataType: 'JSON',
+			cache: false,
+			beforeSend: function () {
+				button.attr('disabled', '');
+				button.addClass(grayBGClass);
+			},
+			error: function () {
+				alert('Oopps... Une erreur a été rencontrée')
+			},
+			success: function (response) {
+				form.trigger('reset');
+				button.removeAttr('disabled');
+				button.removeClass(grayBGClass);
+				var alertType = response.status ? "my-alert-success" : "my-alert-danger";
+				alertBox.html(response.message);
+				alertBox.addClass(alertType);
+				alertBox.fadeIn();
+				setTimeout(function(){
+					alertBox.fadeOut();
+					alertBox.removeClass(alertType);
+				}, 5000)
+			}
+		})
+	});
+
     if ($('select.my-choices').length) {
         const choices = new Choices('select.my-choices',
             {

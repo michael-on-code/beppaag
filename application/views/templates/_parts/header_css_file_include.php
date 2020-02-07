@@ -1139,10 +1139,10 @@
         font-size: 16px;
     }
 
-    .stay-connected input[type="submit"] {
+    .stay-connected input[type="submit"], .stay-connected button[type="submit"] {
         width: 100%;
         border: 0px;
-        background: <?= $secondaryColor ?>;
+        background: <?= $mainColor ?>;
         color: #fff;
         height: 55px;
         line-height: 55px;
@@ -1152,8 +1152,8 @@
         font-weight: 500;
     }
 
-    .stay-connected input[type="submit"]:hover {
-        background: #222;
+    .stay-connected input[type="submit"]:hover, .stay-connected button[type="submit"]:hover {
+        background: <?= $mainColor ?>;
         color: #fff;
     }
 

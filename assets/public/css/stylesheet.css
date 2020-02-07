@@ -1530,4 +1530,15 @@ p.MsoNormal, p font, p.MsoNormal span, .evaluation-box span, .evaluation-box li,
 .width-100p {
 	width: 100%;
 }
+button.grayish-color{
+	background: #808080!important;
+}
+.alert.my-alert-success{
+	background-color: #358a12;
+	border-color: #358a12;
+}
+.alert.my-alert-danger{
+	background-color: #da2e2e;
+	border-color: #da2e2e;
+}
 
