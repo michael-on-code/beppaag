@@ -73,36 +73,6 @@
 							getFieldInfo('Dimensions recommandées : 445x350 Format : JPG|PNG|JPEG Taille Max : 1M');
 							?>
 						</div>
-						<div class="form-group ">
-							<?php echo form_label($title="Attacher la signature du directeur");
-							$target ='site_director_signature';
-							$file = set_value($name="home[$target]", maybe_null_or_empty($options, $target, true));
-							?>
-							<a class="my-file-preview-btn"
-							   data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
-							   data-placement="top" title="Visualiser la signature du directeur" target="_blank"
-							   href="<?= $file ? $uploadPath . $file : '#' ?>"> <span
-									class="anticon anticon-cloud-upload"></span></a>
-							<?php
-							$data = [
-								'name' => '',
-								'attributes' => [
-									'data-target' => $target,
-									'data-target-name' => $name,
-								],
-								'title' => $title,
-							];
-							if ($file) {
-								$data['value'] = $uploadPath . $file;
-							} else {
-								$data['value'] = '';
-							}
-							echo form_hidden($name, set_value($name, $file));
-							get_form_upload($data, $extensions = 'png', '1M', false, 'auto-upload ignore');
-							echo get_form_error($name);
-							getFieldInfo('Format : PNG Taille Max : 1M');
-							?>
-						</div>
 
 						<div class="form-group col-md-12">
 							<?php getFormSubmit('Modifier', 'pull-right') ?>

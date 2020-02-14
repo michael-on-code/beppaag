@@ -22,7 +22,7 @@ class Upload extends Pro_Controller{
                 if($data = upload_data(array(
                     'upload_path' => FCPATH . 'uploads',
                     'allowed_types' => 'jpg|png|jpeg|pdf|doc|docx|ico',
-                    'max_size' => 1024 * 5,
+                    'max_size' => 1024 * 10,
                     'file_name'=>getSlugifyString($filez['name'], false, true, false, 0)
                 ), $uploadNames=[$this->input->post('name')], true, false)){
                     foreach ($uploadNames as $name) {

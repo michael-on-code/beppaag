@@ -20,22 +20,6 @@
 <!--Slider End-->
 <!--Main Content Start-->
 <div class="main-content">
-	<!--<section class="Mayor-video-msg">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-sm-5">
-					<div class="city-tour gallery"> <strong> Mayor of City </strong> <a href="http://youtu.be/VVvgm7AhFc8" data-rel="prettyPhoto" title="City Tour"><img data-src="<? /*= $assetsUrl */ ?>public/images/playicon.png" alt=""></a> <img class="width-100p" data-src="<? /*= $assetsUrl */ ?>public/images/mik.jpg" alt=""> </div>
-				</div>
-				<div class="col-md-8 col-sm-7">
-					<div class="Mayor-welcome">
-						<h5>Welcome to Visit your City</h5>
-						<p>The Hightst Glory of the Citizen’s revolution was this; it connected in one indissoluble bond the principles of civil government with the principles of humanity. Saepe eveniet ut et voluptates etena repudiandae sint et molestiae non recusandae.</p>
-						<h6>Edward Robert</h6>
-						<strong>Mayor of the City</strong> </div>
-				</div>
-			</div>
-		</div>
-	</section>-->
 	<section class="wf100 p80 h2-local-brands depart-info">
 		<div class="container">
 			<div class="row">
@@ -117,16 +101,7 @@
 						<div class="Mayor-msg">
 							<div class="Mayor-thumb"><img
 									data-src="<?= getUploadedImageBySize($options['site_director_photo'], '445x350') ?>"
-									alt="<?= $options['site_director_name'] ?>"> <span class="Mayor-sig">
-									<?php if ($options['site_director_signature']) {
-										?>
-										<img
-											data-src="<?= getUploadedImageBySize($options['site_director_signature']) ?>"
-											alt="<?= $options['site_director_name'] ?>">
-										<?php
-									} ?>
-
-								</span></div>
+									alt="<?= $options['site_director_name'] ?>"></div>
 							<div class="Mayor-text"><span>Le mot du Directeur</span>
 								<h5><?= $options['site_director_name'] ?></h5>
 								<p> <?= $options['site_director_phrase'] ?></p>

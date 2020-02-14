@@ -1542,3 +1542,18 @@ button.grayish-color{
 	border-color: #da2e2e;
 }
 
+.Mayor-text span, .Mayor-text p {
+	text-align: justify;
+	font-family: 'Lato', serif;
+	font-size: 14px;
+	color: #fff;
+	line-height: 26px;
+	margin: 0 0 5px;
+	text-shadow: 0 7px 10px rgba(0, 0, 0, .12);
+}
+
+@media (max-width: 768px){
+	.Mayor-text span, .Mayor-text p {
+		font-size: 18px;
+	}
+}

@@ -428,7 +428,7 @@ function setLeadingAuthorityFormValidation($edit = false, $leadingAuthorityID = 
     }
 }
 
-function getEvaluationYears($backToNYear = 20, $forSelect2 = true)
+function getEvaluationYears($backToNYear = 40, $forSelect2 = true)
 {
     $actualYear = date('Y');
     $returnArray = [];
@@ -839,9 +839,67 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                     $data['value'] = '';
                                 }
                                 echo form_hidden($name, set_value($name, $file));
-                                get_form_upload($data, $extensions = 'pdf', '5M', true, 'auto-upload');
+                                get_form_upload($data, $extensions = 'pdf', '10M', true, 'auto-upload');
                                 echo get_form_error($name);
-                                getFieldInfo('Format : PDF Taille Max : 5M');
+                                getFieldInfo('Format : PDF Taille Max : 10M');
+                                ?>
+                            </div>
+							<div class="form-group col-md-6">
+                                <?php echo form_label($title = "Attacher ficher Annexe 1");
+                                $file = set_value($name = 'evaluation[annexe_file_1]', maybe_null_or_empty($evaluation, 'annexe_file_1', true));
+                                ?>
+                                <a class="my-file-preview-btn"
+                                   data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
+                                   data-placement="top" title="Visualiser le fichier" target="_blank"
+                                   href="<?= $file ? $uploadPath . $file : '#' ?>"> <span
+                                            class="anticon anticon-cloud-upload"></span></a>
+                                <?php
+                                $data = [
+                                    'name' => '',
+                                    'attributes' => [
+                                        'data-target' => 'annexe_file_1',
+                                        'data-target-name' => $name,
+                                    ],
+                                    'title' => $title,
+                                ];
+                                if ($file) {
+                                    $data['value'] = $uploadPath . $file;
+                                } else {
+                                    $data['value'] = '';
+                                }
+                                echo form_hidden($name, set_value($name, $file));
+                                get_form_upload($data, $extensions = 'pdf', '10M', false, 'auto-upload');
+                                echo get_form_error($name);
+                                getFieldInfo('Format : PDF Taille Max : 10M');
+                                ?>
+                            </div>
+							<div class="form-group col-md-6">
+                                <?php echo form_label($title = "Attacher ficher Annexe 2");
+                                $file = set_value($name = 'evaluation[annexe_file_2]', maybe_null_or_empty($evaluation, 'annexe_file_2', true));
+                                ?>
+                                <a class="my-file-preview-btn"
+                                   data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
+                                   data-placement="top" title="Visualiser le fichier" target="_blank"
+                                   href="<?= $file ? $uploadPath . $file : '#' ?>"> <span
+                                            class="anticon anticon-cloud-upload"></span></a>
+                                <?php
+                                $data = [
+                                    'name' => '',
+                                    'attributes' => [
+                                        'data-target' => 'annexe_file_2',
+                                        'data-target-name' => $name,
+                                    ],
+                                    'title' => $title,
+                                ];
+                                if ($file) {
+                                    $data['value'] = $uploadPath . $file;
+                                } else {
+                                    $data['value'] = '';
+                                }
+                                echo form_hidden($name, set_value($name, $file));
+                                get_form_upload($data, $extensions = 'pdf', '10M', false, 'auto-upload');
+                                echo get_form_error($name);
+                                getFieldInfo('Format : PDF Taille Max : 10M');
                                 ?>
                             </div>
 

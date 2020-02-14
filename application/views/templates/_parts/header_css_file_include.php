@@ -252,15 +252,6 @@
         display: block;
     }
 
-    .Mayor-text span, .Mayor-text p {
-        font-family: 'Lato', serif;
-        font-size: 16px;
-        color: #fff;
-        line-height: 26px;
-        margin: 0 0 25px;
-        text-shadow: 0 7px 10px rgba(0, 0, 0, .12);
-    }
-
     .Mayor-text h5 {
         margin: 0 0 35px;
         color: #fff;
