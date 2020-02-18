@@ -7,8 +7,8 @@
         <img src="<?= getUploadedImageBySize($options['siteLogo'], '150x150')?>" alt="">
     </div>
     <div class="banner-text-container">
-        <h1 class="text-white m-b-20 font-weight-normal">Portail Web des Evaluations</h1>
-        <p class="text-white font-size-16 lh-2 w-80 opacity-08">Bienvenue au portail web des Evaluations. Administrer
+        <h1 class="text-white m-b-20 font-weight-normal">Portail Web du Bureau de l'Evaluation des Politiques Publiques</h1>
+        <p class="text-white font-size-16 lh-2 w-80 opacity-08">Bienvenue au portail web du Bureau de l'Evaluation des Politiques Publiques. Administrez
             ici, les évaluations des politiques publiques</p>
     </div>
     <div class="d-flex justify-content-between login-footer">
