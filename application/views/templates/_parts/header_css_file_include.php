@@ -4414,9 +4414,9 @@
     }
 
     .tags-widget a:hover {
-        background: <?= $mainColor ?>;
+        background: <?= $mainColor ?>!important;
         color: #fff;
-        border-color: <?= $mainColor ?>;
+        border-color: <?= $mainColor ?>!important;;
     }
 
     .issues-content h3, .issues-content h4 {

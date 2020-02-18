@@ -96,14 +96,14 @@ if (isset($clientData) && !empty($clientData)) {
     <?php
 }
 ?>
-<script src="<?= $assetsUrl ?>public/js/script34b3.js"></script>
+<script src="<?= $assetsUrl ?>public/js/script34b3.js?v=1.001"></script>
 <script src="<?= $assetsUrl ?>public/js/owl.carousel.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/scrollIt.min.js"></script>
 <script src="<?= $assetsUrl ?>public/js/scrollUp.js"></script>
 <script src="<?= $assetsUrl ?>public/js/jquery.ticker.js"></script>
 <script src="<?= $assetsUrl ?>public/js/jquery.prettyPhoto.js"></script>
-<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.21"></script>
+<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.22"></script>
 <script src="<?= $assetsUrl ?>public/js/ajaxify.js?v=1.001"></script>
 </body>
 

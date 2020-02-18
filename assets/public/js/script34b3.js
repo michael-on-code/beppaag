@@ -1,7 +1,4 @@
 $(document).ready(function () {
-    $('.btn-search').click(function () {
-        $(".search-block").hasClass('show') ? $(".search-block").removeClass('show') : $(".search-block").addClass('show');
-    });
     $('#btn-main-menu').click(function () {
         $("body > header").hasClass('open') ? $("body > header, #btn-main-menu").removeClass('open') : $("body > header, #btn-main-menu").addClass('open');
     });

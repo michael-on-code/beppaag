@@ -14,18 +14,18 @@ class Evaluations extends Public_Controller {
         $this->load->model('evaluation_model');
         $this->load->helper('evaluation');
         $this->_tables = getEvaluationTablesNames();
-        $choose= 'Choisir ...';
+		$this->_choose= 'Choisir ...';
         $this->_limit = 12;
-        $this->data['sectors']=getAllInTable($this->_tables->sectors, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name', $choose);
-        $this->data['thematics']=getAllInTable($this->_tables->thematics, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
-        $this->data['temporalities']=getAllInTable($this->_tables->temporalities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
-        $this->data['years']=$this->evaluation_model->getDistinctYears(true, $choose);
+        $this->data['sectors']=getAllInTable($this->_tables->sectors, true, true, 'id', 'DESC', true, 'id', 'name', true,'id, name', $this->_choose);
+        $this->data['thematics']=getAllInTable($this->_tables->thematics, true, true, 'id', 'DESC', true, 'id', 'name', true,'id, name',$this->_choose);
+        $this->data['temporalities']=getAllInTable($this->_tables->temporalities, true, true, 'id', 'DESC', true, 'id', 'name', true,'id, name',$this->_choose);
+        $this->data['years']=$this->evaluation_model->getDistinctYears(true, $this->_choose);
     }
 
     public function year($year){
         $year=(int)$year;
         $this->load->helper('form');
-        $choose= 'Choisir ...';
+        $this->_choose= 'Choisir ...';
         $this->data['pageTitle']= "Année d'évaluation : ".$year;
         $page =  abs((int)$this->input->get('page'));
         $limit = $this->_limit;
@@ -39,16 +39,16 @@ class Evaluations extends Public_Controller {
 
         $this->data['countEnd']=$start+$countResult;
         $this->data['countResult']=$countResult;
-        $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
+        $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'id', 'name', true,'id, name',$this->_choose);
         includeEvaluationColirLibAssets();
         $this->render('evaluations/index');
     }
 
-    public function temporality($temporalitySlug){
-        $temporalityID = (int) getIDBySlug($this->_tables->temporalities, $temporalitySlug);
+    public function temporality($temporalityID){
+        //$temporalityID = (int) getIDBySlug($this->_tables->temporalities, $temporalitySlug);
         redirect_if_id_is_not_valid($temporalityID, $this->_tables->temporalities, 'evaluations', false, false);
         $this->load->helper('form');
-        $choose= 'Choisir ...';
+        $this->_choose= 'Choisir ...';
         $temporality = getTableByID($this->_tables->temporalities, $temporalityID);
         $this->data['pageTitle']= "Temporalité d'évaluation : ".maybe_null_or_empty($temporality, 'name');
 		$page =  abs((int)$this->input->get('page'));
@@ -62,15 +62,15 @@ class Evaluations extends Public_Controller {
         $this->data['currentOffset']=$page+1;
         $this->data['countEnd']=$start+$countResult;
         $this->data['countResult']=$countResult;
-        $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
+        $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'id', 'name', true,'id, name',$this->_choose);
         includeEvaluationColirLibAssets();
         $this->render('evaluations/index');
     }
 
-    public function thematic($thematicSlug){
-        $thematicID = (int) getIDBySlug($this->_tables->thematics, $thematicSlug);
+    public function thematic($thematicID){
+        //$thematicID = (int) getIDBySlug($this->_tables->thematics, $thematicSlug);
         redirect_if_id_is_not_valid($thematicID, $this->_tables->thematics, 'evaluations', false, false);
-        $choose= 'Choisir ...';
+        $this->_choose= 'Choisir ...';
         $allthematics = getAllInTable($this->_tables->thematic_group, true, false, '', '',false, '', '', '', '', '', ['thematic_id'=>$thematicID]);
         $thematic = getTableByID($this->_tables->thematics, $thematicID);
         //var_dump($thematic);exit;
@@ -95,15 +95,15 @@ class Evaluations extends Public_Controller {
         $this->data['currentOffset']=$page+1;
         $this->data['countEnd']=$start+$countResult;
         $this->data['countResult']=$countResult;
-        $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
+        $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'id', 'name', true,'id, name',$this->_choose);
         includeEvaluationColirLibAssets();
         $this->render('evaluations/index');
     }
 
-    public function sector($sectorSlug){
-        $sectorID = (int) getIDBySlug($this->_tables->sectors, $sectorSlug);
+    public function sector($sectorID){
+        //$sectorID = (int) getIDBySlug($this->_tables->sectors, $sectorSlug);
         redirect_if_id_is_not_valid($sectorID, $this->_tables->sectors, 'evaluations', false, false);
-        $choose= 'Choisir ...';
+        $this->_choose= 'Choisir ...';
         $allSectors = getAllInTable($this->_tables->sector_group, true, false, '', '',false, '', '', '', '', '', ['sector_id'=>$sectorID]);
         $sector = getTableByID($this->_tables->sectors, $sectorID);
         //var_dump($sector);exit;
@@ -128,43 +128,126 @@ class Evaluations extends Public_Controller {
         $this->data['currentOffset']=$page+1;
         $this->data['countEnd']=$start+$countResult;
         $this->data['countResult']=$countResult;
-        $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
+        $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'id', 'name', true,'id, name',$this->_choose);
         includeEvaluationColirLibAssets();
         $this->render('evaluations/index');
     }
 
     public function index($evaluationID=""){
-        if(trim($evaluationID)==''){
-            $this->load->helper('form');
-            $choose= 'Choisir ...';
-            $this->data['pageTitle']= 'Liste des Evaluations';
-			$page = abs((int)$this->input->get('page'));
+		if($this->input->get('search')){
+			//search
+			$this->data['pageTitle']='Recherche avancée';
+			$searchParams = $this->input->get('search');
+			$queryData['evaluation_ids']=[];
+			$queryData['year']=null;
+			$queryData['temporality_id']=null;
+			$queryData['sector_id']=null;
+			$queryData['thematic_id']=null;
+			$queryData['contracting_authority_id']=null;
+			//years
+			$year = abs((int) maybe_null_or_empty($searchParams, 'year', true));
+			$sectorID = abs((int) maybe_null_or_empty($searchParams, 'sector_id', true));
+			$thematicID = abs((int) maybe_null_or_empty($searchParams, 'thematic_id', true));
+			$temporalityID = abs((int) maybe_null_or_empty($searchParams, 'temporality_id', true));
+			$contractingAuthorityID = abs((int) maybe_null_or_empty($searchParams, 'contracting_authority_id', true));
+			$keyword = trim(maybe_null_or_empty($searchParams, 'keyword', true));
+			if($year){
+				$queryData['year']=$year;
+			}
+			if($sectorID){
+				$allSectors = getAllInTable($this->_tables->sector_group, true, false, '', '',false, '', '', '', '', '', ['sector_id'=>$sectorID]);
+				if(!empty($allSectors)){
+					foreach ($allSectors as $mySector){
+						if(!in_array((int) $mySector['evaluation_id'], $queryData['evaluation_ids'])){
+							$queryData['evaluation_ids'][]=(int) $mySector['evaluation_id'];
+						}
+					}
+				}
+			}
+			if($thematicID){
+				$allthematics = getAllInTable($this->_tables->thematic_group, true, false, '', '',false, '', '', '', '', '', ['thematic_id'=>$thematicID]);
+				if(!empty($allthematics)){
+					foreach ($allthematics as $mythematic){
+						if(!in_array((int) $mythematic['evaluation_id'], $queryData['evaluation_ids'])){
+							$queryData['evaluation_ids'][]= (int) $mythematic['evaluation_id'];
+						}
+
+					}
+				}
+			}
+			if($temporalityID){
+				$queryData['temporality_id']=$temporalityID;
+			}
+			if($contractingAuthorityID){
+				$queryData['contracting_authority_id']=$contractingAuthorityID;
+			}
+			if($keyword && $keyword!=''){
+				$resultsFromKeyword = $this->evaluation_model->getEvaluationIDsByKeyword($keyword);
+				if(!empty($resultsFromKeyword)){
+					foreach ($resultsFromKeyword as $result){
+						if(!in_array( (int) $result->evaluation_id, $queryData['evaluation_ids'])){
+							$queryData['evaluation_ids'][]= (int) $result->evaluation_id;
+						}
+					}
+				}
+			}
+			//var_dump($queryData);exit;
+			$page =  abs((int)$this->input->get('page'));
 			$limit = $this->_limit;
 			$offset = $limit * $page;
-            $this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', '', [], false, $limit, $offset);
-            $countResult=count($this->data['evaluations']);
-            $this->data['totalCount']=$this->evaluation_model->getAll(true, true, true, false, '', '', '', true);
-            $this->data['countStart']=($start=$page*$limit)+1;
-            $this->data['currentOffset']=$page+1;
 			$this->data['previousOffset']=$page-1;
-            $this->data['countEnd']=$start+$countResult;
-            $this->data['countResult']=$countResult;
-            $this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'slug', 'name', true,'slug, name',$choose);
-            includeEvaluationColirLibAssets();
-            $this->render('evaluations/index');
-        }else{
-            //$evaluationID = (int) getIDBySlug($this->_tables->evaluations, $evaluationID);
-            redirect_if_id_is_not_valid($evaluationID, $this->_tables->evaluations, 'evaluations', false, false, ['active'=>1]);
-            $this->data['evaluation']=$this->evaluation_model->getByID($evaluationID, true);
-            $this->data['sidebarClass']='col-md-3';
-            $this->data['pageTitle']= $this->data['evaluation']['title'];
-            //            SEO
-            $this->data['pageUrl']=getPermalink($this->data['evaluation']['id'], 'evaluations');
-            $this->data['pageDefaultImageUrl']=getUploadedImageBySize($this->data['evaluation']['cover_photo'], '848x420');
-            $this->data['pageDescription']=myWordLimiter(strip_tags($this->data['evaluation']['description']), 30);
-            //var_dump($this->data['evaluation']['recommendations'][0]);exit;
-            $this->render('evaluations/single');
-        }
+			$this->data['totalCount']=$this->evaluation_model->getAll(true, true, true, true, true, 'id', 'desc', true, $queryData['year'], $queryData['temporality_id'], $queryData['evaluation_ids'], false, $limit, $offset, $queryData['contracting_authority_id']);
+			$this->data['evaluations']=$this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, $queryData['year'], $queryData['temporality_id'], $queryData['evaluation_ids'], false, $limit, $offset, $queryData['contracting_authority_id']);
+			$countResult=count($this->data['evaluations']);
+			$this->data['countStart']=($start=$page*$limit)+1;
+			$this->data['currentOffset']=$page+1;
+			$this->data['countEnd']=$start+$countResult;
+			$this->data['countResult']=$countResult;
+			$this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'id', 'name', true,'id, name',$this->_choose);
+			includeEvaluationColirLibAssets();
+			$this->render('evaluations/index');
+		}
+		else{
+			if(trim($evaluationID)==''){
+				$this->load->helper('form');
+				$this->_choose= 'Choisir ...';
+				$this->data['pageTitle']= 'Liste des Evaluations';
+				$page = abs((int)$this->input->get('page'));
+				$limit = $this->_limit;
+				$offset = $limit * $page;
+				$this->data['evaluations'] = $this->evaluation_model->getAll(true, true, true, false, true, 'id', 'desc', false, '', '', [], false, $limit, $offset);
+				$countResult=count($this->data['evaluations']);
+				$this->data['totalCount']=$this->evaluation_model->getAll(true, true, true, false, '', '', '', true);
+				$this->data['countStart']=($start=$page*$limit)+1;
+				$this->data['currentOffset']=$page+1;
+				$this->data['previousOffset']=$page-1;
+				$this->data['countEnd']=$start+$countResult;
+				$this->data['countResult']=$countResult;
+				$this->data['contractingAuthorities']=getAllInTable($this->_tables->contracting_authorities, true, true, 'id', 'DESC', true, 'id', 'name', true,'id, name',$this->_choose);
+				includeEvaluationColirLibAssets();
+				$this->render('evaluations/index');
+			}else{
+				//$evaluationID = (int) getIDBySlug($this->_tables->evaluations, $evaluationID);
+				redirect_if_id_is_not_valid($evaluationID, $this->_tables->evaluations, 'evaluations', false, false, ['active'=>1]);
+				$this->data['evaluation']=$this->evaluation_model->getByID($evaluationID, true);
+				$this->data['sidebarClass']='col-md-3';
+				$this->data['pageTitle']= $this->data['evaluation']['title'];
+				//            SEO
+				$this->data['pageUrl']=getPermalink($this->data['evaluation']['id'], 'evaluations');
+				$this->data['pageDefaultImageUrl']=getUploadedImageBySize($this->data['evaluation']['cover_photo'], '848x420');
+				$this->data['pageDescription']=myWordLimiter(strip_tags($this->data['evaluation']['description']), 30);
+				//var_dump($this->data['evaluation']['recommendations'][0]);exit;
+				$this->render('evaluations/single');
+			}
+		}
         
     }
+
+    public function advanced_search(){
+    	if(!$this->input->post('search')){
+    		redirect('evaluations');
+		}else{
+
+		}
+	}
 }

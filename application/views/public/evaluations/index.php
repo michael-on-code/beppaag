@@ -18,12 +18,14 @@ getBreadcrump([
             <div class="row">
                 <div class="col-md-12">
                     <div class="s002">
-                        <form>
+						<?= form_open(site_url('evaluations'), [
+							'method'=>'get'
+						]) ?>
                             <div class="inner-form">
                                 <div class="input-field col-md-2 col-sm-3 col-xs-6">
                                     <label for="" style="">Année</label>
                                     <?=
-                                    form_dropdown('year', $years, '', [
+                                    form_dropdown($name='search[year]', $years, set_value($name), [
                                         'class' => 'form-control'
                                     ]);
                                     ?>
@@ -31,7 +33,7 @@ getBreadcrump([
                                 <div class="input-field col-md-2 col-sm-3 col-xs-6">
                                     <label for="" style="">Secteur</label>
                                     <?=
-                                    form_dropdown('sector', $sectors, '', [
+                                    form_dropdown($name='search[sector_id]', $sectors, set_value($name), [
                                         'class' => 'form-control'
                                     ]);
                                     ?>
@@ -40,7 +42,7 @@ getBreadcrump([
                                 <div class="input-field col-md-2 col-sm-3 col-xs-6">
                                     <label for="" style="">Thématique</label>
                                     <?=
-                                    form_dropdown('thematic', $thematics, '', [
+                                    form_dropdown($name='search[thematic_id]', $thematics, set_value($name), [
                                         'class' => 'form-control'
                                     ]);
                                     ?>
@@ -48,7 +50,7 @@ getBreadcrump([
                                 <div class="input-field col-md-2 col-sm-3 col-xs-6">
                                     <label for="" style="">Temporalité</label>
                                     <?=
-                                    form_dropdown('temporality', $temporalities, '', [
+                                    form_dropdown($name='search[temporality_id]', $temporalities, set_value($name), [
                                         'class' => 'form-control'
                                     ]);
                                     ?>
@@ -56,7 +58,7 @@ getBreadcrump([
                                 <div class="input-field col-md-2 col-sm-3 col-xs-6">
                                     <label for="" style="">Autorité contractante</label>
                                     <?=
-                                    form_dropdown('contractingAuthority', $contractingAuthorities, '', [
+                                    form_dropdown($name='search[contracting_authority_id]', $contractingAuthorities, set_value($name), [
                                         'class' => 'form-control'
                                     ]);
                                     ?>
@@ -65,16 +67,17 @@ getBreadcrump([
                                     <label for="" style="">Mot clé</label>
                                     <?=
                                     form_input([
-                                        'name' => 'keyword',
-                                        'placeholder' => 'Saisir mot clé'
+                                        'name' => $name='search[keyword]',
+                                        'placeholder' => 'Saisir mot clé',
+										'value'=>set_value($name)
                                     ]);
                                     ?>
                                 </div>
                                 <div class="input-field  search-btn-container">
-                                    <button class="btn-search" type="button"><i class="fas fa-search"></i></button>
+                                    <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
                                 </div>
                             </div>
-                        </form>
+						<?= form_close() ?>
                     </div>
                 </div>
             </div>
@@ -171,9 +174,15 @@ getBreadcrump([
                                                 <div class="pull-right pagination-content">
 													<?php
 													if ($previousOffset>=0) {
+
+														if($previousOffset < 1){
+															$linkUrl = getAddPaginationToUrl();
+														}else{
+															$linkUrl = getAddPaginationToUrl('', $previousOffset);
+														}
 														?>
 														<a class="btn-search" style="padding: 1px 3px 1px 7px"
-														   href="<?= $previousOffset < 1 ? current_url() : current_url()."?page=$previousOffset" ?>">
+														   href="<?= $linkUrl ?>">
 															<i class="fa fa-angle-left"></i>
 														</a>
 														<?php
@@ -183,9 +192,14 @@ getBreadcrump([
                                                         / <?= $totalCount ?></b>
                                                     <?php
                                                     if ($totalCount > $countEnd) {
+                                                    	if($currentOffset == 0){
+                                                    		$linkUrl = getAddPaginationToUrl();
+														}else{
+                                                    		$linkUrl = getAddPaginationToUrl('', $currentOffset);
+														}
                                                         ?>
                                                         <a class="btn-search"
-                                                           href="<?= $currentOffset == 0 ? site_url('evaluations') : current_url()."?page=$currentOffset" ?>">
+                                                           href="<?= $linkUrl ?>">
                                                             <i class="fa fa-angle-right"></i>
                                                         </a>
                                                         <?php

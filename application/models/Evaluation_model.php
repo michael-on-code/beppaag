@@ -18,6 +18,7 @@ class Evaluation_model extends CI_Model
     public function getDistinctYears($forSelect2=false, $defaultSelect2FirstOptionValue=''){
         $this->db->distinct();
         $this->db->select('year');
+		$this->db->order_by('year', 'asc');
         $years = $this->db->get($this->_tables->evaluations)->result_array();
         if($forSelect2){
             $temp=[''=>$defaultSelect2FirstOptionValue];
@@ -86,11 +87,20 @@ class Evaluation_model extends CI_Model
 		return $this->db->get($this->_tables->evaluations)->result();
 	}
 
+	public function getEvaluationIDsByKeyword($keyword){
+    	$tables = $this->_tables;
+    	$this->db->select('evaluation_id');
+    	$this->db->like('value', $keyword);
+    	return $this->db->get($this->_tables->meta)->result();
+    	//$this->db->or_like()
+	}
+
     public function getAll($onlyActiveOnes = true, $sectorsInString = true,
                            $thematicsInString = true, $resultInArray = true,
                            $order=true, $orderByField='id',
                            $orderBy='desc', $countResult=false, $checkYear='',
-                           $checkTemporality='', $checkEvaluationIDsIn=[], $onlyDeletedOnes=false, $limit=0, $offset=0)
+                           $checkTemporality='', $checkEvaluationIDsIn=[],
+						   $onlyDeletedOnes=false, $limit=0, $offset=0, $checkContractingAuthority='')
     {
         $tables = $this->_tables;
         $recommendationTables = getRecommendationTablesNames();
@@ -121,6 +131,9 @@ class Evaluation_model extends CI_Model
         }
         if($checkYear){
             $this->db->where(['year' => $checkYear]);
+        }
+        if($checkContractingAuthority){
+            $this->db->where(['contracting_authority_id' => $checkContractingAuthority]);
         }
         if($checkTemporality){
             $this->db->where(['temporality_id' => $checkTemporality]);

@@ -447,6 +447,27 @@ function getFrenchMonths()
     ];
 }
 
+function current_full_url(){
+	$url = current_url();
+	return $_SERVER['QUERY_STRING'] ? $url.'?'.$_SERVER['QUERY_STRING'] : $url;
+}
+
+function getAddPaginationToUrl($url='', $page=''){
+	if($url==''){
+		$url = current_full_url();
+	}
+	$urlParts = parse_url($url);
+	$params= [];
+	if(isset($urlParts['query'])){
+		parse_str($urlParts['query'], $params);
+	}
+	unset($params['page']);
+	$params['page']=$page;
+	$urlParts['query'] = http_build_query($params);
+	return $urlParts['scheme'] . '://' . $urlParts['host'] . $urlParts['path'] . '?' . $urlParts['query'];
+
+}
+
 function getAllInTable($tableName, $isArray = true, $order = true, $orderByField = 'id', $orderBy = 'desc',
                        $forSelect2 = false, $keyFieldForSelect2 = 'id', $valueFieldForSelect2 = 'name',
                        $initialBlankValueForSelect2 = true, $specificDBSelect = "*",
