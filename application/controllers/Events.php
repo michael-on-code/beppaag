@@ -61,6 +61,7 @@ class Events extends Public_Controller {
             $this->render('events/index');
         } else {
             //$eventID = (int) getIDBySlug($this->_tables->events, $eventID);
+			$eventID = abs((int)$eventID);
             redirect_if_id_is_not_valid($eventID, $this->_tables->events, 'events', false, false,['active'=>1]);
             $this->data['event']=$this->event_model->getByID($eventID, false, true, true, true);
             $tags=[];

@@ -66,6 +66,7 @@ class Blog extends Public_Controller
             $this->render('blog/index');
         } else {
             //$postID = (int) getIDBySlug($this->_tables->posts, $postID);
+			$postID = abs((int)$postID);
             redirect_if_id_is_not_valid($postID, $this->_tables->posts, 'blog', false, false,['active'=>1]);
             $this->data['post']=$this->post_model->getByID($postID, false, true, true, true);
             $tags=[];

@@ -19,6 +19,7 @@ class Evaluation_model extends CI_Model
         $this->db->distinct();
         $this->db->select('year');
 		$this->db->order_by('year', 'asc');
+		$this->db->where(['active'=>1]);
         $years = $this->db->get($this->_tables->evaluations)->result_array();
         if($forSelect2){
             $temp=[''=>$defaultSelect2FirstOptionValue];

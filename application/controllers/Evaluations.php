@@ -23,7 +23,7 @@ class Evaluations extends Public_Controller {
     }
 
     public function year($year){
-        $year=(int)$year;
+        $year=abs((int)$year);
         $this->load->helper('form');
         $this->_choose= 'Choisir ...';
         $this->data['pageTitle']= "Année d'évaluation : ".$year;
@@ -45,6 +45,7 @@ class Evaluations extends Public_Controller {
     }
 
     public function temporality($temporalityID){
+		$temporalityID = abs((int)$temporalityID);
         //$temporalityID = (int) getIDBySlug($this->_tables->temporalities, $temporalitySlug);
         redirect_if_id_is_not_valid($temporalityID, $this->_tables->temporalities, 'evaluations', false, false);
         $this->load->helper('form');
@@ -68,6 +69,7 @@ class Evaluations extends Public_Controller {
     }
 
     public function thematic($thematicID){
+		$thematicID = abs((int)$thematicID);
         //$thematicID = (int) getIDBySlug($this->_tables->thematics, $thematicSlug);
         redirect_if_id_is_not_valid($thematicID, $this->_tables->thematics, 'evaluations', false, false);
         $this->_choose= 'Choisir ...';
@@ -101,6 +103,7 @@ class Evaluations extends Public_Controller {
     }
 
     public function sector($sectorID){
+		$sectorID = abs((int)$sectorID);
         //$sectorID = (int) getIDBySlug($this->_tables->sectors, $sectorSlug);
         redirect_if_id_is_not_valid($sectorID, $this->_tables->sectors, 'evaluations', false, false);
         $this->_choose= 'Choisir ...';
@@ -228,6 +231,7 @@ class Evaluations extends Public_Controller {
 				$this->render('evaluations/index');
 			}else{
 				//$evaluationID = (int) getIDBySlug($this->_tables->evaluations, $evaluationID);
+				$evaluationID = abs((int)$evaluationID);
 				redirect_if_id_is_not_valid($evaluationID, $this->_tables->evaluations, 'evaluations', false, false, ['active'=>1]);
 				$this->data['evaluation']=$this->evaluation_model->getByID($evaluationID, true);
 				$this->data['sidebarClass']='col-md-3';
