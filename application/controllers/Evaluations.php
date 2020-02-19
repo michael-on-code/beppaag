@@ -185,7 +185,7 @@ class Evaluations extends Public_Controller {
 				$queryData['contracting_authority_id']=$contractingAuthorityID;
 			}
 			if($keyword && $keyword!=''){
-				$resultsFromKeyword = $this->evaluation_model->getEvaluationIDsByKeyword($keyword);
+				$resultsFromKeyword = $this->evaluation_model->getEvaluationIDsByKeywordInMeta($keyword);
 				if(!empty($resultsFromKeyword)){
 					foreach ($resultsFromKeyword as $result){
 						if(!in_array( (int) $result->evaluation_id, $queryData['evaluation_ids'])){
@@ -193,6 +193,15 @@ class Evaluations extends Public_Controller {
 						}
 					}
 				}
+				$resultsFromKeyword = $this->evaluation_model->getEvaluationIDsByKeywordInTitleAndObject($keyword);
+				if(!empty($resultsFromKeyword)){
+					foreach ($resultsFromKeyword as $result){
+						if(!in_array( (int) $result->id, $queryData['evaluation_ids'])){
+							$queryData['evaluation_ids'][]= (int) $result->id;
+						}
+					}
+				}
+
 			}
 			//var_dump($queryData);exit;
 			$page =  abs((int)$this->input->get('page'));

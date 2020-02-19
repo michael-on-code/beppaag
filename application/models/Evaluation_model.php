@@ -88,12 +88,20 @@ class Evaluation_model extends CI_Model
 		return $this->db->get($this->_tables->evaluations)->result();
 	}
 
-	public function getEvaluationIDsByKeyword($keyword){
+	public function getEvaluationIDsByKeywordInMeta($keyword){
     	$tables = $this->_tables;
     	$this->db->select('evaluation_id');
     	$this->db->like('value', $keyword);
     	return $this->db->get($this->_tables->meta)->result();
     	//$this->db->or_like()
+	}
+
+	public function getEvaluationIDsByKeywordInTitleAndObject($keyword){
+		$tables = $this->_tables;
+		$this->db->select('id');
+		$this->db->or_like('title', $keyword);
+		$this->db->or_like('object', $keyword);
+		return $this->db->get($this->_tables->evaluations)->result();
 	}
 
     public function getAll($onlyActiveOnes = true, $sectorsInString = true,
@@ -218,6 +226,8 @@ class Evaluation_model extends CI_Model
             'methodological_approach',
             'recommendation_actor_associated',
             'recommendation_comment',
+            'annexe_file_1',
+            'annexe_file_2',
         );
     }
 

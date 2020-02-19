@@ -211,6 +211,17 @@ function setEvaluationFormValidation($edit = false, $evaluationID = '')
 					'label' => "Fichier PDF d'évaluation",
 					'rules' => 'trim|required'
 				],
+				[
+					'name' => 'evaluation[annexe_file_1]',
+					'label' => "Fichier Annexe 1",
+					'rules' => 'trim'
+				],
+				[
+					'name' => 'evaluation[annexe_file_2]',
+					'label' => "Fichier Annexe 2",
+					'rules' => 'trim'
+				],
+
 			];
 			if ($isActorAssociated) {
 				$validations[] = [
@@ -868,7 +879,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                     $data['value'] = '';
                                 }
                                 echo form_hidden($name, set_value($name, $file));
-                                get_form_upload($data, $extensions = 'pdf', '10M', false, 'auto-upload');
+                                get_form_upload($data, $extensions = 'pdf', '10M', false, 'auto-upload ignore');
                                 echo get_form_error($name);
                                 getFieldInfo('Format : PDF Taille Max : 10M');
                                 ?>
@@ -897,7 +908,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                     $data['value'] = '';
                                 }
                                 echo form_hidden($name, set_value($name, $file));
-                                get_form_upload($data, $extensions = 'pdf', '10M', false, 'auto-upload');
+                                get_form_upload($data, $extensions = 'pdf', '10M', false, 'auto-upload ignore');
                                 echo get_form_error($name);
                                 getFieldInfo('Format : PDF Taille Max : 10M');
                                 ?>

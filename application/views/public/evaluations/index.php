@@ -127,6 +127,21 @@ getBreadcrump([
                                                    <ul class="dropdown-menu downloading">
                                                       <li><a download
                                                              href="<?= $uploadPath . $evaluation->evaluation_file ?>">Rapport de l'évaluation</a></li>
+													   <?php
+													   if($evaluation->annexe_file_1 && $evaluation->annexe_file_1){
+														   ?>
+														   <li><a download
+																  href="<?= $uploadPath . $evaluation->annexe_file_1 ?>">Annexe 1</a></li>
+														   <?php
+													   }
+													   if($evaluation->annexe_file_2 && $evaluation->annexe_file_2){
+														   ?>
+														   <li><a download
+																  href="<?= $uploadPath . $evaluation->annexe_file_2 ?>">Annexe 2</a></li>
+														   <?php
+													   }
+
+													   ?>
                                                       <li><a href="#">Résumé des recommandations</a></li>
                                                       <li class="all"><a href="#">Télécharger tout</a></li>
                                                    </ul>
