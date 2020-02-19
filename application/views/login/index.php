@@ -72,7 +72,7 @@
                 <div class="form-group">
                     <div class="checkbox">
                         <?php
-                        echo form_checkbox('login[remember]', 1, false, [
+                        echo form_checkbox('login[remember]', 1, true, [
                             'id'=>'checkbox2'
                         ]);
                         echo form_label('Se souvenir de moi', 'checkbox2');
