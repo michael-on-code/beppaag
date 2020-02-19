@@ -1530,7 +1530,7 @@ p.MsoNormal, p font, p.MsoNormal span, .evaluation-box span, .evaluation-box li,
 .width-100p {
 	width: 100%;
 }
-button.grayish-color{
+button.grayish-color, #contact_form input[disabled], input.grayish-color{
 	background: #808080!important;
 }
 .alert.my-alert-success{
@@ -1556,4 +1556,7 @@ button.grayish-color{
 	.Mayor-text span, .Mayor-text p {
 		font-size: 18px;
 	}
+}
+#contact_form .alert p, #contact_form .alert{
+	color: #ffffff;
 }

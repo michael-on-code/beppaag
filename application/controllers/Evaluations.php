@@ -242,12 +242,4 @@ class Evaluations extends Public_Controller {
 		}
         
     }
-
-    public function advanced_search(){
-    	if(!$this->input->post('search')){
-    		redirect('evaluations');
-		}else{
-
-		}
-	}
 }

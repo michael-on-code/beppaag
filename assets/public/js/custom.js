@@ -458,6 +458,47 @@ jQuery(document).ready(function ($) {
 			}
 		})
 	});
+    $('#contact_form').on('submit', function(e){
+    	e.preventDefault();
+    	var form = $(this);
+    	var button = form.find('input[type=submit]');
+    	var grayBGClass = 'grayish-color';
+    	var alertBox = form.find('div.alert');
+    	$.ajax({
+			url: clientData.contactUrl,
+			data: form.serialize(),
+			type: 'POST',
+			dataType: 'JSON',
+			cache: false,
+			beforeSend: function () {
+				button.attr('disabled', '');
+				button.addClass(grayBGClass);
+			},
+			error: function () {
+				alert('Oopps... Une erreur a été rencontrée')
+			},
+			success: function (response) {
+				button.removeClass(grayBGClass);
+				grecaptcha.reset();
+				form.find('input[name=g-recaptcha-response]').val('');
+				if(response.status){
+					form.trigger('reset');
+					form.find('input[submut]').val('');
+					button.attr('disabled', '');
+				}
+				var alertType = response.status ? "my-alert-success" : "my-alert-danger";
+				alertBox.html(response.message);
+				alertBox.addClass(alertType);
+				alertBox.fadeIn();
+				setTimeout(function(){
+					alertBox.fadeOut();
+					alertBox.removeClass(alertType);
+				}, 5000)
+			}
+		})
+	});
+
+
 
     if ($('select.my-choices').length) {
         const choices = new Choices('select.my-choices',

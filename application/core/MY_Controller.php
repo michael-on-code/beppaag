@@ -46,6 +46,7 @@ class Public_Controller extends MY_Controller
         $this->load->helper('public');
 		$this->load->model('evaluation_model');
 		$this->data['clientData']['newsletterUrl']=site_url('ajaxify/updateNewsletter');
+		$this->data['clientData']['contactUrl']=site_url('ajaxify/contactMailer');
 		$this->data['header_evaluations'] = $this->evaluation_model->getMinifiedAll('id, title', true, 0, 6, true, 'id', 'desc', false, false);
     }
 

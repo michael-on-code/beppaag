@@ -1133,7 +1133,7 @@
     .stay-connected input[type="submit"], .stay-connected button[type="submit"] {
         width: 100%;
         border: 0px;
-        background: <?= $mainColor ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
         height: 55px;
         line-height: 55px;
@@ -1144,7 +1144,7 @@
     }
 
     .stay-connected input[type="submit"]:hover, .stay-connected button[type="submit"]:hover {
-        background: <?= $mainColor ?>;
+        background: <?= $secondaryColor ?>;
         color: #fff;
     }
 
@@ -1977,7 +1977,7 @@
         background-color: #f7941d;
     }
 
-    .ecat.c3 {
+    .ecat.c3, .Mayor-msg {
         background-color: <?= $secondaryColor ?>;
     }
 
@@ -5682,7 +5682,7 @@
         margin-bottom: 10px;
     }
 
-    .contact-form input[type="text"] {
+    .contact-form input[type="text"], .contact-form input[type="email"]{
         border: 1px solid #ccc;
         line-height: 48px;
         padding: 0 20px;
@@ -7680,8 +7680,8 @@ Search Overlay End
     /******** + ========== + Pink BackgroundColor Start + ========== + ********/
 
     .event-share ul a.like, .h3-logo-row ul.quick-links li a:hover,
-    #search .btn, #search .close, .slider-caption a, .Mayor-msg, .title-style-2 a, .latest-updates h6, .latest-updates ul li:after, .new-thumb a:hover, .thumb a:hover, .ch-box .ch-thumb a:hover, .city-highlights .owl-carousel .owl-nav button.owl-next, .city-highlights .owl-carousel .owl-nav button.owl-prev, .stay-connected, .e-numbers .em-box:hover, span.ecat, .highlights-cityscapes .owl-carousel .owl-nav button.owl- prev, .highlights-cityscapes .owl-carousel .owl-nav button.owl-next, .highlights-cityscapes .owl-carousel .owl-nav button.owl- prev:hover, .highlights-cityscapes .owl-carousel .owl-nav button.owl-next:hover, .community-box a.see-more:hover, .team-heading a, .home3.footer, .become-vol, .cross-btn:hover, .h3-navbar .donate-btn a, .h3-slider-caption a, .title-style-3 p:before, .news-box-f:after, .news-box:hover .news-box-f a, .deprt-icon-box a.rm, a.jobs-link, .recent-events .nav-tabs > li > a, .recent-events .nav-tabs > li > a:after, .recent-events .event-list:after, .event-list a.joinnow:hover, .recent-events .event-list:hover a.joinnow, .community-links-style-two li a:hover img, #h3team-slider .owl-next:hover, #h3team-slider .owl- prev:hover, .event-list-box:hover a.join-now, .widget .upcoming-events .edate, .tags-widget a:hover, .contact-team:hover, .post-comments-form input[type="submit"]:hover, .city-updates li.more-news a, .department-links li a.c9, .gallery-thumb a:hover, .contact-form input[type="submit"]:hover, .event-counter a:hover, .event-share ul a:hover, .campaign-thumb a:hover, .campaign-box:hover a.dbutton, .causes-listing .campaign-box:hover .dn-btn, .single-donation-box .radio-boxes input[type=radio].css- radio + label.css-label:hover, .single-donation-box .radio- boxes input[type=radio].css-radio:checked + label.css-label, .radio-boxes input[type=radio].css-radio + label.css-label:hover, .radio-boxes input[type=radio].css-radio:checked + label.css-label, li.form-submit button:hover, .donator-details input[type="submit"]:hover, .testimonials-section .owl-theme .owl-dots .owl-dot.active span, .testimonials-section .owl-theme .owl-dots .owl-dot span:hover, .login-account input[type="submit"], .register-account input[type="submit"]:hover, .cs-newsletter-form button.subscribe, ul.team-social:after, .call2action a, .h2-Mayor-msg, .newsletter-form button, .community-box a.see-more:hover, .community-box:hover a.see-more, .ecat.c1, .site-pagination .pagination > .active > a, .site-pagination .pagination > .active > a:focus, .site-pagination .pagination > .active > a:hover, .site-pagination .pagination > .active > span, .site-pagination .pagination > .active > span:focus, .site-pagination .pagination > .active > span:hover, .site-pagination .pagination > li > a:focus, .site-pagination .pagination > li > a:hover, .site-pagination .pagination > li > span:focus, .site-pagination .pagination > li > span:hover, .serbox-cap .rm:hover {
-        background-color: <?= $secondaryColor ?>;
+    #search .btn, #search .close, .slider-caption a, .title-style-2 a, .latest-updates h6, .latest-updates ul li:after, .new-thumb a:hover, .thumb a:hover, .ch-box .ch-thumb a:hover, .city-highlights .owl-carousel .owl-nav button.owl-next, .city-highlights .owl-carousel .owl-nav button.owl-prev, .stay-connected, .e-numbers .em-box:hover, span.ecat, .highlights-cityscapes .owl-carousel .owl-nav button.owl- prev, .highlights-cityscapes .owl-carousel .owl-nav button.owl-next, .highlights-cityscapes .owl-carousel .owl-nav button.owl- prev:hover, .highlights-cityscapes .owl-carousel .owl-nav button.owl-next:hover, .community-box a.see-more:hover, .team-heading a, .home3.footer, .become-vol, .cross-btn:hover, .h3-navbar .donate-btn a, .h3-slider-caption a, .title-style-3 p:before, .news-box-f:after, .news-box:hover .news-box-f a, .deprt-icon-box a.rm, a.jobs-link, .recent-events .nav-tabs > li > a, .recent-events .nav-tabs > li > a:after, .recent-events .event-list:after, .event-list a.joinnow:hover, .recent-events .event-list:hover a.joinnow, .community-links-style-two li a:hover img, #h3team-slider .owl-next:hover, #h3team-slider .owl- prev:hover, .event-list-box:hover a.join-now, .widget .upcoming-events .edate, .tags-widget a:hover, .contact-team:hover, .post-comments-form input[type="submit"]:hover, .city-updates li.more-news a, .department-links li a.c9, .gallery-thumb a:hover, .contact-form input[type="submit"]:hover, .event-counter a:hover, .event-share ul a:hover, .campaign-thumb a:hover, .campaign-box:hover a.dbutton, .causes-listing .campaign-box:hover .dn-btn, .single-donation-box .radio-boxes input[type=radio].css- radio + label.css-label:hover, .single-donation-box .radio- boxes input[type=radio].css-radio:checked + label.css-label, .radio-boxes input[type=radio].css-radio + label.css-label:hover, .radio-boxes input[type=radio].css-radio:checked + label.css-label, li.form-submit button:hover, .donator-details input[type="submit"]:hover, .testimonials-section .owl-theme .owl-dots .owl-dot.active span, .testimonials-section .owl-theme .owl-dots .owl-dot span:hover, .login-account input[type="submit"], .register-account input[type="submit"]:hover, .cs-newsletter-form button.subscribe, ul.team-social:after, .call2action a, .h2-Mayor-msg, .newsletter-form button, .community-box a.see-more:hover, .community-box:hover a.see-more, .ecat.c1, .site-pagination .pagination > .active > a, .site-pagination .pagination > .active > a:focus, .site-pagination .pagination > .active > a:hover, .site-pagination .pagination > .active > span, .site-pagination .pagination > .active > span:focus, .site-pagination .pagination > .active > span:hover, .site-pagination .pagination > li > a:focus, .site-pagination .pagination > li > a:hover, .site-pagination .pagination > li > span:focus, .site-pagination .pagination > li > span:hover, .serbox-cap .rm:hover {
+        background-color: <?= $mainColor ?>;
     }
 
     /******** + ========== + Pink Text Color Start + ========== + ********/

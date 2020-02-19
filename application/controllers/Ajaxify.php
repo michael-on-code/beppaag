@@ -50,7 +50,98 @@ class Ajaxify extends CI_Controller
 						'message' => validation_errors()
 					]);
 				}
-			}else{
+			} else {
+				echo json_encode([
+					'status' => false,
+					'message' => "<p>Action non authorisée</p>"
+				]);
+			}
+			die();
+
+		} else {
+			redirect();
+		}
+	}
+
+
+	public function contactMailer()
+	{
+		if ($this->input->is_ajax_request()) {
+			$email = $this->input->post('email');
+			$fullName = $this->input->post('fullname');
+			$subject = $this->input->post('subject');
+			$message = $this->input->post('message');
+			$recaptcha = $this->input->post('g-recaptcha-response');
+			if ($email && $fullName && $subject && $message && $recaptcha) {
+				$this->load->library('form_validation');
+				setFormValidationRules([
+					[
+						'name' => "fullname",
+						'label' => 'Nom complet',
+						'rules' => 'trim|required'
+					],
+					[
+						'name' => "email",
+						'label' => 'Email',
+						'rules' => 'trim|required|valid_email'
+					],
+					[
+						'name' => "subject",
+						'label' => 'Sujet',
+						'rules' => 'trim|required'
+					],
+					[
+						'name' => "message",
+						'label' => 'Message',
+						'rules' => 'trim|required'
+					],
+					[
+						'name' => "g-recaptcha-response",
+						'label' => 'Google Recaptcha',
+						'rules' => 'trim|required'
+					],
+				]);
+				if ($this->form_validation->run()) {
+					$successRecaptchaResult = true;
+					if (ENVIRONMENT == 'production') {
+						//Recaptcha verification working properly
+						$recaptChaResult = json_decode(googleRecaptchaCurl1([
+							'secret' => maybe_null_or_empty($this->data['options'], 'googleRecaptchaSecretKey'),
+							'response' => $recaptcha,
+							'remoteip' => $this->input->ip_address()
+						]));
+						//var_dump($recaptChaResult);exit;
+						$successRecaptchaResult = maybe_null_or_empty($recaptChaResult, 'success', true);
+					}
+					if ($successRecaptchaResult) {
+						$elements['Nom'] = $fullName;
+						$elements['Email'] = $email;
+						$elements['Sujet'] = $subject;
+						$elements['Message'] = $message;
+						$args['elements'] = $elements;
+						$args['title'] = $subject;
+						$args['description'] = "Bonjour,<br><br>
+                                    Un internaute vient de soumettre au formulaire de contact avec les informations ci-dessous";
+						$args['destination'] = $this->option_model->get_option('contact_form_receiver');
+						echo json_encode([
+							'status' => true,
+							'message' => "<p>Merci. Votre Message a été envoyé !</p>",
+						]);
+						mailSender($args, $email);
+					} else {
+						echo json_encode([
+							'status' => false,
+							'message' => "<p>Google Recaptcha n'autorise pas votre connexion <br> Veuillez rééssayer</p>"
+						]);
+					}
+
+				} else {
+					echo json_encode([
+						'status' => false,
+						'message' => validation_errors()
+					]);
+				}
+			} else {
 				echo json_encode([
 					'status' => false,
 					'message' => "<p>Action non authorisée</p>"
