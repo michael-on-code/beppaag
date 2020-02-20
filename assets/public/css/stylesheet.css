@@ -1430,7 +1430,7 @@ p.MsoNormal, p font, p.MsoNormal span, .evaluation-box span, .evaluation-box li,
 	font-family: Arial!important;
 	text-align: justify!important;
 }
-.evaluation-box *{
+.evaluation-box *:not(.text-center *){
 	text-align: justify!important;
 }
 /**************   News Ticker  **************/
