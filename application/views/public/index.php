@@ -92,6 +92,19 @@
 							</div>
 						</div>
 						<!--Local Box End-->
+						<!--Local Box Start-->
+						<div class="col-md-4 col-sm-4 col-xs-6">
+							<div class="deprt-icon-box">
+								<a href="<?= site_url() ?>">
+									<img data-src="<?= $assetsUrl ?>public/images/about.png" alt="">
+								</a>
+								<h6><a href="<?= site_url() ?>">A propos du BEPPAAG</a>
+								</h6>
+								<a class="rm" href="<?= site_url() ?>">Découvrir</a>
+							</div>
+						</div>
+						<!--Local Box End-->
+
 					</div>
 				</div>
 				<?php
