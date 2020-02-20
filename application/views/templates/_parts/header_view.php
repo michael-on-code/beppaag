@@ -72,57 +72,6 @@
 <!--Wrapper Start-->
 <!--<div class="wrapper">-->
 <header class="wf100 header">
-    <div class="topbar">
-        <div class="container">
-            <div class="row">
-					<div class="col-md-6 col-sm-6">
-					<?php
-					if(isset($header_evaluations) && !empty($header_evaluations)){
-						?>
-						<div class="newsticker" id="my_newsticker">
-							<div class="bn-title"><strong>Dernières évaluations:</strong><span></span></div>
-							<ul>
-								<?php
-								foreach ($header_evaluations as $evaluation) {
-									?>
-									<li><a class="text-uppercase" title="<?= $evaluation->title ?>" href="<?= site_url("evaluations/$evaluation->id") ?>"><?= $evaluation->title ?></a>
-									</li>
-									<?php
-								}
-								?>
-							</ul>
-							<div class="bn-navi"><span></span> <span></span></div>
-						</div>
-						<?php
-					}
-					?>
-
-                    <?php
-
-                    ?>
-
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <ul class="right-links">
-                        <?php
-                        if ($phone = maybe_null_or_empty($options, 'site_phone')) {
-                            ?>
-                            <li><a href="tel://<?= $phone ?>"><i class="fas fa-phone"></i>
-                                    <strong><?= $phone ?></strong></a></li>
-                            <?php
-                        }
-                        if ($mail = maybe_null_or_empty($options, 'site_email')) {
-                            ?>
-                            <li><a href="mailto:<?= $mail ?>"><i class="fas fa-envelope"></i> <?= $mail ?></a></li>
-                            <?php
-                        }
-                        ?>
-                        <li><a href="<?= pro_url() ?>"><i class="fas fa-desktop"></i> Connexion</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="logo-nav-row">
         <div class="container">
             <div class="row">
