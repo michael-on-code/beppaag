@@ -109,9 +109,6 @@ getBreadcrump([
                                                         <span data-toggle="tooltip" title="Année d'évaluation"
                                                               class="post-date"><i class="far fa-calendar-alt"></i> <a
                                                                     href="<?= site_url("evaluations/year/$evaluation->year") ?>"><?= $evaluation->year ?></a></span>
-                                                        <span data-toggle="tooltip" title="Date d'ajout"
-                                                              class="post-date"><i
-                                                                    class="far fa-calendar-plus"></i> <?= getFullDateInFrench($evaluation->created_at, getRegularDateTimeFormat(), false, false, false, true) ?></span>
                                                         <?php
                                                         $recommendationStatData = getEvaluationRecommendationLabel($evaluation->executed_count, $evaluation->total_recommendation_activities_count, $evaluation->unknown_count);
                                                         getEvaluationRecommendationIndicator($recommendationStatData['label'], $recommendationStatData['percentage'], $assetsUrl, 'm-l-10 boldify', true);
