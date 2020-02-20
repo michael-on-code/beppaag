@@ -23,7 +23,7 @@ getBreadcrump([
 						]) ?>
                             <div class="inner-form">
                                 <div class="input-field col-md-2 col-sm-3 col-xs-6">
-                                    <label for="" style="">Année</label>
+                                    <label for="" style="">Année d'évaluation</label>
                                     <?=
                                     form_dropdown($name='search[year]', $years, set_value($name), [
                                         'class' => 'form-control'

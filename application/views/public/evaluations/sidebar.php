@@ -15,7 +15,7 @@ if(!isset($sidebarClass)){
         if (isset($years) && !empty($years)) {
             ?>
             <div class="widget eval-year-grouping">
-                <h4>Années</h4>
+                <h4>Années d'évaluation</h4>
                 <div class="tags-widget inner">
                     <?php
 

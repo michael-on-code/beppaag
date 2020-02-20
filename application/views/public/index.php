@@ -23,7 +23,7 @@
 	<section class="wf100 p80 h2-local-brands depart-info">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-12">
 					<div class="section-title">
 						<h2>Parcourir & Découvrir</h2>
 						<p>Découvrez les pages essentielles de notre plateforme de Gestion des Processus Evaluatifs au
@@ -94,23 +94,23 @@
 						<!--Local Box End-->
 					</div>
 				</div>
-				<?php if ($options['site_director_name'] && $options['site_director_photo'] && $options['site_director_phrase']) {
-					?>
+				<?php
+				/*if ($options['site_director_name'] && $options['site_director_photo'] && $options['site_director_phrase']) {
+					*/?><!--
 					<div class="col-md-4">
-						<!--Mayor Msg Start-->
 						<div class="Mayor-msg">
 							<div class="Mayor-thumb"><img
-									data-src="<?= getUploadedImageBySize($options['site_director_photo'], '445x350') ?>"
-									alt="<?= $options['site_director_name'] ?>"></div>
+									data-src="<?/*= getUploadedImageBySize($options['site_director_photo'], '445x350') */?>"
+									alt="<?/*= $options['site_director_name'] */?>"></div>
 							<div class="Mayor-text"><span>Le mot du Directeur</span>
-								<h5><?= $options['site_director_name'] ?></h5>
-								<p> <?= $options['site_director_phrase'] ?></p>
-								<!--<a href="#">En savoir plus</a>--> </div>
+								<h5><?/*= $options['site_director_name'] */?></h5>
+								<p> <?/*= $options['site_director_phrase'] */?></p>
+								</div>
 						</div>
-						<!--Mayor Msg End-->
 					</div>
-					<?php
-				} ?>
+					--><?php
+/*				}*/
+				?>
 
 			</div>
 
@@ -198,6 +198,16 @@
 								</div>
 							</li>
 							<li class="col-md-4 col-sm-4">
+								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/calendar.png"
+															  alt=""></i> <strong><?= $totalEvents ?></strong> <span>Evènements organisés</span>
+								</div>
+							</li>
+							<li class="col-md-4 col-sm-4">
+								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/brochure.png"
+															  alt=""></i> <strong><?= $totalPosts ?></strong> <span>Articles publiés</span>
+								</div>
+							</li>
+							<li class="col-md-4 col-sm-4">
 								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/progress.png"
 															  alt=""></i>
 									<strong><?= $totalInProgressRecommendation ?></strong>
@@ -216,16 +226,7 @@
 									<strong><?= $totalNonExecutedRecommendation ?></strong>
 									<span>Recommandations non exécutées</span></div>
 							</li>
-							<li class="col-md-4 col-sm-4">
-								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/calendar.png"
-															  alt=""></i> <strong><?= $totalEvents ?></strong> <span>Evènements organisés</span>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-4">
-								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/brochure.png"
-															  alt=""></i> <strong><?= $totalPosts ?></strong> <span>Articles publiés</span>
-								</div>
-							</li>
+
 
 						</ul>
 					</div>
@@ -257,7 +258,7 @@
 								<?= form_input([
 									'name'=>'email',
 									'class'=>'form-control',
-									'placeholder'=>'Saisissez votre nom',
+									'placeholder'=>'Saisissez votre email',
 									'required'=>'',
 									'type'=>'email',
 								]) ?>
