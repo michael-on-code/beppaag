@@ -827,7 +827,7 @@ function getAddOrEditEvaluationHTML($edit = false, $evaluation = [], $pageTitle,
                                 ?>
                             </div>
                             <div class="form-group col-md-6">
-                                <?php echo form_label($title = "Attacher le fichier PDF d'évaluation");
+                                <?php echo form_label($title = "Attacher le fichier PDF rapport d'évaluation");
                                 $file = set_value($name = 'evaluation[evaluation_file]', maybe_null_or_empty($evaluation, 'evaluation_file', true));
                                 ?>
                                 <a class="my-file-preview-btn"
