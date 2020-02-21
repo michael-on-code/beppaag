@@ -53,7 +53,7 @@ function getPostTemplatePreview($post, $options, $outerClass = 'col-md-3 col-sm-
     <div class="<?= $outerClass ?> myNews">
         <div class="news-box">
             <div class="new-thumb lazy" data-src="<?= getUploadedImageBySize($post['thumbnail'], '263x200') ?>"><span
-                        class="cat c<?= rand(1, 4) ?>"><?= $post['category'] ?></span></div>
+                        class="cat c1"><?= $post['category'] ?></span></div>
             <div class="new-txt">
                 <div class="row">
                     <div class="col-xs-10">
