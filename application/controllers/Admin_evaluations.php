@@ -36,7 +36,7 @@ class Admin_evaluations extends Pro_Controller{
         $this->data['tableHeaders']=[
             'Cover'/*Picture*/,'Année', "Titre de l'évaluation", "Objet de l'évaluation",
             "Secteur de l'évaluation", "Thématique de l'évaluation", "Appréciation", "Statut",
-            "Type de l'évaluation", "Temporalité", "Structure ayant conduit l'évaluation",
+            "Type de l'évaluation", "Temporalité", "Structure/personne ayant conduit l'évaluation",
             "Authorité contractante de l'évaluation" ,"Ajoutée le", "Ajoutée par",
         ];
         $numberColumns = count($this->data['tableHeaders']);
@@ -74,7 +74,7 @@ class Admin_evaluations extends Pro_Controller{
         $this->data['tableHeaders']=[
             'Cover'/*Picture*/,'Année', "Titre de l'évaluation", "Objet de l'évaluation",
             "Secteur de l'évaluation", "Thématique de l'évaluation", "Appréciation", "Statut",
-            "Type de l'évaluation", "Temporalité", "Structure ayant conduit l'évaluation",
+            "Type de l'évaluation", "Temporalité", "Structure/personne ayant conduit l'évaluation",
             "Authorité contractante de l'évaluation" ,"Ajoutée le", "Ajoutée par",
         ];
         $numberColumns = count($this->data['tableHeaders']);
