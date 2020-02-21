@@ -47,7 +47,7 @@ class Blog extends Public_Controller
         $categoryID = (int) getIDBySlug($this->_tables->categories, $categorySlug);
         redirect_if_id_is_not_valid($categoryID, $this->_tables->categories, 'blog', false, false);
         $tag = getTableByID($this->_tables->categories, $categoryID);
-        $this->data['pageTitle'] = 'Rubrique '.$tag['name'];
+        $this->data['pageTitle'] = $tag['name'];
         $page = abs((int)$this->input->get('page'));
         $this->data['posts'] = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID]);
         $totalRow = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID], [], [], [], [], true);
