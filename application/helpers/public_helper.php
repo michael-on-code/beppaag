@@ -78,9 +78,6 @@ function getPostTemplatePreview($post, $options, $outerClass = 'col-md-3 col-sm-
                        href="<?= $permalink ?>"><?= $post['title'] ?></a></h6>
                 <p> <?= myWordLimiter(strip_tags($post['content']), 15) ?> </p>
             </div>
-            <div class="news-box-f"><img data-src="<?= getUploadedImageBySize($userPhoto, '150x150') ?>"
-                                         alt=""> <?= substr($post['last_name'], 0, 1) . '. ' . $post['first_name'] ?> <a
-                        href="<?= $permalink ?>"><i class="fas fa-arrow-right"></i></a></div>
         </div>
     </div>
     <?php
