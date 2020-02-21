@@ -12,7 +12,7 @@
 	</div>
 	<div class="infos on-container flex flex-col center text-left anim-title">
 		<div>
-			<h1 class="title"><span>Évaluation des politiques publiques</span></h1>
+			<h1 class="title"><span>Évaluation des politiques publiques au Bénin</span></h1>
 		</div>
 	</div>
 </section>
@@ -26,7 +26,7 @@
 				<div class="col-md-12">
 					<div class="section-title">
 						<h2>Parcourir & Découvrir</h2>
-						<p>Découvrez les pages essentielles de notre plateforme de Gestion des Processus Evaluatifs au
+						<p class="black-color font-size-21-big-screen">Découvrez les pages essentielles de notre plateforme de Gestion des Processus Evaluatifs au
 							Bénin à partir desquelles vous retrouverez toutes les informations
 							relatives aux évaluations au Bénin
 						</p>

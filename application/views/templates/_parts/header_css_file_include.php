@@ -879,9 +879,9 @@
     }
 
     a.see-more {
-        background: rgba(0, 0, 0, .20);
+        background: #000000;
         display: inline-block;
-        border-radius: 5px;
+        border-radius: unset;
         font-family: 'Montserrat', sans-serif;
         font-size: 12px;
         font-weight: 600;

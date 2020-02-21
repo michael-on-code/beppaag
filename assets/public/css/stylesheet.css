@@ -1564,3 +1564,13 @@ button.grayish-color, #contact_form input[disabled], input.grayish-color{
 #contact_form .alert p, #contact_form .alert{
 	color: #ffffff;
 }
+.black-color{
+	color: black!important;
+}
+
+@media screen and (min-width: 768px) {
+	.font-size-21-big-screen{
+		font-size: 21px!important;
+	}
+}
+
