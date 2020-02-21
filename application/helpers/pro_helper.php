@@ -396,7 +396,7 @@ function getAllFormButtons($edit = false, $cancelUrl, $withDraftButton=false, $d
     ?>
     <div class="form-group pull-right form-buttons">
         <a href="<?= $cancelUrl ?>" class="btn btn-dark m-l-5 ">
-            <i class="anticon anticon-arrow-left"></i> Annuler
+            <i class="anticon anticon-arrow-left"></i> Retour
         </a>
         <button type="button" class="btn btn-warning m-l-5 clear-form">
 			<i class="anticon anticon-undo"></i> Effacer
@@ -411,7 +411,7 @@ function getAllFormButtons($edit = false, $cancelUrl, $withDraftButton=false, $d
 		}
 		?>
         <?php
-		$submitLabel = $submitLabel == '' ? ($edit ? 'Modifier' : 'Ajouter') : $submitLabel;
+		$submitLabel = $submitLabel == '' ? 'Enregistrer' : $submitLabel;
 		getFormSubmit($submitLabel) ?>
     </div>
     <?php
