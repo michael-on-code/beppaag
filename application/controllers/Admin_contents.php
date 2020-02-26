@@ -87,48 +87,9 @@ class Admin_contents extends Pro_Controller{
         }
         $this->render('contents/index');
     }
-    public function header(){
-        if($header = $this->input->post('header')){
-            setFormValidationRules([
-                [
-                    'name'=>'header[site_phone]',
-                    'label'=>'Numéro de téléphone principal',
-                    'rules'=>'trim|required',
-                ],
-                [
-                    'name'=>'header[site_email]',
-                    'label'=>'Email principal',
-                    'rules'=>'trim|required|valid_email',
-                ],
-                [
-                    'name'=>'header[site_header_post_cat_submenu][]',
-                    'label'=>"Rubriques d'article à aficher",
-                    'rules'=>'trim|required',
-                ],
-            ]);
-            if($this->form_validation->run()){
-                if(isset($header['top_header_links']) && !empty($header['top_header_links'])){
-                    foreach ($header['top_header_links'] as $key=> $link){
-                        if(!maybe_null_or_empty($link, 'label')){
-                            unset($header['top_header_links'][$key]);
-                            continue;
-                        }
-                    }
-                }
-                $this->option_model->update_all_options($header);
-                get_success_message('Contenus généraux mis à jour avec succès');
-                pro_redirect('contents/header');
-            }else{
-                get_error_message();
-            }
-        }
-        $tables = getPostTablesNames();
-        $this->data['pageTitle']="Modification du contenu de l'entête";
-        $this->data['postSectors']=getAllInTable($tables->categories, true, true, 'id', 'desc', true, 'id', 'name', false);
-        includeSelect2Assets();
-        includeJQueryRepeaterAssets();
-        $this->render('contents/header');
-    }
+
+
+
     public function footer(){
         if($footer = $this->input->post('footer')){
             setFormValidationRules([
