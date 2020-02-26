@@ -120,8 +120,10 @@ function getAllImageSizes()
             'height' => 649,
         ],
 		'1920x700' => [//public-slide
-            'width' => 1024,
-            'height' => 649,
+            'width' => 1920,
+            'height' => 700,
+            'maintain_ratio' => FALSE,
+            'master_dim' => 'width',
         ]
     ];
 }
@@ -145,8 +147,8 @@ function upload_data($args, $names, $resize = false, $encryptName = true)
                     if (!empty($sizes)) {
                         foreach ($sizes as $keySize => $size) {
                             $config2['new_image'] = $data[$name]['file_path'] . $data[$name]['raw_name'] . '-' . $keySize . $data[$name]['file_ext'];
-                            $config2['maintain_ratio'] = TRUE;
-                            //$config2['master_dim'] = 'auto';
+                            $config2['maintain_ratio'] =  maybe_null_or_empty($size, 'maintain_ratio', false, TRUE);
+                            $config2['master_dim'] = maybe_null_or_empty($size, 'master_dim', false, 'auto');
                             $config2['width'] = $size['width'];
                             $config2['height'] = $size['height'];
                             $ci->load->library('image_lib', $config2);
