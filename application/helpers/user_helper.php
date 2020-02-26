@@ -436,10 +436,6 @@ function get_menu_by_group($group)
                             'url' => pro_url('contents')
                         ],
                         [
-                            'title' => 'Entête',
-                            'url' => pro_url('contents/header')
-                        ],
-                        [
                             'title' => 'Bannières',
                             'url' => pro_url('contents/banners')
                         ],
