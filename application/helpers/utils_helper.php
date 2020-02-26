@@ -119,7 +119,10 @@ function getAllImageSizes()
             'width' => 1024,
             'height' => 649,
         ],
-
+		'1920x700' => [//public-slide
+            'width' => 1024,
+            'height' => 649,
+        ]
     ];
 }
 
