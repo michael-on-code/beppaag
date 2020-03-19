@@ -87,7 +87,8 @@ jQuery(document).ready(function ($) {
             margin: 0,
             nav: false,
             items: 1,
-            autoplay: false,
+            autoplay: true,
+            fluidSpeed: 4000,
 
         })
     }

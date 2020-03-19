@@ -122,7 +122,7 @@ function getAllImageSizes()
 		'1920x700' => [//public-slide
             'width' => 1920,
             'height' => 700,
-            'maintain_ratio' => FALSE,
+//            'maintain_ratio' => FALSE,
             'master_dim' => 'width',
         ]
     ];
@@ -476,7 +476,7 @@ function getAddPaginationToUrl($url='', $page=''){
 function getAllInTable($tableName, $isArray = true, $order = true, $orderByField = 'id', $orderBy = 'desc',
                        $forSelect2 = false, $keyFieldForSelect2 = 'id', $valueFieldForSelect2 = 'name',
                        $initialBlankValueForSelect2 = true, $specificDBSelect = "*",
-                       $defaultSelect2FirstOptionValue = '', $where = [], $whereIn = [], $whereInCheck = 'id')
+                       $defaultSelect2FirstOptionValue = '', $where = [], $whereIn = [], $whereInCheck = 'id', $limit=0)
 {
     $ci =& get_instance();
     $ci->db->select($specificDBSelect);
@@ -489,6 +489,9 @@ function getAllInTable($tableName, $isArray = true, $order = true, $orderByField
     if (!empty($whereIn)) {
         $ci->db->where_in($whereInCheck, $whereIn);
     }
+    if($limit){
+		$ci->db->limit($limit);
+	}
 
     $results = $ci->db->get($tableName);
     if ($isArray) {
@@ -857,7 +860,6 @@ function user_can($group_name)
 
 function sendMail($default, $args)
 {
-    //$default = 'no-reply@csti-digital.com';
     ini_set("SMTP", "mail.akasigroup.com");
     $ci =& get_instance();
     $options = $ci->option_model->get_options();
@@ -874,10 +876,6 @@ function sendMail($default, $args)
     $headers .= "X-MSMail-Priority: High \n";
     @mail($args['destination'], $args['title'], $message, $headers);
     echo $message;
-
-    //echoResponse($ci->email->print_debugger());
-//    var_dump($args['destination']);exit;
-    //var_dump();exit;
 }
 
 

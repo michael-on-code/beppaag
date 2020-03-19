@@ -98,7 +98,7 @@ img.logo-fold{
     opacity: 1;
 }
 .logo img.real-logo{
-    width: 70px;
+    width: 80%;
 }
 label.is-invalid, span.is-invalid{
     color: #de4436;

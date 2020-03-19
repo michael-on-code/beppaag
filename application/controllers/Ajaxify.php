@@ -6,12 +6,70 @@
  * Date: 07/01/2020
  * Time: 16:29
  */
-class Ajaxify extends CI_Controller
+class Ajaxify extends MY_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
 	}
+
+	public function setSiteViewCounter(){
+		if($this->input->is_ajax_request()){
+			$this->load->library('user_agent');
+			if($this->agent->is_browser()){
+				$count = (int) $this->option_model->get_option($optionKey = 'total_view_count');
+				$count++;
+				$this->option_model->update_option($optionKey, $count);
+				$output = [
+					'status' => 1,
+				];
+			}else{
+				$output = [
+					'status' => 0,
+				];
+			}
+			echo json_encode($output);
+			die();
+		}else{
+			redirect();
+		}
+
+	}
+
+	public function setSingleEvaluationViewCounter(){
+		if($this->input->is_ajax_request()){
+			$this->load->library('user_agent');
+			if($this->agent->is_browser()){
+				$evaluationID = $this->input->post('evaluation_id');
+				$evaluationTable = getEvaluationTablesNames();
+				redirect_if_id_is_not_valid($evaluationID, $evaluationTable->evaluations, site_url(), false, false, ['active'=>1]);
+				$this->load->helper('date');
+				$arrayToBeInserted = [
+					'evaluation_id'=>$evaluationID,
+					'ip_adress'=>$this->input->ip_address(),
+					'time'=>now(),
+					'type'=>'VIEW',
+				];
+				$this->load->model('evaluation_model');
+				$this->evaluation_model->insertEvaluationStat($arrayToBeInserted);
+				$count = $this->evaluation_model->getCountEvaluationsView();
+				$this->option_model->update_option('total_evaluation_view_count', $count);
+				$output = [
+					'status' => 1,
+				];
+			}else{
+				$output = [
+					'status' => 0,
+				];
+			}
+			echo json_encode($output);
+			die();
+		}else{
+			redirect();
+		}
+
+	}
+
 
 	public function updateNewsletter()
 	{

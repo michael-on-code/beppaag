@@ -119,6 +119,36 @@
                             getFieldInfo('Dimensions recommandées : 345x120 Format : JPG|PNG|JPEG Taille Max : 1M');
                             ?>
                         </div>
+                        <div class="form-group">
+                            <?php echo form_label($title = "Attacher le logo du sponsor");
+                            $target = 'sponsor_logo';
+                            $file = set_value($name = "footer[$target]", maybe_null_or_empty($options, $target, true));
+                            ?>
+                            <a class="my-file-preview-btn"
+                               data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
+                               data-placement="top" title="Visualiser le logo" target="_blank"
+                               href="<?= $file ? $uploadPath . $file : '#' ?>"> <span
+                                        class="anticon anticon-cloud-upload"></span></a>
+                            <?php
+                            $data = [
+                                'name' => '',
+                                'attributes' => [
+                                    'data-target' => $target,
+                                    'data-target-name' => $name,
+                                ],
+                                'title' => $title,
+                            ];
+                            if ($file) {
+                                $data['value'] = $uploadPath . $file;
+                            } else {
+                                $data['value'] = '';
+                            }
+                            echo form_hidden($name, set_value($name, $file));
+                            get_form_upload($data, $extensions = 'jpg jpeg png', '1M', true, 'auto-upload');
+                            echo get_form_error($name);
+                            getFieldInfo('Dimensions recommandées : 345x120 Format : JPG|PNG|JPEG Taille Max : 1M');
+                            ?>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h4>Menu du pieds de page</h4>

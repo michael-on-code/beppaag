@@ -88,6 +88,42 @@ class Admin_contents extends Pro_Controller{
         $this->render('contents/index');
     }
 
+    public function slides(){
+		$this->data['pageTitle']="Modification des slides";
+		includeDropifyAssets();
+		if($slides = $this->input->post('slides')){
+			setFormValidationRules([
+				[
+					'name'=>'slides[show_latest_evaluations]',
+					'label'=>"Afficher les dernières évaluations",
+					'rules'=>'trim'
+				],
+				[
+					'name'=>'slides[show_latest_posts]',
+					'label'=>"Afficher les dernières actualités",
+					'rules'=>'trim'
+				],
+				[
+					'name'=>'slides[show_latest_events]',
+					'label'=>"Afficher les derniers évènements",
+					'rules'=>'trim'
+				],
+			]);
+			if($this->form_validation->run()){
+				$slides['show_latest_events']= maybe_null_or_empty($slides, 'show_latest_events', false, '0');
+				$slides['show_latest_posts']= maybe_null_or_empty($slides, 'show_latest_posts', false, '0');
+				$slides['show_latest_evaluations']= maybe_null_or_empty($slides, 'show_latest_evaluations', false, '0');
+				//var_dump($slides);exit;
+				$this->option_model->update_all_options($slides, false);
+				get_success_message('Slides de la plateforme mis à à jour avec succès');
+				pro_redirect('contents/slides');
+			}else{
+				get_error_message();
+			}
+		}
+		$this->render('contents/slides');
+	}
+
 
 
     public function footer(){

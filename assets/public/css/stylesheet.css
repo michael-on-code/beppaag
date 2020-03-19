@@ -4,7 +4,7 @@
     }
 
     div#bs-example-navbar-collapse-1 ul {
-        margin-top: 55px;
+        margin-top: 28px;
     }
 
 }
@@ -82,7 +82,7 @@ body {
 
 @media (max-width: 767px) and (min-width: 280px) {
     .logo-nav-row .navbar-toggle {
-        margin: 60px 0 0 0;
+        margin: 40px 0 0 0;
     }
 
     .slider-caption p {
@@ -284,19 +284,26 @@ body {
         padding: 0 17px;
     }
 }
+.navbar-brand > img {
+	width: auto;
+}
 
 @media (width: 768px) {
     .s002 .search-btn-container .btn-search {
         margin-top: 7px;
     }
 }
-
+/*FOR MOBILE*/
 @media (max-width: 500px) {
     .eval-list-btns {
         margin-top: 10px !important;
         /* font-size: 10px!important; */
         display: flex !important;
     }
+
+	.navbar-brand > img {
+		max-width: 270px!important;
+	}
 
     .eval-list-container .eval-list-btns > .see-more:first-child {
         margin: unset !important;
@@ -321,6 +328,7 @@ body {
     }
 }
 
+
 @media (max-width: 360px) {
     .eval-list-container .see-more {
         font-size: 10px;
@@ -342,7 +350,7 @@ body {
     }
 
     .navbar-brand > img {
-        width: 150px !important;
+        width: auto;
     }
 
     div#bs-example-navbar-collapse-1 ul {
@@ -550,9 +558,7 @@ body > .footer > ul {
     margin-right: 0px;
 }
 
-.navbar-brand > img {
-    width: 130px;
-}
+
 
 .eval-list-container .btn-group.share-post .dropdown-menu.downloading {
     left: -22px !important;
@@ -1572,5 +1578,8 @@ button.grayish-color, #contact_form input[disabled], input.grayish-color{
 	.font-size-21-big-screen{
 		font-size: 21px!important;
 	}
+}
+.filter-white {
+	filter: contrast(0%) brightness(200%);
 }
 

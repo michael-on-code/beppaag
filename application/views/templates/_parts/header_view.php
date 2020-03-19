@@ -38,15 +38,15 @@
     <link href="<?= $assetsUrl ?>public/css/stylefd49.css?v=1.02" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/m-style5fab.css?v=1.001" rel="stylesheet">
 
-    <link href="<?= $assetsUrl ?>public/css/custom.css?v=1.01" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/custom.css?v=1.03" rel="stylesheet">
     <?php
     $this->load->view('templates/_parts/header_css_file_include');
     ?>
-    <link href="<?= $assetsUrl ?>public/css/responsive.css?v=1.001" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/responsive.css?v=1.002" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/all.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.058" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.060" rel="stylesheet">
     <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'], '150x150') ?>">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -68,7 +68,12 @@
     </script>
 
 </head>
-<body style="">
+<?php
+$class = '';
+if(isset($bodyClass) && !empty($bodyClass)){
+	$class = implode(' ', $bodyClass);
+} ?>
+<body style="" class="<?= $class ?>">
 <!--Wrapper Start-->
 <!--<div class="wrapper">-->
 <header class="wf100 header">
@@ -83,7 +88,7 @@
                                         class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
                                         class="icon-bar"></span> <span class="icon-bar"></span></button>
                             <a class="navbar-brand" href="<?= site_url() ?>"><img
-                                        data-src="<?= getUploadedImageBySize($options['siteLogo'], '150x150') ?>"
+                                        data-src="<?= getUploadedImageBySize($options['siteLogo'], '345x119') ?>"
                                         alt="Logo"></a></div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

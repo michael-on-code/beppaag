@@ -141,7 +141,7 @@ header {
 	border: 0px;
 }
 .logo-nav-row .navbar-brand {
-	padding: 15px 0;
+	padding: 0px 0;
 	height: inherit;
 	margin-right: 70px;
 }
@@ -2780,7 +2780,7 @@ li.header-weather {
 	line-height: 34px;
 	margin: 0 0 30px;
 }
-.h3-slider-caption a {
+/*.h3-slider-caption a {
 	background: #d94148;
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
@@ -2797,7 +2797,7 @@ li.header-weather {
 .h3-slider-caption a:hover {
 	background: #0a3764;
 	color: #fff;
-}
+}*/
 /*********** Mayor Msg with Video Start ***********/
     
 .Mayor-video-msg {

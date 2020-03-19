@@ -242,7 +242,9 @@ class Evaluations extends Public_Controller {
 				//$evaluationID = (int) getIDBySlug($this->_tables->evaluations, $evaluationID);
 				$evaluationID = abs((int)$evaluationID);
 				redirect_if_id_is_not_valid($evaluationID, $this->_tables->evaluations, 'evaluations', false, false, ['active'=>1]);
+				$this->data['bodyClass'][] = 'evaluation-single-view';
 				$this->data['evaluation']=$this->evaluation_model->getByID($evaluationID, true);
+				$this->data['clientData']['evaluation_id']=$evaluationID;
 				$this->data['sidebarClass']='col-md-3';
 				$this->data['pageTitle']= $this->data['evaluation']['title'];
 				//            SEO

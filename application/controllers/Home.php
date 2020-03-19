@@ -16,29 +16,75 @@ class Home extends Public_Controller {
     public function index(){
         $this->data['pageTitle']= $this->data['pageDescription'];
         $this->load->model(['post_model', 'event_model']);
-        $this->load->model('recommendation_model');
-        $recommendations = $this->recommendation_model->getAll();
+        $this->load->model('evaluation_model');
+		$showEvaluationSlide = maybe_null_or_empty($this->data['options'], "show_latest_evaluations", true);
+		$showPostSlide = maybe_null_or_empty($this->data['options'], "show_latest_posts", true);
+		$showEventSlide = maybe_null_or_empty($this->data['options'], "show_latest_events", true);
+		if($showEvaluationSlide || $showEventSlide || $showPostSlide){
+			$limit = 4;
+			$sliders = [];
+			for($i=1; $i<=12; $i++){
+				if($slide = maybe_null_or_empty($this->data['options'], "home_slide_$i", true)){
+					$sliders[] = $slide;
+				}
+			}
+			if(!empty($sliders)){
+				$this->data['sliders']=$sliders;
+				$this->data['slidersElements']=[];
+
+				if($showEvaluationSlide){
+					$table = getEvaluationTablesNames();
+					$latestEvaluations = getAllInTable($table->evaluations, true, true,
+						'id', 'desc', false, '', '', '', 'id, title',
+						'', '', '', '', $limit);
+					if(!empty($latestEvaluations)){
+						foreach ($latestEvaluations as $evaluation){
+							$this->data['slidersElements'][]=[
+								'title'=>$evaluation['title'],
+								'link'=>getPermalink($evaluation['id'], 'evaluations'),
+								'type'=>'Dernières évaluations',
+							];
+						}
+					}
+
+				}
+				if($showPostSlide){
+					$table = getPostTablesNames();
+					$latestPosts = getAllInTable($table->posts, true, true,
+						'id', 'desc', false, '', '', '', 'id, title',
+						'', '', '', '', $limit);
+					if(!empty($latestPosts)){
+						foreach ($latestPosts as $posts){
+							$this->data['slidersElements'][]=[
+								'title'=>$posts['title'],
+								'link'=>getPermalink($posts['id'], 'blog'),
+								'type'=>'Dernières actualités',
+							];
+						}
+					}
+				}
+				if($showEventSlide){
+					$table = getEventTablesNames();
+					$latestEvents = getAllInTable($table->events, true, true,
+						'id', 'desc', false, '', '', '', 'id, title',
+						'', '', '', '', $limit);
+					if(!empty($latestEvents)){
+						foreach ($latestEvents as $event){
+							$this->data['slidersElements'][]=[
+								'title'=>$event['title'],
+								'link'=>getPermalink($event['id'], 'events'),
+								'type'=>'Derniers événements',
+							];
+						}
+					}
+
+				}
+			}
+
+		}
         $totalExecutedRecommendation = 0;
         $totalNonExecutedRecommendation = 0;
         $totalInProgressRecommendation = 0;
-        if(!empty($recommendations)){
-            $this->load->helper('evaluation');
-            foreach ($recommendations as $recommendation) {
-                $appreciation = getExecutionLevelByRecommendationsFromActivitiesArray(maybe_null_or_empty($recommendation, 'activities', true));
-                switch ($appreciation) {
-                    case 'Exécuté':
-                        $totalExecutedRecommendation++;
-                        break;
-                    case 'En cours':
-                        $totalInProgressRecommendation++;
-                        break;
-                    default :
-                        $totalNonExecutedRecommendation++;
-                        break;
-
-                }
-            }
-        }
         $this->data['totalExecutedRecommendation']=$totalExecutedRecommendation;
         $this->data['totalNonExecutedRecommendation']=$totalNonExecutedRecommendation;
         $this->data['totalInProgressRecommendation']=$totalInProgressRecommendation;

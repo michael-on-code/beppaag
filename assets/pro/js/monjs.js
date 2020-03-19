@@ -620,7 +620,11 @@ function myDropify(element=''){
 			},
 			error: {
 				'fileSize': 'Le ficher est trop volumineux | {{ value }} max.',
-				'fileExtension': "Le format du fichier n'est pas autorisé | {{ value }} autorisé."
+				'fileExtension': "Le format du fichier n'est pas autorisé | {{ value }} autorisé.",
+				'minWidth': "La largeur de l'image est très petite ({{ value }}}px min).",
+				'maxWidth': "La largeur de l'image est très grande ({{ value }}}px max).",
+				'minHeight': "La hauteur de l'image est très petite ({{ value }}}px min).",
+				'maxHeight': "La hauteur de l'image est très grande ({{ value }}px max).",
 			}
 		});
 
@@ -697,6 +701,10 @@ function myDropify(element=''){
 			var $this = $(element.element);
 			$this.parents('.form-group').find('input[type=hidden]').val('');
 			$this.parents('.form-group').find('.my-file-preview-btn').fadeOut();
+		});
+		myDropify.on('dropify.errors', function(event, element){
+			var $this = $(element.element);
+			$this.addClass("hasADropifyError");
 		});
 	}
 }

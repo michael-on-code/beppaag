@@ -56,6 +56,7 @@ class Option_model extends CI_Model{
             //footer content
             'footer_background_color',
             'footer_logo',
+            'sponsor_logo',
             'site_facebook_url',
             'site_twitter_url',
             'site_youtube_url',
@@ -74,23 +75,45 @@ class Option_model extends CI_Model{
 			'site_director_name',
 			'site_director_photo',
 			'site_director_phrase',
+			//slide
+			'show_latest_evaluations',
+			'show_latest_posts',
+			'show_latest_events',
+			'home_slide_1',
+			'home_slide_2',
+			'home_slide_3',
+			'home_slide_4',
+			'home_slide_5',
+			'home_slide_6',
+			'home_slide_7',
+			'home_slide_8',
+			'home_slide_9',
+			'home_slide_10',
+			'home_slide_11',
+			'home_slide_12',
+			'total_view_count',
+			'total_evaluation_view_count',
 			//team content
 			//'site_team_members',
         );
     }
 
-    public function update_all_options($data)
+    public function update_all_options($data, $checkEmptyValue=true)
     {
         if (!empty($data)) {
             foreach ($data as $key => $value) {
-                $this->update_option($key, $value);
+                $this->update_option($key, $value, $checkEmptyValue);
             }
         }
     }
 
-    public function update_option($key, $value)
+    public function update_option($key, $value, $checkIfValueEmpty=true)
     {
-        if (!empty($key) && !empty($value)) {
+    	$check = !empty($key);
+    	if($checkIfValueEmpty){
+    		$check = $check && !empty($value);
+		}
+    	if ($check) {
             $query = $this->db->get_where('options', array('key' => $key));
             if (empty($query->result_array())) {
                 $this->db->insert('options', array(

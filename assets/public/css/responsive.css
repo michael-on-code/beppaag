@@ -9,7 +9,7 @@
 .h3-slider-caption p {
 	font-size: 18px;
 }
-.h3-slider-caption a {
+.h3-slider-caption a.slider-button {
 	display: none;
 }
 }
@@ -149,7 +149,7 @@
 .h3-slider-caption p {
 	font-size: 18px;
 }
-.h3-slider-caption a {
+.h3-slider-caption a.slider-button {
 	display: none;
 }
 .community-links-style-two, .recent-event-block, .news-box {
@@ -390,7 +390,7 @@ li.header-weather {
 .h3-slider-caption p {
 	font-size: 18px;
 }
-.h3-slider-caption a {
+.h3-slider-caption a.slider-button {
 	display: none;
 }
 .community-links-style-two, .recent-event-block, .news-box {
@@ -842,7 +842,7 @@ ul.funds li strong, .event-counter .countdown-period {
 	font-size: 18px;
 	line-height: 26px;
 }
-.slider-caption p, .slider-caption a, .h3-logo-row ul.quick-links, .header-contact, .h3-slider-caption a, .h3-slider-caption p {
+.slider-caption p, .slider-caption a, .h3-logo-row ul.quick-links, .header-contact, .h3-slider-caption a.slider-button, .h3-slider-caption p {
 	display: none;
 }
 .city-tour img {

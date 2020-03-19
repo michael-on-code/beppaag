@@ -5,17 +5,43 @@
  * Date: 31/10/2019
  * Time: 11:40
  */
-?>
-<section class="banner banner-small scale-hover">
-	<div class="">
-		<img data-src="<?= getUploadedImageBySize($options['home_banner'], '1024x649') ?>" class="cover transition"/>
-	</div>
-	<div class="infos on-container flex flex-col center text-left anim-title">
-		<div>
-			<h1 class="title"><span>Évaluation des politiques publiques au Bénin</span></h1>
+//var_dump($options);exit;
+if (isset ($sliders) && !empty($sliders) && isset ($slidersElements) && !empty($slidersElements)) {
+
+	?>
+	<div class="main-slider wf100">
+		<div id="home-slider" class="owl-carousel owl-theme">
+			<!--Item Start-->
+			<?php
+			$sliderCounts = count($sliders);
+			$imageIndex = 0;
+			foreach ($slidersElements as $key=> $element) {
+				if($imageIndex >= $sliderCounts ){
+					$imageIndex=0;
+				}
+				?>
+				<!--Item Start-->
+				<div class="item">
+					<div class="h3-slider-caption">
+						<div class="container">
+							<ul class="banner-tags">
+								<li><?= $element['type'] ?></li>
+							</ul>
+							<a class="slider-text" href="<?= $element['link'] ?>"><strong><?= $element['title'] ?></strong></a>
+							<a class="slider-button" href="<?= $element['link'] ?>">Découvrir</a></div>
+					</div>
+					<img src="<?= getUploadedImageBySize($sliders[$imageIndex], '1920x700') ?>" alt=""></div>
+				<!--Item End-->
+				<?php
+				$imageIndex++;
+			}
+			?>
 		</div>
 	</div>
-</section>
+	<?php
+}
+?>
+
 
 <!--Slider End-->
 <!--Main Content Start-->
@@ -26,7 +52,8 @@
 				<div class="col-md-12">
 					<div class="section-title">
 						<h2>Parcourir & Découvrir</h2>
-						<p class="black-color font-size-21-big-screen">Découvrez les pages essentielles de notre plateforme de Gestion des Processus Evaluatifs au
+						<p class="black-color font-size-21-big-screen">Découvrez les pages essentielles de notre
+							plateforme de Gestion des Processus Evaluatifs au
 							Bénin à partir desquelles vous retrouverez toutes les informations
 							relatives aux évaluations au Bénin
 						</p>
@@ -109,20 +136,20 @@
 				</div>
 				<?php
 				/*if ($options['site_director_name'] && $options['site_director_photo'] && $options['site_director_phrase']) {
-					*/?><!--
+					*/ ?><!--
 					<div class="col-md-4">
 						<div class="Mayor-msg">
 							<div class="Mayor-thumb"><img
-									data-src="<?/*= getUploadedImageBySize($options['site_director_photo'], '445x350') */?>"
-									alt="<?/*= $options['site_director_name'] */?>"></div>
+									data-src="<? /*= getUploadedImageBySize($options['site_director_photo'], '445x350') */ ?>"
+									alt="<? /*= $options['site_director_name'] */ ?>"></div>
 							<div class="Mayor-text"><span>Le mot du Directeur</span>
-								<h5><?/*= $options['site_director_name'] */?></h5>
-								<p> <?/*= $options['site_director_phrase'] */?></p>
+								<h5><? /*= $options['site_director_name'] */ ?></h5>
+								<p> <? /*= $options['site_director_phrase'] */ ?></p>
 								</div>
 						</div>
 					</div>
 					--><?php
-/*				}*/
+				/*				}*/
 				?>
 
 			</div>
@@ -223,14 +250,14 @@
 							<li class="col-md-4 col-sm-4">
 								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/progress.png"
 															  alt=""></i>
-									<strong><?= $totalInProgressRecommendation ?></strong>
-									<span>Recommandations en cours</span></div>
+									<strong><?= (int) maybe_null_or_empty($options, 'total_view_count') ?></strong>
+									<span>Total vues du site</span></div>
 							</li>
 							<li class="col-md-4 col-sm-4">
 								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/checked.png"
 															  alt=""></i>
-									<strong><?= $totalExecutedRecommendation ?></strong>
-									<span>Recommandations exécutées</span>
+									<strong><?= (int) maybe_null_or_empty($options, 'total_evaluation_view_count') ?></strong>
+									<span>Total vues évaluations</span>
 								</div>
 							</li>
 							<li class="col-md-4 col-sm-4">
@@ -261,19 +288,19 @@
 						<ul>
 							<li>
 								<?= form_input([
-									'name'=>'fullname',
-									'class'=>'form-control',
-									'placeholder'=>'Saisissez votre nom',
-									'required'=>'',
+									'name' => 'fullname',
+									'class' => 'form-control',
+									'placeholder' => 'Saisissez votre nom',
+									'required' => '',
 								]) ?>
 							</li>
 							<li>
 								<?= form_input([
-									'name'=>'email',
-									'class'=>'form-control',
-									'placeholder'=>'Saisissez votre email',
-									'required'=>'',
-									'type'=>'email',
+									'name' => 'email',
+									'class' => 'form-control',
+									'placeholder' => 'Saisissez votre email',
+									'required' => '',
+									'type' => 'email',
 								]) ?>
 							</li>
 							<li>

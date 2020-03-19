@@ -352,6 +352,18 @@ class Evaluation_model extends CI_Model
         return $this->db->get_where($this->_tables->questions, ['evaluation_id'=>$evaluationID])->result_array();
     }
 
+    public function insertEvaluationStat($data){
+		$this->db->insert($this->_tables->stats, $data);
+		return $this->db->insert_id();
+	}
+
+	public function getCountEvaluationsView(){
+		$tables = $this->_tables;
+    	$this->db->select('count(id) as num');
+    	$this->db->where("$tables->stats.type", "VIEW");
+    	return (int) $this->db->get($this->_tables->stats)->row()->num;
+	}
+
     public function insertOrUpdateEvaluation($update=false, $evaluation, $evaluationID = '', $isActorAssociated=true, $questionsData=[], $recommendationsData, $isDraft=false)
     {
         $this->load->model('recommendation_model');

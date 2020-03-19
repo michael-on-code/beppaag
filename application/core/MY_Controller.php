@@ -23,6 +23,12 @@ class MY_Controller extends CI_Controller
         $this->data['pageDescription']=maybe_null_or_empty($this->data['options'], 'siteDescription');
         $this->data['pageDefaultImageUrl']=getUploadedImageBySize($this->data['options']['siteLogo'], '');
         $this->data['pageUrl']=site_url();
+		$this->data['bodyClass'] = [];
+		//DYNAMICALLY EXCLUDE URIS FROM CSRF
+		$csrf_exclude_uris = $this->config->item($excludeKey = 'csrf_exclude_uris');
+		$csrf_exclude_uris[] = 'ajaxify/setSiteViewCounter';
+		$this->config->set_item($excludeKey, $csrf_exclude_uris);
+
     }
 
     protected function render($the_view = NULL, $template = 'home')
@@ -47,7 +53,11 @@ class Public_Controller extends MY_Controller
 		$this->load->model('evaluation_model');
 		$this->data['clientData']['newsletterUrl']=site_url('ajaxify/updateNewsletter');
 		$this->data['clientData']['contactUrl']=site_url('ajaxify/contactMailer');
+		$this->data['clientData']['publicStatUrl'] =site_url('ajaxify/setSiteViewCounter');
+		$this->data['clientData']['publicEvaluationStatUrl'] =site_url('ajaxify/setSingleEvaluationViewCounter');
 		$this->data['header_evaluations'] = $this->evaluation_model->getMinifiedAll('id, title', true, 0, 6, true, 'id', 'desc', false, false);
+		$this->data['bodyClass'][] = 'public-view';
+		$this->data['clientData']['bodyClass'] = $this->data['bodyClass'];
     }
 
 

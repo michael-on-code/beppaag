@@ -1,5 +1,21 @@
 <div class="footer" style="display: block">
-    <span class="center"></span>
+<!--    <span class="center"></span>-->
+	<div >
+		<?php
+		$logo = maybe_null_or_empty($options, 'footer_logo', true);
+		if($logo){
+			?>
+			<img class="m-t-20 m-r-20 filter-white" src="<?= getUploadedImageBySize($logo, '345x119') ?>" alt="">
+			<?php
+		}
+		$logo = maybe_null_or_empty($options, 'sponsor_logo', true);
+		if($logo){
+			?>
+			<img class="m-t-20 filter-white" src="<?= getUploadedImageBySize($logo, '150x150') ?>" alt="">
+			<?php
+		}
+		?>
+	</div>
     <ul class="footer-socials">
         <?php
         if($url = maybe_null_or_empty($options, 'site_facebook_url', true)){
@@ -103,8 +119,8 @@ if (isset($clientData) && !empty($clientData)) {
 <script src="<?= $assetsUrl ?>public/js/scrollUp.js"></script>
 <script src="<?= $assetsUrl ?>public/js/jquery.ticker.js"></script>
 <script src="<?= $assetsUrl ?>public/js/jquery.prettyPhoto.js"></script>
-<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.25"></script>
-<script src="<?= $assetsUrl ?>public/js/ajaxify.js?v=1.001"></script>
+<script src="<?= $assetsUrl ?>public/js/custom.js?v=1.32"></script>
+<script src="<?= $assetsUrl ?>public/js/ajaxify.js?v=1.004"></script>
 </body>
 
 </html>
