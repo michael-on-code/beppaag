@@ -246,6 +246,28 @@ class Ajaxify extends MY_Controller
 
 	}
 
+	public function setDownloadCounter(){
+		if ($this->input->is_ajax_request()) {
+			$this->load->library('user_agent');
+			if($this->agent->is_browser()){
+				$count = (int) $this->option_model->get_option($optionKey = 'total_download_count');
+				$count++;
+				$this->option_model->update_option($optionKey, $count);
+				$output = [
+					'status' => 1,
+				];
+			}else{
+				$output = [
+					'status' => 0,
+				];
+			}
+			echo json_encode($output);
+			die();
+		}else {
+			redirect();
+		}
+	}
+
 	private function caller(callable $func, $param = [])
 	{
 		return call_user_func_array($func, [$param]);

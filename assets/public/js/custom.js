@@ -545,8 +545,19 @@ jQuery(document).ready(function ($) {
 			}
 		})
 	});
-
-
+    
+    if($('.my-download-btn').length){
+		$('.my-download-btn').click(function (e) {
+			$.ajax({
+				url: clientData.downloadStatUrl,
+				data: {},
+				type: 'POST',
+				dataType: 'JSON',
+				cache: false,
+			});
+			return true;
+		});
+	}
 
     if ($('select.my-choices').length) {
         const choices = new Choices('select.my-choices',

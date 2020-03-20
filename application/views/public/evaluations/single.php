@@ -42,7 +42,7 @@ getBreadcrump([
                                 <h6>Recommandations</h6>
                             </div>
                             <div class="evaluation-sidebar-content">
-								<a download="" href="<?= $uploadPath.$evaluation['evaluation_file'] ?>">
+								<a download="" href="<?= $uploadPath.$evaluation['evaluation_file'] ?>" class="my-download-btn">
 									<h6>Rapport complet <img class="symbol-icon"
 															 data-src="<?= $assetsUrl ?>public/images/pdf.png" alt=""></h6>
 								</a>
@@ -51,7 +51,7 @@ getBreadcrump([
 							if($evaluation['annexe_file_1'] && $evaluation['annexe_file_1']!=""){
 								?>
 								<div class="evaluation-sidebar-content">
-									<a download="" href="<?= $uploadPath.$evaluation['annexe_file_1'] ?>">
+									<a class="my-download-btn" download="" href="<?= $uploadPath.$evaluation['annexe_file_1'] ?>">
 										<h6>Annexe 1 <img class="symbol-icon"
 																 data-src="<?= $assetsUrl ?>public/images/pdf.png" alt=""></h6>
 									</a>

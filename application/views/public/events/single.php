@@ -92,7 +92,7 @@ getBreadcrump([
 								if($attachment = maybe_null_or_empty($event, 'attachment', true)){
 									?>
 									<div class="title-style-2">
-										<a href="<?= $uploadPath.$attachment ?>" download class="m-b-20" style="float: left"><i class="fas fa-paperclip"></i> Télécharger le fichier attaché</a>
+										<a href="<?= $uploadPath.$attachment ?>" download class="m-b-20 my-download-btn" style="float: left"><i class="fas fa-paperclip"></i> Télécharger le fichier attaché</a>
 									</div>
 									<?php
 								}

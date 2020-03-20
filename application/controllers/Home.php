@@ -82,12 +82,6 @@ class Home extends Public_Controller {
 			}
 
 		}
-        $totalExecutedRecommendation = 0;
-        $totalNonExecutedRecommendation = 0;
-        $totalInProgressRecommendation = 0;
-        $this->data['totalExecutedRecommendation']=$totalExecutedRecommendation;
-        $this->data['totalNonExecutedRecommendation']=$totalNonExecutedRecommendation;
-        $this->data['totalInProgressRecommendation']=$totalInProgressRecommendation;
         $this->data['latestPosts']=$this->post_model->getAll(true, true, true, true, 'id', 'desc', false, 4, false);
         $this->data['latestEvents']=$this->event_model->getAll(true, true, true, true, 'id', 'desc', false, 3, false);
         $this->data['eventsToCome']=$this->event_model->getAll(true, true, true, true, 'id', 'desc', false, 3, false, 1, [], [], [], [], [], false, true);

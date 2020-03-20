@@ -289,7 +289,7 @@ if (isset ($sliders) && !empty($sliders) && isset ($slidersElements) && !empty($
 							<li class="col-md-4 col-sm-4">
 								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/download-icon.png"
 															  alt=""></i>
-									<strong><?= $totalNonExecutedRecommendation ?></strong>
+									<strong><?= (int) maybe_null_or_empty($options, 'total_download_count') ?></strong>
 									<span>Total téléchargements</span></div>
 							</li>
 

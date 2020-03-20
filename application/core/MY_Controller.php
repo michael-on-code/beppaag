@@ -54,6 +54,7 @@ class Public_Controller extends MY_Controller
 		$this->data['clientData']['newsletterUrl']=site_url('ajaxify/updateNewsletter');
 		$this->data['clientData']['contactUrl']=site_url('ajaxify/contactMailer');
 		$this->data['clientData']['publicStatUrl'] =site_url('ajaxify/setSiteViewCounter');
+		$this->data['clientData']['downloadStatUrl'] =site_url('ajaxify/setDownloadCounter');
 		$this->data['clientData']['publicEvaluationStatUrl'] =site_url('ajaxify/setSingleEvaluationViewCounter');
 		$this->data['header_evaluations'] = $this->evaluation_model->getMinifiedAll('id, title', true, 0, 6, true, 'id', 'desc', false, false);
 		$this->data['bodyClass'][] = 'public-view';

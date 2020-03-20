@@ -93,6 +93,7 @@ class Option_model extends CI_Model{
 			'home_slide_12',
 			'total_view_count',
 			'total_evaluation_view_count',
+			'total_download_count',
 			//team content
 			//'site_team_members',
         );
