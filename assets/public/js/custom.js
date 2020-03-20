@@ -9,7 +9,11 @@ jQuery(document).ready(function ($) {
                     $(this).addClass('active');
                 }
             });
-        })
+        });
+        if($('ul.dropdown-menu li a.active').length){
+			var ancestorLi = $('ul.dropdown-menu li a.active').parents('li')[1];
+			$(ancestorLi).children('a').addClass('active');
+		}
     }
     if($('.sidebar .widget').length){
         $('.sidebar .widget a').each(function () {
@@ -19,6 +23,19 @@ jQuery(document).ready(function ($) {
         })
     }
     if ($(window).width() > 768) {
+    	var navbar = $('header.wf100.header');
+		var navbarStickyHeight = navbar.height();
+    	if(navbar.length){
+
+			$(window).scroll(function () {
+				if($(window).scrollTop() > navbarStickyHeight){
+					navbar.addClass('sticky');
+				}else{
+					navbar.removeClass('sticky');
+				}
+			});
+		}
+
         if ($(".evaluation-single").length) {
             var menuTop = $(".evaluation-sidebar-container").offset().top;
             var menuLeft = $(".evaluation-sidebar-container").offset().left;
@@ -32,10 +49,11 @@ jQuery(document).ready(function ($) {
                         var x1 = menuHeight - 160;
                         $(".evaluation-sidebar-container").addClass("fixed");
                         $(".evaluation-sidebar-container").css({
-                            width: menuWidth + "px"
+                            width: menuWidth + "px",
+                            // top:navbarStickyHeight+'px'
                         });
                         var aHeight = 0;
-                        if ($(window).scrollTop() > (evalDocHeight + $(".evaluation-sidebar-container").height())) {
+                        if ($(window).scrollTop() > (evalDocHeight + $(".evaluation-sidebar-container").height() - navbarStickyHeight)) {
                             $(".evaluation-sidebar-container").removeClass("fixed");
                             $(".evaluation-sidebar-container").parent().css({
                                 height: $(".evaluation-single").height() + 'px'
@@ -46,12 +64,16 @@ jQuery(document).ready(function ($) {
                             });
                         } else {
                             $(".evaluation-sidebar-container").addClass("fixed");
+							$(".evaluation-sidebar-container").css({
+								top:navbarStickyHeight+'px'
+							});
                         }
                     } else {
                         $(".evaluation-sidebar-container").removeClass("fixed");
                         $(".evaluation-sidebar-container").css({
                             position: 'relative',
                             bottom: 'unset',
+							top: '10px',
                         });
                     }
 

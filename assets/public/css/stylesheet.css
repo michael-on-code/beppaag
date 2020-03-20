@@ -6,6 +6,12 @@
     div#bs-example-navbar-collapse-1 ul {
         margin-top: 28px;
     }
+	header.sticky{
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 9999;
+	}
 
 }
 
@@ -82,7 +88,7 @@ body {
 
 @media (max-width: 767px) and (min-width: 280px) {
     .logo-nav-row .navbar-toggle {
-        margin: 40px 0 0 0;
+        margin: 25px 0 0 0;
     }
 
     .slider-caption p {
@@ -1404,7 +1410,7 @@ h4.panel-title {
 
 .evaluation-sidebar-container.fixed {
     position: fixed !important;
-    top: 10px !important;
+    top: 10px;
     bottom: auto !important;
 }
 div.lazy{
