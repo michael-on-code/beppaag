@@ -94,7 +94,7 @@ getBreadcrump([
                                     <div class="single-post-tags">
                                         <?php
                                         foreach ($tags as $tag) {
-                                            ?> <a href="<?= site_url('events/tag/'.$tag['slug']) ?>"><?= $tag['name'] ?></a> <?php
+                                            ?> <a href="<?= site_url('evenements/etiquette/'.$tag['slug']) ?>"><?= $tag['name'] ?></a> <?php
                                         }
                                         ?>
                                     </div>
@@ -111,7 +111,7 @@ getBreadcrump([
                                                     ?>
                                                     <li class="col-md-4 col-sm-4">
                                                         <div class="rel-box">
-                                                            <h6><a href="<?= site_url('events/'.$relatedEvent['id']) ?>"><?= $relatedEvent['title'] ?></a></h6>
+                                                            <h6><a href="<?= getPermalink($relatedEvent['id'], 'events') ?>"><?= $relatedEvent['title'] ?></a></h6>
                                                             <ul class="news-meta">
                                                                 <li><?= getFullDateInFrench($relatedEvent['starts_at'], getRegularDateTimeFormat()) ?></li>
                                                             </ul>

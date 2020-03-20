@@ -19,7 +19,7 @@
                         foreach ($categories as $category) {
                             ?>
                             <li>
-                                <a href="<?= site_url('blog/category/' . $category['slug']) ?>"><?= $category['name'] ?></a>
+                                <a href="<?= site_url('articles/categorie/' . $category['slug']) ?>"><?= $category['name'] ?></a>
                             </li>
                             <?php
                         }
@@ -42,7 +42,7 @@
                                      alt="<?= $post['title'] ?>">
                                 <strong><?= getFullDateInFrench($post['created_at'], getRegularDateTimeFormat()) ?></strong>
                                 <h6><a data-toggle="tooltip" title="<?= $post['title'] ?>"
-                                       href="<?= site_url('blog/' . $post['id']) ?>"><?= myWordLimiter($post['title'], 7) ?></a>
+                                       href="<?= getPermalink($post['id']) ?>"><?= myWordLimiter($post['title'], 7) ?></a>
                                 </h6>
                             </li>
                             <?php
@@ -80,7 +80,7 @@
 
                                 ?>
 
-                                <h6><a data-toggle="tooltip" title="<?= $event['title'] ?>" href="<?= site_url('events/' . $event['id']) ?>"><?= myWordLimiter($event['title'], 6) ?></a>
+                                <h6><a data-toggle="tooltip" title="<?= $event['title'] ?>" href="<?= getPermalink($event['id'], 'events') ?>"><?= myWordLimiter($event['title'], 6) ?></a>
                                 </h6>
                                 <span class="loc"><i class="fas fa-map-marker-alt"></i> <?= $event['location'] ?></span>
                             </li>
@@ -99,7 +99,7 @@
                 <div class="tags-widget inner">
                     <?php
                     foreach ($tags as $tag) {
-                        ?> <a href="<?= site_url('blog/tag/'.$tag['slug']) ?>"><?= $tag['name'] ?></a><?php
+                        ?> <a href="<?= site_url('articles/etiquette/'.$tag['slug']) ?>"><?= $tag['name'] ?></a><?php
                     }
                     ?>
                 </div>

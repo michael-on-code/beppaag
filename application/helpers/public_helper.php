@@ -66,7 +66,7 @@ function getPostTemplatePreview($post, $options, $outerClass = 'col-md-3 col-sm-
                             <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="fas fa-share-alt"></i></button>
                             <ul class="dropdown-menu">
-                                <li><a <?= getSharerAttributes($permalink = getPermalink($post['id'], 'blog'), $post['title'], 'facebook') ?> class="fb"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a <?= getSharerAttributes($permalink = getPermalink($post['id']), $post['title'], 'facebook') ?> class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a <?= getSharerAttributes($permalink, $post['title'], 'whatsapp') ?> class="whats"><i class="fab fa-whatsapp"></i></a></li>
                                 <li><a <?= getSharerAttributes($permalink, $post['title'], 'twitter') ?> class="tw"><i class="fab fa-twitter"></i></a></li>
                                 <li><a <?= getSharerAttributes($permalink, $post['title'], 'linkedin') ?> class="linken"><i class="fab fa-linkedin-in"></i></a></li>
@@ -109,16 +109,16 @@ function getSharerAttributes($link, $title = '', $type = 'facebook')
     }
 }
 
-function getPermalink($IDOrSlug, $type = 'blog')
+function getPermalink($IDOrSlug, $type = 'articles')
 {
-    return site_url("$type/$IDOrSlug");
+    //return site_url("$type/$IDOrSlug");
     switch ($type) {
         case 'events':
-            return site_url("events/$IDOrSlug");
+            return site_url("evenements/$IDOrSlug");
         case 'evaluations':
             return site_url("evaluations/$IDOrSlug");
         default:
-            return site_url("blog/$IDOrSlug");
+            return site_url("articles/$IDOrSlug");
     }
 }
 

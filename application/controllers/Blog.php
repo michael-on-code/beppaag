@@ -23,7 +23,7 @@ class Blog extends Public_Controller
 
     public function tag($tagSlug){
         $tagID = (int) getIDBySlug($this->_tables->tags, $tagSlug);
-        redirect_if_id_is_not_valid($tagID, $this->_tables->tags, 'blog', false, false);
+        redirect_if_id_is_not_valid($tagID, $this->_tables->tags, 'articles', false, false);
         $tag = getTableByID($this->_tables->tags, $tagID);
         $this->data['pageTitle'] = 'Etiquette '.$tag['name'];
         $page = abs((int)$this->input->get('page'));
@@ -39,19 +39,18 @@ class Blog extends Public_Controller
             $totalRow = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [], [], [], [], $postIDs, true);
 
         }
-        $config['base_url'] = site_url('blog');
-        $this->data['links'] = getPaginationConfigAndLink(site_url('blog'), $limit, $totalRow, $page);
+        $this->data['links'] = getPaginationConfigAndLink(current_url(), $limit, $totalRow, $page);
         $this->render('blog/index');
     }
     public function category($categorySlug){
         $categoryID = (int) getIDBySlug($this->_tables->categories, $categorySlug);
-        redirect_if_id_is_not_valid($categoryID, $this->_tables->categories, 'blog', false, false);
+        redirect_if_id_is_not_valid($categoryID, $this->_tables->categories, 'articles', false, false);
         $tag = getTableByID($this->_tables->categories, $categoryID);
         $this->data['pageTitle'] = $tag['name'];
         $page = abs((int)$this->input->get('page'));
         $this->data['posts'] = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID]);
         $totalRow = $this->post_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID], [], [], [], [], true);
-        $this->data['links'] = getPaginationConfigAndLink(site_url('blog'),$limit, $totalRow, $page);
+        $this->data['links'] = getPaginationConfigAndLink(current_url(),$limit, $totalRow, $page);
         $this->render('blog/index');
     }
 
@@ -62,12 +61,12 @@ class Blog extends Public_Controller
             $this->data['pageTitle'] = 'Actualités';
             $page = abs((int)$this->input->get('page'));
             $this->data['posts'] = $this->post_model->getAll(true, true, true, 'true', 'id', 'desc', false, $limit = 9, true, $page);
-            $this->data['links'] = getPaginationConfigAndLink(site_url('blog'), $limit, getCountInTable($this->_tables->posts, true, ['active' => 1]), $page);
+            $this->data['links'] = getPaginationConfigAndLink(site_url('articles'), $limit, getCountInTable($this->_tables->posts, true, ['active' => 1]), $page);
             $this->render('blog/index');
         } else {
             //$postID = (int) getIDBySlug($this->_tables->posts, $postID);
 			$postID = abs((int)$postID);
-            redirect_if_id_is_not_valid($postID, $this->_tables->posts, 'blog', false, false,['active'=>1]);
+            redirect_if_id_is_not_valid($postID, $this->_tables->posts, 'articles', false, false,['active'=>1]);
             $this->data['post']=$this->post_model->getByID($postID, false, true, true, true);
             $tags=[];
             if($allTags = maybe_null_or_empty($this->data['post'], 'tag_id')){

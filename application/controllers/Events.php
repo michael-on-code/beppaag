@@ -20,7 +20,7 @@ class Events extends Public_Controller {
 
     public function tag($tagSlug){
         $tagID = (int) getIDBySlug($this->_tables->tags, $tagSlug);
-        redirect_if_id_is_not_valid($tagID, $this->_tables->tags, 'events', false, false);
+        redirect_if_id_is_not_valid($tagID, $this->_tables->tags, 'evenements', false, false);
         $tag = getTableByID($this->_tables->tags, $tagID);
         $this->data['pageTitle'] = 'Etiquette '.$tag['name'];
         $page = abs((int)$this->input->get('page'));
@@ -32,20 +32,20 @@ class Events extends Public_Controller {
             }
         }
         $this->data['events'] = $this->event_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [], [], [], [], $eventIDs);
-        $config['base_url'] = site_url('events');
+        $config['base_url'] = site_url('evenements');
         $totalRow = $this->event_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [], [], [], [], $eventIDs, true);
-        $this->data['links'] = getPaginationConfigAndLink(site_url('events'), $limit, $totalRow, $page);
+        $this->data['links'] = getPaginationConfigAndLink(current_url(), $limit, $totalRow, $page);
         $this->render('events/index');
     }
     public function category($categorySlug){
         $categoryID = (int) getIDBySlug($this->_tables->categories, $categorySlug);
-        redirect_if_id_is_not_valid($categoryID, $this->_tables->categories, 'events', false, false);
+        redirect_if_id_is_not_valid($categoryID, $this->_tables->categories, 'evenements', false, false);
         $tag = getTableByID($this->_tables->categories, $categoryID);
         $this->data['pageTitle'] = 'Rubrique '.$tag['name'];
         $page = abs((int)$this->input->get('page'));
         $this->data['events'] = $this->event_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID]);
         $totalRow = $this->event_model->getAll(true, true, true, true, 'id', 'desc', false, $limit = 9, true, $page, [$categoryID], [], [], [], [], true);
-        $this->data['links'] = getPaginationConfigAndLink(site_url('events'),$limit, $totalRow, $page);
+        $this->data['links'] = getPaginationConfigAndLink(current_url(),$limit, $totalRow, $page);
         $this->render('events/index');
     }
 
@@ -57,12 +57,12 @@ class Events extends Public_Controller {
             $page = abs((int)$this->input->get('page'));
             $this->data['events'] = $this->event_model->getAll(true, true, true, 'true', 'id', 'desc', false, $limit = 6, true, $page);
             //var_dump($this->data['events']);exit;
-            $this->data['links'] = getPaginationConfigAndLink(site_url('events'), $limit, getCountInTable($this->_tables->events, ['active' => 1]), $page);
+            $this->data['links'] = getPaginationConfigAndLink(site_url('evenements'), $limit, getCountInTable($this->_tables->events, ['active' => 1]), $page);
             $this->render('events/index');
         } else {
             //$eventID = (int) getIDBySlug($this->_tables->events, $eventID);
 			$eventID = abs((int)$eventID);
-            redirect_if_id_is_not_valid($eventID, $this->_tables->events, 'events', false, false,['active'=>1]);
+            redirect_if_id_is_not_valid($eventID, $this->_tables->events, 'evenements', false, false,['active'=>1]);
             $this->data['event']=$this->event_model->getByID($eventID, false, true, true, true);
             $tags=[];
             if($allTags = maybe_null_or_empty($this->data['event'], 'tag_id')){

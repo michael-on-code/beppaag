@@ -41,7 +41,7 @@ getBreadcrump([
                                                     class="fas fa-share-alt"></i> Partager
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a <?= getSharerAttributes($permalink = getPermalink($post['id'], 'blog'), $post['title'], 'facebook') ?> class="fb"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a <?= getSharerAttributes($permalink = getPermalink($post['id']), $post['title'], 'facebook') ?> class="fb"><i class="fab fa-facebook-f"></i></a></li>
                                             <li><a <?= getSharerAttributes($permalink, $post['title'], 'whatsapp') ?> class="whats"><i class="fab fa-whatsapp"></i></a></li>
                                             <li><a <?= getSharerAttributes($permalink, $post['title'], 'twitter') ?> class="tw"><i class="fab fa-twitter"></i></a></li>
                                             <li><a <?= getSharerAttributes($permalink, $post['title'], 'linkedin') ?> class="linken"><i class="fab fa-linkedin-in"></i></a></li>
@@ -57,7 +57,7 @@ getBreadcrump([
                                 <div class="single-post-tags">
                                     <?php
                                     foreach ($tags as $tag) {
-                                        ?> <a href="<?= site_url('blog/tag/'.$tag['slug']) ?>"><?= $tag['name'] ?></a> <?php
+                                        ?> <a href="<?= site_url('articles/etiquette/'.$tag['slug']) ?>"><?= $tag['name'] ?></a> <?php
                                     }
                                     ?>
                                 </div>
@@ -74,7 +74,7 @@ getBreadcrump([
                                                 ?>
                                                 <li class="col-md-4 col-sm-4">
                                                     <div class="rel-box">
-                                                        <h6><a href="<?= site_url('blog/'.$relatedPost['id']) ?>"><?= $relatedPost['title'] ?></a></h6>
+                                                        <h6><a href="<?= getPermalink($relatedPost['id']) ?>"><?= $relatedPost['title'] ?></a></h6>
                                                         <ul class="news-meta">
                                                             <li><?= getFullDateInFrench($relatedPost['created_at'], getRegularDateTimeFormat()) ?></li>
                                                         </ul>

@@ -23,7 +23,7 @@ if(!isset($sidebarClass)){
                         if ($key == '') {
                             continue;
                         }
-                        ?><a href="<?= site_url("evaluations/year/$key") ?>"><?= $year ?></a> <?php
+                        ?><a href="<?= site_url("evaluations/annee/$key") ?>"><?= $year ?></a> <?php
                     }
 
                     ?>
@@ -42,7 +42,7 @@ if(!isset($sidebarClass)){
                             if ($slug == '') {
                                 continue;
                             }
-                            ?><li><a href="<?= site_url("evaluations/thematic/$slug") ?>"><?= $thematic ?></a></li><?php
+                            ?><li><a href="<?= site_url("evaluations/thematique/$slug") ?>"><?= $thematic ?></a></li><?php
                         }
                         ?>
                     </ul>
@@ -61,7 +61,7 @@ if(!isset($sidebarClass)){
                             if ($slug == '') {
                                 continue;
                             }
-                            ?><li><a href="<?= site_url("evaluations/temporality/$slug") ?>"><?= $temporality ?></a></li><?php
+                            ?><li><a href="<?= site_url("evaluations/temporalite/$slug") ?>"><?= $temporality ?></a></li><?php
                         }
                         ?>
                     </ul>
@@ -80,7 +80,7 @@ if(!isset($sidebarClass)){
                             if ($slug == '') {
                                 continue;
                             }
-                            ?><li><a href="<?= site_url("evaluations/sector/$slug") ?>"><?= $sector ?></a></li><?php
+                            ?><li><a href="<?= site_url("evaluations/secteur/$slug") ?>"><?= $sector ?></a></li><?php
                         }
                         ?>
                     </ul>

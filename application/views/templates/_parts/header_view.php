@@ -95,8 +95,8 @@ if(isset($bodyClass) && !empty($bodyClass)){
                             <ul class="nav navbar-nav">
                                 <li><a href="<?= site_url() ?>">Accueil</a></li>
                                 <li><a href="<?= site_url('evaluations') ?>">Evaluations</a></li>
-                                <li><a href="<?= site_url('events') ?>">Evènements</a></li>
-                                <li><a href="<?= site_url('blog') ?>">Actualités</a></li>
+                                <li><a href="<?= site_url('evenements') ?>">Evènements</a></li>
+                                <li><a href="<?= site_url('articles') ?>">Actualités</a></li>
                                 <?php
                                 if (!empty($header_post_cats)) {
                                     ?>
@@ -108,7 +108,7 @@ if(isset($bodyClass) && !empty($bodyClass)){
                                             foreach ($header_post_cats as $cat) {
                                                 ?>
                                                 <li>
-                                                    <a href="<?= site_url("blog/category/$cat->slug") ?>"><?= $cat->name ?></a>
+                                                    <a href="<?= site_url("articles/categorie/$cat->slug") ?>"><?= $cat->name ?></a>
                                                 </li> <?php
                                             }
                                             ?>
