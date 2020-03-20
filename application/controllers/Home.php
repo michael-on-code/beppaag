@@ -36,7 +36,7 @@ class Home extends Public_Controller {
 					$table = getEvaluationTablesNames();
 					$latestEvaluations = getAllInTable($table->evaluations, true, true,
 						'id', 'desc', false, '', '', '', 'id, title',
-						'', '', '', '', $limit);
+						'', ['active'=>1], '', '', $limit);
 					if(!empty($latestEvaluations)){
 						foreach ($latestEvaluations as $evaluation){
 							$this->data['slidersElements'][]=[
@@ -52,7 +52,7 @@ class Home extends Public_Controller {
 					$table = getPostTablesNames();
 					$latestPosts = getAllInTable($table->posts, true, true,
 						'id', 'desc', false, '', '', '', 'id, title',
-						'', '', '', '', $limit);
+						'', ['active'=>1], '', '', $limit);
 					if(!empty($latestPosts)){
 						foreach ($latestPosts as $posts){
 							$this->data['slidersElements'][]=[
@@ -67,7 +67,7 @@ class Home extends Public_Controller {
 					$table = getEventTablesNames();
 					$latestEvents = getAllInTable($table->events, true, true,
 						'id', 'desc', false, '', '', '', 'id, title',
-						'', '', '', '', $limit);
+						'', ['active'=>1], '', '', $limit);
 					if(!empty($latestEvents)){
 						foreach ($latestEvents as $event){
 							$this->data['slidersElements'][]=[
