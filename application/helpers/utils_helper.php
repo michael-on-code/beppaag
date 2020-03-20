@@ -1329,7 +1329,7 @@ function notificationTemplateHTML($args, $options)
                             <td style="background-color:#FFFFFF;color:#000000;padding:0px 30px;">
                                 <img alt=""
                                      src="<?= getUploadedImageBySize(maybe_null_or_empty($options, 'siteLogo'), '', true) ?>"
-                                     width="210"
+                                     width="300"
                                      style="display: block;width: auto;margin: auto;max-width: 300px"/>
                             </td>
                         </tr>

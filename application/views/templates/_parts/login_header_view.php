@@ -13,7 +13,7 @@
 
     <!-- Core css -->
     <link href="<?= $assetsUrl ?>pro/css/app.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.003" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>pro/css/stylesheet.css?v=1.004" rel="stylesheet">
     <script type="text/javascript">
         var verifyCallback = function (response) {
             if ($('form input[name=g-recaptcha-response]')) {

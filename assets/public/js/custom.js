@@ -70,13 +70,38 @@ jQuery(document).ready(function ($) {
     }
 
     // ------- Navigation ------- //
-    if ($('ul.nav li.dropdown').length) {
+	if ($('ul.nav li.dropdown').length) {
+		$('ul.nav li.dropdown').on({
+			mouseenter: function () {
+				$('ul.nav li.open').removeClass('open');
+				$(this).addClass('open');
+				//stuff to do on mouse enter
+			},
+			mouseleave: function () {
+				var parent = $(this);
+				if(parent.hasClass('open')){
+					parent.children('ul.dropdown-menu').hover(function () {
+
+					}, function () {
+						parent.removeClass('open')
+					});
+				}
+				/*if($(this).hasClass('open')){
+					if($(this))
+				}*/
+				//$(this).children('a.dropdown-toggle').trigger('click');
+				//stuff to do on mouse leave
+			}
+		});
+	}
+
+    /*if ($('ul.nav li.dropdown').length) {
         $('ul.nav li.dropdown').on('hover', function () {
             $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
         }, function () {
             $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
         });
-    }
+    }*/
     // ------- Navigation End ------- //
 
 

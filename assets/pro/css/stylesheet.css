@@ -22,7 +22,7 @@ a:hover, a:focus {
 
 .login-logo-triangle-container {
     left: 0;
-    border-width: 0 0 297px 366px;
+    border-width: 0px 0 265px 484px;
     border-color: transparent transparent transparent #fff;
     position: fixed;
     width: 0;
@@ -42,7 +42,7 @@ a:hover, a:focus {
 }
 
 .login-logo-container img {
-    width: 100%;
+    width: 88%;
 }
 
 .banner-text-container {

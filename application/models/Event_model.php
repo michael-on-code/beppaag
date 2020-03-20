@@ -45,9 +45,11 @@ class Event_model extends CI_Model{
 
 
 
-    public function getAll($onlyActiveOnes=true, $tagsInString=true, $resultInArray=true, $order=true, $orderByField='id', $orderBy='desc', $onlyDeletedOnes=false, $limit=0,$withAuthorImage=false, $page=1, $checkInCategoryList=[],
+    public function getAll($onlyActiveOnes=true, $tagsInString=true, $resultInArray=true, $order=true,
+						   $orderByField='id', $orderBy='desc', $onlyDeletedOnes=false,
+						   $limit=0,$withAuthorImage=false, $page=1, $checkInCategoryList=[],
                            $checkInTagList=[], $eventIDsNotIn=[], $eventTagIn=[],
-                           $eventIDsIn=[], $countResult=false){
+                           $eventIDsIn=[], $countResult=false, $eventsToComeOnly=false){
         $tables = $this->_tables;
         $this->db->distinct();
         $this->db->select("$tables->events.*, $tables->categories.name as category, users.first_name, users.last_name");
@@ -79,6 +81,9 @@ class Event_model extends CI_Model{
         if(!empty($eventIDsIn)){
             $this->db->where_in("$tables->events.id", $eventIDsIn);
         }
+        if($eventsToComeOnly){
+			$this->db->where("$tables->events.starts_at >=", date(getRegularDateTimeFormat()));
+		}
         if($countResult){
             return $this->db->count_all_results($this->_tables->events);
         }

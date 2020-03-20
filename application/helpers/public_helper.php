@@ -45,7 +45,7 @@ function getEventTemplatePreview($event, $class = 'col-md-4 col-sm-4')
 
 function getPostTemplatePreview($post, $options, $outerClass = 'col-md-3 col-sm-6')
 {
-    $userPhoto = $post['user_photo'];
+    $userPhoto = maybe_null_or_empty($post, 'user_photo');
     if ($userPhoto == '') {
         $userPhoto = $options['siteDefaultAvatar'];
     }

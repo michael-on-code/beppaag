@@ -188,7 +188,33 @@ if (isset ($sliders) && !empty($sliders) && isset ($slidersElements) && !empty($
 		</section>
 		<?php
 	}
-	if (!empty($latestEvents)) {
+	if (!empty($eventsToCome)) {
+		?>
+		<section class="wf100 p80 news-event">
+			<div class="container">
+				<div class="row">
+					<div class="title-style-2 wf100">
+						<div class="col-md-4 col-sm-6 m-b-20">
+							<h2>Evènements à venir</h2>
+						</div>
+						<div class="col-md-6 col-sm-6 outerTitleDescription">
+							<p class="innerTitleDescription">Retrouvez les évènements à venir organisés par la BEPPAAG
+								au sujet de la gestion des processus evaluatifs</p>
+						</div>
+						<div class="col-md-2 "><a class="mg-t-17" href="<?= site_url('events') ?>">Voir tout</a></div>
+					</div>
+				</div>
+				<div class="row">
+					<?php
+					foreach ($eventsToCome as $event) {
+						getEventTemplatePreview($event);
+					}
+					?>
+				</div>
+			</div>
+		</section>
+		<?php
+	}if (!empty($latestEvents)) {
 		?>
 		<section class="wf100 p80 news-event">
 			<div class="container">
@@ -248,23 +274,23 @@ if (isset ($sliders) && !empty($sliders) && isset ($slidersElements) && !empty($
 								</div>
 							</li>
 							<li class="col-md-4 col-sm-4">
-								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/progress.png"
+								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/visibility.png"
 															  alt=""></i>
 									<strong><?= (int) maybe_null_or_empty($options, 'total_view_count') ?></strong>
 									<span>Total vues du site</span></div>
 							</li>
 							<li class="col-md-4 col-sm-4">
-								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/checked.png"
+								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/eval-views.png"
 															  alt=""></i>
 									<strong><?= (int) maybe_null_or_empty($options, 'total_evaluation_view_count') ?></strong>
 									<span>Total vues évaluations</span>
 								</div>
 							</li>
 							<li class="col-md-4 col-sm-4">
-								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/warning.png"
+								<div class="fact-box"><i><img data-src="<?= $assetsUrl ?>public/images/download-icon.png"
 															  alt=""></i>
 									<strong><?= $totalNonExecutedRecommendation ?></strong>
-									<span>Recommandations non exécutées</span></div>
+									<span>Total téléchargements</span></div>
 							</li>
 
 

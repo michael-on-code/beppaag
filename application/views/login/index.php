@@ -4,7 +4,7 @@
 <div class="d-flex h-100 p-h-40 p-v-15 flex-column justify-content-between">
     <div class="login-logo-triangle-container"></div>
     <div class="login-logo-container">
-        <img src="<?= getUploadedImageBySize($options['siteLogo'], '150x150')?>" alt="">
+        <img src="<?= getUploadedImageBySize($options['siteLogo'], '345x119')?>" alt="">
     </div>
     <div class="banner-text-container">
         <h1 class="text-white m-b-20 font-weight-normal">Portail Web du Bureau de l'Evaluation des Politiques Publiques</h1>
