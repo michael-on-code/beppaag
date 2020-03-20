@@ -19,6 +19,7 @@ class Event_model extends CI_Model{
         return array(
             'content',
             'thumbnail',
+            'attachment',
             'updated_by'//user who created user
         );
     }

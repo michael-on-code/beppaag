@@ -207,7 +207,7 @@ function getAddOrEditPostHTML($edit = false, $post = [], $categories, $tags, $ca
                                 'class' => 'my-summernote',
                                 'required' => '',
                                 'id' => $id,
-                                'data-summernote-height' => 210,
+                                'data-summernote-height' => 500,
                                 'value' => set_value($name, maybe_null_or_empty($post, $id), false)
                             ]) ?>
                             <?= get_form_error($name) ?>
@@ -294,6 +294,35 @@ function getAddOrEditPostHTML($edit = false, $post = [], $categories, $tags, $ca
                             get_form_upload($data, $extensions = 'jpg jpeg png', '1M', true, 'auto-upload');
                             echo get_form_error($name);
                             getFieldInfo('Format : JPG | JPEG | PNG Taille Max : 1M');
+                            ?>
+                        </div>
+						<div class="form-group">
+                            <?php echo form_label($title = "Attacher un fichier à l'article");
+                            $file = set_value($name = 'post[attachment]', maybe_null_or_empty($post, 'attachment', true));
+                            ?>
+                            <a class="my-file-preview-btn"
+                               data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
+                               data-placement="top" title="Visualiser le fichier" target="_blank"
+                               href="<?= $file ? $uploadPath . $file : '#' ?>"> <span
+                                        class="anticon anticon-cloud-upload"></span></a>
+                            <?php
+                            $data = [
+                                'name' => '',
+                                'attributes' => [
+                                    'data-target' => 'attachment',
+                                    'data-target-name' => $name,
+                                ],
+                                'title' => $title,
+                            ];
+                            if ($file) {
+                                $data['value'] = $uploadPath . $file;
+                            } else {
+                                $data['value'] = '';
+                            }
+                            echo form_hidden($name, set_value($name, $file));
+                            get_form_upload($data, $extensions = 'pdf', '10M', false, 'auto-upload');
+                            echo get_form_error($name);
+                            getFieldInfo('Format : PDF Taille Max : 10M');
                             ?>
                         </div>
                     </div>

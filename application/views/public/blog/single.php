@@ -51,6 +51,16 @@ getBreadcrump([
                             </div>
                             <h4><?= $post['title'] ?></h4>
                             <?= $post['content'] ?>
+							<?php
+							if($attachment = maybe_null_or_empty($post, 'attachment', true)){
+								?>
+								<div class="title-style-2">
+									<a href="<?= $uploadPath.$attachment ?>" download class="m-b-20" style="float: left"><i class="fas fa-paperclip"></i> Télécharger le fichier attaché</a>
+								</div>
+								<?php
+							}
+							?>
+
                             <?php
                             if($tags = maybe_null_or_empty($post, 'tag_id', true)){
                                 ?>

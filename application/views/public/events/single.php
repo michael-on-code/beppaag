@@ -88,6 +88,15 @@ getBreadcrump([
                                     ?>
                                 </ul>
                                 <?= $event['content'] ?>
+								<?php
+								if($attachment = maybe_null_or_empty($event, 'attachment', true)){
+									?>
+									<div class="title-style-2">
+										<a href="<?= $uploadPath.$attachment ?>" download class="m-b-20" style="float: left"><i class="fas fa-paperclip"></i> Télécharger le fichier attaché</a>
+									</div>
+									<?php
+								}
+								?>
                                 <?php
                                 if($tags = maybe_null_or_empty($event, 'tag_id', true)){
                                     ?>
