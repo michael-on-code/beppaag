@@ -460,6 +460,11 @@ function get_menu_by_group($group)
                             'title' => 'Contact',
                             'url' => pro_url('contents/contact-page')
                         ],
+						[
+                            'title' => 'Connexion',
+                            'url' => pro_url('contents/login-page')
+                        ],
+
                     ]
                 ]
             ];

@@ -75,6 +75,10 @@ class Option_model extends CI_Model{
 			'site_director_name',
 			'site_director_photo',
 			'site_director_phrase',
+			//login content
+			'site_login_title',
+			'site_login_description',
+			'site_login_bg_image',
 			//slide
 			'show_latest_evaluations',
 			'show_latest_posts',

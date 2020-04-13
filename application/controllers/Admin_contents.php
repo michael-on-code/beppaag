@@ -88,6 +88,40 @@ class Admin_contents extends Pro_Controller{
         $this->render('contents/index');
     }
 
+    public function login_page(){
+		$this->data['pageTitle']="Modification du contenu de la page de Login";
+		includeDropifyAssets();
+		if($this->input->post('content')){
+			setFormValidationRules([
+				[
+					'name'=>'content[site_login_title]',
+					'label'=>'Titre de la page',
+					'rules'=>'trim|required',
+				],
+				[
+					'name'=>'content[site_login_description]',
+					'label'=>'Description de la page',
+					'rules'=>'trim|required',
+				],
+				[
+					'name'=>'content[site_login_bg_image]',
+					'label'=>"Image d'arriere plan de la page",
+					'rules'=>'trim|required',
+				],
+
+			]);
+			if($this->form_validation->run()){
+				$content = $this->input->post('content');
+				$this->option_model->update_all_options($content);
+				get_success_message('Contenus mis à jour avec succès');
+				pro_redirect('contents/login-page');
+			}else{
+				get_error_message();
+			}
+		}
+		$this->render('contents/login');
+	}
+
     public function slides(){
 		$this->data['pageTitle']="Modification des slides";
 		includeDropifyAssets();

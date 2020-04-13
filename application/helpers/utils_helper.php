@@ -124,7 +124,14 @@ function getAllImageSizes()
             'height' => 700,
 //            'maintain_ratio' => FALSE,
             'master_dim' => 'width',
-        ]
+        ],
+		'640x940' => [//public-slide
+            'width' => 1920,
+            'height' => 700,
+//            'maintain_ratio' => FALSE,
+            'master_dim' => 'height',
+        ],
+
     ];
 }
 

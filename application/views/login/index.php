@@ -1,15 +1,15 @@
 <div class="container-fluid p-0 h-100">
     <div class="row no-gutters h-100 full-height">
-        <div class="col-lg-4 d-none d-lg-flex bg" style="background-image:url('<?= $assetsUrl ?>pro/images/others/login-1.jpg')">
+        <div class="col-lg-4 d-none d-lg-flex bg" style="background-image:url('<?= getUploadedImageBySize($options['site_login_bg_image'], '640x940') ?>')">
 <div class="d-flex h-100 p-h-40 p-v-15 flex-column justify-content-between">
     <div class="login-logo-triangle-container"></div>
     <div class="login-logo-container">
         <img src="<?= getUploadedImageBySize($options['siteLogo'], '345x119')?>" alt="">
     </div>
     <div class="banner-text-container">
-        <h1 class="text-white m-b-20 font-weight-normal">Portail Web du Bureau de l'Evaluation des Politiques Publiques</h1>
-        <p class="text-white font-size-16 lh-2 w-80 opacity-08">Bienvenue au portail web du Bureau de l'Evaluation des Politiques Publiques. Administrez
-            ici, les évaluations des politiques publiques</p>
+        <h1 class="text-white m-b-20 font-weight-normal"><?= maybe_null_or_empty($options, 'site_login_title', false, "Portail Web du Bureau de l'Evaluation des Politiques Publiques") ?></h1>
+        <p class="text-white font-size-16 lh-2 w-80 opacity-08"><?= maybe_null_or_empty($options, 'site_login_description', false, "Bienvenue au portail web du Bureau de l'Evaluation des Politiques Publiques. Administrez
+            ici, les évaluations des politiques publiques") ?></p>
     </div>
     <div class="d-flex justify-content-between login-footer">
         <span class="text-white">© 2019 <?= $options['siteName'] ?></span>
