@@ -1055,10 +1055,9 @@ function getQuestionRepeater($question = [], $additionalClassToParent = '', $add
             echo form_label($title = 'Libellé de la question évaluative');
             echo form_textarea([
                 'name' => 'title',
-                'class' => "form-control $additionalClassToFields",
-                'placeholder' => $title,
+                'class' => "my-summernote $additionalClassToFields",
                 'required' => '',
-                'rows' => 2,
+				'data-summernote-height' => 150,
                 'value' => maybe_null_or_empty($question, 'title')
             ]);
             ?>
