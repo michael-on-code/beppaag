@@ -122,10 +122,10 @@ if(isset($bodyClass) && !empty($bodyClass)){
                                         <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="<?= ($flickrURl = (maybe_null_or_empty($options, 'site_flickr_url'))) ? $flickrURl : '#' ?>">Photos</a>
+                                            <a target="_blank" href="<?= ($flickrURl = (maybe_null_or_empty($options, 'site_flickr_url'))) ? $flickrURl : '#' ?>">Photos</a>
                                         </li>
                                         <li>
-                                            <a href="<?= ($youtubeURL = (maybe_null_or_empty($options, 'site_youtube_url'))) ? $youtubeURL : '#' ?>">Vidéos</a>
+                                            <a target="_blank" href="<?= ($youtubeURL = (maybe_null_or_empty($options, 'site_youtube_url'))) ? $youtubeURL : '#' ?>">Vidéos</a>
                                         </li>
                                     </ul>
                                 </li>
