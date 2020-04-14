@@ -58,7 +58,7 @@ function getUploadedImageBySize($imageFullName, $imageSize = '', $withFullUrl = 
     if (!($imageSize == '' || !isset($allSizes[$imageSize]))) {
         $info = pathinfo($imageFullName);
         if (!empty($info)) {
-            $imageFullName = $info['filename'] . '-' . $imageSize . '.' . $info['extension'];
+            $imageFullName = maybe_null_or_empty($info, 'filename') . '-' . $imageSize . '.' . maybe_null_or_empty($info, 'extension');
         }
     }
     return ($withFullUrl ? get_upload_path() : '') . $imageFullName;
