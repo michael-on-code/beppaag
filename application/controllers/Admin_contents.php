@@ -88,6 +88,52 @@ class Admin_contents extends Pro_Controller{
         $this->render('contents/index');
     }
 
+    public function about_page(){
+		$this->data['pageTitle']="Modification du contenu de la page d'à propos";
+		if($this->input->post('about')){
+			//var_dump($this->input->post('about'));exit;
+			setFormValidationRules([
+				[
+					'name'=>'about[site_director_name]',
+					'label'=>'Nom du Directeur',
+					'rules'=>'trim|required'
+				],
+				[
+					'name'=>'about[site_director_phrase]',
+					'label'=>'Mot du Directeur',
+					'rules'=>'trim|required'
+				],
+				[
+					'name'=>'about[site_director_photo]',
+					'label'=>'Photo du Directeur',
+					'rules'=>'trim|required'
+				],
+				[
+					'name'=>'about[site_director_signature]',
+					'label'=>'Signature du Directeur',
+					'rules'=>'trim'
+				],
+			]);
+			if($this->form_validation->run()){
+				$about = $this->input->post('about');
+				if(maybe_null_or_empty($about, 'site_team')){
+					foreach ($about['site_team'] as $key=> $myAbout){
+						if(!maybe_null_or_empty($myAbout, 'fullname')){
+							unset($about['site_team'][$key]);
+						}
+					}
+				}
+				$this->option_model->update_all_options($about);
+				get_success_message('Contenus de la page a propos mis à jour avec succès');
+				pro_redirect('contents/about-page');
+			}
+		}
+		includeDropifyAssets();
+		includeJQueryRepeaterAssets();
+		includeSummernoteAssets();
+		$this->render('contents/about');
+	}
+
     public function login_page(){
 		$this->data['pageTitle']="Modification du contenu de la page de Login";
 		includeDropifyAssets();
@@ -203,40 +249,6 @@ class Admin_contents extends Pro_Controller{
         includeDropifyAssets();
         includeJQueryRepeaterAssets();
         $this->render('contents/footer');
-    }
-    public function home_page(){
-        $this->data['pageTitle']="Modification du contenu de la page d'accueil";
-        includeDropifyAssets();
-        if($home = $this->input->post('home')){
-			setFormValidationRules([
-				[
-					'name'=>'home[site_director_name]',
-					'label'=>'Nom du Directeur',
-					'rules'=>'trim|required'
-				],
-				[
-					'name'=>'home[site_director_phrase]',
-					'label'=>'Mot du Directeur',
-					'rules'=>'trim|required'
-				],
-				[
-					'name'=>'home[site_director_photo]',
-					'label'=>'Photo du Directeur',
-					'rules'=>'trim|required'
-				],
-				[
-					'name'=>'home[site_director_signature]',
-					'label'=>'Signature du Directeur',
-					'rules'=>'trim'
-				],
-			]);
-			if($this->form_validation->run()){
-				$this->option_model->update_all_options($home);
-				get_success_message('Contenus de la page accueil mis à jour avec succès');
-				pro_redirect('contents/home-page');
-			}
-		}
-        $this->render('contents/home_page');
     }
     public function contact_page(){
         if($contact = $this->input->post('contact')){

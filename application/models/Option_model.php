@@ -75,6 +75,7 @@ class Option_model extends CI_Model{
 			'site_director_name',
 			'site_director_photo',
 			'site_director_phrase',
+			'site_team',
 			//login content
 			'site_login_title',
 			'site_login_description',

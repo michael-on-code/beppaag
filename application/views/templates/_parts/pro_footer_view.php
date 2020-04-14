@@ -34,7 +34,7 @@ if (isset($clientData) && !empty($clientData)) {
 <script src="<?= $assetsUrl ?>pro/vendors/jquery-validation/jquery.validate.min.js"></script>
 <script src="<?= $assetsUrl ?>pro/vendors/jquery-validation/messages_fr.js"></script>
 <script src="<?= $assetsUrl ?>pro/js/app.min.js"></script>
-<script src="<?= $assetsUrl ?>pro/js/monjs.js?v=1.114"></script>
+<script src="<?= $assetsUrl ?>pro/js/monjs.js?v=1.116"></script>
 <script src="<?= $assetsUrl ?>public/js/ajaxify.js?v=1.002"></script>
 
 <!--end::Page Scripts -->

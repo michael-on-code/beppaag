@@ -78,6 +78,122 @@ function getFooterRepeater($footerLink = [], $additionalClassToParent = '', $add
     </div>
     <?php
 }
+
+function getTeamRepeater($team = [], $additionalClassToParent = '', $additionalClassToFields = '', $uploadPath)
+{
+	?>
+	<div class="col-md-4 repeater-item <?= $additionalClassToParent ?>" data-repeater-item>
+		<button title="Supprimer membre de l'équipe" type="button" data-repeater-delete
+				class="btn btn-danger btn-rounded">
+			<i class="anticon anticon-delete"></i>
+		</button>
+		<div class="form-group">
+			<?php
+			echo form_label($title = 'Nom complet du membre', $id = 'fullname');
+			echo form_input([
+				'name' => $id,
+				'class' => "form-control $additionalClassToFields",
+				'required' => '',
+				'placeholder'=>$title,
+				'value' => maybe_null_or_empty($team, $id)
+			]);
+			?>
+		</div>
+		<div class="form-group">
+			<?php
+			echo form_label($title = 'Fonction', $id = 'role');
+			echo form_input([
+				'name' => $id,
+				'class' => "form-control $additionalClassToFields",
+				'required' => '',
+				'placeholder'=>$title,
+				'value' => maybe_null_or_empty($team, $id)
+			]);
+			?>
+		</div>
+		<div class="form-group">
+			<?php
+			echo form_label($title = 'Bio', $id = 'bio');
+			echo form_textarea([
+				'name' => $id,
+				'class' => "form-control $additionalClassToFields",
+				'required' => '',
+				'placeholder'=>$title,
+				'rows'=>4,
+				'value' => maybe_null_or_empty($team, $id)
+			]);
+			?>
+		</div>
+		<div class="form-group">
+			<?php
+			echo form_label($title = 'URL Facebook', $id = 'facebook_url');
+			echo form_input([
+				'name' => $id,
+				'class' => "form-control $additionalClassToFields",
+				'type' => 'url',
+				'placeholder'=>$title,
+				'value' => maybe_null_or_empty($team, $id)
+			]);
+			?>
+		</div>
+		<div class="form-group">
+			<?php
+			echo form_label($title = 'URL Twitter', $id = 'twitter_url');
+			echo form_input([
+				'name' => $id,
+				'class' => "form-control $additionalClassToFields",
+				'type' => 'url',
+				'placeholder'=>$title,
+				'value' => maybe_null_or_empty($team, $id)
+			]);
+			?>
+		</div>
+		<div class="form-group">
+			<?php
+			echo form_label($title = 'URL LinkedIn', $id = 'linkedin_url');
+			echo form_input([
+				'name' => $id,
+				'class' => "form-control $additionalClassToFields",
+				'type' => 'url',
+				'placeholder'=>$title,
+				'value' => maybe_null_or_empty($team, $id)
+			]);
+			?>
+		</div>
+		<div class="form-group">
+			<?php echo form_label($title="Attacher photo du membre");
+			$target ='photo';
+			$file = set_value($name="$target", maybe_null_or_empty($team, $target, true));
+			?>
+			<a class="my-file-preview-btn"
+			   data-toggle="tooltip" <?= $file ? '' : 'style="display:none;"' ?>
+			   data-placement="top" title="Visualiser la photo" target="_blank"
+			   href="<?= $file ? $uploadPath . $file : '#' ?>"> <span
+					class="anticon anticon-cloud-upload"></span></a>
+			<?php
+			$data = [
+				'name' => '',
+				'attributes' => [
+					'data-target' => $target,
+					'data-target-name' => $name,
+				],
+				'title' => $title,
+			];
+			if ($file) {
+				$data['value'] = $uploadPath . $file;
+			} else {
+				$data['value'] = '';
+			}
+			echo form_hidden($name, set_value($name, $file));
+			get_form_upload($data, $extensions = 'jpg jpeg png', '1M', true, 'auto-upload ignore');
+			echo get_form_error($name);
+			getFieldInfo('Dimensions recommandées : 360x420 Format : JPG|PNG|JPEG Taille Max : 1M');
+			?>
+		</div>
+
+	</div>
+	<?php
+}
 function getTopHeaderMenuRepeater($topHeaderLinks = [], $additionalClassToParent = '', $additionalClassToFields = '', $previousFooterLinkExist = false, $key = 0)
 {
     ?>

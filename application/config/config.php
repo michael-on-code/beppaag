@@ -453,7 +453,10 @@ $config['csrf_token_name'] = 'beppaagg_csrf_token_nonce';
 $config['csrf_cookie_name'] = 'beppaagg_csrf_cookie_nonce';
 $config['csrf_expire'] = 18000;
 $config['csrf_regenerate'] = FALSE;
-$config['csrf_exclude_uris'] = array('ajaxify/doCronJobs');
+$config['csrf_exclude_uris'] = array('ajaxify/doCronJobs',
+	'ajaxify/setSiteViewCounter',
+	'ajaxify/setDownloadCounter',
+	'ajaxify/setSingleEvaluationViewCounter');
 
 /*
 |--------------------------------------------------------------------------
