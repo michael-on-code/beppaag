@@ -94,6 +94,7 @@ if(isset($bodyClass) && !empty($bodyClass)){
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
                                 <li><a href="<?= site_url() ?>">Accueil</a></li>
+                                <li><a href="<?= site_url('a-propos') ?>">A propos</a></li>
                                 <li><a href="<?= site_url('evaluations') ?>">Evaluations</a></li>
                                 <li><a href="<?= site_url('evenements') ?>">Evènements</a></li>
                                 <li><a href="<?= site_url('articles') ?>">Actualités</a></li>

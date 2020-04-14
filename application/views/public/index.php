@@ -122,12 +122,12 @@ if (isset ($sliders) && !empty($sliders) && isset ($slidersElements) && !empty($
 						<!--Local Box Start-->
 						<div class="col-md-4 col-sm-4 col-xs-6">
 							<div class="deprt-icon-box">
-								<a href="<?= site_url() ?>">
+								<a href="<?= site_url('a-propos') ?>">
 									<img data-src="<?= $assetsUrl ?>public/images/about.png" alt="">
 								</a>
-								<h6><a href="<?= site_url() ?>">A propos du BEPPAAG</a>
+								<h6><a href="<?= site_url('a-propos') ?>">A propos du BEPPAAG</a>
 								</h6>
-								<a class="rm" href="<?= site_url() ?>">Découvrir</a>
+								<a class="rm" href="<?= site_url('a-propos') ?>">Découvrir</a>
 							</div>
 						</div>
 						<!--Local Box End-->
