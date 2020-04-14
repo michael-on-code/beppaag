@@ -38,7 +38,7 @@
     <link href="<?= $assetsUrl ?>public/css/stylefd49.css?v=1.02" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/m-style5fab.css?v=1.001" rel="stylesheet">
 
-    <link href="<?= $assetsUrl ?>public/css/custom.css?v=1.03" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/custom.css?v=1.04" rel="stylesheet">
     <?php
     $this->load->view('templates/_parts/header_css_file_include');
     ?>
@@ -46,7 +46,7 @@
     <link href="<?= $assetsUrl ?>public/css/all.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.063" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.064" rel="stylesheet">
     <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'], '150x150') ?>">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>

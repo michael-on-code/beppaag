@@ -1589,3 +1589,15 @@ button.grayish-color, #contact_form input[disabled], input.grayish-color{
 	filter: contrast(0%) brightness(200%);
 }
 
+.word-of-director *{
+	font-family: 'Lato', serif;
+	font-size: 16px;
+	color: #fff;
+	line-height: 26px;
+	margin: 0 0 25px;
+	text-shadow: 0 7px 10px rgba(0,0,0,.12);
+}
+.h2-Mayor-msg .Mayor-img img{
+	height: 100% !important;
+	width: unset;
+}

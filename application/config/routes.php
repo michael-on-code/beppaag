@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['404_override'] = 'p_404';
 $route['articles'] = 'blog';
+$route['a-propos'] = 'about';
 $route['evenements'] = 'events';
 $route['evaluations/thematic/(.+)'] = 'evaluations/thematic/$1';
 $route['evaluations/thematique/(.+)'] = 'evaluations/thematic/$1';

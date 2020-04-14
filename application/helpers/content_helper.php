@@ -161,6 +161,19 @@ function getTeamRepeater($team = [], $additionalClassToParent = '', $additionalC
 			?>
 		</div>
 		<div class="form-group">
+			<?php
+			echo form_label($title = 'Autre URL', $id = 'other_url');
+			echo form_input([
+				'name' => $id,
+				'class' => "form-control $additionalClassToFields",
+				'type' => 'url',
+				'placeholder'=>$title,
+				'value' => maybe_null_or_empty($team, $id)
+			]);
+			?>
+		</div>
+
+		<div class="form-group">
 			<?php echo form_label($title="Attacher photo du membre");
 			$target ='photo';
 			$file = set_value($name="$target", maybe_null_or_empty($team, $target, true));
@@ -187,7 +200,7 @@ function getTeamRepeater($team = [], $additionalClassToParent = '', $additionalC
 			echo form_hidden($name, set_value($name, $file));
 			get_form_upload($data, $extensions = 'jpg jpeg png', '1M', true, 'auto-upload ignore');
 			echo get_form_error($name);
-			getFieldInfo('Dimensions recommandées : 360x420 Format : JPG|PNG|JPEG Taille Max : 1M');
+			getFieldInfo('Dimensions obligatoires : 600x600 Format : JPG|PNG|JPEG Taille Max : 1M');
 			?>
 		</div>
 

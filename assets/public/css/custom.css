@@ -1467,7 +1467,7 @@ ul.team-social a:hover {
 /*** + === + Mayor MSG Start + === + ***/
 
 .h2-Mayor-msg {
-	background: url(../images/flagbg.jpg) right top no-repeat #d94148;
+	/*background: url(../images/flagbg.jpg) right top no-repeat #d94148;*/
 	padding: 30px;
 	border-radius: 3px;
 	width: 100%;
