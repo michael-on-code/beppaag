@@ -57,7 +57,7 @@ class Events extends Public_Controller {
             $page = abs((int)$this->input->get('page'));
             $this->data['events'] = $this->event_model->getAll(true, true, true, 'true', 'id', 'desc', false, $limit = 6, true, $page);
             //var_dump($this->data['events']);exit;
-            $this->data['links'] = getPaginationConfigAndLink(site_url('evenements'), $limit, getCountInTable($this->_tables->events, ['active' => 1]), $page);
+            $this->data['links'] = getPaginationConfigAndLink(site_url('evenements'), $limit, getCountInTable($this->_tables->events, true, ['active' => 1]), $page);
             $this->render('events/index');
         } else {
             //$eventID = (int) getIDBySlug($this->_tables->events, $eventID);
