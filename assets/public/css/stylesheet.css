@@ -1601,3 +1601,11 @@ button.grayish-color, #contact_form input[disabled], input.grayish-color{
 	height: 100% !important;
 	width: unset;
 }
+a.whatsapp {
+	color: #00e073;
+}
+.share-post-single a.whatsapp:hover {
+	background: #00e073;
+	border-color: #00e073;
+	color: #fff;
+}
