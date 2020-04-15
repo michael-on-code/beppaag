@@ -54,6 +54,9 @@ function getSpecificImageSizeDimensions($sizeName)
 
 function getUploadedImageBySize($imageFullName, $imageSize = '', $withFullUrl = true)
 {
+	if(!$imageFullName){
+		return '';
+	}
     $allSizes = getAllImageSizes();
     if (!($imageSize == '' || !isset($allSizes[$imageSize]))) {
         $info = pathinfo($imageFullName);
