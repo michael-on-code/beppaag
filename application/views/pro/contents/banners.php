@@ -14,8 +14,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <?php echo form_label($title="Attacher la bannière de la page d'accueil");
-                            $target ='home_banner';
+                            <?php echo form_label($title="Attacher la bannière de la page d'a propos");
+                            $target ='about_banner';
                             $file = set_value($name="banners[$target]", maybe_null_or_empty($options, $target, true));
                             ?>
                             <a class="my-file-preview-btn"

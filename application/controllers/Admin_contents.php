@@ -20,8 +20,8 @@ class Admin_contents extends Pro_Controller{
         if($banners = $this->input->post('banners')){
             setFormValidationRules([
                 [
-                    'name'=>'banners[home_banner]',
-                    'label'=>"Bannière de la page d'accueil",
+                    'name'=>'banners[about_banner]',
+                    'label'=>"Bannière de la page d'a propos",
                     'rules'=>'trim|required'
                 ],
                 [

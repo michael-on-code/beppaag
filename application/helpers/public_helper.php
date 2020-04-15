@@ -129,7 +129,6 @@ function getBreadcrump(array $data, $options = [], $pageType = '')
     } else {
         $banner = $pageType . '_banner';
     }
-    $assetsUrl = base_url('assets/');
     ?>
     <section class="banner banner-small scale-hover">
         <div class="">

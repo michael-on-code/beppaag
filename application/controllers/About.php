@@ -10,7 +10,7 @@ class About extends Public_Controller
 
 	public function index(){
 		$this->data['pageTitle'] = 'A propos';
-		$this->render('about/index');
+		$this->render('about');
 	}
 
 }

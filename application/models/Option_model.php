@@ -44,7 +44,7 @@ class Option_model extends CI_Model{
             'siteDefaultAvatar',
             'notificationEmails',
             //banners
-            'home_banner',
+            'about_banner',
             'evaluation_banner',
             'post_banner',
             'event_banner',

@@ -7,8 +7,7 @@
  */
 getBreadcrump([
     'title' => $pageTitle,
-], $options);
-$assetsUrl=base_url('assets/public/');
+], $options, 'about');
 ?>
 <div class="main-content">
 	<!--Local Boards & Services-->
