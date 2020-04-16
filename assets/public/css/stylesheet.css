@@ -429,7 +429,7 @@ body {
 
 .s002 input, .s002 select {
     border-right: 1px solid #ddd !important;
-    padding: 10px 20px 10px 25px !important;
+    padding: 10px 20px 10px 5px !important;
     height: 45px !important;
 }
 
@@ -1608,4 +1608,33 @@ a.whatsapp {
 	background: #00e073;
 	border-color: #00e073;
 	color: #fff;
+}
+.s002 input.daterangepicker{
+	top: unset;
+	left: unset;
+	position: relative;
+	margin-top: unset;
+}
+.s002 form{
+	max-width: unset;
+}
+.s002{
+	padding: 15px 0px;
+}
+.range-btn-container button{
+	padding: 0px 10px;
+	margin-top: 30px;
+	height: 38px;
+	width: auto;
+	/* background: #b78a62; */
+	white-space: nowrap;
+	border-radius: .5px;
+	font-size: 18px;
+	color: #fff;
+	transition: all .2s ease-out, color .2s ease-out;
+	border: 0;
+	cursor: pointer;
+	font-weight: 400;
+	font-family: 'Poppins', sans-serif;
+	background-color: #d94148;
 }

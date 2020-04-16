@@ -137,7 +137,10 @@ class Evaluations extends Public_Controller {
     }
 
     public function index($evaluationID=""){
-		if($this->input->get('search')){
+		includeRangeSliderAssets();
+		$this->data['clientData']['evaluationMinYear'] = $this->evaluation_model->getMinYear();
+		$this->data['clientData']['evaluationMaxYear'] = $this->evaluation_model->getMaxYear();
+		if($this->input->get('search') && !empty($this->input->get('search'))){
 			//search
 			$this->data['pageTitle']='Recherche avancée';
 			$searchParams = $this->input->get('search');
@@ -147,12 +150,14 @@ class Evaluations extends Public_Controller {
 			$queryData['sector_id']=null;
 			$queryData['thematic_id']=null;
 			$queryData['contracting_authority_id']=null;
+			$queryData['year_range']=null;
 			//years
 			$year = abs((int) maybe_null_or_empty($searchParams, 'year', true));
 			$sectorID = abs((int) maybe_null_or_empty($searchParams, 'sector_id', true));
 			$thematicID = abs((int) maybe_null_or_empty($searchParams, 'thematic_id', true));
 			$temporalityID = abs((int) maybe_null_or_empty($searchParams, 'temporality_id', true));
 			$contractingAuthorityID = abs((int) maybe_null_or_empty($searchParams, 'contracting_authority_id', true));
+			$yearRange = trim(maybe_null_or_empty($searchParams, 'year_range', true));
 			$keyword = trim(maybe_null_or_empty($searchParams, 'keyword', true));
 			if($year){
 				$queryData['year']=$year;
@@ -183,6 +188,21 @@ class Evaluations extends Public_Controller {
 			}
 			if($contractingAuthorityID){
 				$queryData['contracting_authority_id']=$contractingAuthorityID;
+			}
+			if($yearRange && $yearRange!=''){
+				$years = explode(';', $yearRange);
+				if(!empty($years) && isset($years[0], $years[1]) && ($years[0] < $years[1])){
+					$this->data['clientData']['rangeSliderStart'] = $years[0];
+					$this->data['clientData']['rangeSliderEnd'] = $years[1];
+					$resultsFromKeyword = $this->evaluation_model->getEvaluationIDsByYearRange($years[0], $years[1]);
+					if(!empty($resultsFromKeyword)){
+						foreach ($resultsFromKeyword as $result){
+							if(!in_array( (int) $result->id, $queryData['evaluation_ids'])){
+								$queryData['evaluation_ids'][]= (int) $result->id;
+							}
+						}
+					}
+				}
 			}
 			if($keyword && $keyword!=''){
 				$resultsFromKeyword = $this->evaluation_model->getEvaluationIDsByKeywordInMeta($keyword);

@@ -33,6 +33,16 @@ class Evaluation_model extends CI_Model
         return $years;
     }
 
+    public function getMinYear(){
+    	$this->db->select('MIN(year) as minYear');
+    	return $this->db->get($this->_tables->evaluations)->row()->minYear;
+	}
+	public function getMaxYear(){
+    	$this->db->select('MAX(year) as maxYear');
+    	return $this->db->get($this->_tables->evaluations)->row()->maxYear;
+	}
+
+
     public function getMinifiedAll($select = '*', $onlyActiveOnes=true, $page=0, $limit=8, $order=true, $orderByField='id', $orderBy='desc', $withFile=true, $withPaginationData = true){
         $this->db->select($select);
         $this->db->limit($limit, $page);
@@ -94,6 +104,13 @@ class Evaluation_model extends CI_Model
     	$this->db->like('value', $keyword);
     	return $this->db->get($this->_tables->meta)->result();
     	//$this->db->or_like()
+	}
+
+	public function getEvaluationIDsByYearRange($minYear, $maxYear){
+    	$this->db->select("{$this->_tables->evaluations}.id");
+		$this->db->where("{$this->_tables->evaluations}.year <=", $maxYear);
+		$this->db->where("{$this->_tables->evaluations}.year >=", $minYear);
+		return $this->db->get($this->_tables->evaluations)->result();
 	}
 
 	public function getEvaluationIDsByKeywordInTitleAndObject($keyword){

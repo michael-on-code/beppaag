@@ -91,6 +91,12 @@ function includeEvaluationColirLibAssets()
     $ci->data['headerCss'][] = $ci->data['assetsUrl'] . 'public/lib/colorlib-search/css/main.css';
 }
 
+function includeRangeSliderAssets(){
+	$ci =& get_instance();
+	$ci->data['footerJs'][] = '//cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js';
+	$ci->data['headerCss'][] = '//cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css';
+}
+
 function getSharerAttributes($link, $title = '', $type = 'facebook')
 {
     switch ($type) {

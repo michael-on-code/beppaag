@@ -28,7 +28,31 @@ if(!isset($sidebarClass)){
 
                     ?>
                 </div>
+
+
             </div>
+			<div class="widget">
+				<h4>Rangées d'années</h4>
+				<?= form_open(site_url('evaluations'), [
+					'method'=>'get'
+				]) ?>
+				<div class="tags-widget inner" style="width: 80%">
+
+					<?=
+					form_input([
+						'name'=>$name ='search[year_range]',
+						'class'=>'js-range-slider form-control',
+						'value'=>set_value($name),
+						'placeholder'=>'Choisir rangée',
+						'style'=>'width:80%'
+					]);
+					?>
+				</div>
+				<div class="range-btn-container">
+					<button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
+				</div>
+				<?= form_close() ?>
+			</div>
             <?php
         }
         if(isset($thematics) && !empty($thematics)){

@@ -46,7 +46,7 @@
     <link href="<?= $assetsUrl ?>public/css/all.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?= $assetsUrl ?>public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.065" rel="stylesheet">
+    <link href="<?= $assetsUrl ?>public/css/stylesheet.css?v=1.067" rel="stylesheet">
     <link rel="shortcut icon" href="<?= getUploadedImageBySize($options['siteFavicon'], '150x150') ?>">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>

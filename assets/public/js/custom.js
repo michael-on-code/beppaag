@@ -573,7 +573,72 @@ jQuery(document).ready(function ($) {
         animation: 'slide'
     });
 
+    if($('.daterangepicker').length){
+    	console.log(clientData.evaluationMaxYear);
+		$('.daterangepicker').daterangepicker({
+			autoUpdateInput: false,
+			showDropdowns: true,
+			linkedCalendars: false,
+			locale: {
+				cancelLabel: 'Annuler',
+				applyLabel: 'Appliquer',
+				monthNames: [
+					"Janvier",
+					"Février",
+					"Mars",
+					"Avril",
+					"Mai",
+					"Juin",
+					"Juillet",
+					"Août",
+					"Septembre",
+					"Octobre",
+					"Novembre",
+					"Decembre"
+				],
+				daysOfWeek: [
+					"Di",
+					"Lu",
+					"Ma",
+					"Me",
+					"Je",
+					"Ve",
+					"Sa"
+				],
+			},
+			changeMonth: true,
+			minYear: parseInt(clientData.evaluationMinYear),
+		});
+		$('.daterangepicker').on('apply.daterangepicker', function(ev, picker) {
+			$(this).val(picker.startDate.format('YYYY') + ' - ' + picker.endDate.format('YYYY'));
+		});
 
+		$('.daterangepicker').on('cancel.daterangepicker', function(ev, picker) {
+			$(this).val('');
+		});
+	}
+
+    if($('.js-range-slider').length){
+    	/*var rangeOptions = {
+			min: parseInt(clientData.evaluationMinYear),
+			max: parseInt(clientData.evaluationMaxYear),
+			grid: true,
+			type: "double",
+		};
+    	if(clientData.rangeSliderStart!= undefined && clientData.rangeSliderEnd){
+    		rangeOptions.from = clientData.rangeSliderStart;
+    		rangeOptions.to = clientData.rangeSliderEnd;
+		}
+    	console.log(rangeOptions);*/
+		$(".js-range-slider").ionRangeSlider({
+			min: parseInt(clientData.evaluationMinYear),
+			max: parseInt(clientData.evaluationMaxYear),
+			/*from: parseInt(clientData.evaluationMinYear)+1,
+			to: parseInt(clientData.evaluationMaxYear)-1,*/
+			grid: true,
+			type: "double",
+		});
+	}
 }); //End
 
 
