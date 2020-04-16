@@ -126,9 +126,9 @@
                                 $data['value'] = '';
                             }
                             echo form_hidden('options[siteLogo]', set_value('options[siteLogo]', $file));
-                            get_form_upload($data, $extensions = 'jpg jpeg png', '1M', true, 'auto-upload ignore');
+                            get_form_upload($data, $extensions = 'jpg jpeg png', '2M', true, 'auto-upload ignore');
                             echo get_form_error('options[siteLogo]');
-                            getFieldInfo('Dimensions recommandées : 345x120 Format : JPG|PNG|JPEG Taille Max : 1M');
+                            getFieldInfo('Dimensions recommandées : 345x120 Format : JPG|PNG|JPEG Taille Max : 2M');
                             ?>
                         </div>
                         <div class="form-group">
@@ -155,9 +155,9 @@
                                 $data['value'] = '';
                             }
                             echo form_hidden($fieldName, set_value($fieldName, $file));
-                            get_form_upload($data, $extensions = 'jpg jpeg png ico', '1M', true, 'auto-upload ignore');
+                            get_form_upload($data, $extensions = 'jpg jpeg png ico', '2M', true, 'auto-upload ignore');
                             echo get_form_error($fieldName);
-                            getFieldInfo('Dimensions recommandées : 150x150 Format : JPG|PNG|JPEG|ICO Taille Max : 1M');
+                            getFieldInfo('Dimensions recommandées : 150x150 Format : JPG|PNG|JPEG|ICO Taille Max : 2M');
                             ?>
                         </div>
                         <div class="form-group">
@@ -184,9 +184,9 @@
                                 $data['value'] = '';
                             }
                             echo form_hidden($fieldName, set_value($fieldName, $file));
-                            get_form_upload($data, $extensions = 'jpg jpeg png', '1M', true, 'auto-upload ignore');
+                            get_form_upload($data, $extensions = 'jpg jpeg png', '2M', true, 'auto-upload ignore');
                             echo get_form_error($fieldName);
-                            getFieldInfo('Dimensions recommandées : 150x150 Format : JPG|PNG|JPEG Taille Max : 1M');
+                            getFieldInfo('Dimensions recommandées : 150x150 Format : JPG|PNG|JPEG Taille Max : 2M');
                             ?>
                         </div>
 

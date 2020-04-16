@@ -198,9 +198,9 @@ function getTeamRepeater($team = [], $additionalClassToParent = '', $additionalC
 				$data['value'] = '';
 			}
 			echo form_hidden($name, set_value($name, $file));
-			get_form_upload($data, $extensions = 'jpg jpeg png', '1M', true, 'auto-upload ignore');
+			get_form_upload($data, $extensions = 'jpg jpeg png', '2M', true, 'auto-upload ignore');
 			echo get_form_error($name);
-			getFieldInfo('Dimensions obligatoires : 600x600 Format : JPG|PNG|JPEG Taille Max : 1M');
+			getFieldInfo('Dimensions obligatoires : 600x600 Format : JPG|PNG|JPEG Taille Max : 2M');
 			?>
 		</div>
 
@@ -423,9 +423,9 @@ function getTeamMemberRepeater($teamMember = [], $additionalClassToParent = '', 
 							$data['value'] = '';
 						}
 						echo form_hidden($name, set_value($name, $file));
-						get_form_upload($data, $extensions = 'jpg jpeg png', '1M', true, 'auto-upload');
+						get_form_upload($data, $extensions = 'jpg jpeg png', '2M', true, 'auto-upload');
 						echo get_form_error($name);
-						getFieldInfo('Dimensions recommandées : 445x520 Format : JPG|PNG|JPEG Taille Max : 1M');
+						getFieldInfo('Dimensions recommandées : 445x520 Format : JPG|PNG|JPEG Taille Max : 2M');
 						?>
 					</div>
 

@@ -93,9 +93,9 @@
                                     $data['value'] = '';
                                 }
                                 echo form_hidden($name, set_value($name, $file));
-                                get_form_upload($data, $extensions = 'jpg jpeg png', '1M', false, 'auto-upload');
+                                get_form_upload($data, $extensions = 'jpg jpeg png', '2M', false, 'auto-upload');
                                 echo get_form_error($name);
-                                getFieldInfo('Format : JPG | JPEG | PNG Taille Max : 1M');
+                                getFieldInfo('Format : JPG | JPEG | PNG Taille Max : 2M');
                                 ?>
                             </div>
                             <div class="form-group col-md-12">
