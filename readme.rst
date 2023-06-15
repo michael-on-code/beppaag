@@ -42,9 +42,10 @@ Usage
 
 The platform is accessible at the defined <BASE_URL>
 
-The admin area is accessible at <BASE_URL>/admin with the following credentials
+The admin area is accessible at <BASE_URL>/admin with the following credentials :
 
 email : admin@admin.com
+
 password : password
 
 Enjoy !
